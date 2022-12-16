@@ -1,0 +1,6 @@
+name: MatteoH2O1999
+author: MatteoH2O1999
+description: Action to build any Python version on the latest labels and install it into the local tool cache.
+runs:
+  using: node16
+  main: dist/index.js
