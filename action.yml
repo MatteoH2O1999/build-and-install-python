@@ -1,6 +1,9 @@
 name: Build and Install Python
 author: MatteoH2O1999
 description: Action to build any Python version on the latest labels and install it into the local tool cache.
+branding:
+  icon: play-circle
+  color: blue
 inputs:
   python-version:
     required: true
