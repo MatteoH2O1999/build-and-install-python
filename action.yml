@@ -15,6 +15,10 @@ inputs:
     required: false
     description: Whether to cache the built Python distribution to speed up successive runs.
     default: 'false'
+  allow-build:
+    required: false
+    description: "Set the behavior of the actoin when actions/setup-python fails and has to build from source. Supported values: allow, info, warn, error"
+    default: warn
 runs:
   using: node16
   main: dist/index.js

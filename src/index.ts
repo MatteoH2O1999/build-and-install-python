@@ -18,3 +18,4 @@ import core from '@actions/core';
 core.info(`Requested Python version: ${core.getInput('python-version')}`);
 core.info(`Requested architecture: ${core.getInput('architecture')}`);
 core.info(`Requested cache: ${core.getInput('cache-build')}`);
+core.info(`Requested build behavior: ${core.getInput('allow-build')}`);
