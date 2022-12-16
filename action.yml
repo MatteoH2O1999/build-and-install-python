@@ -1,6 +1,17 @@
-name: MatteoH2O1999
+name: Build and Install Python
 author: MatteoH2O1999
 description: Action to build any Python version on the latest labels and install it into the local tool cache.
+inputs:
+  python-version:
+    required: true
+    description: Version range or exact version of Python to use, using SemVer's version range syntax.
+  architecture:
+    required: true
+    description: The target architecture (x86, x64) of the Python interpreter.
+  cache-build:
+    required: false
+    description: Whether to cache the built Python distribution to speed up successive runs.
+    default: 'false'
 runs:
   using: node16
   main: dist/index.js
