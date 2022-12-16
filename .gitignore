@@ -100,3 +100,6 @@ lib/**/*
 
 # Ingore ncc build folder
 dist/
+
+# IDE directories
+.vscode/
