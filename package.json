@@ -3,13 +3,13 @@
     "version": "0.0.0",
     "private": false,
     "description": "Build and Install action",
-    "main": "lib/index.js",
+    "main": "dist/index.js",
     "scripts": {
-        "build": "tsc",
+        "build": "tsc --build --verbose",
         "format": "prettier --write **/*.ts",
         "format-check": "prettier --check **/*.ts",
         "lint": "eslint src/**/*.ts",
-        "package": "ncc build --source-map --license licenses.txt",
+        "package": "ncc build ./lib/index.js --source-map --license licenses.txt",
         "test": "jest",
         "test-ci": "jest --reporters='@matteoh2o1999/github-actions-jest-reporter'"
     },
