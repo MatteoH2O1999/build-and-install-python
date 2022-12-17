@@ -1,4 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 
+*.{ts,js} text
+
 dist/** -diff linguist-generated=true 
