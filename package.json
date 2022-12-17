@@ -9,7 +9,7 @@
         "format": "prettier --write **/*.ts",
         "format-check": "prettier --check **/*.ts",
         "lint": "eslint src/**/*.ts",
-        "package": "ncc build ./lib/index.js --license licenses.txt",
+        "package": "ncc build ./lib/index.js --license licenses.txt && node ./.github/scripts/append_license",
         "test": "jest",
         "test-ci": "jest --reporters='@matteoh2o1999/github-actions-jest-reporter'"
     },
