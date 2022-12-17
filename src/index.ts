@@ -13,7 +13,7 @@
 //
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
-import core from '@actions/core';
+import * as core from '@actions/core';
 
 core.info(`Requested Python version: ${core.getInput('python-version')}`);
 core.info(`Requested architecture: ${core.getInput('architecture')}`);
