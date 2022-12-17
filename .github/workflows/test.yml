@@ -153,6 +153,7 @@ jobs:
         with:
           name: built-action
       - name: Test action with Python ${{ matrix.python-version }}
+        id: build
         uses: ./
         with:
           python-version: ${{ matrix.python-version }}
@@ -160,7 +161,7 @@ jobs:
       - name: Setup Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: ${{ steps.build.outputs.python-version }}
       - name: Check Python version
         run: python ./.github/scripts/check_python_version.py ${{ matrix.python-version }}
 
