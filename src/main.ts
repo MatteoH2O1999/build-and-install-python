@@ -14,6 +14,20 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import main from './main';
+import * as core from '@actions/core';
+import {ActionInputs, parseInputs} from './inputs';
 
-main();
+export default async function main(): Promise<void> {
+  const inputs: ActionInputs = await parseInputs();
+  core.info(
+    `Requested python version: ${inputs.version.type} ${inputs.version.version}`
+  );
+  core.info(`Requested architecture: ${inputs.architecture}`);
+  core.info(`Requested build cache: ${inputs.cache}`);
+  core.info(
+    `Requested behavior for deprecated builds: ${inputs.buildBehavior}`
+  );
+
+  //Temp output
+  core.setOutput('python-version', inputs.version.version);
+}
