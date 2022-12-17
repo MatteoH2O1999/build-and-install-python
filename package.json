@@ -11,7 +11,8 @@
         "lint": "eslint src/**/*.ts",
         "package": "ncc build ./lib/index.js --license licenses.txt && node ./.github/scripts/append_license",
         "test": "jest",
-        "test-ci": "jest --reporters='@matteoh2o1999/github-actions-jest-reporter'"
+        "test-ci": "jest --reporters='@matteoh2o1999/github-actions-jest-reporter'",
+        "complete-build": "npm run build && npm run package"
     },
     "repository": {
         "type": "git",
@@ -34,7 +35,8 @@
         "@actions/glob": "^0.3.0",
         "@actions/http-client": "^2.0.1",
         "@actions/io": "^1.1.2",
-        "@actions/tool-cache": "^2.0.1"
+        "@actions/tool-cache": "^2.0.1",
+        "semver": "^7.3.8"
     },
     "devDependencies": {
         "@matteoh2o1999/github-actions-jest-reporter": "^1.0.2",
