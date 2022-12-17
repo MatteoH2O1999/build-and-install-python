@@ -6,10 +6,10 @@ branding:
   color: blue
 inputs:
   python-version:
-    required: true
     description: Version range or exact version of Python to use, using SemVer's version range syntax.
+  python-version-file:
+    description: "File containing the Python version to use. Example: .python-version"
   architecture:
-    required: true
     description: The target architecture (x86, x64) of the Python interpreter.
   cache-build:
     required: false
@@ -19,6 +19,9 @@ inputs:
     required: false
     description: "Set the behavior of the actoin when actions/setup-python fails and has to build from source. Supported values: allow, info, warn, error"
     default: warn
+  token:
+    description: "The token used to authenticate when fetching Python distributions from https://github.com/actions/python-versions. When running this action on github.com, the default value is sufficient. When running on GHES, you can pass a personal access token for github.com if you are experiencing rate limiting."
+    default: ${{ github.server_url == 'https://github.com' && github.token || '' }}
 runs:
   using: node16
   main: dist/index.js
