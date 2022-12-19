@@ -15,12 +15,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import * as core from '@actions/core';
+import {InputNames} from './constants';
 import fs from 'fs';
 import os from 'os';
 import semverValidRange from 'semver/ranges/valid';
 
+export enum PythonType {
+  CPython = 'cpython',
+  PyPy = 'pypy'
+}
+
 export class PythonVersion {
-  readonly type: string;
+  readonly type: PythonType;
   readonly version: string;
 
   constructor(pythonVersion: string) {
@@ -29,16 +35,18 @@ export class PythonVersion {
       pythonVersion = pythonVersion.concat('.x');
     }
     if (pythonVersion.includes('pypy')) {
-      this.type = 'pypy';
+      this.type = PythonType.PyPy;
       pythonVersion = pythonVersion.replace('pypy', '');
     } else {
-      this.type = 'cpython';
+      this.type = PythonType.CPython;
     }
     if (pythonVersion.startsWith('v')) {
       pythonVersion = pythonVersion.replace('v', '');
     }
     if (semverValidRange(pythonVersion) === null) {
-      throw new Error(`Invalid semver string. Got ${pythonVersion}`);
+      throw new Error(
+        `An invalid semver string was supplied. Got ${pythonVersion}`
+      );
     }
     this.version = pythonVersion;
   }
@@ -60,7 +68,10 @@ export type ActionInputs = {
 };
 
 async function getBehavior(): Promise<BuildBehavior> {
-  const behaviorInput = core.getInput('allow-build').toLowerCase().trim();
+  const behaviorInput = core
+    .getInput(InputNames.ALLOW_BUILD)
+    .toLowerCase()
+    .trim();
   if (behaviorInput === 'error') {
     return BuildBehavior.Error;
   }
@@ -74,24 +85,26 @@ async function getBehavior(): Promise<BuildBehavior> {
     return BuildBehavior.Allow;
   }
   throw new Error(
-    `Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got ${behaviorInput}`
+    `Unrecognized input value for "${InputNames.ALLOW_BUILD}". Expected one of "allow", "info", "warn", "error". Got ${behaviorInput}`
   );
 }
 
 async function getCache(): Promise<boolean> {
   try {
-    return core.getBooleanInput('cache-build');
+    return core.getBooleanInput(InputNames.CACHE_BUILD);
   } catch (error) {
     throw new Error(
-      `Expected boolean input. Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got ${core.getInput(
-        'cache-build'
+      `Expected boolean value for input "${
+        InputNames.CACHE_BUILD
+      }". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got ${core.getInput(
+        InputNames.CACHE_BUILD
       )}`
     );
   }
 }
 
 async function getArchitecture(): Promise<string> {
-  const archString: string = core.getInput('architecture');
+  const archString: string = core.getInput(InputNames.ARCHITECTURE);
   if (archString === '') {
     return os.arch();
   }
@@ -99,18 +112,18 @@ async function getArchitecture(): Promise<string> {
 }
 
 async function extractPythonVersion(): Promise<string> {
-  let pythonVersion: string = core.getInput('python-version');
-  let pythonVersionFile: string = core.getInput('python-version-file');
+  let pythonVersion: string = core.getInput(InputNames.PYTHON_VERSION);
+  let pythonVersionFile: string = core.getInput(InputNames.PYTHON_VERSION_FILE);
 
   if (pythonVersion !== '' && pythonVersionFile !== '') {
     core.warning(
-      'Both "python-version" and "python-version-file" inputs were supplied. Only "python-version" will be used.'
+      `Both "${InputNames.PYTHON_VERSION}" and "${InputNames.PYTHON_VERSION_FILE}" inputs were supplied. Only "${InputNames.PYTHON_VERSION}" will be used.`
     );
   }
 
   if (pythonVersion === '' && pythonVersionFile === '') {
     core.info(
-      'Neither "python-version" and "python-version-file" inputs were supplied. Defaulting to using ".python-version" file...'
+      `Neither "${InputNames.PYTHON_VERSION}" and "${InputNames.PYTHON_VERSION_FILE}" inputs were supplied. Defaulting to using ".python-version" file...`
     );
     pythonVersionFile = '.python-version';
   }
@@ -136,7 +149,7 @@ export async function parseInputs(): Promise<ActionInputs> {
     architecture: await getArchitecture(),
     buildBehavior: await getBehavior(),
     cache: await getCache(),
-    token: core.getInput('token'),
+    token: core.getInput(InputNames.TOKEN),
     version: new PythonVersion(await extractPythonVersion())
   };
 }

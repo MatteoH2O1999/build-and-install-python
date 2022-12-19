@@ -16,9 +16,22 @@
 
 import * as core from '@actions/core';
 import {ActionInputs, parseInputs} from './inputs';
+import {OutputNames} from './constants';
 
 export default async function main(): Promise<void> {
-  const inputs: ActionInputs = await parseInputs();
+  let inputs: ActionInputs;
+  try {
+    inputs = await parseInputs();
+  } catch (error) {
+    core.setOutput(OutputNames.PYTHON_VERSION, '');
+    let message = 'Error while parsing inputs.';
+    if (error instanceof Error) {
+      message = message.concat('\n').concat(error.message);
+    }
+    core.setFailed(message);
+    return;
+  }
+
   core.info(
     `Requested python version: ${inputs.version.type} ${inputs.version.version}`
   );
@@ -29,5 +42,5 @@ export default async function main(): Promise<void> {
   );
 
   //Temp output
-  core.setOutput('python-version', inputs.version.version);
+  core.setOutput(OutputNames.PYTHON_VERSION, inputs.version.version);
 }
