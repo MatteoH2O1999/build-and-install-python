@@ -1,0 +1,64 @@
+name: Check specific version
+
+on:
+  workflow_dispatch:
+    inputs:
+      python-version:
+        required: true
+        description: The specific version to check
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Test build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Setup NodeJS ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Build Typescript
+        run: npm run build
+      - name: Package with NCC
+        run: npm run package
+      - name: Upload built action
+        uses: actions/upload-artifact@v3
+        with:
+          name: built-action
+          path: |
+            dist/index.js
+            .github/
+            action.yml
+          retention-days: 1
+          if-no-files-found: error
+  test_python_build:
+    needs: build
+    runs-on: ${{ matrix.os }}
+    name: Test build Python ${{ inputs.python-version }} for ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    steps:
+      - name: Download built action
+        uses: actions/download-artifact@v3
+        with:
+          name: built-action
+      - name: Test action with Python ${{ inputs.python-version }}
+        id: build
+        uses: ./
+        with:
+          python-version: ${{ inputs.python-version }}
+          allow-build: info
+      - name: Setup Python ${{ inputs.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ steps.build.outputs.python-version }}
+      - name: Check Python version
+        run: python ./.github/scripts/check_python_version.py ${{ inputs.python-version }}

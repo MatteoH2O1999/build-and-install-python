@@ -105,7 +105,7 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
-      - name: Build typescript
+      - name: Build Typescript
         run: npm run build
       - name: Package with NCC
         run: npm run package

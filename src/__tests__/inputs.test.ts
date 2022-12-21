@@ -105,6 +105,7 @@ describe('Parsed inputs', () => {
 
       expect(mockedFs.existsSync).toBeCalledTimes(1);
       expect(mockedFs.existsSync).toBeCalledWith('.python-version');
+      expect(mockedFs.readFileSync).not.toBeCalled();
     });
 
     test('specified "python-version" and empty "python-version-file" leads to using "python-version"', async () => {
