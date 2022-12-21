@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Python version string Random string throws an Error 1`] = `"An invalid semver string was supplied. Got "random string.x.x""`;

@@ -1,0 +1,102 @@
+// Action to build any Python version on the latest labels and install it into the local tool cache.
+// Copyright (C) 2022 Matteo Dell'Acqua
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+import * as core from '@actions/core';
+import {InputNames} from '../constants';
+import {PythonType} from '../inputs';
+
+export type PythonVersionTest = {
+  inputVersionString: string;
+  expectedVersion: string;
+  expectedType: PythonType;
+};
+
+const pythonVersions: PythonVersionTest[] = [
+  {
+    expectedType: PythonType.CPython,
+    expectedVersion: '2.7.x',
+    inputVersionString: '2.7'
+  },
+  {
+    expectedType: PythonType.CPython,
+    expectedVersion: '3.x.x',
+    inputVersionString: '3'
+  },
+  {
+    expectedType: PythonType.CPython,
+    expectedVersion: '3.9.x',
+    inputVersionString: '3.9'
+  },
+  {
+    expectedType: PythonType.CPython,
+    expectedVersion: '3.8.x',
+    inputVersionString: '3.8.X'
+  },
+  {
+    expectedType: PythonType.CPython,
+    expectedVersion: '3.2.5',
+    inputVersionString: '3.2.5'
+  },
+  {
+    expectedType: PythonType.PyPy,
+    expectedVersion: '3.9.x',
+    inputVersionString: 'pypy3.9'
+  },
+  {
+    expectedType: PythonType.CPython,
+    expectedVersion: '3.3.x',
+    inputVersionString: 'v3.3'
+  },
+  {
+    expectedType: PythonType.CPython,
+    expectedVersion: 'x.x.x',
+    inputVersionString: ''
+  }
+];
+
+export {pythonVersions};
+
+export type MockedInputs = {
+  pythonVersion: string;
+  pythonVersionFile: string;
+  architecture: string;
+  cacheBuild: string;
+  allowBuild: string;
+  token: string;
+};
+
+export function mockInput(
+  inputs: MockedInputs,
+  input: string,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _options?: core.InputOptions | undefined
+): string {
+  if (input === InputNames.PYTHON_VERSION) {
+    return inputs.pythonVersion;
+  } else if (input === InputNames.PYTHON_VERSION_FILE) {
+    return inputs.pythonVersionFile;
+  } else if (input === InputNames.ARCHITECTURE) {
+    return inputs.architecture;
+  } else if (input === InputNames.ALLOW_BUILD) {
+    return inputs.allowBuild;
+  } else if (input === InputNames.CACHE_BUILD) {
+    return inputs.cacheBuild;
+  } else if (input === InputNames.TOKEN) {
+    return inputs.token;
+  } else {
+    return '';
+  }
+}

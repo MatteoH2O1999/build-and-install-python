@@ -31,6 +31,9 @@ export class PythonVersion {
 
   constructor(pythonVersion: string) {
     pythonVersion = pythonVersion.toLowerCase().trim();
+    if (pythonVersion.length === 0) {
+      pythonVersion = 'x';
+    }
     while (pythonVersion.split('.').length < 3) {
       pythonVersion = pythonVersion.concat('.x');
     }
@@ -45,7 +48,7 @@ export class PythonVersion {
     }
     if (semverValidRange(pythonVersion) === null) {
       throw new Error(
-        `An invalid semver string was supplied. Got ${pythonVersion}`
+        `An invalid semver string was supplied. Got "${pythonVersion}"`
       );
     }
     this.version = pythonVersion;
@@ -85,7 +88,7 @@ async function getBehavior(): Promise<BuildBehavior> {
     return BuildBehavior.Allow;
   }
   throw new Error(
-    `Unrecognized input value for "${InputNames.ALLOW_BUILD}". Expected one of "allow", "info", "warn", "error". Got ${behaviorInput}`
+    `Unrecognized input value for "${InputNames.ALLOW_BUILD}". Expected one of "allow", "info", "warn", "error". Got "${behaviorInput}"`
   );
 }
 
@@ -96,9 +99,9 @@ async function getCache(): Promise<boolean> {
     throw new Error(
       `Expected boolean value for input "${
         InputNames.CACHE_BUILD
-      }". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got ${core.getInput(
+      }". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "${core.getInput(
         InputNames.CACHE_BUILD
-      )}`
+      )}"`
     );
   }
 }

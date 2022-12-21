@@ -63,6 +63,8 @@ jobs:
         run: npm run test-ci
         env:
           FORCE_COLOR: 3
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
 
   # Run linters on code
   lint:

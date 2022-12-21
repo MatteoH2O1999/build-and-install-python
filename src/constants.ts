@@ -26,3 +26,9 @@ export enum InputNames {
 export enum OutputNames {
   PYTHON_VERSION = 'python-version'
 }
+
+export enum ManifestUrl {
+  OWNER = 'actions',
+  REPO = 'python-versions',
+  BRANCH = 'main'
+}

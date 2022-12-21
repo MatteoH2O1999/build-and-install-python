@@ -21,5 +21,8 @@ module.exports = {
     transform: {
       '^.+\\.ts$': 'ts-jest'
     },
-    verbose: true
+    verbose: true,
+    collectCoverageFrom: ['<rootDir>/src/**'],
+    collectCoverage: true,
+    coveragePathIgnorePatterns: ['__tests__']
   }
