@@ -78,7 +78,7 @@ async function getBehavior(): Promise<BuildBehavior> {
   if (behaviorInput === 'error') {
     return BuildBehavior.Error;
   }
-  if (behaviorInput === '' || behaviorInput === 'warn') {
+  if (behaviorInput === 'warn') {
     return BuildBehavior.Warn;
   }
   if (behaviorInput === 'info') {
@@ -88,7 +88,11 @@ async function getBehavior(): Promise<BuildBehavior> {
     return BuildBehavior.Allow;
   }
   throw new Error(
-    `Unrecognized input value for "${InputNames.ALLOW_BUILD}". Expected one of "allow", "info", "warn", "error". Got "${behaviorInput}"`
+    `Unrecognized input value for "${
+      InputNames.ALLOW_BUILD
+    }". Expected one of "allow", "info", "warn", "error". Got "${core.getInput(
+      InputNames.ALLOW_BUILD
+    )}"`
   );
 }
 

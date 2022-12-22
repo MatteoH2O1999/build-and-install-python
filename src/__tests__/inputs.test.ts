@@ -18,6 +18,7 @@ import * as core from '@actions/core';
 import * as inputs from '../inputs';
 import {MockedInputs, mockInput, pythonVersions} from './inputs.fixtures';
 import {beforeEach, describe, expect, jest, test} from '@jest/globals';
+import {InputNames} from '../constants';
 import fs from 'fs';
 
 const mockedInputs: MockedInputs = {
@@ -43,14 +44,15 @@ const mockedFs = jest.mocked(fs);
 
 mockedCore.getBooleanInput.mockImplementation(
   (name: string, options: core.InputOptions | undefined) => {
-    const input = mockInput(mockedInputs, name, options).trim().toLowerCase();
-    if (input === 'true') {
-      return true;
-    }
-    if (input === 'false') {
-      return false;
-    }
-    throw new Error();
+    const trueValue = ['true', 'True', 'TRUE'];
+    const falseValue = ['false', 'False', 'FALSE'];
+    const val = core.getInput(name, options);
+    if (trueValue.includes(val)) return true;
+    if (falseValue.includes(val)) return false;
+    throw new TypeError(
+      `Input does not meet YAML 1.2 "Core Schema" specification: ${name}\n` +
+        `Support boolean input list: \`true | True | TRUE | false | False | FALSE\``
+    );
   }
 );
 mockedCore.getInput.mockImplementation(
@@ -84,6 +86,14 @@ describe('Python version string', () => {
       }).toThrowErrorMatchingSnapshot();
     });
   });
+
+  describe('PyPy in different formats', () => {
+    test.each(['pypy-3.9'])('"%s" throws an Error', version => {
+      expect(() => {
+        new inputs.PythonVersion(version);
+      }).toThrowErrorMatchingSnapshot();
+    });
+  });
 });
 
 describe('Parsed inputs', () => {
@@ -96,7 +106,7 @@ describe('Parsed inputs', () => {
     mockedInputs.token = 'token';
   });
 
-  describe('"python-version" and "python-version-file"', () => {
+  describe(`"${InputNames.PYTHON_VERSION}" and "${InputNames.PYTHON_VERSION_FILE}"`, () => {
     test('both empty leads to using ".python-version"', async () => {
       mockedInputs.pythonVersion = '';
       mockedInputs.pythonVersionFile = '';
@@ -108,9 +118,10 @@ describe('Parsed inputs', () => {
       expect(mockedFs.readFileSync).not.toBeCalled();
     });
 
-    test('specified "python-version" and empty "python-version-file" leads to using "python-version"', async () => {
+    test(`specified "${InputNames.PYTHON_VERSION}" and empty "${InputNames.PYTHON_VERSION_FILE}" leads to using "${InputNames.PYTHON_VERSION}"`, async () => {
       mockedInputs.pythonVersion = '3.5.4';
       mockedInputs.pythonVersionFile = '';
+      mockedFs.readFileSync.mockReturnValue('3.9.0');
 
       const parsedInputs = await inputs.parseInputs();
 
@@ -118,5 +129,191 @@ describe('Parsed inputs', () => {
       expect(mockedFs.readFileSync).not.toBeCalled();
       expect(parsedInputs.version).toEqual(new inputs.PythonVersion('3.5.4'));
     });
+
+    test(`empty "${InputNames.PYTHON_VERSION}" and specified existing "${InputNames.PYTHON_VERSION_FILE}" leads to using "${InputNames.PYTHON_VERSION_FILE}"`, async () => {
+      mockedInputs.pythonVersion = '';
+      mockedInputs.pythonVersionFile = 'file';
+      mockedFs.existsSync.mockReturnValue(true);
+      mockedFs.readFileSync.mockReturnValue('3.9.0');
+
+      const parsedInputs = await inputs.parseInputs();
+
+      expect(mockedFs.existsSync).toBeCalledTimes(1);
+      expect(mockedFs.existsSync).toBeCalledWith('file');
+      expect(mockedFs.readFileSync).toBeCalledTimes(1);
+      expect(mockedFs.readFileSync).toBeCalledWith('file', 'utf-8');
+      expect(parsedInputs.version).toEqual(new inputs.PythonVersion('3.9.0'));
+    });
+
+    test(`empty "${InputNames.PYTHON_VERSION}" and specified non-esisting "${InputNames.PYTHON_VERSION_FILE}" leads to a warning and a x.x.x version`, async () => {
+      mockedInputs.pythonVersion = '';
+      mockedInputs.pythonVersionFile = 'file';
+      mockedFs.existsSync.mockReturnValue(false);
+      mockedFs.readFileSync.mockReturnValue('3.9.0');
+
+      const parsedInputs = await inputs.parseInputs();
+
+      expect(mockedCore.warning.mock.calls).toMatchSnapshot();
+      expect(mockedCore.warning).toBeCalledTimes(1);
+      expect(mockedFs.existsSync).toBeCalledTimes(1);
+      expect(mockedFs.existsSync).toBeCalledWith('file');
+      expect(mockedFs.readFileSync).not.toBeCalled();
+      expect(parsedInputs.version).toEqual(new inputs.PythonVersion('x.x.x'));
+    });
+
+    test(`specified "${InputNames.PYTHON_VERSION}" and specified existing "${InputNames.PYTHON_VERSION_FILE}" leads to a warning and to using "${InputNames.PYTHON_VERSION}"`, async () => {
+      mockedInputs.pythonVersion = '3.10.10';
+      mockedInputs.pythonVersionFile = 'file';
+      mockedFs.existsSync.mockReturnValue(true);
+      mockedFs.readFileSync.mockReturnValue('3.9.0');
+
+      const parsedInputs = await inputs.parseInputs();
+
+      expect(mockedCore.warning.mock.calls).toMatchSnapshot();
+      expect(mockedCore.warning).toBeCalledTimes(1);
+      expect(mockedFs.existsSync).not.toBeCalled();
+      expect(mockedFs.readFileSync).not.toBeCalled();
+      expect(parsedInputs.version).toEqual(new inputs.PythonVersion('3.10.10'));
+    });
+  });
+
+  describe(`"${InputNames.ARCHITECTURE}"`, () => {
+    test(`empty "${InputNames.ARCHITECTURE}" defaults to current one`, async () => {
+      mockedInputs.architecture = '';
+
+      const parsedInputs = await inputs.parseInputs();
+
+      expect(parsedInputs.architecture).toEqual(process.arch);
+    });
+
+    test(`specified "${InputNames.ARCHITECTURE}" leads to using it as is`, async () => {
+      mockedInputs.architecture = 'not an architecture';
+
+      const parsedInputs = await inputs.parseInputs();
+
+      expect(parsedInputs.architecture).toBe('not an architecture');
+    });
+  });
+
+  describe(`"${InputNames.CACHE_BUILD}"`, () => {
+    test.each(['false', 'FALSE', 'False'])(
+      `using "${InputNames.CACHE_BUILD}" with value "%s" leads to "false"`,
+      async cache => {
+        mockedInputs.cacheBuild = cache;
+
+        const parsedInputs = await inputs.parseInputs();
+
+        expect(parsedInputs.cache).toBe(false);
+      }
+    );
+
+    test.each(['true', 'TRUE', 'True'])(
+      `using "${InputNames.CACHE_BUILD}" with value "%s" leads to "true"`,
+      async cache => {
+        mockedInputs.cacheBuild = cache;
+
+        const parsedInputs = await inputs.parseInputs();
+
+        expect(parsedInputs.cache).toBe(true);
+      }
+    );
+
+    test.each(['TRue', 'FalSe', '1', '0'])(
+      `using "${InputNames.CACHE_BUILD}" with value "%s" throws an Error`,
+      async cache => {
+        mockedInputs.cacheBuild = cache;
+
+        expect(inputs.parseInputs()).rejects.toThrowErrorMatchingSnapshot();
+      }
+    );
+
+    test(`empty "${InputNames.CACHE_BUILD}" throws an Error`, async () => {
+      mockedInputs.cacheBuild = '';
+
+      expect(inputs.parseInputs()).rejects.toThrowErrorMatchingSnapshot();
+    });
+  });
+
+  describe(`"${InputNames.ALLOW_BUILD}"`, () => {
+    test(`empty "${InputNames.ALLOW_BUILD}" throws an Error`, async () => {
+      mockedInputs.allowBuild = '';
+
+      expect(inputs.parseInputs()).rejects.toThrowErrorMatchingSnapshot();
+    });
+
+    test.each(['allow', 'Allow', 'ALLOW', ' AllOw'])(
+      `using "${InputNames.ALLOW_BUILD}" with value "%s" leads to "allow" behavior`,
+      async behavior => {
+        mockedInputs.allowBuild = behavior;
+
+        const parsedInputs = await inputs.parseInputs();
+
+        expect(parsedInputs.buildBehavior).toBe(inputs.BuildBehavior.Allow);
+      }
+    );
+
+    test.each(['info', 'Info', 'INFO', 'InFo '])(
+      `using "${InputNames.ALLOW_BUILD}" with value "%s" leads to "info" behavior`,
+      async behavior => {
+        mockedInputs.allowBuild = behavior;
+
+        const parsedInputs = await inputs.parseInputs();
+
+        expect(parsedInputs.buildBehavior).toBe(inputs.BuildBehavior.Info);
+      }
+    );
+
+    test.each(['warn', 'Warn', 'WARN', 'wARn   '])(
+      `using "${InputNames.ALLOW_BUILD}" with value "%s" leads to "warn" behavior`,
+      async behavior => {
+        mockedInputs.allowBuild = behavior;
+
+        const parsedInputs = await inputs.parseInputs();
+
+        expect(parsedInputs.buildBehavior).toBe(inputs.BuildBehavior.Warn);
+      }
+    );
+
+    test.each(['error', 'Error', 'ERROR', ' ErRor  '])(
+      `using "${InputNames.ALLOW_BUILD}" with value "%s" leads to "error" behavior`,
+      async behavior => {
+        mockedInputs.allowBuild = behavior;
+
+        const parsedInputs = await inputs.parseInputs();
+
+        expect(parsedInputs.buildBehavior).toBe(inputs.BuildBehavior.Error);
+      }
+    );
+
+    test.each([
+      'In fo',
+      'Al low',
+      'ok',
+      'forbid',
+      'no',
+      'yes',
+      'True',
+      'false'
+    ])(
+      `using ${InputNames.ALLOW_BUILD}" with value "%s" throws an Error`,
+      async behavior => {
+        mockedInputs.allowBuild = behavior;
+
+        expect(inputs.parseInputs).rejects.toThrowErrorMatchingSnapshot();
+      }
+    );
+  });
+
+  describe(`"${InputNames.TOKEN}" should be used as is`, () => {
+    test.each(['token', '', 'a pretty long and unique string'])(
+      `using "${InputNames.TOKEN}" with value "%s"`,
+      async token => {
+        mockedInputs.token = token;
+
+        const parsedInputs = await inputs.parseInputs();
+
+        expect(parsedInputs.token).toBe(token);
+      }
+    );
   });
 });
