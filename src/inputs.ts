@@ -39,7 +39,7 @@ export class PythonVersion {
     }
     if (pythonVersion.includes('pypy')) {
       this.type = PythonType.PyPy;
-      pythonVersion = pythonVersion.replace('pypy', '');
+      pythonVersion = pythonVersion.replace('pypy', '').replace('-', '');
     } else {
       this.type = PythonType.CPython;
     }

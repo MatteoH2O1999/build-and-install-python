@@ -24,7 +24,8 @@ export enum InputNames {
 }
 
 export enum OutputNames {
-  PYTHON_VERSION = 'python-version'
+  PYTHON_VERSION = 'python-version',
+  ARCHITECTURE = 'architecture'
 }
 
 export enum ManifestUrl {
@@ -32,3 +33,8 @@ export enum ManifestUrl {
   REPO = 'python-versions',
   BRANCH = 'main'
 }
+
+const defaultPyPy2 = 'pypy2.7';
+const defaultPyPy3 = 'pypy3.9';
+
+export {defaultPyPy2, defaultPyPy3};

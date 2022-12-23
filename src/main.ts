@@ -15,21 +15,72 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import * as core from '@actions/core';
-import {ActionInputs, parseInputs} from './inputs';
+import {ActionInputs, PythonType, parseInputs} from './inputs';
+import {SetupPythonResult, getSetupPythonResult} from './version';
 import {OutputNames} from './constants';
 
 export default async function main(): Promise<void> {
   let inputs: ActionInputs;
+  let setupPythonResult: SetupPythonResult;
+
+  core.debug('Parsing inputs...');
   try {
     inputs = await parseInputs();
   } catch (error) {
     core.setOutput(OutputNames.PYTHON_VERSION, '');
+    core.setOutput(OutputNames.ARCHITECTURE, '');
     let message = 'Error while parsing inputs.';
     if (error instanceof Error) {
       message = message.concat('\n').concat(error.message);
     }
     core.setFailed(message);
     return;
+  }
+  core.debug('Inputs successfully parsed.');
+
+  core.debug(
+    `Requested python version: ${inputs.version.type} ${inputs.version.version}`
+  );
+  core.debug(`Requested architecture: ${inputs.architecture}`);
+  core.debug(`Requested build cache: ${inputs.cache}`);
+  core.debug(
+    `Requested behavior for deprecated builds: ${inputs.buildBehavior}`
+  );
+
+  core.setOutput(OutputNames.ARCHITECTURE, inputs.architecture);
+
+  core.debug('Resolving setup-python version...');
+  try {
+    setupPythonResult = await getSetupPythonResult(inputs);
+  } catch (error) {
+    let version = '';
+    if (inputs.version.type === PythonType.PyPy) {
+      version = 'pypy';
+    }
+    core.setOutput(
+      OutputNames.PYTHON_VERSION,
+      version.concat(inputs.version.version)
+    );
+    let message = 'Error while resolving setup-python version.';
+    if (error instanceof Error) {
+      message = message.concat('\n').concat(error.message);
+    }
+    core.setFailed(message);
+    return;
+  }
+  core.debug('setup-python version resolved.');
+
+  if (setupPythonResult.success) {
+    core.info(
+      `CPython version ${inputs.version.version} is supported by actions/setup-python.`
+    );
+    core.setOutput(OutputNames.PYTHON_VERSION, setupPythonResult.version);
+    return;
+  } else {
+    core.info(
+      `CPython version ${inputs.version.version} is not supported by actions/setup-python.`
+    );
+    core.info(`CPython ${inputs.version.version} will be built from source.`);
   }
 
   core.info(

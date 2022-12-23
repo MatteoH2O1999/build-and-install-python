@@ -60,5 +60,6 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ steps.build.outputs.python-version }}
+          architecture: ${{ steps.build.outputs.architecture }}
       - name: Check Python version
         run: python ./.github/scripts/check_python_version.py ${{ inputs.python-version }}

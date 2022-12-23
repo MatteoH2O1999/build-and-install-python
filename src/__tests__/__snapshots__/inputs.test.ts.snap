@@ -44,6 +44,4 @@ exports[`Parsed inputs "python-version" and "python-version-file" specified "pyt
 ]
 `;
 
-exports[`Python version string PyPy in different formats "pypy-3.9" throws an Error 1`] = `"An invalid semver string was supplied. Got "-3.9.x""`;
-
-exports[`Python version string Random string throws an Error 1`] = `"An invalid semver string was supplied. Got "random string.x.x""`;
+exports[`Python version string Random string throws an Error 1`] = `"An invalid semver string was supplied. Got "random string.x.x"."`;

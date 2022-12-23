@@ -86,14 +86,6 @@ describe('Python version string', () => {
       }).toThrowErrorMatchingSnapshot();
     });
   });
-
-  describe('PyPy in different formats', () => {
-    test.each(['pypy-3.9'])('"%s" throws an Error', version => {
-      expect(() => {
-        new inputs.PythonVersion(version);
-      }).toThrowErrorMatchingSnapshot();
-    });
-  });
 });
 
 describe('Parsed inputs', () => {
