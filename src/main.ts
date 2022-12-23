@@ -15,8 +15,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import * as core from '@actions/core';
-import {ActionInputs, PythonType, parseInputs} from './inputs';
-import {SetupPythonResult, getSetupPythonResult} from './version';
+import {ActionInputs, parseInputs} from './inputs';
+import {SetupPythonResult, getSetupPythonResult, isPyPy} from './version';
 import {OutputNames} from './constants';
 
 export default async function main(): Promise<void> {
@@ -54,7 +54,7 @@ export default async function main(): Promise<void> {
     setupPythonResult = await getSetupPythonResult(inputs);
   } catch (error) {
     let version = '';
-    if (inputs.version.type === PythonType.PyPy) {
+    if (isPyPy(inputs.version)) {
       version = 'pypy';
     }
     core.setOutput(
@@ -71,16 +71,29 @@ export default async function main(): Promise<void> {
   core.debug('setup-python version resolved.');
 
   if (setupPythonResult.success) {
-    core.info(
-      `CPython version ${inputs.version.version} is supported by actions/setup-python.`
-    );
+    if (isPyPy(inputs.version)) {
+      core.info(
+        `PyPy version ${inputs.version.version} is supported by actions/setup-python.`
+      );
+    } else {
+      core.info(
+        `CPython version ${inputs.version.version} is supported by actions/setup-python.`
+      );
+    }
     core.setOutput(OutputNames.PYTHON_VERSION, setupPythonResult.version);
     return;
   } else {
+    if (isPyPy(inputs.version)) {
+      core.info(
+        `PyPy version ${inputs.version.version} is not supported by actions/setup-python.`
+      );
+      core.setFailed('This action does not support building PyPy from source');
+      core.setOutput(OutputNames.PYTHON_VERSION, '');
+      return;
+    }
     core.info(
       `CPython version ${inputs.version.version} is not supported by actions/setup-python.`
     );
-    core.info(`CPython ${inputs.version.version} will be built from source.`);
   }
 
   core.info(

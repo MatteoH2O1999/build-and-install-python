@@ -19,7 +19,7 @@ import * as tc from '@actions/tool-cache';
 import {ActionInputs, PythonType, PythonVersion} from './inputs';
 import {ManifestUrl, defaultPyPy2, defaultPyPy3} from './constants';
 
-function isPyPy(version: PythonVersion): boolean {
+export function isPyPy(version: PythonVersion): boolean {
   core.debug('Checking if version is PyPy.');
   return version.type === PythonType.PyPy;
 }
