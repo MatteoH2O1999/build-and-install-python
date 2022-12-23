@@ -30,6 +30,7 @@ export class PythonVersion {
   readonly version: string;
 
   constructor(pythonVersion: string) {
+    core.debug(`Parsing version string "${pythonVersion}"...`);
     pythonVersion = pythonVersion.toLowerCase().trim();
     if (pythonVersion.length === 0) {
       pythonVersion = 'x';
@@ -37,21 +38,25 @@ export class PythonVersion {
     while (pythonVersion.split('.').length < 3) {
       pythonVersion = pythonVersion.concat('.x');
     }
+    core.debug(`Full semver range string: "${pythonVersion}".`);
+    core.debug('Checking Python type (CPython or PyPy).');
     if (pythonVersion.includes('pypy')) {
       this.type = PythonType.PyPy;
       pythonVersion = pythonVersion.replace('pypy', '').replace('-', '');
     } else {
       this.type = PythonType.CPython;
     }
+    core.debug(`Python type: "${this.type}".`);
     if (pythonVersion.startsWith('v')) {
       pythonVersion = pythonVersion.replace('v', '');
     }
     if (semverValidRange(pythonVersion) === null) {
       throw new Error(
-        `An invalid semver string was supplied. Got "${pythonVersion}"`
+        `An invalid semver string was supplied. Got "${pythonVersion}".`
       );
     }
     this.version = pythonVersion;
+    core.debug(`Final resolved version range: "${this.version}".`);
   }
 }
 
@@ -75,16 +80,21 @@ async function getBehavior(): Promise<BuildBehavior> {
     .getInput(InputNames.ALLOW_BUILD)
     .toLowerCase()
     .trim();
+  core.debug(`Parsing build behavior string ${behaviorInput}...`);
   if (behaviorInput === 'error') {
+    core.debug('Found behavior "error".');
     return BuildBehavior.Error;
   }
   if (behaviorInput === 'warn') {
+    core.debug('Found behavior "warn".');
     return BuildBehavior.Warn;
   }
   if (behaviorInput === 'info') {
+    core.debug('Found behavior "info".');
     return BuildBehavior.Info;
   }
   if (behaviorInput === 'allow') {
+    core.debug('Found behavior "allow".');
     return BuildBehavior.Allow;
   }
   throw new Error(
@@ -97,6 +107,7 @@ async function getBehavior(): Promise<BuildBehavior> {
 }
 
 async function getCache(): Promise<boolean> {
+  core.debug('Parsing cache behavior...');
   try {
     return core.getBooleanInput(InputNames.CACHE_BUILD);
   } catch (error) {
@@ -112,15 +123,21 @@ async function getCache(): Promise<boolean> {
 
 async function getArchitecture(): Promise<string> {
   const archString: string = core.getInput(InputNames.ARCHITECTURE);
+  core.debug(`Parsing architecture string "${archString}"`);
   if (archString === '') {
+    core.debug("architecture string is ''. Using os.arch()...");
     return os.arch();
   }
+  core.debug(`Using architecture "${archString}"...`);
   return archString;
 }
 
 async function extractPythonVersion(): Promise<string> {
   let pythonVersion: string = core.getInput(InputNames.PYTHON_VERSION);
   let pythonVersionFile: string = core.getInput(InputNames.PYTHON_VERSION_FILE);
+  core.debug(
+    `Parsing python-version string "${pythonVersion}" and python-version-file string "${pythonVersionFile}"`
+  );
 
   if (pythonVersion !== '' && pythonVersionFile !== '') {
     core.warning(
@@ -136,6 +153,7 @@ async function extractPythonVersion(): Promise<string> {
   }
 
   if (pythonVersion !== '') {
+    core.debug(`Using python-version specified version "${pythonVersion}"...`);
     return pythonVersion;
   }
 
@@ -148,6 +166,7 @@ async function extractPythonVersion(): Promise<string> {
       core.warning(`${pythonVersionFile} doesn't exist.`);
     }
   }
+  core.debug(`Using python version string "${pythonVersion}"...`);
   return pythonVersion;
 }
 

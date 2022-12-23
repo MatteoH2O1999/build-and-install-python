@@ -70,7 +70,7 @@ export async function getSetupPythonResult(
       ManifestUrl.BRANCH
     );
     core.debug(
-      `Checking manifest for version "${inputs.version.version}" and arch "${inputs.architecture}..."`
+      `Checking manifest for version "${inputs.version.version}" and arch "${inputs.architecture}"...`
     );
     const matchVersion = await tc.findFromManifest(
       inputs.version.version,
