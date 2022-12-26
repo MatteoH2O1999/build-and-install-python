@@ -1,32 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Parsed inputs "allow-build" empty "allow-build" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got """`;
+exports[`Parsed inputs "allow-build" empty "allow-build" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got ""."`;
 
-exports[`Parsed inputs "allow-build" using allow-build" with value "Al low" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "Al low""`;
+exports[`Parsed inputs "allow-build" using allow-build" with value "Al low" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "Al low"."`;
 
-exports[`Parsed inputs "allow-build" using allow-build" with value "In fo" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "In fo""`;
+exports[`Parsed inputs "allow-build" using allow-build" with value "In fo" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "In fo"."`;
 
-exports[`Parsed inputs "allow-build" using allow-build" with value "True" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "True""`;
+exports[`Parsed inputs "allow-build" using allow-build" with value "True" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "True"."`;
 
-exports[`Parsed inputs "allow-build" using allow-build" with value "false" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "false""`;
+exports[`Parsed inputs "allow-build" using allow-build" with value "false" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "false"."`;
 
-exports[`Parsed inputs "allow-build" using allow-build" with value "forbid" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "forbid""`;
+exports[`Parsed inputs "allow-build" using allow-build" with value "forbid" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "forbid"."`;
 
-exports[`Parsed inputs "allow-build" using allow-build" with value "no" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "no""`;
+exports[`Parsed inputs "allow-build" using allow-build" with value "no" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "no"."`;
 
-exports[`Parsed inputs "allow-build" using allow-build" with value "ok" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "ok""`;
+exports[`Parsed inputs "allow-build" using allow-build" with value "ok" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "ok"."`;
 
-exports[`Parsed inputs "allow-build" using allow-build" with value "yes" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "yes""`;
+exports[`Parsed inputs "allow-build" using allow-build" with value "yes" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "yes"."`;
 
-exports[`Parsed inputs "cache-build" empty "cache-build" throws an Error 1`] = `"Expected boolean value for input "cache-build". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got """`;
+exports[`Parsed inputs "cache-build" empty "cache-build" throws an Error 1`] = `"Expected boolean value for input "cache-build". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got ""."`;
 
-exports[`Parsed inputs "cache-build" using "cache-build" with value "0" throws an Error 1`] = `"Expected boolean value for input "cache-build". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "0""`;
+exports[`Parsed inputs "cache-build" using "cache-build" with value "0" throws an Error 1`] = `"Expected boolean value for input "cache-build". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "0"."`;
 
-exports[`Parsed inputs "cache-build" using "cache-build" with value "1" throws an Error 1`] = `"Expected boolean value for input "cache-build". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "1""`;
+exports[`Parsed inputs "cache-build" using "cache-build" with value "1" throws an Error 1`] = `"Expected boolean value for input "cache-build". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "1"."`;
 
-exports[`Parsed inputs "cache-build" using "cache-build" with value "FalSe" throws an Error 1`] = `"Expected boolean value for input "cache-build". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "FalSe""`;
+exports[`Parsed inputs "cache-build" using "cache-build" with value "FalSe" throws an Error 1`] = `"Expected boolean value for input "cache-build". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "FalSe"."`;
 
-exports[`Parsed inputs "cache-build" using "cache-build" with value "TRue" throws an Error 1`] = `"Expected boolean value for input "cache-build". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "TRue""`;
+exports[`Parsed inputs "cache-build" using "cache-build" with value "TRue" throws an Error 1`] = `"Expected boolean value for input "cache-build". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "TRue"."`;
 
 exports[`Parsed inputs "python-version" and "python-version-file" empty "python-version" and specified non-esisting "python-version-file" leads to a warning and a x.x.x version 1`] = `
 [

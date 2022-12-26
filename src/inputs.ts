@@ -102,7 +102,7 @@ async function getBehavior(): Promise<BuildBehavior> {
       InputNames.ALLOW_BUILD
     }". Expected one of "allow", "info", "warn", "error". Got "${core.getInput(
       InputNames.ALLOW_BUILD
-    )}"`
+    )}".`
   );
 }
 
@@ -116,7 +116,7 @@ async function getCache(): Promise<boolean> {
         InputNames.CACHE_BUILD
       }". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "${core.getInput(
         InputNames.CACHE_BUILD
-      )}"`
+      )}".`
     );
   }
 }
