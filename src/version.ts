@@ -39,7 +39,7 @@ export async function getSetupPythonResult(
     const completeVersion = inputs.version.version;
     const semverSplice = completeVersion.split('.');
     if (semverSplice[0] === 'x') {
-      resultVersionString = '';
+      resultVersionString = defaultPyPy3;
       success = true;
     } else if (semverSplice[1] === 'x') {
       success = true;
