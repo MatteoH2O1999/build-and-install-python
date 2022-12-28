@@ -15,13 +15,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import * as core from '@actions/core';
-import {ActionInputs, parseInputs} from './inputs';
+import * as tc from '@actions/tool-cache';
+import {ActionInputs, BuildBehavior, parseInputs} from './inputs';
+import {InputNames, OutputNames} from './constants';
 import {SetupPythonResult, getSetupPythonResult, isPyPy} from './version';
-import {OutputNames} from './constants';
+import getBuilder from './builder';
 
 export default async function main(): Promise<void> {
   let inputs: ActionInputs;
   let setupPythonResult: SetupPythonResult;
+
+  // Input parsing
 
   core.debug('Parsing inputs...');
   try {
@@ -49,6 +53,8 @@ export default async function main(): Promise<void> {
 
   core.setOutput(OutputNames.ARCHITECTURE, inputs.architecture);
 
+  // Checking if actions/setup-python fails
+
   core.debug('Resolving setup-python version...');
   try {
     setupPythonResult = await getSetupPythonResult(inputs);
@@ -71,6 +77,8 @@ export default async function main(): Promise<void> {
   core.debug('setup-python version resolved.');
 
   if (setupPythonResult.success) {
+    // actions/setup-python already supports the version: doing nothing
+
     if (isPyPy(inputs.version)) {
       core.info(
         `PyPy version ${inputs.version.version} is supported by actions/setup-python.`
@@ -84,6 +92,8 @@ export default async function main(): Promise<void> {
     return;
   } else {
     if (isPyPy(inputs.version)) {
+      // This action does not support building PyPy
+
       core.info(
         `PyPy version ${inputs.version.version} is not supported by actions/setup-python.`
       );
@@ -94,17 +104,127 @@ export default async function main(): Promise<void> {
     core.info(
       `CPython version ${inputs.version.version} is not supported by actions/setup-python.`
     );
+
+    // Apply inputs.buildBehavior
+
+    switch (inputs.buildBehavior) {
+      case BuildBehavior.Error:
+        core.info(
+          'Requested behavior for deprecated builds: error. Failing...'
+        );
+        core.setFailed(
+          `CPython version ${inputs.version.version} is not supported by actions/setup-python.
+          If you wish for this action to build CPython ${inputs.version.version} from source set input "${InputNames.ALLOW_BUILD}" to
+          either "${BuildBehavior.Warn}", "${BuildBehavior.Info}" or "${BuildBehavior.Allow}".`
+        );
+        return;
+      case BuildBehavior.Warn:
+        core.warning(
+          `CPython version ${inputs.version.version} is not supported by actions/setup-python.
+          This probably means you are using a deprecated version. If this is not the case, you may suppress the warning setting input "${InputNames.ALLOW_BUILD}"
+          to either "${BuildBehavior.Info}" or "${BuildBehavior.Allow}".`
+        );
+        break;
+      case BuildBehavior.Info:
+        core.info(
+          `CPython version ${inputs.version.version} will be built from source.`
+        );
+        break;
+      case BuildBehavior.Allow:
+        core.debug(
+          `CPython version ${inputs.version.version} will be built from source.`
+        );
+        break;
+    }
+
+    // Create builder
+
+    const builder = await getBuilder(inputs.version, inputs.architecture);
+
+    // If builder is null, the version cannot be built from source
+
+    if (builder === null) {
+      core.setFailed(
+        `CPython version ${inputs.version.version} cannot be built from source.`
+      );
+      return;
+    }
+
+    let buildPath: string | null = null;
+
+    // Try to restore cache
+
+    if (inputs.cache) {
+      try {
+        buildPath = await builder.restoreCache();
+      } catch (error) {
+        const message = 'Error while restoring cache.';
+        if (error instanceof Error) {
+          message.concat('\n').concat(error.message);
+        }
+        core.setFailed(message);
+        return;
+      }
+    }
+
+    if (buildPath != null) {
+      // Cache-hit
+      core.info('Cache-hit. Copying already built version to tool cache');
+      await tc.cacheDir(
+        buildPath,
+        'Python',
+        builder.specificVersion,
+        builder.arch
+      );
+      core.info(
+        `CPython ${builder.specificVersion} for arch ${builder.arch} successfully installed.`
+      );
+      core.setOutput(OutputNames.PYTHON_VERSION, builder.specificVersion);
+      await builder.clean();
+      return;
+    }
+
+    // Cache miss or not used
+
+    try {
+      buildPath = await builder.build();
+    } catch (error) {
+      const message = 'Error while building Python.';
+      if (error instanceof Error) {
+        message.concat('\n').concat(error.message);
+      }
+      core.setFailed(message);
+      return;
+    }
+
+    // Save cache
+
+    if (inputs.cache) {
+      try {
+        await builder.saveCache();
+      } catch (error) {
+        const message = 'Error while saving cache.';
+        if (error instanceof Error) {
+          message.concat('\n').concat(error.message);
+        }
+        core.setFailed(message);
+        return;
+      }
+    }
+
+    // Install in tool cache and clean build folder
+
+    core.info('Copying built folder into tool cache.');
+    await tc.cacheDir(
+      buildPath,
+      'Python',
+      builder.specificVersion,
+      builder.arch
+    );
+    core.info(
+      `CPython ${builder.specificVersion} for arch ${builder.arch} successfully installed.`
+    );
+    await builder.clean();
+    return;
   }
-
-  core.info(
-    `Requested python version: ${inputs.version.type} ${inputs.version.version}`
-  );
-  core.info(`Requested architecture: ${inputs.architecture}`);
-  core.info(`Requested build cache: ${inputs.cache}`);
-  core.info(
-    `Requested behavior for deprecated builds: ${inputs.buildBehavior}`
-  );
-
-  //Temp output
-  core.setOutput(OutputNames.PYTHON_VERSION, inputs.version.version);
 }
