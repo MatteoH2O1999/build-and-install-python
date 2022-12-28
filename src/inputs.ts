@@ -100,7 +100,9 @@ async function getBehavior(): Promise<BuildBehavior> {
   throw new Error(
     `Unrecognized input value for "${
       InputNames.ALLOW_BUILD
-    }". Expected one of "allow", "info", "warn", "error". Got "${core.getInput(
+    }". Expected one of "${BuildBehavior.Allow}", "${BuildBehavior.Info}", "${
+      BuildBehavior.Warn
+    }", "${BuildBehavior.Error}". Got "${core.getInput(
       InputNames.ALLOW_BUILD
     )}".`
   );
