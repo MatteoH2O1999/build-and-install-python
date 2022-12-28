@@ -25,8 +25,6 @@ export default abstract class Builder {
   readonly arch: string;
   private readonly cacheKey: string;
   protected readonly path: string;
-  protected built = false;
-  protected buildPath = '';
 
   constructor(specificVersion: string, arch: string) {
     this.specificVersion = specificVersion;
