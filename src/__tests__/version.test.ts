@@ -16,6 +16,7 @@
 
 import * as manifestTC from '@actions/tool-cache/lib/manifest';
 import * as tc from '@actions/tool-cache';
+import {BuildBehavior, PythonVersion} from '../inputs';
 import {PyPyTest, SetupPythonTests, manifestUrl} from './version.fixtures';
 import {SetupPythonResult, getSetupPythonResult, isPyPy} from '../version';
 import {beforeAll, describe, expect, jest, test} from '@jest/globals';
@@ -78,9 +79,30 @@ describe('getSetupPythonResult', () => {
     mockedTC.getManifestFromRepo.mockResolvedValue(manifest);
   });
 
+  test('returns found version if present in local tool cache', async () => {
+    mockedTC.find.mockReturnValue('/python/version/3.9.8/x64');
+    const expected: SetupPythonResult = {
+      success: true,
+      version: '3.9.8'
+    };
+
+    const result = await getSetupPythonResult({
+      architecture: process.arch,
+      buildBehavior: BuildBehavior.Info,
+      cache: false,
+      token: 'token',
+      version: new PythonVersion('3.9')
+    });
+
+    expect(result).toEqual(expected);
+    expect(mockedTC.findFromManifest).not.toBeCalled();
+    expect(mockedTC.getManifestFromRepo).not.toBeCalled();
+  });
+
   test.each(SetupPythonTests)(
     `returns $expectedResult.${process.platform} for input version $inputs.version.type-$inputs.version.version and architecture $inputs.architecture`,
     async ({expectedResult, inputs}) => {
+      mockedTC.find.mockReturnValue('');
       let platformResult: SetupPythonResult;
       if (process.platform === 'linux') {
         platformResult = expectedResult.linux;

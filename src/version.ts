@@ -18,6 +18,7 @@ import * as core from '@actions/core';
 import * as tc from '@actions/tool-cache';
 import {ActionInputs, PythonType, PythonVersion} from './inputs';
 import {ManifestUrl, defaultPyPy2, defaultPyPy3} from './constants';
+import path from 'path';
 
 export function isPyPy(version: PythonVersion): boolean {
   core.debug('Checking if version is PyPy.');
@@ -62,30 +63,43 @@ export async function getSetupPythonResult(
     }
   } else {
     core.debug('Version is CPython.');
-    core.debug('Downloading manifest...');
-    const manifest = await tc.getManifestFromRepo(
-      ManifestUrl.OWNER,
-      ManifestUrl.REPO,
-      `token ${inputs.token}`,
-      ManifestUrl.BRANCH
-    );
-    core.debug(
-      `Checking manifest for version "${inputs.version.version}" and arch "${inputs.architecture}"...`
-    );
-    const matchVersion = await tc.findFromManifest(
+    core.debug('Checking local tool cache...');
+    const localPath = tc.find(
+      'Python',
       inputs.version.version,
-      false,
-      manifest,
       inputs.architecture
     );
-    if (matchVersion === undefined) {
-      success = false;
-      resultVersionString = '';
-      core.debug('Could not find specified version in manifest.');
-    } else {
-      resultVersionString = matchVersion.version;
+    if (localPath !== '') {
+      const localVersion = path.basename(path.dirname(localPath));
+      resultVersionString = localVersion;
       success = true;
       core.debug(`CPython version resolved to "${resultVersionString}"`);
+    } else {
+      core.debug('Downloading manifest...');
+      const manifest = await tc.getManifestFromRepo(
+        ManifestUrl.OWNER,
+        ManifestUrl.REPO,
+        `token ${inputs.token}`,
+        ManifestUrl.BRANCH
+      );
+      core.debug(
+        `Checking manifest for version "${inputs.version.version}" and arch "${inputs.architecture}"...`
+      );
+      const matchVersion = await tc.findFromManifest(
+        inputs.version.version,
+        false,
+        manifest,
+        inputs.architecture
+      );
+      if (matchVersion === undefined) {
+        success = false;
+        resultVersionString = '';
+        core.debug('Could not find specified version in manifest.');
+      } else {
+        resultVersionString = matchVersion.version;
+        success = true;
+        core.debug(`CPython version resolved to "${resultVersionString}"`);
+      }
     }
   }
   return {
