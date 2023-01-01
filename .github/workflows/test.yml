@@ -166,6 +166,8 @@ jobs:
           architecture: ${{ steps.build.outputs.architecture }}
       - name: Check Python version
         run: python ./.github/scripts/check_python_version.py ${{ matrix.python-version }}
+      - name: Check strict Python version
+        run: python ./.github/scripts/check_python_version.py ${{ steps.build.outputs.python-version }}
 
   check_test_python_build:
     needs: test_python_build
