@@ -225,6 +225,7 @@ export default async function main(): Promise<void> {
       `CPython ${builder.specificVersion} for arch ${builder.arch} successfully installed.`
     );
     await builder.clean();
+    core.setOutput(OutputNames.PYTHON_VERSION, builder.specificVersion);
     return;
   }
 }
