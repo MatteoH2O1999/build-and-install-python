@@ -36,6 +36,9 @@ export default async function main(): Promise<void> {
     let message = 'Error while parsing inputs.';
     if (error instanceof Error) {
       message = message.concat('\n').concat(error.message);
+      if (error.stack) {
+        core.info(error.stack);
+      }
     }
     core.setFailed(message);
     return;
@@ -70,6 +73,9 @@ export default async function main(): Promise<void> {
     let message = 'Error while resolving setup-python version.';
     if (error instanceof Error) {
       message = message.concat('\n').concat(error.message);
+      if (error.stack) {
+        core.info(error.stack);
+      }
     }
     core.setFailed(message);
     return;
@@ -166,9 +172,12 @@ export default async function main(): Promise<void> {
         buildPath = await builder.restoreCache();
         core.debug('Cache restored.');
       } catch (error) {
-        const message = 'Error while restoring cache.';
+        let message = 'Error while restoring cache.';
         if (error instanceof Error) {
-          message.concat('\n').concat(error.message);
+          message = message.concat('\n').concat(error.message);
+          if (error.stack) {
+            core.info(error.stack);
+          }
         }
         core.setFailed(message);
         return;
@@ -199,9 +208,12 @@ export default async function main(): Promise<void> {
       buildPath = await builder.build();
       core.debug('Build complete.');
     } catch (error) {
-      const message = 'Error while building Python.';
+      let message = 'Error while building Python.';
       if (error instanceof Error) {
-        message.concat('\n').concat(error.message);
+        message = message.concat('\n').concat(error.message);
+        if (error.stack) {
+          core.info(error.stack);
+        }
       }
       core.setFailed(message);
       return;
@@ -215,9 +227,12 @@ export default async function main(): Promise<void> {
         await builder.saveCache();
         core.debug('Cache saved.');
       } catch (error) {
-        const message = 'Error while saving cache.';
+        let message = 'Error while saving cache.';
         if (error instanceof Error) {
-          message.concat('\n').concat(error.message);
+          message = message.concat('\n').concat(error.message);
+          if (error.stack) {
+            core.info(error.stack);
+          }
         }
         core.setFailed(message);
         return;
