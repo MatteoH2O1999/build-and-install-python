@@ -124,7 +124,6 @@ jobs:
   create_matrix:
     name: Create matrix
     runs-on: ubuntu-latest
-    needs: prepare_cache
     outputs:
       matrix-json: ${{ steps.matrix.outputs.matrix }}
     steps:
