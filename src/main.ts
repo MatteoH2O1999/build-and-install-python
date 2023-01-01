@@ -139,7 +139,11 @@ export default async function main(): Promise<void> {
 
     // Create builder
 
-    const builder = await getBuilder(inputs.version, inputs.architecture);
+    const builder = await getBuilder(
+      inputs.version,
+      inputs.architecture,
+      inputs.token
+    );
 
     // If builder is null, the version cannot be built from source
 

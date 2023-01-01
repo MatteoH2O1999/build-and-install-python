@@ -34,6 +34,11 @@ export enum ManifestUrl {
   BRANCH = 'main'
 }
 
+export enum CPythonRepo {
+  OWNER = 'python',
+  REPO = 'cpython'
+}
+
 const defaultPyPy2 = 'pypy2.7';
 const defaultPyPy3 = 'pypy3.9';
 

@@ -16,6 +16,7 @@
 
 import * as cache from '@actions/cache';
 import * as core from '@actions/core';
+import {PythonTag} from './factory';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
@@ -24,10 +25,12 @@ export default abstract class Builder {
   readonly specificVersion: string;
   readonly arch: string;
   private readonly cacheKey: string;
+  protected readonly tagZipUri: string;
   protected readonly path: string;
 
-  constructor(specificVersion: string, arch: string) {
-    this.specificVersion = specificVersion;
+  constructor(specificVersion: PythonTag, arch: string) {
+    this.specificVersion = specificVersion.version;
+    this.tagZipUri = specificVersion.zipBall;
     this.arch = arch;
     this.cacheKey = `CPython${this.specificVersion}${
       this.arch

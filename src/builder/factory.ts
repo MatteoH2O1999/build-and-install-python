@@ -15,13 +15,70 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import * as core from '@actions/core';
+import * as github from '@actions/github';
+import * as semver from 'semver';
 import Builder from './builder';
+import {CPythonRepo} from '../constants';
 import {PythonVersion} from '../inputs';
 
 export default async function getBuilder(
   version: PythonVersion,
-  arch: string
+  arch: string,
+  token: string
 ): Promise<Builder | null> {
-  core.info(`Building CPython ${version.version}-${arch}`);
+  const specificVersion = await getSpecificVersion(version.version, token);
+  if (specificVersion === null) {
+    core.info(
+      `Could not resolve version range ${version.version} to any available CPython tag.`
+    );
+    return null;
+  }
+  core.info(
+    `Version range ${version.version} resolved to ${specificVersion.version}`
+  );
   return null;
 }
+
+async function getSpecificVersion(
+  versionRange: string,
+  token: string
+): Promise<PythonTag | null> {
+  core.debug('Creating authenticated octokit...');
+  const octokit = github.getOctokit(token);
+  const tags: PythonTag[] = [];
+  let index = 1;
+  let changed = true;
+  while (changed) {
+    changed = false;
+    const response = await octokit.request('GET /repos/{owner}/{repo}/tags', {
+      owner: CPythonRepo.OWNER,
+      page: index,
+      repo: CPythonRepo.REPO
+    });
+    if (response.status !== 200) {
+      throw new Error('Error in getting tags.');
+    }
+    for (const tag of response.data) {
+      changed = true;
+      tags.push({version: tag.name, zipBall: tag.zipball_url});
+    }
+    index++;
+  }
+  let specificVersion: PythonTag | null = null;
+  for (const tag of tags) {
+    const semverString = semver.valid(tag.version)?.replace('v', '');
+    if (semverString && semver.satisfies(semverString, versionRange)) {
+      if (specificVersion === null) {
+        specificVersion = {version: semverString, zipBall: tag.zipBall};
+      } else if (semver.gte(semverString, specificVersion.version)) {
+        specificVersion = {version: semverString, zipBall: tag.zipBall};
+      }
+    }
+  }
+  return specificVersion;
+}
+
+export type PythonTag = {
+  version: string;
+  zipBall: string;
+};
