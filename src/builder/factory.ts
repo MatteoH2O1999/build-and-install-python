@@ -34,7 +34,7 @@ export default async function getBuilder(
     return null;
   }
   core.info(
-    `Version range ${version.version} resolved to ${specificVersion.version}`
+    `Version range ${version.version} resolved to ${specificVersion.version}. Source code uri: ${specificVersion.zipBall}.`
   );
   return null;
 }
@@ -43,18 +43,29 @@ async function getSpecificVersion(
   versionRange: string,
   token: string
 ): Promise<PythonTag | null> {
-  core.debug('Creating authenticated octokit...');
-  const octokit = github.getOctokit(token);
   const tags: PythonTag[] = [];
+
+  core.debug('Creating authenticated octokit');
+  const octokit = github.getOctokit(token);
+
   let index = 1;
   let changed = true;
   while (changed) {
     changed = false;
-    const response = await octokit.request('GET /repos/{owner}/{repo}/tags', {
-      owner: CPythonRepo.OWNER,
-      page: index,
-      repo: CPythonRepo.REPO
-    });
+    let response = null;
+    while (response === null) {
+      try {
+        response = await octokit.rest.repos.listTags({
+          owner: CPythonRepo.OWNER,
+          page: index,
+          per_page: 100,
+          repo: CPythonRepo.REPO
+        });
+      } catch (error) {
+        core.info('Rest API rate limit reached. Retrying in 60 seconds...');
+        await sleep(60);
+      }
+    }
     if (response.status !== 200) {
       throw new Error('Error in getting tags.');
     }
@@ -64,9 +75,11 @@ async function getSpecificVersion(
     }
     index++;
   }
+
   let specificVersion: PythonTag | null = null;
   for (const tag of tags) {
     const semverString = semver.valid(tag.version)?.replace('v', '');
+    core.debug(`Checking tag ${tag}`);
     if (semverString && semver.satisfies(semverString, versionRange)) {
       if (specificVersion === null) {
         specificVersion = {version: semverString, zipBall: tag.zipBall};
@@ -76,6 +89,10 @@ async function getSpecificVersion(
     }
   }
   return specificVersion;
+}
+
+async function sleep(seconds: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, seconds * 1000));
 }
 
 export type PythonTag = {

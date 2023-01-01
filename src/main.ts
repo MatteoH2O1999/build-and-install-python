@@ -139,11 +139,13 @@ export default async function main(): Promise<void> {
 
     // Create builder
 
+    core.debug('Creating builder...');
     const builder = await getBuilder(
       inputs.version,
       inputs.architecture,
       inputs.token
     );
+    core.debug('Builder created...');
 
     // If builder is null, the version cannot be built from source
 
@@ -160,7 +162,9 @@ export default async function main(): Promise<void> {
 
     if (inputs.cache) {
       try {
+        core.debug('Restoring cache...');
         buildPath = await builder.restoreCache();
+        core.debug('Cache restored.');
       } catch (error) {
         const message = 'Error while restoring cache.';
         if (error instanceof Error) {
@@ -191,7 +195,9 @@ export default async function main(): Promise<void> {
     // Cache miss or not used
 
     try {
+      core.debug('Beginning build process...');
       buildPath = await builder.build();
+      core.debug('Build complete.');
     } catch (error) {
       const message = 'Error while building Python.';
       if (error instanceof Error) {
@@ -205,7 +211,9 @@ export default async function main(): Promise<void> {
 
     if (inputs.cache) {
       try {
+        core.debug('Saving cache...');
         await builder.saveCache();
+        core.debug('Cache saved.');
       } catch (error) {
         const message = 'Error while saving cache.';
         if (error instanceof Error) {
