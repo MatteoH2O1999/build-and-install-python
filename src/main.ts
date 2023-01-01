@@ -81,11 +81,11 @@ export default async function main(): Promise<void> {
 
     if (isPyPy(inputs.version)) {
       core.info(
-        `PyPy version ${inputs.version.version} is supported by actions/setup-python.`
+        `PyPy version ${inputs.version.version} is supported by actions/setup-python with specific version ${setupPythonResult.version}.`
       );
     } else {
       core.info(
-        `CPython version ${inputs.version.version} is supported by actions/setup-python.`
+        `CPython version ${inputs.version.version} is supported by actions/setup-python with specific version ${setupPythonResult.version}.`
       );
     }
     core.setOutput(OutputNames.PYTHON_VERSION, setupPythonResult.version);
