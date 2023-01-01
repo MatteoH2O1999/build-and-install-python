@@ -24,6 +24,6 @@ export default class MacOSBuilder extends Builder {
     throw new Error('Method not implemented.');
   }
   CacheKeyOs(): string {
-    throw new Error('Method not implemented.');
+    return 'darwin';
   }
 }

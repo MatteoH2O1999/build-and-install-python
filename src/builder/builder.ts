@@ -35,7 +35,7 @@ export default abstract class Builder {
     this.cacheKey = `CPython${this.specificVersion}${
       this.arch
     }${this.CacheKeyOs()}`;
-    this.path = fs.mkdtempSync(path.join(os.tmpdir(), this.cacheKey));
+    this.path = path.join(os.tmpdir(), this.cacheKey);
     core.debug(`Builder cache key: ${this.cacheKey}`);
     core.debug(`Builder path: ${this.path}`);
   }

@@ -24,6 +24,6 @@ export default class WindowsBuilder extends Builder {
     throw new Error('Method not implemented.');
   }
   CacheKeyOs(): string {
-    throw new Error('Method not implemented.');
+    return 'win32';
   }
 }

@@ -17,8 +17,8 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import * as semver from 'semver';
+import {CPythonRepo, warnRateLimitThreshold} from '../constants';
 import Builder from './builder';
-import {CPythonRepo} from '../constants';
 import LinuxBuilder from './linux';
 import MacOSBuilder from './darwin';
 import {PythonVersion} from '../inputs';
@@ -56,8 +56,19 @@ async function getSpecificVersion(
 ): Promise<PythonTag | null> {
   const tags: PythonTag[] = [];
 
+  // TODO: replace octokit with simple-git clone and tag-list
+
   core.debug('Creating authenticated octokit');
   const octokit = github.getOctokit(token);
+
+  const rateLimit = await octokit.rest.rateLimit.get();
+  if (rateLimit.data.resources.core.remaining < warnRateLimitThreshold) {
+    const timeUntilReset =
+      (rateLimit.data.resources.core.reset - Date.now()) / 1000 / 60;
+    core.warning(
+      `Github API rate limit is almost reached. Less than ${warnRateLimitThreshold} requests are available for the next ${timeUntilReset} minutes.`
+    );
+  }
 
   let index = 1;
   let changed = true;
