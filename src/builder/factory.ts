@@ -19,7 +19,10 @@ import * as github from '@actions/github';
 import * as semver from 'semver';
 import Builder from './builder';
 import {CPythonRepo} from '../constants';
+import LinuxBuilder from './linux';
+import MacOSBuilder from './darwin';
 import {PythonVersion} from '../inputs';
+import WindowsBuilder from './windows';
 
 export default async function getBuilder(
   version: PythonVersion,
@@ -34,8 +37,16 @@ export default async function getBuilder(
     return null;
   }
   core.info(
-    `Version range ${version.version} resolved to ${specificVersion.version}. Source code uri: ${specificVersion.zipBall}.`
+    `Version range ${version.version} resolved to ${specificVersion.version}. Source code uri: ${specificVersion.zipBall}`
   );
+  switch (process.platform) {
+    case 'win32':
+      return new WindowsBuilder(specificVersion, arch);
+    case 'linux':
+      return new LinuxBuilder(specificVersion, arch);
+    case 'darwin':
+      return new MacOSBuilder(specificVersion, arch);
+  }
   return null;
 }
 
@@ -53,6 +64,7 @@ async function getSpecificVersion(
   while (changed) {
     changed = false;
     let response = null;
+    core.debug(`Getting tags ${(index - 1) * 100}-${index * 100}...`);
     while (response === null) {
       try {
         response = await octokit.rest.repos.listTags({
@@ -79,7 +91,7 @@ async function getSpecificVersion(
   let specificVersion: PythonTag | null = null;
   for (const tag of tags) {
     const semverString = semver.valid(tag.version)?.replace('v', '');
-    core.debug(`Checking tag ${tag}`);
+    core.debug(`Checking tag ${tag.version}`);
     if (semverString && semver.satisfies(semverString, versionRange)) {
       if (specificVersion === null) {
         specificVersion = {version: semverString, zipBall: tag.zipBall};
