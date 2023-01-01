@@ -272,6 +272,29 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       token: 'token',
       version: new PythonVersion('pypy1')
     }
+  },
+  {
+    expectedResult: {
+      darwin: {
+        success: true,
+        version: '3.11.1'
+      },
+      linux: {
+        success: true,
+        version: '3.11.1'
+      },
+      win32: {
+        success: true,
+        version: '3.11.1'
+      }
+    },
+    inputs: {
+      architecture: process.arch,
+      buildBehavior: BuildBehavior.Info,
+      cache: true,
+      token: 'token',
+      version: new PythonVersion('3')
+    }
   }
 ];
 
