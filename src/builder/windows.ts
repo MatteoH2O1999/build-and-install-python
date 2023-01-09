@@ -60,6 +60,11 @@ export default class WindowsBuilder extends Builder {
       throw new Error('Built Python does not pass tests');
     }
 
+    // Cleaning environment
+    core.debug('Cleaning environment...');
+    await this.cleanEnvironment();
+    core.debug('Environment cleaned');
+
     return path.join(this.path, this.buildSuffix());
   }
 
@@ -77,5 +82,38 @@ export default class WindowsBuilder extends Builder {
     return 'win32';
   }
 
-  async prepareEnvironment(): Promise<void> {}
+  async prepareEnvironment(): Promise<void> {
+    // Detect MSBUILD
+    core.startGroup('Searching for msbuild.exe');
+    try {
+      await exec.exec('vswhere');
+    } catch (error) {
+      await exec.exec('choco install vswhere', [], {ignoreReturnCode: true});
+    }
+    let msBuildPath = '';
+    await exec.exec(
+      'vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe"',
+      [],
+      {
+        listeners: {
+          stdout: (data: Buffer) => {
+            msBuildPath += data.toString();
+          }
+        }
+      }
+    );
+    core.info(`Found msbuild.exe at ${msBuildPath}`);
+    core.info('Temporarily adding as environment variable...');
+    core.exportVariable('MSBUILD', msBuildPath);
+    core.endGroup();
+  }
+
+  async cleanEnvironment(): Promise<void> {
+    core.startGroup('Cleaning environment');
+
+    core.info('Cleaning temp MSBUILD variable...');
+    core.exportVariable('MSBUILD', '');
+
+    core.endGroup();
+  }
 }

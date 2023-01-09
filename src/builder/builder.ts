@@ -50,7 +50,7 @@ export default abstract class Builder {
       throw new Error(`Cannot clear ${this.path} as it does not exist.`);
     }
     core.info('Removing temporary build directories...');
-    fs.rmSync(this.path, {recursive: true});
+    await io.rmRF(this.path);
     core.info('Build directories successfully removed.');
   }
 
