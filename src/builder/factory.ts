@@ -63,8 +63,9 @@ async function getSpecificVersion(
 
   const rateLimit = await octokit.rest.rateLimit.get();
   if (rateLimit.data.resources.core.remaining < warnRateLimitThreshold) {
+    const currentTime = Date.now() / 1000;
     const timeUntilReset =
-      (rateLimit.data.resources.core.reset - Date.now()) / 1000 / 60;
+      (rateLimit.data.resources.core.reset - currentTime) / 60;
     core.warning(
       `Github API rate limit is almost reached. Less than ${warnRateLimitThreshold} requests are available for the next ${timeUntilReset} minutes.`
     );
