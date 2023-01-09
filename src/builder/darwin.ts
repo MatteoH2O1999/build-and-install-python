@@ -20,9 +20,11 @@ export default class MacOSBuilder extends Builder {
   async build(): Promise<string> {
     throw new Error('Method not implemented.');
   }
+
   buildSuffix(): string {
     throw new Error('Method not implemented.');
   }
+
   CacheKeyOs(): string {
     return 'darwin';
   }

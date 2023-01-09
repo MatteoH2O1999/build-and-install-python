@@ -170,7 +170,6 @@ export default async function main(): Promise<void> {
       try {
         core.debug('Restoring cache...');
         buildPath = await builder.restoreCache();
-        core.debug('Cache restored.');
       } catch (error) {
         let message = 'Error while restoring cache.';
         if (error instanceof Error) {
@@ -184,7 +183,7 @@ export default async function main(): Promise<void> {
       }
     }
 
-    if (buildPath != null) {
+    if (buildPath !== null) {
       // Cache-hit
       core.info('Cache-hit. Copying already built version to tool cache');
       await tc.cacheDir(
