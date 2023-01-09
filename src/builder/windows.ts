@@ -16,13 +16,18 @@
 
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
+import * as io from '@actions/io';
+import * as tc from '@actions/tool-cache';
 import Builder from './builder';
 import path from 'path';
+import {pipUrl} from '../constants';
 
 export default class WindowsBuilder extends Builder {
   private readonly MSBUILD: string = process.env.MSBUILD || '';
 
   async build(): Promise<string> {
+    const version = this.specificVersion.split('.');
+
     // Prepare envirnoment
     core.debug('Preparing runner environment for build...');
     await this.prepareEnvironment();
@@ -44,13 +49,15 @@ export default class WindowsBuilder extends Builder {
     if (result !== 0) {
       throw new Error('Build task failed');
     }
-
-    // Test built python
-    const testCommand = `${path.join(
+    const pythonExecutable = path.join(
       this.path,
       this.buildSuffix(),
       'python.exe'
-    )} -m test`;
+    );
+    core.debug(`Python executable: ${pythonExecutable}`);
+
+    // Test built python
+    const testCommand = `${pythonExecutable} -m test`;
     core.debug(`Test command: ${testCommand}`);
     core.startGroup('Testing built Python');
     const testResult = await exec.exec(testCommand, [], {
@@ -59,6 +66,18 @@ export default class WindowsBuilder extends Builder {
     core.endGroup();
     if (testResult !== 0) {
       throw new Error('Built Python does not pass tests');
+    }
+
+    // Install pip
+    core.info('Installing pip...');
+    if (parseInt(version[0]) === 3 && parseInt(version[1]) >= 4) {
+      core.debug('Using ensurepip...');
+      await exec.exec(`${pythonExecutable} -m ensurepip`);
+    } else {
+      core.debug('Using get-pip.py');
+      const getPip = await tc.downloadTool(pipUrl);
+      await exec.exec(`${pythonExecutable} ${getPip}`);
+      await io.rmRF(getPip);
     }
 
     // Cleaning environment
@@ -100,7 +119,8 @@ export default class WindowsBuilder extends Builder {
           stdout: (data: Buffer) => {
             msBuildPath += data.toString();
           }
-        }
+        },
+        silent: true
       }
     );
     core.info(`Found msbuild.exe at ${msBuildPath}`);

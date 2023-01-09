@@ -47,3 +47,7 @@ export {defaultPyPy2, defaultPyPy3};
 const warnRateLimitThreshold = 200;
 
 export {warnRateLimitThreshold};
+
+const pipUrl = 'https://bootstrap.pypa.io/pip/3.2/get-pip.py';
+
+export {pipUrl};
