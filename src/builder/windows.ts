@@ -20,6 +20,8 @@ import Builder from './builder';
 import path from 'path';
 
 export default class WindowsBuilder extends Builder {
+  private readonly MSBUILD: string = process.env.MSBUILD || '';
+
   async build(): Promise<string> {
     // Prepare envirnoment
     core.debug('Preparing runner environment for build...');
@@ -46,7 +48,6 @@ export default class WindowsBuilder extends Builder {
     // Test built python
     const testCommand = `${path.join(
       this.path,
-      'PCbuild',
       this.buildSuffix(),
       'python.exe'
     )} -m test`;
@@ -71,9 +72,9 @@ export default class WindowsBuilder extends Builder {
   buildSuffix(): string {
     switch (this.arch) {
       case 'x64':
-        return path.join(this.path, 'PCbuild', 'amd64');
+        return path.join('PCbuild', 'amd64');
       case 'x86':
-        return path.join(this.path, 'PCbuild', 'win32');
+        return path.join('PCbuild', 'win32');
     }
     throw new Error(`Architecture ${this.arch} not supported`);
   }
@@ -86,7 +87,7 @@ export default class WindowsBuilder extends Builder {
     // Detect MSBUILD
     core.startGroup('Searching for msbuild.exe');
     try {
-      await exec.exec('vswhere');
+      await exec.exec('vswhere', [], {silent: true});
     } catch (error) {
       await exec.exec('choco install vswhere', [], {ignoreReturnCode: true});
     }
@@ -112,7 +113,7 @@ export default class WindowsBuilder extends Builder {
     core.startGroup('Cleaning environment');
 
     core.info('Cleaning temp MSBUILD variable...');
-    core.exportVariable('MSBUILD', '');
+    core.exportVariable('MSBUILD', this.MSBUILD);
 
     core.endGroup();
   }
