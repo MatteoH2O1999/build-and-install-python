@@ -16,10 +16,7 @@
 
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
-import * as io from '@actions/io';
-import * as tc from '@actions/tool-cache';
 import Builder from './builder';
-import fs from 'fs';
 import path from 'path';
 
 export default class WindowsBuilder extends Builder {
@@ -28,6 +25,11 @@ export default class WindowsBuilder extends Builder {
     core.debug('Preparing runner environment for build...');
     await this.prepareEnvironment();
     core.debug('Environment ready.');
+
+    // Prepare sources
+    core.debug('Preparing sources...');
+    await this.prepareSources();
+    core.debug('Sources ready');
 
     // Build python
     const command = `${path.join(this.path, 'PCbuild', 'build.bat')} -e -p ${
@@ -75,41 +77,5 @@ export default class WindowsBuilder extends Builder {
     return 'win32';
   }
 
-  async prepareEnvironment(): Promise<void> {
-    // Download source and move it to path
-    core.startGroup('Preparing sources');
-
-    core.info('Downloading source zipBall...');
-    core.info(`Zipball uri: ${this.tagZipUri}`);
-    const zipPath = await tc.downloadTool(this.tagZipUri);
-
-    core.info('Extracting zip...');
-    const sourcePath = await tc.extractZip(zipPath);
-
-    core.info('Removing source zip...');
-    await io.rmRF(zipPath);
-
-    const dirNames = fs.readdirSync(sourcePath);
-    if (dirNames.length !== 1) {
-      throw new Error(`Expected only one folder. Got ${dirNames}`);
-    }
-    const dirName = dirNames[0];
-    if (!dirName.startsWith('python-cpython')) {
-      throw new Error(
-        `Expected directory to start with "python-cpython...", got ${dirName}`
-      );
-    }
-    const sources = path.join(sourcePath, dirName);
-    core.debug(`Sources extracted in ${sources}`);
-
-    core.info('Moving sources to base directory...');
-    await io.cp(sources, this.path, {
-      copySourceDirectory: false,
-      recursive: true
-    });
-    await io.rmRF(sourcePath);
-    core.endGroup();
-    await exec.exec(`tree ${this.path}`);
-    throw new Error();
-  }
+  async prepareEnvironment(): Promise<void> {}
 }

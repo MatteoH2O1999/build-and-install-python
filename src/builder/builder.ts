@@ -16,6 +16,8 @@
 
 import * as cache from '@actions/cache';
 import * as core from '@actions/core';
+import * as io from '@actions/io';
+import * as tc from '@actions/tool-cache';
 import {PythonTag} from './factory';
 import fs from 'fs';
 import os from 'os';
@@ -85,6 +87,41 @@ export default abstract class Builder {
     const savePath = path.join(this.path, this.buildSuffix());
     await cache.saveCache([savePath], this.cacheKey);
     core.info('Files successfully saved in cache.');
+    core.endGroup();
+  }
+
+  async prepareSources(): Promise<void> {
+    core.startGroup('Preparing sources');
+
+    core.info('Downloading source zipBall...');
+    core.info(`Zipball uri: ${this.tagZipUri}`);
+    const zipPath = await tc.downloadTool(this.tagZipUri);
+
+    core.info('Extracting zip...');
+    const sourcePath = await tc.extractZip(zipPath);
+
+    core.info('Removing source zip...');
+    await io.rmRF(zipPath);
+
+    const dirNames = fs.readdirSync(sourcePath);
+    if (dirNames.length !== 1) {
+      throw new Error(`Expected only one folder. Got ${dirNames}`);
+    }
+    const dirName = dirNames[0];
+    if (!dirName.startsWith('python-cpython')) {
+      throw new Error(
+        `Expected directory to start with "python-cpython...", got ${dirName}`
+      );
+    }
+    const sources = path.join(sourcePath, dirName);
+    core.debug(`Sources extracted in ${sources}`);
+
+    core.info('Moving sources to base directory...');
+    await io.cp(sources, this.path, {
+      copySourceDirectory: false,
+      recursive: true
+    });
+    await io.rmRF(sourcePath);
     core.endGroup();
   }
 }
