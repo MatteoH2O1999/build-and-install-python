@@ -16,12 +16,17 @@
 
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
+import * as io from '@actions/io';
+import * as tc from '@actions/tool-cache';
+import {vsInstallerUrl, windowsBuildDependencies} from '../constants';
 import Builder from './builder';
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 
 export default class WindowsBuilder extends Builder {
   private readonly MSBUILD: string = process.env.MSBUILD || '';
+  private vsInstallationPath: string | undefined;
 
   async build(): Promise<string> {
     // Prepare envirnoment
@@ -91,7 +96,7 @@ export default class WindowsBuilder extends Builder {
         }
       }
       if (candidates.length !== 1) {
-        throw new Error(`Expected only one candidate, got ${candidates}`);
+        throw new Error(`Expected one candidate, got ${candidates}`);
       }
       const installer = path.join(buildPath, candidates[0]);
       core.info(`Installer: ${installer}`);
@@ -163,6 +168,34 @@ export default class WindowsBuilder extends Builder {
     core.info('Temporarily adding as environment variable...');
     core.exportVariable('MSBUILD', msBuildPath);
     core.endGroup();
+
+    // Detect Visual Studio
+    core.startGroup('Searching for Visual Studio');
+    let vsPath = '';
+    await exec.exec('vswhere -property installationPath', [], {
+      listeners: {
+        stdout: (data: Buffer) => {
+          vsPath += data.toString();
+        }
+      }
+    });
+    core.info(`Found Visual Studio at ${vsPath}`);
+    this.vsInstallationPath = vsPath.trim();
+    core.endGroup();
+
+    // Installing dependencies
+    core.startGroup('Installing dependencies');
+    const installer = await tc.downloadTool(
+      vsInstallerUrl,
+      path.join(os.tmpdir(), 'vs_installer.exe')
+    );
+    for (const dependency of windowsBuildDependencies) {
+      await exec.exec(
+        `${installer} modify --installPath "${this.vsInstallationPath}" --add ${dependency} --passive --norestart --force --wait`
+      );
+    }
+    await io.rmRF(installer);
+    core.endGroup();
   }
 
   async cleanEnvironment(): Promise<void> {
@@ -170,6 +203,17 @@ export default class WindowsBuilder extends Builder {
 
     core.info('Cleaning temp MSBUILD variable...');
     core.exportVariable('MSBUILD', this.MSBUILD);
+
+    const installer = await tc.downloadTool(
+      vsInstallerUrl,
+      path.join(os.tmpdir(), 'vs_installer.exe')
+    );
+    for (const dependency of windowsBuildDependencies) {
+      await exec.exec(
+        `${installer} modify --installPath "${this.vsInstallationPath}" --remove ${dependency} --passive --norestart --force --wait`
+      );
+    }
+    await io.rmRF(installer);
 
     core.endGroup();
   }

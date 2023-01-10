@@ -47,3 +47,9 @@ export {defaultPyPy2, defaultPyPy3};
 const warnRateLimitThreshold = 200;
 
 export {warnRateLimitThreshold};
+
+const windowsBuildDependencies = ['Microsoft.VisualStudio.Component.VC.140'];
+
+const vsInstallerUrl = 'https://aka.ms/vs/17/release/vs_enterprise.exe';
+
+export {windowsBuildDependencies, vsInstallerUrl};
