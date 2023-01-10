@@ -16,18 +16,14 @@
 
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
-import * as io from '@actions/io';
-import * as tc from '@actions/tool-cache';
 import Builder from './builder';
+import fs from 'fs';
 import path from 'path';
-import {pipUrl} from '../constants';
 
 export default class WindowsBuilder extends Builder {
   private readonly MSBUILD: string = process.env.MSBUILD || '';
 
   async build(): Promise<string> {
-    const version = this.specificVersion.split('.');
-
     // Prepare envirnoment
     core.debug('Preparing runner environment for build...');
     await this.prepareEnvironment();
@@ -38,46 +34,92 @@ export default class WindowsBuilder extends Builder {
     await this.prepareSources();
     core.debug('Sources ready');
 
+    let pythonExecutable: string;
+    let returnPath: string;
+
     // Build python
-    const command = `${path.join(this.path, 'PCbuild', 'build.bat')} -e -p ${
-      this.arch
-    }`;
-    core.debug(`Build command: ${command}`);
-    core.startGroup('Building Python');
-    const result = await exec.exec(command, [], {ignoreReturnCode: true});
-    core.endGroup();
-    if (result !== 0) {
-      throw new Error('Build task failed');
-    }
-    const pythonExecutable = path.join(
-      this.path,
-      this.buildSuffix(),
-      'python.exe'
-    );
-    core.debug(`Python executable: ${pythonExecutable}`);
+    const buildFile = path.join(this.path, 'Tools', 'msi', 'build.bat');
+    if (fs.existsSync(buildFile)) {
+      // Can build with msi tool
+      const externalsMsi = path.join(
+        this.path,
+        'Tools',
+        'msi',
+        'get_externals.bat'
+      );
+      const externalsPcBuild = path.join(
+        this.path,
+        'PCbuild',
+        'get_externals.bat'
+      );
 
-    // Test built python
-    const testCommand = `${pythonExecutable} -m test`;
-    core.debug(`Test command: ${testCommand}`);
-    core.startGroup('Testing built Python');
-    const testResult = await exec.exec(testCommand, [], {
-      ignoreReturnCode: true
-    });
-    core.endGroup();
-    if (testResult !== 0) {
-      throw new Error('Built Python does not pass tests');
-    }
+      core.startGroup('Fetching external dependencies');
+      if (fs.existsSync(externalsPcBuild)) {
+        await exec.exec(externalsPcBuild);
+      } else {
+        throw new Error('Could not fetch external PCbuild dependencies');
+      }
+      if (fs.existsSync(externalsMsi)) {
+        await exec.exec(externalsMsi);
+      } else {
+        throw new Error('Could not fetch external msi dependencies');
+      }
+      core.endGroup();
 
-    // Install pip
-    core.info('Installing pip...');
-    if (parseInt(version[0]) === 3 && parseInt(version[1]) >= 4) {
-      core.debug('Using ensurepip...');
-      await exec.exec(`${pythonExecutable} -m ensurepip`);
+      core.startGroup('Building installer');
+      await exec.exec(buildFile, [`-${this.arch}`]);
+      core.endGroup();
+
+      core.startGroup('Installing Python to temp folder');
+
+      // Detecting installer full path
+      let buildPath = path.join(this.path, 'PCbuild');
+      switch (this.arch) {
+        case 'x64':
+          buildPath = path.join(buildPath, 'amd64', 'en-us');
+          break;
+        case 'x86':
+          buildPath = path.join(buildPath, 'win32', 'en-us');
+          break;
+        default:
+          throw new Error('Unsupported architecture');
+      }
+      const candidates: string[] = [];
+      for (const file of fs.readdirSync(buildPath)) {
+        if (file.startsWith('python-') && file.endsWith('.exe')) {
+          candidates.push(file);
+        }
+      }
+      if (candidates.length !== 1) {
+        throw new Error(`Expected only one candidate, got ${candidates}`);
+      }
+      const installer = path.join(buildPath, candidates[0]);
+      core.info(`Installer: ${installer}`);
+
+      // Generating exec arguments
+      const execArguments: string[] = [
+        `TargetDir="${path.join(this.path, this.buildSuffix())}"`,
+        'Include_pip=0',
+        'CompileAll=1',
+        'Include_launcher=0',
+        'InstallLauncherAllUsers=0'
+      ];
+      core.info(`Installer arguments: ${execArguments}`);
+
+      await exec.exec(installer, [...execArguments, '/quiet']);
+
+      returnPath = path.join(this.path, this.buildSuffix());
+      pythonExecutable = path.join(returnPath, 'python.exe');
+      if (!fs.existsSync(pythonExecutable)) {
+        throw new Error('Could not find built Python executable');
+      }
+      core.info(`Python executable: ${pythonExecutable}`);
+
+      core.endGroup();
     } else {
-      core.debug('Using get-pip.py');
-      const getPip = await tc.downloadTool(pipUrl);
-      await exec.exec(`${pythonExecutable} ${getPip}`);
-      await io.rmRF(getPip);
+      throw new Error(
+        'Unsupported build method, open an issue at https://github.com/MatteoH2O1999/build-and-install-python/issues'
+      );
     }
 
     // Cleaning environment
@@ -85,17 +127,11 @@ export default class WindowsBuilder extends Builder {
     await this.cleanEnvironment();
     core.debug('Environment cleaned');
 
-    return path.join(this.path, this.buildSuffix());
+    return returnPath;
   }
 
   buildSuffix(): string {
-    switch (this.arch) {
-      case 'x64':
-        return path.join('PCbuild', 'amd64');
-      case 'x86':
-        return path.join('PCbuild', 'win32');
-    }
-    throw new Error(`Architecture ${this.arch} not supported`);
+    return 'win32Build';
   }
 
   CacheKeyOs(): string {
