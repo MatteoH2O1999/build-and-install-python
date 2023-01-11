@@ -104,10 +104,7 @@ export default class WindowsBuilder extends Builder {
       // Generating exec arguments
       const execArguments: string[] = [
         `TargetDir="${path.join(this.path, this.buildSuffix())}"`,
-        'Include_pip=0',
-        'CompileAll=1',
-        'Include_launcher=0',
-        'InstallLauncherAllUsers=0'
+        'CompileAll=1'
       ];
       core.info(`Installer arguments: ${execArguments}`);
 
@@ -136,7 +133,7 @@ export default class WindowsBuilder extends Builder {
   }
 
   buildSuffix(): string {
-    return 'win32Build';
+    return 'win32pythonInstalledFolder';
   }
 
   CacheKeyOs(): string {
@@ -144,6 +141,23 @@ export default class WindowsBuilder extends Builder {
   }
 
   async prepareEnvironment(): Promise<void> {
+    // Delete overlapping Python versions
+    core.startGroup('Deleting overlapping Python versions');
+    const splitVersion = this.specificVersion.split('.');
+    let pythonPath = '';
+    do {
+      pythonPath = tc.find(
+        'Python',
+        `${splitVersion[0]}.${splitVersion[1]}.x`,
+        this.arch
+      );
+      if (pythonPath) {
+        core.info(`Removing folder ${pythonPath}`);
+        await io.rmRF(pythonPath);
+      }
+    } while (pythonPath);
+    core.endGroup();
+
     // Detect MSBUILD
     core.startGroup('Searching for msbuild.exe');
     try {
@@ -191,7 +205,7 @@ export default class WindowsBuilder extends Builder {
     );
     for (const dependency of windowsBuildDependencies) {
       await exec.exec(
-        `${installer} modify --installPath "${this.vsInstallationPath}" --add ${dependency} --passive --norestart --force --wait`
+        `${installer} modify --installPath "${this.vsInstallationPath}" --add ${dependency} --quiet --norestart --force --wait`
       );
     }
     await io.rmRF(installer);
@@ -210,7 +224,7 @@ export default class WindowsBuilder extends Builder {
     );
     for (const dependency of windowsBuildDependencies) {
       await exec.exec(
-        `${installer} modify --installPath "${this.vsInstallationPath}" --remove ${dependency} --passive --norestart --force --wait`
+        `${installer} modify --installPath "${this.vsInstallationPath}" --remove ${dependency} --quiet --norestart --force --wait`
       );
     }
     await io.rmRF(installer);
