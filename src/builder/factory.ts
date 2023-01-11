@@ -67,7 +67,7 @@ async function getSpecificVersion(
     const timeUntilReset =
       (rateLimit.data.resources.core.reset - currentTime) / 60;
     core.warning(
-      `Github API rate limit is almost reached. Less than ${warnRateLimitThreshold} requests are available for the next ${timeUntilReset} minutes.`
+      `Github API rate limit is almost reached. Only ${rateLimit.data.resources.core.remaining} requests are available for the next ${timeUntilReset} minutes.`
     );
   }
 
