@@ -18,11 +18,7 @@ import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
-import {
-  vsInstallerUrl,
-  winSetupTemplateUrl,
-  windowsBuildDependencies
-} from '../constants';
+import {vsInstallerUrl, windowsBuildDependencies} from '../constants';
 import Builder from './builder';
 import fs from 'fs';
 import os from 'os';
@@ -148,28 +144,6 @@ export default class WindowsBuilder extends Builder {
   }
 
   async prepareEnvironment(): Promise<void> {
-    // Delete overlapping Python versions
-    core.startGroup('Deleting overlapping Python versions');
-    const splitVersion = this.specificVersion.split('.');
-    let pythonPath = '';
-    do {
-      pythonPath = tc.find(
-        'Python',
-        `${splitVersion[0]}.${splitVersion[1]}.x`,
-        this.arch
-      );
-      if (pythonPath) {
-        core.info(`Uninstalling ${pythonPath}`);
-        await io.rmRF(path.dirname(pythonPath));
-        await this.removeRegistryKeys(
-          splitVersion[0],
-          splitVersion[1],
-          this.arch
-        );
-      }
-    } while (pythonPath);
-    core.endGroup();
-
     // Detect MSBUILD
     core.startGroup('Searching for msbuild.exe');
     try {
@@ -242,30 +216,5 @@ export default class WindowsBuilder extends Builder {
     await io.rmRF(installer);
 
     core.endGroup();
-  }
-
-  private async removeRegistryKeys(
-    major: string,
-    minor: string,
-    arch: string
-  ): Promise<void> {
-    const tmpFile = await tc.downloadTool(
-      winSetupTemplateUrl,
-      path.join(os.tmpdir(), 'tmp.ps1')
-    );
-    const completeFile = fs.readFileSync(tmpFile).toString();
-    const splitFile = completeFile.split('function');
-    const tmpFile2 = path.join(os.tmpdir(), 'tmp2.ps1');
-    fs.writeFileSync(tmpFile2, 'function');
-    fs.appendFileSync(tmpFile2, splitFile[1]);
-    fs.appendFileSync(tmpFile2, 'function');
-    fs.appendFileSync(tmpFile2, splitFile[2]);
-    fs.appendFileSync(
-      tmpFile2,
-      `Remove-RegistryEntries -Architecture ${arch} -MajorVersion ${major} -MinorVersion ${minor}`
-    );
-    await exec.exec(`powershell.exe ${tmpFile2}`);
-    await io.rmRF(tmpFile);
-    await io.rmRF(tmpFile2);
   }
 }
