@@ -53,3 +53,8 @@ const windowsBuildDependencies = ['Microsoft.VisualStudio.Component.VC.140'];
 const vsInstallerUrl = 'https://aka.ms/vs/17/release/vs_enterprise.exe';
 
 export {windowsBuildDependencies, vsInstallerUrl};
+
+const winSetupTemplateUrl =
+  'https://raw.githubusercontent.com/actions/python-versions/main/installers/win-setup-template.ps1';
+
+export {winSetupTemplateUrl};
