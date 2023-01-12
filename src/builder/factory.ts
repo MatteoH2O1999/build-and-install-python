@@ -15,21 +15,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import * as core from '@actions/core';
-import * as github from '@actions/github';
 import * as semver from 'semver';
-import {CPythonRepo, warnRateLimitThreshold} from '../constants';
 import Builder from './builder';
 import LinuxBuilder from './linux';
 import MacOSBuilder from './darwin';
 import {PythonVersion} from '../inputs';
 import WindowsBuilder from './windows';
+import cpythonTags from './tags.json';
 
 export default async function getBuilder(
   version: PythonVersion,
-  arch: string,
-  token: string
+  arch: string
 ): Promise<Builder | null> {
-  const specificVersion = await getSpecificVersion(version.version, token);
+  const specificVersion = await getSpecificVersion(version.version);
   if (specificVersion === null) {
     core.info(
       `Could not resolve version range ${version.version} to any available CPython tag.`
@@ -51,54 +49,9 @@ export default async function getBuilder(
 }
 
 async function getSpecificVersion(
-  versionRange: string,
-  token: string
+  versionRange: string
 ): Promise<PythonTag | null> {
-  const tags: PythonTag[] = [];
-
-  // TODO: replace octokit with simple-git clone and tag-list
-
-  core.debug('Creating authenticated octokit');
-  const octokit = github.getOctokit(token);
-
-  const rateLimit = await octokit.rest.rateLimit.get();
-  if (rateLimit.data.resources.core.remaining < warnRateLimitThreshold) {
-    const currentTime = Date.now() / 1000;
-    const timeUntilReset =
-      (rateLimit.data.resources.core.reset - currentTime) / 60;
-    core.warning(
-      `Github API rate limit is almost reached. Only ${rateLimit.data.resources.core.remaining} requests are available for the next ${timeUntilReset} minutes.`
-    );
-  }
-
-  let index = 1;
-  let changed = true;
-  while (changed) {
-    changed = false;
-    let response = null;
-    core.debug(`Getting tags ${(index - 1) * 100}-${index * 100}...`);
-    while (response === null) {
-      try {
-        response = await octokit.rest.repos.listTags({
-          owner: CPythonRepo.OWNER,
-          page: index,
-          per_page: 100,
-          repo: CPythonRepo.REPO
-        });
-      } catch (error) {
-        core.info('Rest API rate limit reached. Retrying in 60 seconds...');
-        await sleep(60);
-      }
-    }
-    if (response.status !== 200) {
-      throw new Error('Error in getting tags.');
-    }
-    for (const tag of response.data) {
-      changed = true;
-      tags.push({version: tag.name, zipBall: tag.zipball_url});
-    }
-    index++;
-  }
+  const tags: PythonTag[] = cpythonTags;
 
   let specificVersion: PythonTag | null = null;
   for (const tag of tags) {
@@ -112,11 +65,8 @@ async function getSpecificVersion(
       }
     }
   }
-  return specificVersion;
-}
 
-async function sleep(seconds: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, seconds * 1000));
+  return specificVersion;
 }
 
 export type PythonTag = {

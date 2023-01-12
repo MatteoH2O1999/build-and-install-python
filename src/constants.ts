@@ -34,19 +34,10 @@ export enum ManifestUrl {
   BRANCH = 'main'
 }
 
-export enum CPythonRepo {
-  OWNER = 'python',
-  REPO = 'cpython'
-}
-
 const defaultPyPy2 = 'pypy2.7';
 const defaultPyPy3 = 'pypy3.9';
 
 export {defaultPyPy2, defaultPyPy3};
-
-const warnRateLimitThreshold = 200;
-
-export {warnRateLimitThreshold};
 
 const windowsBuildDependencies = ['Microsoft.VisualStudio.Component.VC.140'];
 

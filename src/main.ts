@@ -146,11 +146,7 @@ export default async function main(): Promise<void> {
     // Create builder
 
     core.debug('Creating builder...');
-    const builder = await getBuilder(
-      inputs.version,
-      inputs.architecture,
-      inputs.token
-    );
+    const builder = await getBuilder(inputs.version, inputs.architecture);
     core.debug('Builder created...');
 
     // If builder is null, the version cannot be built from source
