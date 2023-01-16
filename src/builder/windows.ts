@@ -23,12 +23,13 @@ import Builder from './builder';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
+import semver from 'semver';
 
 export default class WindowsBuilder extends Builder {
   private readonly MSBUILD: string = process.env.MSBUILD || '';
   private vsInstallationPath: string | undefined;
 
-  async build(): Promise<string> {
+  override async build(): Promise<string> {
     // Prepare envirnoment
     core.debug('Preparing runner environment for build...');
     await this.prepareEnvironment();
@@ -135,15 +136,15 @@ export default class WindowsBuilder extends Builder {
     return returnPath;
   }
 
-  buildSuffix(): string {
+  override buildSuffix(): string {
     return 'win32pythonInstalledFolder';
   }
 
-  CacheKeyOs(): string {
+  override CacheKeyOs(): string {
     return 'win32';
   }
 
-  async prepareEnvironment(): Promise<void> {
+  protected async prepareEnvironment(): Promise<void> {
     // Detect MSBUILD
     core.startGroup('Searching for msbuild.exe');
     try {
@@ -198,7 +199,7 @@ export default class WindowsBuilder extends Builder {
     core.endGroup();
   }
 
-  async cleanEnvironment(): Promise<void> {
+  protected async cleanEnvironment(): Promise<void> {
     core.startGroup('Cleaning environment');
 
     core.info('Cleaning temp MSBUILD variable...');
@@ -214,6 +215,26 @@ export default class WindowsBuilder extends Builder {
       );
     }
     await io.rmRF(installer);
+
+    core.endGroup();
+  }
+
+  override async postInstall(installedPath: string): Promise<void> {
+    core.startGroup('Performing post-install operations');
+
+    // Create python3 symlink
+    if (semver.gte(this.specificVersion, '3.0.0')) {
+      const currentExecutable = path.join(installedPath, 'python.exe');
+      if (!fs.existsSync(currentExecutable)) {
+        throw new Error('Could not find installed python executable');
+      }
+      const targetLink = path.join(installedPath, 'python3.exe');
+      core.info('Creating python3 symlink...');
+      core.info(`Creating symlink from ${currentExecutable} to ${targetLink}`);
+      fs.symlinkSync(currentExecutable, targetLink);
+    } else {
+      core.info('No python3 symlink needs to be created. Skipping step...');
+    }
 
     core.endGroup();
   }

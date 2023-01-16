@@ -56,9 +56,11 @@ export default abstract class Builder {
 
   abstract build(): Promise<string>;
 
-  abstract buildSuffix(): string;
+  protected abstract buildSuffix(): string;
 
-  abstract CacheKeyOs(): string;
+  protected abstract CacheKeyOs(): string;
+
+  abstract postInstall(installedPath: string): Promise<void>;
 
   async restoreCache(): Promise<string | null> {
     core.startGroup('Trying to use cached built version');
@@ -90,7 +92,7 @@ export default abstract class Builder {
     core.endGroup();
   }
 
-  async prepareSources(): Promise<void> {
+  protected async prepareSources(): Promise<void> {
     core.startGroup('Preparing sources');
 
     core.info('Downloading source zipBall...');

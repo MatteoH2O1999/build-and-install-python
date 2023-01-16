@@ -17,12 +17,13 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import Builder from './builder';
+import fs from 'fs';
 import path from 'path';
 import semver from 'semver';
 import {ubuntuDependencies} from '../constants';
 
 export default class LinuxBuilder extends Builder {
-  async build(): Promise<string> {
+  override async build(): Promise<string> {
     // Prepare envirnoment
     core.debug('Preparing runner environment for build...');
     await this.prepareEnvironment();
@@ -65,17 +66,44 @@ export default class LinuxBuilder extends Builder {
     return path.join(this.path, this.buildSuffix());
   }
 
-  buildSuffix(): string {
+  override buildSuffix(): string {
     return 'installDir';
   }
 
-  CacheKeyOs(): string {
+  override CacheKeyOs(): string {
     return 'nix';
   }
 
-  async prepareEnvironment(): Promise<void> {
+  protected async prepareEnvironment(): Promise<void> {
     core.startGroup('Installing dependencies');
     await exec.exec('sudo apt install -y', ubuntuDependencies);
+    core.endGroup();
+  }
+
+  override async postInstall(installedPath: string): Promise<void> {
+    core.startGroup('Performing post-install operations');
+
+    // Create symplinks
+    const splitVersion = this.specificVersion.split('.');
+    const majorDotMinorString = `${splitVersion[0]}.${splitVersion[1]}`;
+    const majorMinorString = `${splitVersion[0]}${splitVersion[1]}`;
+    const pythonExecutable = path.join(
+      installedPath,
+      'bin',
+      `python${majorDotMinorString}`
+    );
+    core.info('Creating python symlinks...');
+    const mainExecutable = path.join(installedPath, 'python');
+    core.info(`Creating symlink from ${pythonExecutable} to ${mainExecutable}`);
+    fs.symlinkSync(pythonExecutable, mainExecutable);
+    const binExecutable = path.join(
+      installedPath,
+      'bin',
+      `python${majorMinorString}`
+    );
+    core.info(`Creating symlink from ${pythonExecutable} to ${binExecutable}`);
+    fs.symlinkSync(pythonExecutable, binExecutable);
+
     core.endGroup();
   }
 }

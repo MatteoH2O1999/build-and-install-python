@@ -14,18 +14,23 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import * as core from '@actions/core';
 import Builder from './builder';
 
 export default class MacOSBuilder extends Builder {
-  async build(): Promise<string> {
+  override async build(): Promise<string> {
     throw new Error('Method not implemented.');
   }
 
-  buildSuffix(): string {
+  override buildSuffix(): string {
     throw new Error('Method not implemented.');
   }
 
-  CacheKeyOs(): string {
+  override CacheKeyOs(): string {
     return 'darwin';
+  }
+
+  override async postInstall(installedPath: string): Promise<void> {
+    core.info(`InstallDir: ${installedPath}`);
   }
 }

@@ -179,31 +179,67 @@ export default async function main(): Promise<void> {
       }
     }
 
-    if (buildPath !== null) {
-      // Cache-hit
-      core.info('Cache-hit. Copying already built version to tool cache');
-      await tc.cacheDir(
-        buildPath,
-        'Python',
-        builder.specificVersion,
-        builder.arch
-      );
-      core.info(
-        `CPython ${builder.specificVersion} for arch ${builder.arch} successfully installed.`
-      );
-      core.setOutput(OutputNames.PYTHON_VERSION, builder.specificVersion);
-      await builder.clean();
-      return;
+    if (buildPath === null) {
+      // Cache miss or not used
+
+      try {
+        core.debug('Beginning build process...');
+        buildPath = await builder.build();
+        core.debug('Build complete.');
+      } catch (error) {
+        let message = 'Error while building Python.';
+        if (error instanceof Error) {
+          message = message.concat('\n').concat(error.message);
+          if (error.stack) {
+            core.info(error.stack);
+          }
+        }
+        core.setFailed(message);
+        return;
+      }
+
+      // Save cache
+
+      if (inputs.cache) {
+        try {
+          core.debug('Saving cache...');
+          await builder.saveCache();
+          core.debug('Cache saved.');
+        } catch (error) {
+          let message = 'Error while saving cache.';
+          if (error instanceof Error) {
+            message = message.concat('\n').concat(error.message);
+            if (error.stack) {
+              core.info(error.stack);
+            }
+          }
+          core.setFailed(message);
+          return;
+        }
+      }
     }
 
-    // Cache miss or not used
+    // Install in tool cache
+
+    core.info('Copying built folder into tool cache.');
+    const installedPath = await tc.cacheDir(
+      buildPath,
+      'Python',
+      builder.specificVersion,
+      builder.arch
+    );
+    core.info(
+      `CPython ${builder.specificVersion} for arch ${builder.arch} successfully installed.`
+    );
+
+    // Perform post install operations
 
     try {
-      core.debug('Beginning build process...');
-      buildPath = await builder.build();
-      core.debug('Build complete.');
+      core.debug('Performing post-install operations...');
+      await builder.postInstall(installedPath);
+      core.debug('Post-install operations done');
     } catch (error) {
-      let message = 'Error while building Python.';
+      let message = 'Error during post-install operations.';
       if (error instanceof Error) {
         message = message.concat('\n').concat(error.message);
         if (error.stack) {
@@ -214,38 +250,8 @@ export default async function main(): Promise<void> {
       return;
     }
 
-    // Save cache
+    // Clean build folder
 
-    if (inputs.cache) {
-      try {
-        core.debug('Saving cache...');
-        await builder.saveCache();
-        core.debug('Cache saved.');
-      } catch (error) {
-        let message = 'Error while saving cache.';
-        if (error instanceof Error) {
-          message = message.concat('\n').concat(error.message);
-          if (error.stack) {
-            core.info(error.stack);
-          }
-        }
-        core.setFailed(message);
-        return;
-      }
-    }
-
-    // Install in tool cache and clean build folder
-
-    core.info('Copying built folder into tool cache.');
-    await tc.cacheDir(
-      buildPath,
-      'Python',
-      builder.specificVersion,
-      builder.arch
-    );
-    core.info(
-      `CPython ${builder.specificVersion} for arch ${builder.arch} successfully installed.`
-    );
     await builder.clean();
     core.setOutput(OutputNames.PYTHON_VERSION, builder.specificVersion);
     return;
