@@ -55,7 +55,22 @@ const ubuntuDependencies = [
   'libncursesw5-dev',
   'libreadline-dev',
   'libgdbm-dev',
-  'libgdbm-compat-dev'
+  'libgdbm-compat-dev',
+  'libssl-dev',
+  'curl',
+  'llvm',
+  'libncurses5-dev',
+  'xz-utils',
+  'tk-dev',
+  'liblzma-dev',
+  'gdb',
+  'lcov',
+  'pkg-config',
+  'libffi-dev',
+  'libreadline6-dev',
+  'lzma',
+  'lzma-dev',
+  'uuid-dev'
 ];
 
 export {ubuntuDependencies};

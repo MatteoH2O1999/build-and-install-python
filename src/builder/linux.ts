@@ -83,7 +83,7 @@ export default class LinuxBuilder extends Builder {
   override async postInstall(installedPath: string): Promise<void> {
     core.startGroup('Performing post-install operations');
 
-    // Create symplinks
+    // Create symlinks
     const splitVersion = this.specificVersion.split('.');
     const majorDotMinorString = `${splitVersion[0]}.${splitVersion[1]}`;
     const majorMinorString = `${splitVersion[0]}${splitVersion[1]}`;
@@ -103,6 +103,23 @@ export default class LinuxBuilder extends Builder {
     );
     core.info(`Creating symlink from ${pythonExecutable} to ${binExecutable}`);
     fs.symlinkSync(pythonExecutable, binExecutable);
+    core.info('Creating pip symlink...');
+    const pipPath = path.join(installedPath, 'bin', 'pip3');
+    const targetPip = path.join(installedPath, 'pip');
+    core.info(`Creating symlink from ${pipPath} to ${targetPip}`);
+    fs.symlinkSync(pipPath, targetPip);
+
+    // Adding executable bits
+    const executables = [
+      pythonExecutable,
+      mainExecutable,
+      binExecutable,
+      path.join(installedPath, 'bin', 'python3')
+    ];
+    for (const executable of executables) {
+      core.info(`Adding executable bit to ${executable}`);
+      await exec.exec(`chmod +x ${executable}`);
+    }
 
     core.endGroup();
   }
