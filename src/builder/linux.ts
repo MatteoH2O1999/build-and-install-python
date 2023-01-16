@@ -76,7 +76,23 @@ export default class LinuxBuilder extends Builder {
 
   protected async prepareEnvironment(): Promise<void> {
     core.startGroup('Installing dependencies');
+
+    // Install dependencies
+
     await exec.exec('sudo apt install -y', ubuntuDependencies);
+
+    // Use older compilers for python versions >3.7
+
+    if (semver.lt(this.specificVersion, '3.5.0')) {
+      core.info('Detected version <3.5. An older compiler will be used');
+      await exec.exec('sudo apt install gcc-9');
+      process.env['CC'] = 'gcc-9';
+    } else if (semver.lt(this.specificVersion, '3.7.0')) {
+      core.info('Detected version <3.7. An older compiler will be used...');
+      await exec.exec('sudo apt install gcc-10');
+      process.env['CC'] = 'gcc-10';
+    }
+
     core.endGroup();
   }
 
@@ -103,11 +119,6 @@ export default class LinuxBuilder extends Builder {
     );
     core.info(`Creating symlink from ${pythonExecutable} to ${binExecutable}`);
     fs.symlinkSync(pythonExecutable, binExecutable);
-    core.info('Creating pip symlink...');
-    const pipPath = path.join(installedPath, 'bin', 'pip3');
-    const targetPip = path.join(installedPath, 'pip');
-    core.info(`Creating symlink from ${pipPath} to ${targetPip}`);
-    fs.symlinkSync(pipPath, targetPip);
 
     // Adding executable bits
     const executables = [
