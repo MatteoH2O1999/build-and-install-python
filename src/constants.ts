@@ -44,3 +44,18 @@ const windowsBuildDependencies = ['Microsoft.VisualStudio.Component.VC.140'];
 const vsInstallerUrl = 'https://aka.ms/vs/17/release/vs_enterprise.exe';
 
 export {windowsBuildDependencies, vsInstallerUrl};
+
+const ubuntuDependencies = [
+  'make',
+  'build-essential',
+  'libssl-dev',
+  'zlib1g-dev',
+  'libbz2-dev',
+  'libsqlite3-dev',
+  'libncursesw5-dev',
+  'libreadline-dev',
+  'libgdbm-dev',
+  'libgdbm-compat-dev'
+];
+
+export {ubuntuDependencies};
