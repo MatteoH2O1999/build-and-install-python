@@ -72,7 +72,7 @@ jobs:
         env:
           PYTHON_VERSION: ${{ steps.setup.outputs.python-version }}
       - name: Install numpy
-        run: pip install  numpy
+        run: pip install numpy
       - name: Check Python version
         run: python ./.github/scripts/check_python_version.py ${{ inputs.python-version }}
       - name: Check strict Python version
@@ -111,7 +111,7 @@ jobs:
         env:
           PYTHON_VERSION: ${{ steps.setup.outputs.python-version }}
       - name: Install numpy
-        run: pip install  numpy
+        run: pip install numpy
       - name: Check Python version
         run: python ./.github/scripts/check_python_version.py ${{ inputs.python-version }}
       - name: Check strict Python version
