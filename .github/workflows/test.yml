@@ -32,10 +32,12 @@ jobs:
           submodules: recursive
       - name: Setup NodeJS ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3
+        id: setup_node
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
       - name: Install dependencies
+        if: ${{ steps.setup_node.outputs.cache-hit != 'true' }}
         run: npm ci
 
   # Run unit tests
