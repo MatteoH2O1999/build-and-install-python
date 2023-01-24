@@ -16,6 +16,8 @@
 
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
+import * as io from '@actions/io';
+import * as tc from '@actions/tool-cache';
 import Builder from './builder';
 import fs from 'fs';
 import path from 'path';
@@ -23,6 +25,8 @@ import semver from 'semver';
 import {ubuntuDependencies} from '../constants';
 
 export default class LinuxBuilder extends Builder {
+  private ssl = false;
+
   override async build(): Promise<string> {
     // Prepare envirnoment
     core.debug('Preparing runner environment for build...');
@@ -97,7 +101,7 @@ export default class LinuxBuilder extends Builder {
 
     if (
       semver.gte(this.specificVersion, '3.0.0') &&
-      semver.lt(this.specificVersion, '3.1.1')
+      semver.lt(this.specificVersion, '3.1.0')
     ) {
       core.info(
         'Detected Python version==3.0.x. Applying fix for SVNVERSION...'
@@ -105,11 +109,23 @@ export default class LinuxBuilder extends Builder {
       process.env['SVNVERSION'] = 'Unversioned directory';
     }
 
+    // Fix for old ssl
+
+    if (semver.lt(this.specificVersion, '3.5.0')) {
+      core.info('Detected version <3.5. Older ssl library will be used...');
+      await this.installOldSsl();
+    }
+
     core.endGroup();
   }
 
   override async postInstall(installedPath: string): Promise<void> {
     core.startGroup('Performing post-install operations');
+
+    // Install old ssl
+    if (semver.lt(this.specificVersion, '3.5.0')) {
+      await this.installOldSsl();
+    }
 
     // Create symlinks
     const splitVersion = this.specificVersion.split('.');
@@ -155,5 +171,31 @@ export default class LinuxBuilder extends Builder {
     }
 
     core.endGroup();
+  }
+
+  private async installOldSsl(): Promise<void> {
+    if (!this.ssl) {
+      core.info('Installing libssl and libssl-dev version 1.0.2...');
+
+      const libssl = await tc.downloadTool(
+        'http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu4.20_amd64.deb'
+      );
+      await exec.exec('sudo dpkg -i --force-confold', [libssl]);
+      const libsslDev = await tc.downloadTool(
+        'http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu4.20_amd64.deb'
+      );
+      await exec.exec('sudo dpkg -i --force-confold', [libsslDev]);
+
+      core.info('Cleanup .deb installers...');
+
+      await io.rmRF(libssl);
+      await io.rmRF(libsslDev);
+
+      this.ssl = true;
+    } else {
+      core.info(
+        'libssl and libssl-dev version 1.0.2 are already installed. Doing nothing...'
+      );
+    }
   }
 }
