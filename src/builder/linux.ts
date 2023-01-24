@@ -84,13 +84,25 @@ export default class LinuxBuilder extends Builder {
     // Use older compilers for python versions >3.7
 
     if (semver.lt(this.specificVersion, '3.5.0')) {
-      core.info('Detected version <3.5. An older compiler will be used');
+      core.info('Detected version <3.5. An older compiler will be used...');
       await exec.exec('sudo apt install gcc-9');
       process.env['CC'] = 'gcc-9';
     } else if (semver.lt(this.specificVersion, '3.7.0')) {
       core.info('Detected version <3.7. An older compiler will be used...');
       await exec.exec('sudo apt install gcc-10');
       process.env['CC'] = 'gcc-10';
+    }
+
+    // Fix for Python 3.0 SVN version
+
+    if (
+      semver.gte(this.specificVersion, '3.0.0') &&
+      semver.lt(this.specificVersion, '3.1.1')
+    ) {
+      core.info(
+        'Detected Python version==3.0.x. Applying fix for SVNVERSION...'
+      );
+      process.env['SVNVERSION'] = 'Unversioned directory';
     }
 
     core.endGroup();
@@ -119,6 +131,16 @@ export default class LinuxBuilder extends Builder {
     );
     core.info(`Creating symlink from ${pythonExecutable} to ${binExecutable}`);
     fs.symlinkSync(pythonExecutable, binExecutable);
+    if (
+      semver.gte(this.specificVersion, '3.0.0') &&
+      semver.lt(this.specificVersion, '3.1.0')
+    ) {
+      const python3Executable = path.join(installedPath, 'bin', 'python3');
+      core.info(
+        `Creating symlink from ${pythonExecutable} to ${python3Executable}`
+      );
+      fs.symlinkSync(pythonExecutable, python3Executable);
+    }
 
     // Adding executable bits
     const executables = [
