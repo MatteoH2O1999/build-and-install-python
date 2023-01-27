@@ -201,6 +201,7 @@ jobs:
         with:
           languages: Typescript
           source-root: src
+          packs: codeql/javascript-experimental-atm-queries
       - name: Autobuild
         uses: github/codeql-action/autobuild@v2
       - name: Perform CodeQL Analysis
