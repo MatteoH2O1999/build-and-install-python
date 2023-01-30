@@ -144,7 +144,7 @@ export default class WindowsBuilder extends Builder {
     return 'win32';
   }
 
-  protected async prepareEnvironment(): Promise<void> {
+  private async prepareEnvironment(): Promise<void> {
     // Detect MSBUILD
     core.startGroup('Searching for msbuild.exe');
     try {

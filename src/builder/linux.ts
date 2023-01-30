@@ -78,7 +78,7 @@ export default class LinuxBuilder extends Builder {
     return 'nix';
   }
 
-  protected async prepareEnvironment(): Promise<void> {
+  private async prepareEnvironment(): Promise<void> {
     core.startGroup('Installing dependencies');
 
     // Install dependencies
