@@ -15,20 +15,64 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import * as core from '@actions/core';
+import * as exec from '@actions/exec';
 import Builder from './builder';
+import path from 'path';
+import semver from 'semver';
 
 export default class MacOSBuilder extends Builder {
   override async build(): Promise<string> {
-    throw new Error('Method not implemented.');
+    // Prepare envirnoment
+    core.debug('Preparing runner environment for build...');
+    await this.prepareEnvironment();
+    core.debug('Environment ready.');
+
+    // Prepare sources
+    core.debug('Preparing sources...');
+    await this.prepareSources();
+    core.debug('Sources ready');
+
+    // Configuring flags
+    const flags: string[] = ['--enable-shared'];
+    if (semver.lt(this.specificVersion, '3.0.0')) {
+      flags.push('--enable-unicode=ucs4');
+    }
+    if (semver.gte(this.specificVersion, '3.6.0')) {
+      flags.push('--enable-loadable-sqlite-extensions');
+    }
+    if (semver.gte(this.specificVersion, '3.7.0')) {
+      flags.push('--enable-optimizations');
+    }
+    const configCommand = './configure '.concat(
+      `--prefix=${path.join(this.path, this.buildSuffix())} `,
+      flags.join(' ')
+    );
+
+    // Running ./configure
+    core.startGroup('Configuring makefile');
+    await exec.exec(configCommand, [], {cwd: this.path});
+    core.endGroup();
+
+    // Running make and make install
+    core.startGroup('Running make');
+    await exec.exec('make', [], {cwd: this.path});
+    core.endGroup();
+    core.startGroup('Running make install');
+    await exec.exec('make install', [], {cwd: this.path});
+    core.endGroup();
+
+    return path.join(this.path, this.buildSuffix());
   }
 
   override buildSuffix(): string {
-    throw new Error('Method not implemented.');
+    return 'installDir';
   }
 
   override CacheKeyOs(): string {
     return 'darwin';
   }
+
+  private async prepareEnvironment(): Promise<void> {}
 
   override async postInstall(installedPath: string): Promise<void> {
     core.info(`InstallDir: ${installedPath}`);
