@@ -21,6 +21,8 @@ import path from 'path';
 import semver from 'semver';
 
 export default class MacOSBuilder extends Builder {
+  private sslPath = '';
+
   override async build(): Promise<string> {
     // Prepare envirnoment
     core.debug('Preparing runner environment for build...');
@@ -44,7 +46,9 @@ export default class MacOSBuilder extends Builder {
       flags.push('--enable-optimizations');
     }
     const configCommand = './configure '.concat(
-      `--prefix=${path.join(this.path, this.buildSuffix())} `,
+      `--prefix=${path.join(this.path, this.buildSuffix())} --with-ssl=${
+        this.sslPath
+      } `,
       flags.join(' ')
     );
 
@@ -72,7 +76,52 @@ export default class MacOSBuilder extends Builder {
     return 'darwin';
   }
 
-  private async prepareEnvironment(): Promise<void> {}
+  private async prepareEnvironment(): Promise<void> {
+    core.startGroup('Installing dependencies');
+
+    // Install XCode
+
+    await exec.exec('xcode-select --install', [], {ignoreReturnCode: true});
+
+    // Use older compilers for python versions >3.7
+
+    if (semver.lt(this.specificVersion, '3.5.0')) {
+      core.info('Detected version <3.5. An older compiler will be used...');
+      await exec.exec('brew install gcc@9');
+      process.env['CC'] = 'gcc-9';
+    } else if (semver.lt(this.specificVersion, '3.7.0')) {
+      core.info('Detected version <3.7. An older compiler will be used...');
+      await exec.exec('brew install gcc@10');
+      process.env['CC'] = 'gcc-10';
+    }
+
+    // Install ssl
+
+    if (semver.lt(this.specificVersion, '3.5.0')) {
+      core.info('Detected version <3.5. OpenSSL version 1.0.2 will be used...');
+    } else if (semver.lt(this.specificVersion, '3.9.0')) {
+      core.info('Detected version <3.9. OpenSSL version 1.1 will be used...');
+      await exec.exec('brew install openssl@1.1');
+      this.sslPath = 'brew --prefix openssl@1.1';
+    } else {
+      core.info('Detected version >=3.9. Default OpenSSL will be used...');
+      this.sslPath = 'brew --prefix openssl';
+    }
+
+    // Fix for Python 3.0 SVN version
+
+    if (
+      semver.gte(this.specificVersion, '3.0.0') &&
+      semver.lt(this.specificVersion, '3.1.0')
+    ) {
+      core.info(
+        'Detected Python version==3.0.x. Applying fix for SVNVERSION...'
+      );
+      process.env['SVNVERSION'] = 'Unversioned directory';
+    }
+
+    core.endGroup();
+  }
 
   override async postInstall(installedPath: string): Promise<void> {
     core.info(`InstallDir: ${installedPath}`);
