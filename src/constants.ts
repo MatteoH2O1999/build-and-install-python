@@ -74,3 +74,15 @@ const ubuntuDependencies = [
 ];
 
 export {ubuntuDependencies};
+
+export type sslUrl = {
+  name: string;
+  url: string;
+};
+
+const ssl102Url: sslUrl = {
+  name: 'openssl@1.0',
+  url: 'https://raw.githubusercontent.com/rbenv/homebrew-tap/e472b7861b49cc082d1db0f66f265368da107589/Formula/openssl%401.0.rb'
+};
+
+export {ssl102Url};
