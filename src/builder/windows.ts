@@ -31,11 +31,13 @@ export default class WindowsBuilder extends Builder {
 
   override async build(): Promise<string> {
     // Prepare envirnoment
+
     core.debug('Preparing runner environment for build...');
     await this.prepareEnvironment();
     core.debug('Environment ready.');
 
     // Prepare sources
+
     core.debug('Preparing sources...');
     await this.prepareSources();
     core.debug('Sources ready');
@@ -44,9 +46,11 @@ export default class WindowsBuilder extends Builder {
     let returnPath: string;
 
     // Build python
+
     const buildFile = path.join(this.path, 'Tools', 'msi', 'build.bat');
     if (fs.existsSync(buildFile)) {
       // Can build with msi tool
+
       const externalsMsi = path.join(
         this.path,
         'Tools',
@@ -79,6 +83,7 @@ export default class WindowsBuilder extends Builder {
       core.startGroup('Installing Python to temp folder');
 
       // Detecting installer full path
+
       let buildPath = path.join(this.path, 'PCbuild');
       switch (this.arch) {
         case 'x64':
@@ -103,6 +108,7 @@ export default class WindowsBuilder extends Builder {
       core.info(`Installer: ${installer}`);
 
       // Generating exec arguments
+
       const execArguments: string[] = [
         `TargetDir=${path.join(this.path, this.buildSuffix())}`,
         'Include_pip=0',
@@ -129,6 +135,7 @@ export default class WindowsBuilder extends Builder {
     }
 
     // Cleaning environment
+
     core.debug('Cleaning environment...');
     await this.cleanEnvironment();
     core.debug('Environment cleaned');
@@ -146,6 +153,7 @@ export default class WindowsBuilder extends Builder {
 
   private async prepareEnvironment(): Promise<void> {
     // Detect MSBUILD
+
     core.startGroup('Searching for msbuild.exe');
     try {
       await exec.exec('vswhere', [], {silent: true});
@@ -171,6 +179,7 @@ export default class WindowsBuilder extends Builder {
     core.endGroup();
 
     // Detect Visual Studio
+
     core.startGroup('Searching for Visual Studio');
     let vsPath = '';
     await exec.exec('vswhere -property installationPath', [], {
@@ -185,6 +194,7 @@ export default class WindowsBuilder extends Builder {
     core.endGroup();
 
     // Installing dependencies
+
     core.startGroup('Installing dependencies');
     const installer = await tc.downloadTool(
       vsInstallerUrl,
@@ -223,6 +233,7 @@ export default class WindowsBuilder extends Builder {
     core.startGroup('Performing post-install operations');
 
     // Create python3 symlink
+
     if (semver.gte(this.specificVersion, '3.0.0')) {
       const currentExecutable = path.join(installedPath, 'python.exe');
       if (!fs.existsSync(currentExecutable)) {

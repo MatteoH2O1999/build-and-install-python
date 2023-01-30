@@ -29,16 +29,19 @@ export default class LinuxBuilder extends Builder {
 
   override async build(): Promise<string> {
     // Prepare envirnoment
+
     core.debug('Preparing runner environment for build...');
     await this.prepareEnvironment();
     core.debug('Environment ready.');
 
     // Prepare sources
+
     core.debug('Preparing sources...');
     await this.prepareSources();
     core.debug('Sources ready');
 
     // Configuring flags
+
     const flags: string[] = ['--enable-shared'];
     if (semver.lt(this.specificVersion, '3.0.0')) {
       flags.push('--enable-unicode=ucs4');
@@ -54,12 +57,14 @@ export default class LinuxBuilder extends Builder {
       flags.join(' ')
     );
 
-    // Running ./configure
+    // Run ./configure
+
     core.startGroup('Configuring makefile');
     await exec.exec(configCommand, [], {cwd: this.path});
     core.endGroup();
 
-    // Running make and make install
+    // Run make and make install
+
     core.startGroup('Running make');
     await exec.exec('make', [], {cwd: this.path});
     core.endGroup();
@@ -123,11 +128,13 @@ export default class LinuxBuilder extends Builder {
     core.startGroup('Performing post-install operations');
 
     // Install old ssl
+
     if (semver.lt(this.specificVersion, '3.5.0')) {
       await this.installOldSsl();
     }
 
     // Create symlinks
+
     const splitVersion = this.specificVersion.split('.');
     const majorDotMinorString = `${splitVersion[0]}.${splitVersion[1]}`;
     const majorMinorString = `${splitVersion[0]}${splitVersion[1]}`;
@@ -158,7 +165,8 @@ export default class LinuxBuilder extends Builder {
       fs.symlinkSync(pythonExecutable, python3Executable);
     }
 
-    // Adding executable bits
+    // Add executable bits
+
     const executables = [
       pythonExecutable,
       mainExecutable,
