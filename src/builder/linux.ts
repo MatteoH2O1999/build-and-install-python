@@ -42,7 +42,7 @@ export default class LinuxBuilder extends Builder {
 
     // Configuring flags
 
-    const flags: string[] = ['--enable-shared'];
+    const flags: string[] = [];
     if (semver.lt(this.specificVersion, '3.0.0')) {
       flags.push('--enable-unicode=ucs4');
     }
@@ -205,5 +205,9 @@ export default class LinuxBuilder extends Builder {
         'libssl and libssl-dev version 1.0.2 are already installed. Doing nothing...'
       );
     }
+  }
+
+  protected override async additionalCachePaths(): Promise<string[]> {
+    return [];
   }
 }

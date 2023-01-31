@@ -249,4 +249,8 @@ export default class WindowsBuilder extends Builder {
 
     core.endGroup();
   }
+
+  protected override async additionalCachePaths(): Promise<string[]> {
+    return [];
+  }
 }

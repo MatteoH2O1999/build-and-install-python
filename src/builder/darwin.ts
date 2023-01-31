@@ -81,10 +81,6 @@ export default class MacOSBuilder extends Builder {
     // Running ./configure
 
     core.startGroup('Configuring makefile');
-    core.info(`Config command: ${configCommand}`);
-    core.info(`CFLAGS: ${process.env['CFLAGS']}`);
-    core.info(`LDFLAGS: ${process.env['LDFLAGS']}`);
-    core.info(`CPPFLAGS: ${process.env['CPPFLAGS']}`);
     await exec.exec(configCommand, [], {cwd: this.path});
     core.endGroup();
 
@@ -199,29 +195,18 @@ export default class MacOSBuilder extends Builder {
 
     await this.installGeneralDependencies();
 
-    // Handle ssl installations
+    // Handle ssl version
 
     if (semver.lt(this.specificVersion, '3.5.0')) {
-      core.info('Detected version <3.5. OpenSSL version 1.0.2 will be used...');
-      if (this.sslPath === '') {
-        await this.installOldSsl(ssl102Url);
-      } else {
-        core.info('OpenSSL version 1.0.2 is already installed.');
-      }
+      core.info('OpenSSL version 1.0.2 is already installed');
     } else if (semver.lt(this.specificVersion, '3.9.0')) {
-      core.info('Detected version <3.9. OpenSSL version 1.1 will be used...');
-      if (this.sslPath === '') {
-        await exec.exec('brew install openssl@1.1');
-      } else {
-        core.info('OpenSSL version 1.1 is already installed.');
-      }
+      core.info(
+        'Detected version <3.9. OpenSSL version 1.1 will be installed...'
+      );
+      await exec.exec('brew install openssl@1.1');
     } else {
-      core.info('Detected version >=3.9. Default OpenSSL will be used...');
-      if (this.sslPath === '') {
-        await exec.exec('brew install openssl');
-      } else {
-        core.info('OpenSSL is already installed.');
-      }
+      core.info('Detected version >=3.9. Default OpenSSL will be installed...');
+      await exec.exec('brew install openssl');
     }
 
     // Create symlinks
@@ -296,5 +281,40 @@ export default class MacOSBuilder extends Builder {
     await exec.exec('brew install zlib', [], {ignoreReturnCode: true});
     await exec.exec('brew install sqlite3', [], {ignoreReturnCode: true});
     await exec.exec('brew install readline', [], {ignoreReturnCode: true});
+  }
+
+  protected override async additionalCachePaths(): Promise<string[]> {
+    const additionalPaths: string[] = [];
+    if (semver.lt(this.specificVersion, '3.5.0')) {
+      const tempPath = process.env['RUNNER_TEMP'] || os.tmpdir();
+      const ssl = await tc.downloadTool(
+        ssl102Url.url,
+        path.join(tempPath, `${ssl102Url.name}.rb`)
+      );
+      let openssl102Path = '';
+      await exec.exec(`brew --prefix ${ssl102Url.name}.rb`, [], {
+        cwd: tempPath,
+        listeners: {
+          stdout: (buffer: Buffer) => {
+            openssl102Path = openssl102Path.concat(buffer.toString());
+          }
+        },
+        silent: true
+      });
+      let openssl102Cellar = '';
+      await exec.exec(`brew --cellar ${ssl102Url.name}.rb`, [], {
+        cwd: tempPath,
+        listeners: {
+          stdout: (buffer: Buffer) => {
+            openssl102Cellar = openssl102Cellar.concat(buffer.toString());
+          }
+        },
+        silent: true
+      });
+      await io.rmRF(ssl);
+      additionalPaths.push(openssl102Path.trim());
+      additionalPaths.push(openssl102Cellar.trim());
+    }
+    return additionalPaths;
   }
 }

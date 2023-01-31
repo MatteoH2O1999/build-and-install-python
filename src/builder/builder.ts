@@ -29,6 +29,7 @@ export default abstract class Builder {
   private readonly cacheKey: string;
   protected readonly tagZipUri: string;
   protected readonly path: string;
+  protected restored = false;
 
   constructor(specificVersion: PythonTag, arch: string) {
     this.specificVersion = specificVersion.version;
@@ -60,16 +61,26 @@ export default abstract class Builder {
 
   protected abstract CacheKeyOs(): string;
 
+  protected abstract additionalCachePaths(): Promise<string[]>;
+
   abstract postInstall(installedPath: string): Promise<void>;
 
   async restoreCache(): Promise<string | null> {
     core.startGroup('Trying to use cached built version');
     if (!cache.isFeatureAvailable) {
+      core.info('Cache feature is not available on current runner.');
+      core.endGroup();
       return null;
     }
     const restoredPath = path.join(this.path, this.buildSuffix());
+    const restoredPaths = [restoredPath];
+    const additionalPaths = await this.additionalCachePaths();
+    if (additionalPaths.length > 0) {
+      restoredPaths.push(...additionalPaths);
+    }
     core.info(`Restoring cached version with key ${this.cacheKey}...`);
-    const restoredKey = await cache.restoreCache([restoredPath], this.cacheKey);
+    core.debug(`Restoring paths ${restoredPaths}`);
+    const restoredKey = await cache.restoreCache(restoredPaths, this.cacheKey);
     if (restoredKey === undefined) {
       core.info('Cached version not found.');
       core.endGroup();
@@ -77,17 +88,26 @@ export default abstract class Builder {
     }
     core.info(`CPython ${this.specificVersion} restored from cache.`);
     core.endGroup();
+    this.restored = true;
     return restoredPath;
   }
 
   async saveCache(): Promise<void> {
     core.startGroup('Caching built files');
     if (!cache.isFeatureAvailable) {
+      core.info('Cache feature is not available on current runner.');
+      core.endGroup();
       return;
     }
     core.info(`Saving built files with key ${this.cacheKey}...`);
     const savePath = path.join(this.path, this.buildSuffix());
-    await cache.saveCache([savePath], this.cacheKey);
+    const savePaths = [savePath];
+    const additionalPaths = await this.additionalCachePaths();
+    if (additionalPaths.length > 0) {
+      savePaths.push(...additionalPaths);
+    }
+    core.debug(`Saving paths: ${savePaths}`);
+    await cache.saveCache(savePaths, this.cacheKey);
     core.info('Files successfully saved in cache.');
     core.endGroup();
   }
