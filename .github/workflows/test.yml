@@ -66,6 +66,7 @@ jobs:
         env:
           FORCE_COLOR: 3
       - name: Upload coverage to Codecov
+        if: ${{ github.event_name != 'release' }}
         uses: codecov/codecov-action@v3
 
   # Run linters on code
