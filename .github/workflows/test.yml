@@ -179,11 +179,15 @@ jobs:
 
   check_test_python_build:
     needs: test_python_build
+    if: always()
     runs-on: ubuntu-latest
     name: Check build is successfull for all Python versions
     steps:
-      - name: Emit result
-        run: echo "All Python versions have been successfully built and installed..."
+      - name: Emit failure
+        if: ${{ needs.test_python_build.result != 'success' }}
+        run: exit 1
+      - name: Emit success
+        run: echo All Python versions have been successfully built and installed...
 
   # CodeQL security scan
   codeql:
@@ -226,7 +230,7 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
-      - name: Build typescript
+      - name: Build Typescript
         run: npm run build
       - name: Package with NCC
         run: npm run package
