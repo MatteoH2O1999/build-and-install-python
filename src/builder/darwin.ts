@@ -45,7 +45,7 @@ export default class MacOSBuilder extends Builder {
     await this.prepareSources();
     core.debug('Sources ready');
 
-    // Configuring flags
+    // Configure flags
 
     const flags: string[] = [];
     if (semver.lt(this.specificVersion, '3.0.0')) {
@@ -64,8 +64,8 @@ export default class MacOSBuilder extends Builder {
       });
       sqlite = sqlite.trim();
       core.info(`sqlite3 module path: ${sqlite}`);
-      process.env['LDFLAGS'] += ` -L${sqlite}/lib`;
-      process.env['CFLAGS'] += ` -I${sqlite}/include`;
+      process.env['LDFLAGS'] += `-L${sqlite}/lib `;
+      process.env['CFLAGS'] += `-I${sqlite}/include `;
       process.env['CPPFLAGS'] += `-I${sqlite}/include`;
     }
     if (semver.gte(this.specificVersion, '3.7.0')) {
@@ -78,13 +78,13 @@ export default class MacOSBuilder extends Builder {
       flags.join(' ')
     );
 
-    // Running ./configure
+    // Run ./configure
 
     core.startGroup('Configuring makefile');
     await exec.exec(configCommand, [], {cwd: this.path});
     core.endGroup();
 
-    // Running make and make install
+    // Run make and make install
 
     core.startGroup('Running make');
     await exec.exec('make', [], {cwd: this.path});
@@ -123,7 +123,8 @@ export default class MacOSBuilder extends Builder {
         stdout: (buffer: Buffer) => {
           zlibPath = zlibPath.concat(buffer.toString());
         }
-      }
+      },
+      silent: true
     });
     zlibPath = zlibPath.trim();
     let readLinePath = '';
@@ -132,7 +133,8 @@ export default class MacOSBuilder extends Builder {
         stdout: (buffer: Buffer) => {
           readLinePath = readLinePath.concat(buffer.toString());
         }
-      }
+      },
+      silent: true
     });
     readLinePath = readLinePath.trim();
 
@@ -166,10 +168,10 @@ export default class MacOSBuilder extends Builder {
     if (semver.lt(this.specificVersion, '3.7.0')) {
       process.env[
         'LDFLAGS'
-      ] += `-L${this.sslPath}/lib -L${zlibPath}/lib -L${readLinePath}/lib`;
+      ] += `-L${this.sslPath}/lib -L${zlibPath}/lib -L${readLinePath}/lib `;
       process.env[
         'CFLAGS'
-      ] += `-I${this.sslPath}/include -I${zlibPath}/include -I${readLinePath}/lib`;
+      ] += `-I${this.sslPath}/include -I${zlibPath}/include -I${readLinePath}/include `;
     }
     core.info(`OpenSSL path: ${this.sslPath}`);
 
@@ -316,5 +318,41 @@ export default class MacOSBuilder extends Builder {
       additionalPaths.push(openssl102Cellar.trim());
     }
     return additionalPaths;
+  }
+
+  protected override async prepareSources(): Promise<void> {
+    await super.prepareSources();
+
+    // Fix for missing header files
+
+    if (
+      semver.gte(this.specificVersion, '3.0.0') &&
+      semver.lt(this.specificVersion, '3.1.0')
+    ) {
+      core.info(
+        'Detected Python version==3.0.x. Applying fix for missing headers...'
+      );
+      let headerPath = '';
+      await exec.exec('xcrun --sdk macosx --show-sdk-path', [], {
+        listeners: {
+          stdout: (buffer: Buffer) => {
+            headerPath = headerPath.concat(buffer.toString());
+          }
+        },
+        silent: true
+      });
+      headerPath = headerPath.trim();
+      const h2py = fs
+        .readFileSync(path.join(this.path, 'Tools', 'scripts', 'h2py.py'))
+        .toString()
+        .replace(
+          "fp = open(filename, 'r')",
+          `filename=filename.replace('/usr/lib', '${headerPath}/usr/lib').replace('/usr/include', '${headerPath}/usr/include');fp=open(filename, 'r')`
+        );
+      fs.writeFileSync(
+        path.join(this.path, 'Tools', 'scripts', 'h2py.py'),
+        h2py
+      );
+    }
   }
 }

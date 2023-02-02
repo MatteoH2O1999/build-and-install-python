@@ -40,7 +40,7 @@ export default class LinuxBuilder extends Builder {
     await this.prepareSources();
     core.debug('Sources ready');
 
-    // Configuring flags
+    // Configure flags
 
     const flags: string[] = [];
     if (semver.lt(this.specificVersion, '3.0.0')) {

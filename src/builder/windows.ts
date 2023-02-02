@@ -82,7 +82,7 @@ export default class WindowsBuilder extends Builder {
 
       core.startGroup('Installing Python to temp folder');
 
-      // Detecting installer full path
+      // Detect installer full path
 
       let buildPath = path.join(this.path, 'PCbuild');
       switch (this.arch) {
@@ -107,7 +107,7 @@ export default class WindowsBuilder extends Builder {
       const installer = path.join(buildPath, candidates[0]);
       core.info(`Installer: ${installer}`);
 
-      // Generating exec arguments
+      // Generate exec arguments
 
       const execArguments: string[] = [
         `TargetDir=${path.join(this.path, this.buildSuffix())}`,
@@ -134,7 +134,7 @@ export default class WindowsBuilder extends Builder {
       );
     }
 
-    // Cleaning environment
+    // Clean environment
 
     core.debug('Cleaning environment...');
     await this.cleanEnvironment();
