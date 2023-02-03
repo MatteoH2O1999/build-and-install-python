@@ -164,6 +164,11 @@ export default class LinuxBuilder extends Builder {
       );
       fs.symlinkSync(pythonExecutable, python3Executable);
     }
+    const mainBinExecutable = path.join(installedPath, 'bin', 'python');
+    core.info(
+      `Creating symlink from ${pythonExecutable} to ${mainBinExecutable}`
+    );
+    fs.symlinkSync(pythonExecutable, mainBinExecutable);
 
     // Add executable bits
 
@@ -171,6 +176,7 @@ export default class LinuxBuilder extends Builder {
       pythonExecutable,
       mainExecutable,
       binExecutable,
+      mainBinExecutable,
       path.join(installedPath, 'bin', 'python3')
     ];
     for (const executable of executables) {
