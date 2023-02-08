@@ -1,5 +1,9 @@
 [
   {
+    "version": "v3.12.0a5",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.0a5"
+  },
+  {
     "version": "v3.12.0a4",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.0a4"
   },
