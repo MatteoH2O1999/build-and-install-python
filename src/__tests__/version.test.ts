@@ -70,7 +70,7 @@ describe('Is PyPy', () => {
   );
 });
 
-describe('getSetupPythonResult', () => {
+describe(`getSetupPythonResult with manifest url ${manifestUrl}`, () => {
   let manifest: tc.IToolRelease[];
 
   beforeAll(async () => {
