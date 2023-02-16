@@ -63,7 +63,7 @@ export default class MacOSBuilder extends Builder {
         silent: true
       });
       sqlite = sqlite.trim();
-      core.info(`sqlite3 module path: ${sqlite}`);
+      core.debug(`sqlite3 module path: ${sqlite}`);
       process.env['LDFLAGS'] += `-L${sqlite}/lib `;
       process.env['CFLAGS'] += `-I${sqlite}/include `;
       process.env['CPPFLAGS'] += `-I${sqlite}/include`;
