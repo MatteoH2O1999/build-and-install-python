@@ -24,6 +24,10 @@ jobs:
         run: node ./.github/scripts/generate_tags.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update jest snapshots
+        run: npm run test-ci -- -u
+        env:
+          FORCE_COLOR: 3
       - name: Create or update pull request
         uses: peter-evans/create-pull-request@v4
         with:
