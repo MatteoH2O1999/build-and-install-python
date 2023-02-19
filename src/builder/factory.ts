@@ -58,9 +58,10 @@ async function getSpecificVersion(
     const semverString = semver.valid(tag.version)?.replace('v', '');
     core.debug(`Checking tag ${tag.version}`);
     if (semverString && semver.satisfies(semverString, versionRange)) {
-      if (specificVersion === null) {
-        specificVersion = {version: semverString, zipBall: tag.zipBall};
-      } else if (semver.gte(semverString, specificVersion.version)) {
+      if (
+        specificVersion === null ||
+        semver.gte(semverString, specificVersion.version)
+      ) {
         specificVersion = {version: semverString, zipBall: tag.zipBall};
       }
     }
