@@ -16,10 +16,10 @@
 
 import * as core from '@actions/core';
 import * as semver from 'semver';
+import {PythonType, PythonVersion} from '../inputs';
 import Builder from './builder';
 import LinuxBuilder from './linux';
 import MacOSBuilder from './darwin';
-import {PythonVersion} from '../inputs';
 import WindowsBuilder from './windows';
 import cpythonTags from './tags.json';
 
@@ -27,6 +27,11 @@ export default async function getBuilder(
   version: PythonVersion,
   arch: string
 ): Promise<Builder | null> {
+  if (version.type !== PythonType.CPython) {
+    throw new Error(
+      `Only CPython can be built from source. Got ${version.type}.`
+    );
+  }
   const specificVersion = await getSpecificVersion(version.version);
   if (specificVersion === null) {
     core.info(
@@ -45,6 +50,9 @@ export default async function getBuilder(
     case 'darwin':
       return new MacOSBuilder(specificVersion, arch);
   }
+  core.info(
+    `Building CPython on ${process.platform} is not yet supported. Feel free to open an issue at https://github.com/MatteoH2O1999/build-and-install-python`
+  );
   return null;
 }
 
