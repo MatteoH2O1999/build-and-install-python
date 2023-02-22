@@ -67,7 +67,7 @@ export default abstract class Builder {
 
   async restoreCache(): Promise<string | null> {
     core.startGroup('Trying to use cached built version');
-    if (!cache.isFeatureAvailable) {
+    if (!cache.isFeatureAvailable()) {
       core.info('Cache feature is not available on current runner.');
       core.endGroup();
       return null;
@@ -94,7 +94,7 @@ export default abstract class Builder {
 
   async saveCache(): Promise<void> {
     core.startGroup('Caching built files');
-    if (!cache.isFeatureAvailable) {
+    if (!cache.isFeatureAvailable()) {
       core.info('Cache feature is not available on current runner.');
       core.endGroup();
       return;
