@@ -71,6 +71,8 @@ jobs:
       - name: Upload coverage to Codecov
         if: ${{ github.event_name != 'release' }}
         uses: codecov/codecov-action@v3
+        with:
+          fail_ci_if_error: true
 
   # Run linters on code
   lint:
