@@ -129,6 +129,7 @@ export async function mockToolkit(
     // TODO
     return true;
   });
+  mockedFs.readFileSync.mockReturnValue('');
 
   // Mock @actions/exec implementation
 
@@ -145,4 +146,8 @@ export async function mockToolkit(
     interactionVector.push(`Execute command "${command} ${args.join(' ')}"`);
     return 0;
   });
+
+  // Mock environment variables
+
+  process.env['RUNNER_TEMP'] = '';
 }
