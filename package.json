@@ -39,7 +39,7 @@
         "semver": "^7.3.8"
     },
     "devDependencies": {
-        "@matteoh2o1999/github-actions-jest-reporter": "^1.0.2",
+        "@matteoh2o1999/github-actions-jest-reporter": "^1.2.0",
         "@types/node": "^18.14.0",
         "@typescript-eslint/parser": "^5.53.0",
         "@vercel/ncc": "^0.36.1",
