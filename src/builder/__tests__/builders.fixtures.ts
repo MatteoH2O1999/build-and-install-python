@@ -17,26 +17,32 @@
 import * as exec from '@actions/exec';
 import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
+import * as utils from '../../utils';
 import {PythonTag} from '../factory';
-import fs from 'fs';
 import {jest} from '@jest/globals';
 import os from 'os';
 import path from 'path';
 import semver from 'semver';
 import tags from '../tags.json';
+import treesJson from './cpython.trees.json';
+
+const archs = ['x64', 'x86', 'arm64'];
+const trees = treesJson as Record<string, string[]>;
+
+export {archs};
 
 export function getTags(): PythonTag[] {
   const versions: string[] = [];
   const filteredTags: PythonTag[] = [];
   for (const tag of tags) {
-    const severVersion = semver.valid(tag.version)?.replace('v', '');
+    const semverVersion = semver.valid(tag.version)?.replace('v', '');
     if (
-      severVersion &&
-      semver.gte(severVersion, '2.7.0') &&
-      !versions.includes(severVersion)
+      semverVersion &&
+      semver.gte(semverVersion, '2.7.0') &&
+      !versions.includes(semverVersion)
     ) {
-      versions.push(severVersion);
-      filteredTags.push({version: severVersion, zipBall: tag.zipBall});
+      versions.push(semverVersion);
+      filteredTags.push({version: semverVersion, zipBall: tag.zipBall});
     }
   }
   return filteredTags;
@@ -48,11 +54,13 @@ export async function mockToolkit(
   sep: string
 ): Promise<void> {
   const mockedExec = jest.mocked(exec);
-  const mockedFs = jest.mocked(fs);
+  const mockedUtils = jest.mocked(utils);
   const mockedIo = jest.mocked(io);
   const mockedPath = jest.mocked(path);
   const mockedTc = jest.mocked(tc);
   const mockedOs = jest.mocked(os);
+
+  const actualPath: typeof path = jest.requireActual('path');
 
   // Mock os implementation
 
@@ -93,6 +101,9 @@ export async function mockToolkit(
   mockedPath.join.mockImplementation((...paths) => {
     return paths.join(sep);
   });
+  mockedPath.resolve.mockImplementation((...paths) =>
+    actualPath.resolve(...paths)
+  );
 
   // Mock @actions/io implementation
 
@@ -108,28 +119,36 @@ export async function mockToolkit(
 
   // Mock fs implementation
 
-  mockedFs.symlinkSync.mockImplementation((target, dir, type) => {
+  mockedUtils.symlink.mockImplementation(async (target, dir, type) => {
     let interaction = `Create symlink in path ${dir} pointing to ${target}`;
     if (type) {
       interaction = interaction.concat(` of type ${type}`);
     }
     interactionVector.push(interaction);
   });
-  // @ts-expect-error fs.readdirSync typing is a mess
-  mockedFs.readdirSync.mockImplementation((readDir: fs.PathLike) => {
-    // TODO
+  mockedUtils.readdir.mockImplementation(async readDir => {
     const baseName = readDir.toString().split(sep).at(-1);
     const tag = zipBall.split('/').at(-1);
     if (baseName === `extracted${tag}`) {
       return ['python-cpython'];
+    } else if (readDir.toString().includes('PCbuild\\')) {
+      return [`python-${tag}.exe`];
     }
     return [readDir.toString()];
   });
-  mockedFs.existsSync.mockImplementation((existPath: fs.PathLike) => {
-    // TODO
+  mockedUtils.exists.mockImplementation(async existPath => {
+    if (existPath.toString().endsWith('.exe')) {
+      return true;
+    }
+    if (existPath.toString().startsWith(path.join('tmpDir', 'CPython'))) {
+      const tag = zipBall.split('/').at(-1) || '';
+      const splitPath = existPath.toString().split(sep);
+      const filePath = splitPath.slice(2).join('/');
+      return await existCpython(filePath, tag);
+    }
     return true;
   });
-  mockedFs.readFileSync.mockReturnValue('');
+  mockedUtils.readFile.mockResolvedValue('');
 
   // Mock @actions/exec implementation
 
@@ -150,4 +169,9 @@ export async function mockToolkit(
   // Mock environment variables
 
   process.env['RUNNER_TEMP'] = '';
+}
+
+async function existCpython(filePath: string, tag: string): Promise<boolean> {
+  const tagTree = trees[tag];
+  return tagTree.includes(filePath);
 }
