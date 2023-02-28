@@ -15,8 +15,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import * as core from '@actions/core';
+import * as utils from './utils';
 import {InputNames} from './constants';
-import fs from 'fs';
 import os from 'os';
 import semverValidRange from 'semver/ranges/valid';
 
@@ -160,9 +160,9 @@ async function extractPythonVersion(): Promise<string> {
   }
 
   if (pythonVersionFile !== '') {
-    if (fs.existsSync(pythonVersionFile)) {
+    if (await utils.exists(pythonVersionFile)) {
       core.info(`Obtaining version from ${pythonVersionFile}...`);
-      pythonVersion = fs.readFileSync(pythonVersionFile, 'utf-8');
+      pythonVersion = await utils.readFile(pythonVersionFile, 'utf-8');
       core.info(`Resolved ${pythonVersionFile} to ${pythonVersion}.`);
     } else {
       core.warning(`${pythonVersionFile} doesn't exist.`);

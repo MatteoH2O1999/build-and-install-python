@@ -18,9 +18,9 @@ import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
+import * as utils from '../utils';
 import {ssl102Url, sslUrl} from '../constants';
 import Builder from './builder';
-import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import semver from 'semver';
@@ -224,14 +224,14 @@ export default class MacOSBuilder extends Builder {
     core.info('Creating python symlinks...');
     const mainExecutable = path.join(installedPath, 'python');
     core.info(`Creating symlink from ${pythonExecutable} to ${mainExecutable}`);
-    fs.symlinkSync(pythonExecutable, mainExecutable);
+    await utils.symlink(pythonExecutable, mainExecutable);
     const binExecutable = path.join(
       installedPath,
       'bin',
       `python${majorMinorString}`
     );
     core.info(`Creating symlink from ${pythonExecutable} to ${binExecutable}`);
-    fs.symlinkSync(pythonExecutable, binExecutable);
+    await utils.symlink(pythonExecutable, binExecutable);
     if (
       semver.gte(this.specificVersion, '3.0.0') &&
       semver.lt(this.specificVersion, '3.1.0')
@@ -240,13 +240,13 @@ export default class MacOSBuilder extends Builder {
       core.info(
         `Creating symlink from ${pythonExecutable} to ${python3Executable}`
       );
-      fs.symlinkSync(pythonExecutable, python3Executable);
+      await utils.symlink(pythonExecutable, python3Executable);
     }
     const mainBinExecutable = path.join(installedPath, 'bin', 'python');
     core.info(
       `Creating symlink from ${pythonExecutable} to ${mainBinExecutable}`
     );
-    fs.symlinkSync(pythonExecutable, mainBinExecutable);
+    await utils.symlink(pythonExecutable, mainBinExecutable);
 
     // Add executable bits
 
@@ -348,14 +348,17 @@ export default class MacOSBuilder extends Builder {
         silent: true
       });
       headerPath = headerPath.trim();
-      const h2py = fs
-        .readFileSync(path.join(this.path, 'Tools', 'scripts', 'h2py.py'))
+      const h2py = (
+        await utils.readFile(
+          path.join(this.path, 'Tools', 'scripts', 'h2py.py')
+        )
+      )
         .toString()
         .replace(
           "fp = open(filename, 'r')",
           `filename=filename.replace('/usr/lib', '${headerPath}/usr/lib').replace('/usr/include', '${headerPath}/usr/include');fp=open(filename, 'r')`
         );
-      fs.writeFileSync(
+      await utils.writeFile(
         path.join(this.path, 'Tools', 'scripts', 'h2py.py'),
         h2py
       );

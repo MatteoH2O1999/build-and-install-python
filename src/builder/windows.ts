@@ -18,9 +18,9 @@ import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
+import * as utils from '../utils';
 import {vsInstallerUrl, windowsBuildDependencies} from '../constants';
 import Builder from './builder';
-import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import semver from 'semver';
@@ -48,7 +48,7 @@ export default class WindowsBuilder extends Builder {
     // Build python
 
     const buildFile = path.join(this.path, 'Tools', 'msi', 'build.bat');
-    if (fs.existsSync(buildFile)) {
+    if (await utils.exists(buildFile)) {
       // Can build with msi tool
 
       const externalsMsi = path.join(
@@ -64,12 +64,12 @@ export default class WindowsBuilder extends Builder {
       );
 
       core.startGroup('Fetching external dependencies');
-      if (fs.existsSync(externalsPcBuild)) {
+      if (await utils.exists(externalsPcBuild)) {
         await exec.exec(externalsPcBuild);
       } else {
         throw new Error('Could not fetch external PCbuild dependencies');
       }
-      if (fs.existsSync(externalsMsi)) {
+      if (await utils.exists(externalsMsi)) {
         await exec.exec(externalsMsi);
       } else {
         throw new Error('Could not fetch external msi dependencies');
@@ -96,7 +96,7 @@ export default class WindowsBuilder extends Builder {
           throw new Error('Unsupported architecture');
       }
       const candidates: string[] = [];
-      for (const file of fs.readdirSync(buildPath)) {
+      for (const file of await utils.readdir(buildPath)) {
         if (file.startsWith('python-') && file.endsWith('.exe')) {
           candidates.push(file);
         }
@@ -122,7 +122,7 @@ export default class WindowsBuilder extends Builder {
 
       returnPath = path.join(this.path, this.buildSuffix());
       pythonExecutable = path.join(returnPath, 'python.exe');
-      if (!fs.existsSync(pythonExecutable)) {
+      if (!(await utils.exists(pythonExecutable))) {
         throw new Error('Could not find built Python executable');
       }
       core.info(`Python executable: ${pythonExecutable}`);
@@ -236,13 +236,13 @@ export default class WindowsBuilder extends Builder {
 
     if (semver.gte(this.specificVersion, '3.0.0')) {
       const currentExecutable = path.join(installedPath, 'python.exe');
-      if (!fs.existsSync(currentExecutable)) {
+      if (!(await utils.exists(currentExecutable))) {
         throw new Error('Could not find installed python executable');
       }
       const targetLink = path.join(installedPath, 'python3.exe');
       core.info('Creating python3 symlink...');
       core.info(`Creating symlink from ${currentExecutable} to ${targetLink}`);
-      fs.symlinkSync(currentExecutable, targetLink);
+      await utils.symlink(currentExecutable, targetLink);
     } else {
       core.info('No python3 symlink needs to be created. Skipping step...');
     }

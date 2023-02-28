@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+/* eslint-disable no-restricted-imports */
+
 import * as cache from '@actions/cache';
 import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
