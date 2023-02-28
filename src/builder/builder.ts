@@ -18,8 +18,8 @@ import * as cache from '@actions/cache';
 import * as core from '@actions/core';
 import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
+import * as utils from '../utils';
 import {PythonTag} from './factory';
-import fs from 'fs';
 import os from 'os';
 import path from 'path';
 
@@ -47,7 +47,7 @@ export default abstract class Builder {
     if (!this.path) {
       throw new Error('Base dir is not set.');
     }
-    if (!fs.existsSync(this.path)) {
+    if (!(await utils.exists(this.path))) {
       throw new Error(`Cannot clear ${this.path} as it does not exist.`);
     }
     core.info('Removing temporary build directories...');
@@ -125,7 +125,7 @@ export default abstract class Builder {
     core.info('Removing source zip...');
     await io.rmRF(zipPath);
 
-    const dirNames = fs.readdirSync(sourcePath);
+    const dirNames = await utils.readdir(sourcePath);
     if (dirNames.length !== 1) {
       throw new Error(`Expected only one folder. Got ${dirNames}`);
     }

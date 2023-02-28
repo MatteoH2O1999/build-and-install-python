@@ -30,7 +30,7 @@ const mockedTC = jest.mocked(tc);
 const originalModule: typeof tc = jest.requireActual('@actions/tool-cache');
 mockedTC.findFromManifest.mockImplementation(
   async (versionSpec, stable, manifest, archFilter) => {
-    return originalModule.findFromManifest(
+    return await originalModule.findFromManifest(
       versionSpec,
       stable,
       manifest,
@@ -52,7 +52,7 @@ mockedManifestTC._getOsVersion.mockImplementation(() => {
 });
 mockedManifestTC._findMatch.mockImplementation(
   async (versionSpec, stable, candidates, archFilter) => {
-    return originalManifest._findMatch(
+    return await originalManifest._findMatch(
       versionSpec,
       stable,
       candidates,

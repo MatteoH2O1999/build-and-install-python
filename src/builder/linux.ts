@@ -18,8 +18,8 @@ import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
+import * as utils from '../utils';
 import Builder from './builder';
-import fs from 'fs';
 import path from 'path';
 import semver from 'semver';
 import {ubuntuDependencies} from '../constants';
@@ -146,14 +146,14 @@ export default class LinuxBuilder extends Builder {
     core.info('Creating python symlinks...');
     const mainExecutable = path.join(installedPath, 'python');
     core.info(`Creating symlink from ${pythonExecutable} to ${mainExecutable}`);
-    fs.symlinkSync(pythonExecutable, mainExecutable);
+    await utils.symlink(pythonExecutable, mainExecutable);
     const binExecutable = path.join(
       installedPath,
       'bin',
       `python${majorMinorString}`
     );
     core.info(`Creating symlink from ${pythonExecutable} to ${binExecutable}`);
-    fs.symlinkSync(pythonExecutable, binExecutable);
+    await utils.symlink(pythonExecutable, binExecutable);
     if (
       semver.gte(this.specificVersion, '3.0.0') &&
       semver.lt(this.specificVersion, '3.1.0')
@@ -162,13 +162,13 @@ export default class LinuxBuilder extends Builder {
       core.info(
         `Creating symlink from ${pythonExecutable} to ${python3Executable}`
       );
-      fs.symlinkSync(pythonExecutable, python3Executable);
+      await utils.symlink(pythonExecutable, python3Executable);
     }
     const mainBinExecutable = path.join(installedPath, 'bin', 'python');
     core.info(
       `Creating symlink from ${pythonExecutable} to ${mainBinExecutable}`
     );
-    fs.symlinkSync(pythonExecutable, mainBinExecutable);
+    await utils.symlink(pythonExecutable, mainBinExecutable);
 
     // Add executable bits
 

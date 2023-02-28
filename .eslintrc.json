@@ -48,12 +48,18 @@
       "@typescript-eslint/semi": ["error", "always"],
       "@typescript-eslint/type-annotation-spacing": "error",
       "@typescript-eslint/unbound-method": "error",
+      "@typescript-eslint/return-await": ["error", "always"],
       "sort-imports": "error",
-      "sort-keys": "error"
+      "sort-keys": "error",
+      "no-restricted-imports": ["error", "fs"],
+      "no-return-await": "off"
     },
     "env": {
       "node": true,
       "es6": true,
       "jest/globals": true
+    },
+    "globals": {
+      "BufferEncoding": "readonly"
     }
   }
