@@ -22,14 +22,14 @@ async function updateJson() {
         });
       } catch (error) {
         core.info('Rest API rate limit reached. Retrying in 60 seconds...');
-        await sleep(60);
+        await new Promise(r => setTimeout(r, 60000));
       }
     }
     if (response.status !== 200) {
       throw new Error('Error in getting tags.');
     }
+    changed = response.data.length === 100;
     for (const tag of response.data) {
-      changed = true;
       core.info(`Received tag ${tag.name}`)
       tags.push({version: tag.name, zipBall: tag.zipball_url});
     }
@@ -43,8 +43,5 @@ const jsonPath = path.join(path.dirname(path.dirname(__dirname)), 'src', 'builde
 core.info(`Updating ${jsonPath}`);
 
 updateJson().then((jsonString) => {
-  core.startGroup('Final JSON string');
-  core.info(jsonString);
-  core.endGroup();
   fs.writeFileSync(jsonPath, jsonString)
 })
