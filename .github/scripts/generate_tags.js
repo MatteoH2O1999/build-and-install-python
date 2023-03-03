@@ -22,7 +22,7 @@ async function updateJson() {
         });
       } catch (error) {
         core.info('Rest API rate limit reached. Retrying in 60 seconds...');
-        await sleep(60);
+        await new Promise(r => setTimeout(r, 60000));
       }
     }
     if (response.status !== 200) {
