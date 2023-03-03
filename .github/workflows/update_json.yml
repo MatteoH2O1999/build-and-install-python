@@ -8,7 +8,7 @@ on:
 jobs:
   update_cpython_tags:
     runs-on: ubuntu-latest
-    name: Update CPython JSON tags
+    name: Update CPython JSON tags and trees
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -21,7 +21,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Update JSON data
-        run: node ./.github/scripts/generate_tags.js
+        run: |
+          node ./.github/scripts/generate_tags.js
+          node ./.github/scripts/generate_trees.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Update jest snapshots
@@ -31,10 +33,10 @@ jobs:
       - name: Create or update pull request
         uses: peter-evans/create-pull-request@v4
         with:
-          commit-message: Update CPython JSON tags data
-          branch: create-pull-request/cpython-json-tags
+          commit-message: Update CPython JSON data
+          branch: create-pull-request/cpython-json
           delete-branch: true
-          title: Update CPython JSON tags data
+          title: Update CPython JSON data
           body: |
             Automated JSON data update by [update_json.yml](https://github.com/MatteoH2O1999/build-and-install-python/tree/master/.github/workflows/update_json.yml)
           assignees: ${{ github.repository_owner }}
