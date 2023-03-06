@@ -81,6 +81,7 @@ export type MockedInputs = {
   cacheBuild: string;
   allowBuild: string;
   token: string;
+  checkLatest: string;
 };
 
 export function mockInput(
@@ -101,6 +102,8 @@ export function mockInput(
     return inputs.cacheBuild;
   } else if (input === InputNames.TOKEN) {
     return inputs.token;
+  } else if (input === InputNames.CHECK_LATEST) {
+    return inputs.checkLatest;
   } else {
     return '';
   }

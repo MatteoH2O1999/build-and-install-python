@@ -25,6 +25,7 @@ const mockedInputs: MockedInputs = {
   allowBuild: 'warn',
   architecture: 'x64',
   cacheBuild: 'false',
+  checkLatest: 'false',
   pythonVersion: '3.9.2',
   pythonVersionFile: 'file',
   token: 'token'
@@ -90,6 +91,7 @@ describe('Parsed inputs', () => {
     mockedInputs.pythonVersion = '3.9.2';
     mockedInputs.pythonVersionFile = 'file';
     mockedInputs.token = 'token';
+    mockedInputs.checkLatest = 'false';
   });
 
   describe(`"${InputNames.PYTHON_VERSION}" and "${InputNames.PYTHON_VERSION_FILE}"`, () => {
@@ -209,14 +211,57 @@ describe('Parsed inputs', () => {
       async cache => {
         mockedInputs.cacheBuild = cache;
 
-        expect(inputs.parseInputs()).rejects.toThrowErrorMatchingSnapshot();
+        await expect(
+          inputs.parseInputs()
+        ).rejects.toThrowErrorMatchingSnapshot();
       }
     );
 
     test(`empty "${InputNames.CACHE_BUILD}" throws an Error`, async () => {
       mockedInputs.cacheBuild = '';
 
-      expect(inputs.parseInputs()).rejects.toThrowErrorMatchingSnapshot();
+      await expect(inputs.parseInputs()).rejects.toThrowErrorMatchingSnapshot();
+    });
+  });
+
+  describe(`"${InputNames.CHECK_LATEST}"`, () => {
+    test.each(['false', 'FALSE', 'False'])(
+      `using "${InputNames.CHECK_LATEST}" with value "%s" leads to "false"`,
+      async latest => {
+        mockedInputs.checkLatest = latest;
+
+        const parsedInputs = await inputs.parseInputs();
+
+        expect(parsedInputs.checkLatest).toBe(false);
+      }
+    );
+
+    test.each(['true', 'TRUE', 'True'])(
+      `using "${InputNames.CHECK_LATEST}" with value "%s" leads to "true"`,
+      async latest => {
+        mockedInputs.checkLatest = latest;
+
+        const parsedInputs = await inputs.parseInputs();
+
+        expect(parsedInputs.checkLatest).toBe(true);
+      }
+    );
+
+    test.each(['TRue', 'FalSe', '1', '0'])(
+      `using "${InputNames.CHECK_LATEST}" with value "%s" throws an Error`,
+      async latest => {
+        mockedInputs.checkLatest = latest;
+
+        await expect(
+          inputs.parseInputs()
+        ).rejects.toThrowErrorMatchingSnapshot();
+      }
+    );
+
+    test(`empty "${InputNames.CHECK_LATEST}" throws an Error`, async () => {
+      mockedInputs.checkLatest = '';
+
+      await expect(inputs.parseInputs()).rejects.toThrowErrorMatchingSnapshot();
     });
   });
 
@@ -224,7 +269,7 @@ describe('Parsed inputs', () => {
     test(`empty "${InputNames.ALLOW_BUILD}" throws an Error`, async () => {
       mockedInputs.allowBuild = '';
 
-      expect(inputs.parseInputs()).rejects.toThrowErrorMatchingSnapshot();
+      await expect(inputs.parseInputs()).rejects.toThrowErrorMatchingSnapshot();
     });
 
     test.each(['allow', 'Allow', 'ALLOW', ' AllOw'])(
@@ -285,7 +330,7 @@ describe('Parsed inputs', () => {
       async behavior => {
         mockedInputs.allowBuild = behavior;
 
-        expect(inputs.parseInputs).rejects.toThrowErrorMatchingSnapshot();
+        await expect(inputs.parseInputs).rejects.toThrowErrorMatchingSnapshot();
       }
     );
   });

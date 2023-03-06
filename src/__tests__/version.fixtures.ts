@@ -85,6 +85,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
+      checkLatest: false,
       token: 'token',
       version: new PythonVersion('2.7')
     }
@@ -108,6 +109,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
+      checkLatest: false,
       token: 'token',
       version: new PythonVersion('2.7.18')
     }
@@ -131,6 +133,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
+      checkLatest: false,
       token: 'token',
       version: new PythonVersion('3.6')
     }
@@ -154,6 +157,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
+      checkLatest: false,
       token: 'token',
       version: new PythonVersion('3.6.7')
     }
@@ -177,6 +181,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
+      checkLatest: false,
       token: 'token',
       version: new PythonVersion('pypy3.9')
     }
@@ -200,6 +205,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
+      checkLatest: false,
       token: 'token',
       version: new PythonVersion('pypy3')
     }
@@ -223,6 +229,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
+      checkLatest: false,
       token: 'token',
       version: new PythonVersion('pypyx')
     }
@@ -246,6 +253,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
+      checkLatest: false,
       token: 'token',
       version: new PythonVersion('pypy2')
     }
@@ -269,6 +277,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
+      checkLatest: false,
       token: 'token',
       version: new PythonVersion('pypy1')
     }
@@ -292,6 +301,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
+      checkLatest: false,
       token: 'token',
       version: new PythonVersion('3')
     }

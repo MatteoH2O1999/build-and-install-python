@@ -90,6 +90,7 @@ describe(`getSetupPythonResult with manifest url ${manifestUrl}`, () => {
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: false,
+      checkLatest: false,
       token: 'token',
       version: new PythonVersion('3.9')
     });
@@ -97,6 +98,25 @@ describe(`getSetupPythonResult with manifest url ${manifestUrl}`, () => {
     expect(result).toEqual(expected);
     expect(mockedTC.findFromManifest).not.toBeCalled();
     expect(mockedTC.getManifestFromRepo).not.toBeCalled();
+  });
+
+  test('returns latest version in range if an older version is present in local tool cache and check-latest is true', async () => {
+    mockedTC.find.mockReturnValue('/python/version/3.9.0/x64');
+    const expected: SetupPythonResult = {
+      success: true,
+      version: process.platform === 'win32' ? '3.9.13' : '3.9.16'
+    };
+
+    const result = await getSetupPythonResult({
+      architecture: process.arch,
+      buildBehavior: BuildBehavior.Info,
+      cache: false,
+      checkLatest: true,
+      token: 'token',
+      version: new PythonVersion('3.9')
+    });
+
+    expect(result).toEqual(expected);
   });
 
   test.each(SetupPythonTests)(
