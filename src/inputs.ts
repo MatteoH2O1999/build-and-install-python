@@ -73,6 +73,7 @@ export type ActionInputs = {
   cache: boolean;
   buildBehavior: BuildBehavior;
   token: string;
+  checkLatest: boolean;
 };
 
 async function getBehavior(): Promise<BuildBehavior> {
@@ -118,6 +119,21 @@ async function getCache(): Promise<boolean> {
         InputNames.CACHE_BUILD
       }". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "${core.getInput(
         InputNames.CACHE_BUILD
+      )}".`
+    );
+  }
+}
+
+async function getCheckLatest(): Promise<boolean> {
+  core.debug('Parsing check latest input');
+  try {
+    return core.getBooleanInput(InputNames.CHECK_LATEST);
+  } catch (error) {
+    throw new Error(
+      `Expected boolean value for input "${
+        InputNames.CHECK_LATEST
+      }". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "${core.getInput(
+        InputNames.CHECK_LATEST
       )}".`
     );
   }
@@ -177,6 +193,7 @@ export async function parseInputs(): Promise<ActionInputs> {
     architecture: await getArchitecture(),
     buildBehavior: await getBehavior(),
     cache: await getCache(),
+    checkLatest: await getCheckLatest(),
     token: core.getInput(InputNames.TOKEN),
     version: new PythonVersion(await extractPythonVersion())
   };

@@ -20,7 +20,8 @@ export enum InputNames {
   ARCHITECTURE = 'architecture',
   CACHE_BUILD = 'cache-build',
   ALLOW_BUILD = 'allow-build',
-  TOKEN = 'token'
+  TOKEN = 'token',
+  CHECK_LATEST = 'check-latest'
 }
 
 export enum OutputNames {

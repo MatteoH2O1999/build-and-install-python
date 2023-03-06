@@ -69,7 +69,7 @@ export async function getSetupPythonResult(
       inputs.version.version,
       inputs.architecture
     );
-    if (localPath !== '') {
+    if (localPath !== '' && !inputs.checkLatest) {
       const localVersion = path.basename(path.dirname(localPath));
       resultVersionString = localVersion;
       success = true;
