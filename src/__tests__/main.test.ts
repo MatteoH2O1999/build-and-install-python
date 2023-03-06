@@ -71,6 +71,7 @@ describe('main', () => {
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: false,
+        checkLatest: false,
         token: 'token',
         version: {type: inputs.PythonType.CPython, version: '3.10.x'}
       });
@@ -103,6 +104,7 @@ describe('main', () => {
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: false,
+        checkLatest: false,
         token: 'token',
         version: {type: inputs.PythonType.CPython, version: '3.10.x'}
       });
@@ -121,6 +123,7 @@ describe('main', () => {
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: false,
+        checkLatest: false,
         token: 'token',
         version: {type: inputs.PythonType.CPython, version: '3.10.x'}
       });
@@ -144,6 +147,7 @@ describe('main', () => {
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: false,
+        checkLatest: false,
         token: 'token',
         version: {type: inputs.PythonType.PyPy, version: '3.6.x'}
       });
@@ -169,6 +173,7 @@ describe('main', () => {
           architecture: 'x64',
           buildBehavior: inputs.BuildBehavior.Info,
           cache: false,
+          checkLatest: false,
           token: 'token',
           version: {type: inputs.PythonType.CPython, version: '3.6.x'}
         });
@@ -203,6 +208,7 @@ describe('main', () => {
           architecture: 'x64',
           buildBehavior: inputs.BuildBehavior.Info,
           cache: false,
+          checkLatest: false,
           token: 'token',
           version: {type: inputs.PythonType.CPython, version: '3.6.x'}
         });
@@ -234,6 +240,7 @@ describe('main', () => {
           architecture: 'x64',
           buildBehavior: inputs.BuildBehavior.Info,
           cache: false,
+          checkLatest: false,
           token: 'token',
           version: {type: inputs.PythonType.PyPy, version: '3.6.x'}
         });
@@ -268,6 +275,7 @@ describe('main', () => {
           architecture: 'x64',
           buildBehavior: inputs.BuildBehavior.Info,
           cache: false,
+          checkLatest: false,
           token: 'token',
           version: {type: inputs.PythonType.PyPy, version: '3.6.x'}
         });
@@ -304,6 +312,7 @@ describe('main', () => {
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Error,
         cache: false,
+        checkLatest: false,
         token: 'token',
         version: {type: inputs.PythonType.CPython, version: '3.6.x'}
       });
@@ -325,6 +334,7 @@ describe('main', () => {
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Warn,
         cache: false,
+        checkLatest: false,
         token: 'token',
         version: {type: inputs.PythonType.CPython, version: '3.6.x'}
       });
@@ -365,6 +375,7 @@ describe('main', () => {
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: false,
+        checkLatest: false,
         token: 'token',
         version: {type: inputs.PythonType.CPython, version: '3.6.x'}
       });
@@ -407,6 +418,7 @@ describe('main', () => {
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Allow,
         cache: false,
+        checkLatest: false,
         token: 'token',
         version: {type: inputs.PythonType.CPython, version: '3.6.x'}
       });
@@ -451,6 +463,7 @@ describe('main', () => {
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: false,
+        checkLatest: false,
         token: 'token',
         version: {type: inputs.PythonType.CPython, version: '3.6.x'}
       });
@@ -480,6 +493,7 @@ describe('main', () => {
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: false,
+        checkLatest: false,
         token: 'token',
         version: {type: inputs.PythonType.CPython, version: '3.6.x'}
       });
@@ -505,6 +519,7 @@ describe('main', () => {
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: false,
+        checkLatest: false,
         token: 'token',
         version: {type: inputs.PythonType.CPython, version: '3.6.x'}
       });
@@ -527,6 +542,7 @@ describe('main', () => {
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: false,
+        checkLatest: false,
         token: 'token',
         version: {type: inputs.PythonType.CPython, version: '3.6.x'}
       });
@@ -569,6 +585,7 @@ describe('main', () => {
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: true,
+        checkLatest: false,
         token: 'token',
         version: {type: inputs.PythonType.CPython, version: '3.6.x'}
       });
@@ -611,6 +628,7 @@ describe('main', () => {
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: true,
+        checkLatest: false,
         token: 'token',
         version: {type: inputs.PythonType.CPython, version: '3.6.x'}
       });
@@ -656,6 +674,7 @@ describe('main', () => {
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: true,
+        checkLatest: false,
         token: 'token',
         version: {type: inputs.PythonType.CPython, version: '3.6.x'}
       });
@@ -695,6 +714,7 @@ describe('main', () => {
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: true,
+        checkLatest: false,
         token: 'token',
         version: {type: inputs.PythonType.CPython, version: '3.6.x'}
       });
@@ -737,6 +757,7 @@ describe('main', () => {
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: true,
+        checkLatest: false,
         token: 'token',
         version: {type: inputs.PythonType.CPython, version: '3.6.x'}
       });
@@ -779,6 +800,7 @@ describe('main', () => {
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: true,
+        checkLatest: false,
         token: 'token',
         version: {type: inputs.PythonType.CPython, version: '3.6.x'}
       });
@@ -827,6 +849,7 @@ describe('main', () => {
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: true,
+        checkLatest: false,
         token: 'token',
         version: {type: inputs.PythonType.CPython, version: '3.6.x'}
       });

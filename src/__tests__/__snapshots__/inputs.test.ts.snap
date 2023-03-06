@@ -28,6 +28,16 @@ exports[`Parsed inputs "cache-build" using "cache-build" with value "FalSe" thro
 
 exports[`Parsed inputs "cache-build" using "cache-build" with value "TRue" throws an Error 1`] = `"Expected boolean value for input "cache-build". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "TRue"."`;
 
+exports[`Parsed inputs "check-latest" empty "check-latest" throws an Error 1`] = `"Expected boolean value for input "check-latest". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got ""."`;
+
+exports[`Parsed inputs "check-latest" using "check-latest" with value "0" throws an Error 1`] = `"Expected boolean value for input "check-latest". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "0"."`;
+
+exports[`Parsed inputs "check-latest" using "check-latest" with value "1" throws an Error 1`] = `"Expected boolean value for input "check-latest". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "1"."`;
+
+exports[`Parsed inputs "check-latest" using "check-latest" with value "FalSe" throws an Error 1`] = `"Expected boolean value for input "check-latest". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "FalSe"."`;
+
+exports[`Parsed inputs "check-latest" using "check-latest" with value "TRue" throws an Error 1`] = `"Expected boolean value for input "check-latest". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "TRue"."`;
+
 exports[`Parsed inputs "python-version" and "python-version-file" empty "python-version" and specified non-esisting "python-version-file" leads to a warning and a x.x.x version 1`] = `
 [
   [
