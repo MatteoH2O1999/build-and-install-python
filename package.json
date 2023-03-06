@@ -1,6 +1,5 @@
 {
     "name": "build-and-install-python",
-    "version": "0.0.0",
     "private": false,
     "description": "Build and Install action",
     "main": "dist/index.js",
