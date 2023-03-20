@@ -19,15 +19,26 @@ import * as exec from '@actions/exec';
 import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
 import * as utils from '../utils';
-import {vsInstallerUrl, windowsBuildDependencies} from '../constants';
+import {
+  toolsetRe,
+  toolsetVersion,
+  vsInstallerUrl,
+  winSdkRe,
+  winSdkVersion,
+  windowsBuildDependencies
+} from '../constants';
 import Builder from './builder';
 import os from 'os';
 import path from 'path';
 import semver from 'semver';
 
+const envCL32 = '/D_WIN32';
+const envCL64 = '/D_WIN64 /D_AMD64_';
+
 export default class WindowsBuilder extends Builder {
   private readonly MSBUILD: string = process.env.MSBUILD || '';
   private vsInstallationPath: string | undefined;
+  private msbuild = '';
 
   override async build(): Promise<string> {
     // Prepare envirnoment
@@ -48,6 +59,7 @@ export default class WindowsBuilder extends Builder {
     // Build python
 
     const buildFile = path.join(this.path, 'Tools', 'msi', 'build.bat');
+    const pcBuild = path.join(this.path, 'PCbuild', 'build.bat');
     if (await utils.exists(buildFile)) {
       // Can build with msi tool
 
@@ -62,35 +74,123 @@ export default class WindowsBuilder extends Builder {
         'PCbuild',
         'get_externals.bat'
       );
+      const props = path.join(this.path, 'PCbuild', 'python.props');
+      const bootstrapper = path.join(
+        this.path,
+        'Tools',
+        'msi',
+        'bundle',
+        'bootstrap',
+        'pythonba.vcxproj'
+      );
       let buildPath = path.join(this.path, 'PCbuild');
       switch (this.arch) {
         case 'x64':
           buildPath = path.join(buildPath, 'amd64', 'en-us');
+          if (semver.lt(this.specificVersion, '3.7.0')) {
+            process.env['CL'] = envCL64;
+          }
           break;
         case 'x86':
           buildPath = path.join(buildPath, 'win32', 'en-us');
+          if (semver.lt(this.specificVersion, '3.7.0')) {
+            process.env['CL'] = envCL32;
+          }
           break;
         default:
           throw new Error('Unsupported architecture');
       }
 
+      // Fix windows build sdk and toolset version
+
+      if (!(await utils.exists(props))) {
+        throw new Error('Could not find "python.props" file');
+      }
+      if (!(await utils.exists(bootstrapper))) {
+        throw new Error('Could not find "pythonba.vcxproj"');
+      }
+
+      const propsContent = await utils.readFile(props);
+      const fixedProps = propsContent
+        .replace(winSdkRe, winSdkVersion('10.0.17763.0'))
+        .replace(toolsetRe, toolsetVersion('v140'));
+      await utils.writeFile(props, fixedProps);
+      const bootstrapperContent = await utils.readFile(bootstrapper);
+      const fixedBootstrapperContent = bootstrapperContent
+        .replace(winSdkRe, winSdkVersion('10.0.17763.0'))
+        .replace(toolsetRe, toolsetVersion('v140'));
+      await utils.writeFile(bootstrapper, fixedBootstrapperContent);
+
       // Fetch external dependencies
 
       core.startGroup('Fetching external dependencies');
       if (await utils.exists(externalsPcBuild)) {
+        if (semver.lt(this.specificVersion, '3.7.0')) {
+          core.info('Detected version < 3.7. Updating tcl/tk version...');
+          const fileContent = await utils.readFile(externalsPcBuild);
+          await utils.writeFile(
+            externalsPcBuild,
+            fileContent
+              .replace(/ tk-[0-9.]+/, ' tk-8.6.10.0')
+              .replace(/ tcl-core-[0-9.]+/, ' tcl-core-8.6.10.0')
+          );
+          const tkProps = path.join(this.path, 'PCbuild', 'tcltk.props');
+          const tkPropsContent = await utils.readFile(tkProps);
+          await utils.writeFile(
+            tkProps,
+            tkPropsContent.replace(
+              /<TclPatchLevel>[0-9]+<\/TclPatchLevel>/,
+              '<TclPatchLevel>10</TclPatchLevel>'
+            )
+          );
+        }
         await exec.exec(externalsPcBuild);
       } else {
         throw new Error('Could not fetch external PCbuild dependencies');
       }
       if (await utils.exists(externalsMsi)) {
         await exec.exec(externalsMsi);
+        if (semver.lt(this.specificVersion, '3.7.0')) {
+          core.info(
+            'Detected version < 3.7. Copying correct vcredist140.dll to main folder...'
+          );
+          const dllPath = path.join(
+            this.path,
+            'externals',
+            'windows-installer',
+            'redist',
+            this.arch
+          );
+          await io.cp(
+            dllPath,
+            path.join(this.path, 'externals', 'windows-installer', 'redist'),
+            {copySourceDirectory: false, recursive: true}
+          );
+        }
       } else {
         throw new Error('Could not fetch external msi dependencies');
       }
       core.endGroup();
 
+      core.startGroup('Building Python');
+      await exec.exec(pcBuild.concat(` -p ${this.arch}`), ['-e']);
+      core.endGroup();
+
+      core.startGroup('Building Python debug');
+      await exec.exec(pcBuild.concat(` -p ${this.arch}`), ['-d', '-e']);
+      core.endGroup();
+
       core.startGroup('Building installer');
-      await exec.exec(buildFile, [`-${this.arch}`]);
+      process.env['CL'] = envCL32;
+      await exec.exec(`"${this.msbuild}"`, [
+        path.join(this.path, 'Tools', 'msi', 'launcher', 'launcher.wixproj'),
+        '/p:Platform=x86'
+      ]);
+      process.env['CL'] = '';
+      await exec.exec(`"${this.msbuild}"`, [
+        path.join(this.path, 'Tools', 'msi', 'bundle', 'snapshot.wixproj'),
+        `/p:Platform=${this.arch}`
+      ]);
       core.endGroup();
 
       core.startGroup('Installing Python to temp folder');
@@ -178,6 +278,7 @@ export default class WindowsBuilder extends Builder {
     core.info(`Found msbuild.exe at ${msBuildPath}`);
     core.info('Temporarily adding as environment variable...');
     core.exportVariable('MSBUILD', msBuildPath);
+    this.msbuild = msBuildPath;
     core.endGroup();
 
     // Detect Visual Studio
@@ -189,7 +290,8 @@ export default class WindowsBuilder extends Builder {
         stdout: (data: Buffer) => {
           vsPath += data.toString();
         }
-      }
+      },
+      silent: true
     });
     core.info(`Found Visual Studio at ${vsPath}`);
     this.vsInstallationPath = vsPath.trim();
@@ -202,12 +304,14 @@ export default class WindowsBuilder extends Builder {
       vsInstallerUrl,
       path.join(os.tmpdir(), 'vs_installer.exe')
     );
+    core.info('vs_installer downloaded');
     for (const dependency of windowsBuildDependencies) {
       await exec.exec(
         `${installer} modify --installPath "${this.vsInstallationPath}" --add ${dependency} --quiet --norestart --force --wait`
       );
     }
     await io.rmRF(installer);
+    core.info('vs_installer removed');
     core.endGroup();
   }
 
@@ -221,12 +325,14 @@ export default class WindowsBuilder extends Builder {
       vsInstallerUrl,
       path.join(os.tmpdir(), 'vs_installer.exe')
     );
+    core.info('vs_installer downloaded');
     for (const dependency of windowsBuildDependencies) {
       await exec.exec(
         `${installer} modify --installPath "${this.vsInstallationPath}" --remove ${dependency} --quiet --norestart --force --wait`
       );
     }
     await io.rmRF(installer);
+    core.info('vs_installer removed');
 
     core.endGroup();
   }
