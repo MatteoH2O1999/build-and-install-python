@@ -3472,8 +3472,7 @@ exports[`WindowsBuilder for version 3.5.0 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.5.0",
   "Copy folder defaultExtractedPath\\extractedv3.5.0\\python-cpython to tmpDir\\CPython3.5.0arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.5.0",
-  "Execute command "tmpDir\\CPython3.5.0arm64win32\\PCbuild\\get_externals.bat "",
-  "Throw "Could not fetch external msi dependencies"",
+  "Throw "Unsupported architecture"",
 ]
 `;
 
@@ -3550,9 +3549,6 @@ exports[`WindowsBuilder for version 3.5.1 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.5.1",
   "Copy folder defaultExtractedPath\\extractedv3.5.1\\python-cpython to tmpDir\\CPython3.5.1arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.5.1",
-  "Execute command "tmpDir\\CPython3.5.1arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.1arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.1arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -3640,9 +3636,6 @@ exports[`WindowsBuilder for version 3.5.2 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.5.2",
   "Copy folder defaultExtractedPath\\extractedv3.5.2\\python-cpython to tmpDir\\CPython3.5.2arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.5.2",
-  "Execute command "tmpDir\\CPython3.5.2arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.2arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.2arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -3730,9 +3723,6 @@ exports[`WindowsBuilder for version 3.5.3 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.5.3",
   "Copy folder defaultExtractedPath\\extractedv3.5.3\\python-cpython to tmpDir\\CPython3.5.3arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.5.3",
-  "Execute command "tmpDir\\CPython3.5.3arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.3arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.3arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -3820,9 +3810,6 @@ exports[`WindowsBuilder for version 3.5.4 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.5.4",
   "Copy folder defaultExtractedPath\\extractedv3.5.4\\python-cpython to tmpDir\\CPython3.5.4arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.5.4",
-  "Execute command "tmpDir\\CPython3.5.4arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.4arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.4arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -3910,9 +3897,6 @@ exports[`WindowsBuilder for version 3.5.5 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.5.5",
   "Copy folder defaultExtractedPath\\extractedv3.5.5\\python-cpython to tmpDir\\CPython3.5.5arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.5.5",
-  "Execute command "tmpDir\\CPython3.5.5arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.5arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.5arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -4000,9 +3984,6 @@ exports[`WindowsBuilder for version 3.5.6 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.5.6",
   "Copy folder defaultExtractedPath\\extractedv3.5.6\\python-cpython to tmpDir\\CPython3.5.6arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.5.6",
-  "Execute command "tmpDir\\CPython3.5.6arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.6arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.6arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -4090,9 +4071,6 @@ exports[`WindowsBuilder for version 3.5.7 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.5.7",
   "Copy folder defaultExtractedPath\\extractedv3.5.7\\python-cpython to tmpDir\\CPython3.5.7arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.5.7",
-  "Execute command "tmpDir\\CPython3.5.7arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.7arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.7arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -4180,9 +4158,6 @@ exports[`WindowsBuilder for version 3.5.8 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.5.8",
   "Copy folder defaultExtractedPath\\extractedv3.5.8\\python-cpython to tmpDir\\CPython3.5.8arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.5.8",
-  "Execute command "tmpDir\\CPython3.5.8arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.8arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.8arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -4270,9 +4245,6 @@ exports[`WindowsBuilder for version 3.5.9 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.5.9",
   "Copy folder defaultExtractedPath\\extractedv3.5.9\\python-cpython to tmpDir\\CPython3.5.9arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.5.9",
-  "Execute command "tmpDir\\CPython3.5.9arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.9arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.9arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -4360,9 +4332,6 @@ exports[`WindowsBuilder for version 3.5.10 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.5.10",
   "Copy folder defaultExtractedPath\\extractedv3.5.10\\python-cpython to tmpDir\\CPython3.5.10arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.5.10",
-  "Execute command "tmpDir\\CPython3.5.10arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.10arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.5.10arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -4450,9 +4419,6 @@ exports[`WindowsBuilder for version 3.6.0 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.6.0",
   "Copy folder defaultExtractedPath\\extractedv3.6.0\\python-cpython to tmpDir\\CPython3.6.0arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.6.0",
-  "Execute command "tmpDir\\CPython3.6.0arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.0arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.0arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -4540,9 +4506,6 @@ exports[`WindowsBuilder for version 3.6.1 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.6.1",
   "Copy folder defaultExtractedPath\\extractedv3.6.1\\python-cpython to tmpDir\\CPython3.6.1arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.6.1",
-  "Execute command "tmpDir\\CPython3.6.1arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.1arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.1arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -4630,9 +4593,6 @@ exports[`WindowsBuilder for version 3.6.2 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.6.2",
   "Copy folder defaultExtractedPath\\extractedv3.6.2\\python-cpython to tmpDir\\CPython3.6.2arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.6.2",
-  "Execute command "tmpDir\\CPython3.6.2arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.2arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.2arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -4720,9 +4680,6 @@ exports[`WindowsBuilder for version 3.6.3 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.6.3",
   "Copy folder defaultExtractedPath\\extractedv3.6.3\\python-cpython to tmpDir\\CPython3.6.3arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.6.3",
-  "Execute command "tmpDir\\CPython3.6.3arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.3arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.3arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -4810,9 +4767,6 @@ exports[`WindowsBuilder for version 3.6.4 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.6.4",
   "Copy folder defaultExtractedPath\\extractedv3.6.4\\python-cpython to tmpDir\\CPython3.6.4arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.6.4",
-  "Execute command "tmpDir\\CPython3.6.4arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.4arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.4arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -4900,9 +4854,6 @@ exports[`WindowsBuilder for version 3.6.5 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.6.5",
   "Copy folder defaultExtractedPath\\extractedv3.6.5\\python-cpython to tmpDir\\CPython3.6.5arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.6.5",
-  "Execute command "tmpDir\\CPython3.6.5arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.5arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.5arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -4990,9 +4941,6 @@ exports[`WindowsBuilder for version 3.6.6 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.6.6",
   "Copy folder defaultExtractedPath\\extractedv3.6.6\\python-cpython to tmpDir\\CPython3.6.6arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.6.6",
-  "Execute command "tmpDir\\CPython3.6.6arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.6arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.6arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -5080,9 +5028,6 @@ exports[`WindowsBuilder for version 3.6.7 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.6.7",
   "Copy folder defaultExtractedPath\\extractedv3.6.7\\python-cpython to tmpDir\\CPython3.6.7arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.6.7",
-  "Execute command "tmpDir\\CPython3.6.7arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.7arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.7arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -5170,9 +5115,6 @@ exports[`WindowsBuilder for version 3.6.8 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.6.8",
   "Copy folder defaultExtractedPath\\extractedv3.6.8\\python-cpython to tmpDir\\CPython3.6.8arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.6.8",
-  "Execute command "tmpDir\\CPython3.6.8arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.8arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.8arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -5260,9 +5202,6 @@ exports[`WindowsBuilder for version 3.6.9 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.6.9",
   "Copy folder defaultExtractedPath\\extractedv3.6.9\\python-cpython to tmpDir\\CPython3.6.9arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.6.9",
-  "Execute command "tmpDir\\CPython3.6.9arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.9arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.9arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -5350,9 +5289,6 @@ exports[`WindowsBuilder for version 3.6.10 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.6.10",
   "Copy folder defaultExtractedPath\\extractedv3.6.10\\python-cpython to tmpDir\\CPython3.6.10arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.6.10",
-  "Execute command "tmpDir\\CPython3.6.10arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.10arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.10arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -5440,9 +5376,6 @@ exports[`WindowsBuilder for version 3.6.11 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.6.11",
   "Copy folder defaultExtractedPath\\extractedv3.6.11\\python-cpython to tmpDir\\CPython3.6.11arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.6.11",
-  "Execute command "tmpDir\\CPython3.6.11arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.11arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.11arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -5530,9 +5463,6 @@ exports[`WindowsBuilder for version 3.6.12 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.6.12",
   "Copy folder defaultExtractedPath\\extractedv3.6.12\\python-cpython to tmpDir\\CPython3.6.12arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.6.12",
-  "Execute command "tmpDir\\CPython3.6.12arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.12arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.12arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -5620,9 +5550,6 @@ exports[`WindowsBuilder for version 3.6.13 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.6.13",
   "Copy folder defaultExtractedPath\\extractedv3.6.13\\python-cpython to tmpDir\\CPython3.6.13arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.6.13",
-  "Execute command "tmpDir\\CPython3.6.13arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.13arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.13arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -5710,9 +5637,6 @@ exports[`WindowsBuilder for version 3.6.14 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.6.14",
   "Copy folder defaultExtractedPath\\extractedv3.6.14\\python-cpython to tmpDir\\CPython3.6.14arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.6.14",
-  "Execute command "tmpDir\\CPython3.6.14arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.14arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.14arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -5800,9 +5724,6 @@ exports[`WindowsBuilder for version 3.6.15 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.6.15",
   "Copy folder defaultExtractedPath\\extractedv3.6.15\\python-cpython to tmpDir\\CPython3.6.15arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.6.15",
-  "Execute command "tmpDir\\CPython3.6.15arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.15arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.6.15arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -5890,9 +5811,6 @@ exports[`WindowsBuilder for version 3.7.0 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.7.0",
   "Copy folder defaultExtractedPath\\extractedv3.7.0\\python-cpython to tmpDir\\CPython3.7.0arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.7.0",
-  "Execute command "tmpDir\\CPython3.7.0arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.0arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.0arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -5980,9 +5898,6 @@ exports[`WindowsBuilder for version 3.7.1 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.7.1",
   "Copy folder defaultExtractedPath\\extractedv3.7.1\\python-cpython to tmpDir\\CPython3.7.1arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.7.1",
-  "Execute command "tmpDir\\CPython3.7.1arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.1arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.1arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -6070,9 +5985,6 @@ exports[`WindowsBuilder for version 3.7.2 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.7.2",
   "Copy folder defaultExtractedPath\\extractedv3.7.2\\python-cpython to tmpDir\\CPython3.7.2arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.7.2",
-  "Execute command "tmpDir\\CPython3.7.2arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.2arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.2arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -6160,9 +6072,6 @@ exports[`WindowsBuilder for version 3.7.3 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.7.3",
   "Copy folder defaultExtractedPath\\extractedv3.7.3\\python-cpython to tmpDir\\CPython3.7.3arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.7.3",
-  "Execute command "tmpDir\\CPython3.7.3arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.3arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.3arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -6250,9 +6159,6 @@ exports[`WindowsBuilder for version 3.7.4 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.7.4",
   "Copy folder defaultExtractedPath\\extractedv3.7.4\\python-cpython to tmpDir\\CPython3.7.4arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.7.4",
-  "Execute command "tmpDir\\CPython3.7.4arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.4arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.4arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -6340,9 +6246,6 @@ exports[`WindowsBuilder for version 3.7.5 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.7.5",
   "Copy folder defaultExtractedPath\\extractedv3.7.5\\python-cpython to tmpDir\\CPython3.7.5arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.7.5",
-  "Execute command "tmpDir\\CPython3.7.5arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.5arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.5arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -6430,9 +6333,6 @@ exports[`WindowsBuilder for version 3.7.6 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.7.6",
   "Copy folder defaultExtractedPath\\extractedv3.7.6\\python-cpython to tmpDir\\CPython3.7.6arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.7.6",
-  "Execute command "tmpDir\\CPython3.7.6arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.6arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.6arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -6520,9 +6420,6 @@ exports[`WindowsBuilder for version 3.7.7 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.7.7",
   "Copy folder defaultExtractedPath\\extractedv3.7.7\\python-cpython to tmpDir\\CPython3.7.7arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.7.7",
-  "Execute command "tmpDir\\CPython3.7.7arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.7arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.7arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -6610,9 +6507,6 @@ exports[`WindowsBuilder for version 3.7.8 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.7.8",
   "Copy folder defaultExtractedPath\\extractedv3.7.8\\python-cpython to tmpDir\\CPython3.7.8arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.7.8",
-  "Execute command "tmpDir\\CPython3.7.8arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.8arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.8arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -6700,9 +6594,6 @@ exports[`WindowsBuilder for version 3.7.9 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.7.9",
   "Copy folder defaultExtractedPath\\extractedv3.7.9\\python-cpython to tmpDir\\CPython3.7.9arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.7.9",
-  "Execute command "tmpDir\\CPython3.7.9arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.9arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.9arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -6790,9 +6681,6 @@ exports[`WindowsBuilder for version 3.7.10 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.7.10",
   "Copy folder defaultExtractedPath\\extractedv3.7.10\\python-cpython to tmpDir\\CPython3.7.10arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.7.10",
-  "Execute command "tmpDir\\CPython3.7.10arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.10arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.10arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -6880,9 +6768,6 @@ exports[`WindowsBuilder for version 3.7.11 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.7.11",
   "Copy folder defaultExtractedPath\\extractedv3.7.11\\python-cpython to tmpDir\\CPython3.7.11arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.7.11",
-  "Execute command "tmpDir\\CPython3.7.11arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.11arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.11arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -6970,9 +6855,6 @@ exports[`WindowsBuilder for version 3.7.12 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.7.12",
   "Copy folder defaultExtractedPath\\extractedv3.7.12\\python-cpython to tmpDir\\CPython3.7.12arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.7.12",
-  "Execute command "tmpDir\\CPython3.7.12arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.12arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.12arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -7060,9 +6942,6 @@ exports[`WindowsBuilder for version 3.7.13 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.7.13",
   "Copy folder defaultExtractedPath\\extractedv3.7.13\\python-cpython to tmpDir\\CPython3.7.13arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.7.13",
-  "Execute command "tmpDir\\CPython3.7.13arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.13arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.13arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -7150,9 +7029,6 @@ exports[`WindowsBuilder for version 3.7.14 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.7.14",
   "Copy folder defaultExtractedPath\\extractedv3.7.14\\python-cpython to tmpDir\\CPython3.7.14arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.7.14",
-  "Execute command "tmpDir\\CPython3.7.14arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.14arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.14arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -7240,9 +7116,6 @@ exports[`WindowsBuilder for version 3.7.15 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.7.15",
   "Copy folder defaultExtractedPath\\extractedv3.7.15\\python-cpython to tmpDir\\CPython3.7.15arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.7.15",
-  "Execute command "tmpDir\\CPython3.7.15arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.15arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.15arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -7330,9 +7203,6 @@ exports[`WindowsBuilder for version 3.7.16 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.7.16",
   "Copy folder defaultExtractedPath\\extractedv3.7.16\\python-cpython to tmpDir\\CPython3.7.16arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.7.16",
-  "Execute command "tmpDir\\CPython3.7.16arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.16arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.7.16arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -7420,9 +7290,6 @@ exports[`WindowsBuilder for version 3.8.0 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.8.0",
   "Copy folder defaultExtractedPath\\extractedv3.8.0\\python-cpython to tmpDir\\CPython3.8.0arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.8.0",
-  "Execute command "tmpDir\\CPython3.8.0arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.0arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.0arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -7510,9 +7377,6 @@ exports[`WindowsBuilder for version 3.8.1 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.8.1",
   "Copy folder defaultExtractedPath\\extractedv3.8.1\\python-cpython to tmpDir\\CPython3.8.1arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.8.1",
-  "Execute command "tmpDir\\CPython3.8.1arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.1arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.1arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -7600,9 +7464,6 @@ exports[`WindowsBuilder for version 3.8.2 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.8.2",
   "Copy folder defaultExtractedPath\\extractedv3.8.2\\python-cpython to tmpDir\\CPython3.8.2arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.8.2",
-  "Execute command "tmpDir\\CPython3.8.2arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.2arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.2arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -7690,9 +7551,6 @@ exports[`WindowsBuilder for version 3.8.3 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.8.3",
   "Copy folder defaultExtractedPath\\extractedv3.8.3\\python-cpython to tmpDir\\CPython3.8.3arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.8.3",
-  "Execute command "tmpDir\\CPython3.8.3arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.3arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.3arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -7780,9 +7638,6 @@ exports[`WindowsBuilder for version 3.8.4 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.8.4",
   "Copy folder defaultExtractedPath\\extractedv3.8.4\\python-cpython to tmpDir\\CPython3.8.4arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.8.4",
-  "Execute command "tmpDir\\CPython3.8.4arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.4arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.4arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -7870,9 +7725,6 @@ exports[`WindowsBuilder for version 3.8.5 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.8.5",
   "Copy folder defaultExtractedPath\\extractedv3.8.5\\python-cpython to tmpDir\\CPython3.8.5arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.8.5",
-  "Execute command "tmpDir\\CPython3.8.5arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.5arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.5arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -7960,9 +7812,6 @@ exports[`WindowsBuilder for version 3.8.6 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.8.6",
   "Copy folder defaultExtractedPath\\extractedv3.8.6\\python-cpython to tmpDir\\CPython3.8.6arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.8.6",
-  "Execute command "tmpDir\\CPython3.8.6arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.6arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.6arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -8050,9 +7899,6 @@ exports[`WindowsBuilder for version 3.8.7 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.8.7",
   "Copy folder defaultExtractedPath\\extractedv3.8.7\\python-cpython to tmpDir\\CPython3.8.7arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.8.7",
-  "Execute command "tmpDir\\CPython3.8.7arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.7arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.7arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -8140,9 +7986,6 @@ exports[`WindowsBuilder for version 3.8.8 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.8.8",
   "Copy folder defaultExtractedPath\\extractedv3.8.8\\python-cpython to tmpDir\\CPython3.8.8arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.8.8",
-  "Execute command "tmpDir\\CPython3.8.8arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.8arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.8arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -8230,9 +8073,6 @@ exports[`WindowsBuilder for version 3.8.9 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.8.9",
   "Copy folder defaultExtractedPath\\extractedv3.8.9\\python-cpython to tmpDir\\CPython3.8.9arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.8.9",
-  "Execute command "tmpDir\\CPython3.8.9arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.9arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.9arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -8320,9 +8160,6 @@ exports[`WindowsBuilder for version 3.8.10 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.8.10",
   "Copy folder defaultExtractedPath\\extractedv3.8.10\\python-cpython to tmpDir\\CPython3.8.10arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.8.10",
-  "Execute command "tmpDir\\CPython3.8.10arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.10arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.10arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -8410,9 +8247,6 @@ exports[`WindowsBuilder for version 3.8.11 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.8.11",
   "Copy folder defaultExtractedPath\\extractedv3.8.11\\python-cpython to tmpDir\\CPython3.8.11arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.8.11",
-  "Execute command "tmpDir\\CPython3.8.11arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.11arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.11arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -8500,9 +8334,6 @@ exports[`WindowsBuilder for version 3.8.12 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.8.12",
   "Copy folder defaultExtractedPath\\extractedv3.8.12\\python-cpython to tmpDir\\CPython3.8.12arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.8.12",
-  "Execute command "tmpDir\\CPython3.8.12arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.12arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.12arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -8590,9 +8421,6 @@ exports[`WindowsBuilder for version 3.8.13 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.8.13",
   "Copy folder defaultExtractedPath\\extractedv3.8.13\\python-cpython to tmpDir\\CPython3.8.13arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.8.13",
-  "Execute command "tmpDir\\CPython3.8.13arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.13arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.13arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -8680,9 +8508,6 @@ exports[`WindowsBuilder for version 3.8.14 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.8.14",
   "Copy folder defaultExtractedPath\\extractedv3.8.14\\python-cpython to tmpDir\\CPython3.8.14arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.8.14",
-  "Execute command "tmpDir\\CPython3.8.14arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.14arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.14arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -8770,9 +8595,6 @@ exports[`WindowsBuilder for version 3.8.15 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.8.15",
   "Copy folder defaultExtractedPath\\extractedv3.8.15\\python-cpython to tmpDir\\CPython3.8.15arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.8.15",
-  "Execute command "tmpDir\\CPython3.8.15arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.15arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.15arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -8860,9 +8682,6 @@ exports[`WindowsBuilder for version 3.8.16 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.8.16",
   "Copy folder defaultExtractedPath\\extractedv3.8.16\\python-cpython to tmpDir\\CPython3.8.16arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.8.16",
-  "Execute command "tmpDir\\CPython3.8.16arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.16arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.8.16arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -8950,9 +8769,6 @@ exports[`WindowsBuilder for version 3.9.0 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.9.0",
   "Copy folder defaultExtractedPath\\extractedv3.9.0\\python-cpython to tmpDir\\CPython3.9.0arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.9.0",
-  "Execute command "tmpDir\\CPython3.9.0arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.0arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.0arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -9040,9 +8856,6 @@ exports[`WindowsBuilder for version 3.9.1 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.9.1",
   "Copy folder defaultExtractedPath\\extractedv3.9.1\\python-cpython to tmpDir\\CPython3.9.1arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.9.1",
-  "Execute command "tmpDir\\CPython3.9.1arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.1arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.1arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -9130,9 +8943,6 @@ exports[`WindowsBuilder for version 3.9.2 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.9.2",
   "Copy folder defaultExtractedPath\\extractedv3.9.2\\python-cpython to tmpDir\\CPython3.9.2arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.9.2",
-  "Execute command "tmpDir\\CPython3.9.2arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.2arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.2arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -9220,9 +9030,6 @@ exports[`WindowsBuilder for version 3.9.3 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.9.3",
   "Copy folder defaultExtractedPath\\extractedv3.9.3\\python-cpython to tmpDir\\CPython3.9.3arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.9.3",
-  "Execute command "tmpDir\\CPython3.9.3arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.3arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.3arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -9310,9 +9117,6 @@ exports[`WindowsBuilder for version 3.9.4 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.9.4",
   "Copy folder defaultExtractedPath\\extractedv3.9.4\\python-cpython to tmpDir\\CPython3.9.4arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.9.4",
-  "Execute command "tmpDir\\CPython3.9.4arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.4arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.4arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -9400,9 +9204,6 @@ exports[`WindowsBuilder for version 3.9.5 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.9.5",
   "Copy folder defaultExtractedPath\\extractedv3.9.5\\python-cpython to tmpDir\\CPython3.9.5arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.9.5",
-  "Execute command "tmpDir\\CPython3.9.5arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.5arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.5arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -9490,9 +9291,6 @@ exports[`WindowsBuilder for version 3.9.6 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.9.6",
   "Copy folder defaultExtractedPath\\extractedv3.9.6\\python-cpython to tmpDir\\CPython3.9.6arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.9.6",
-  "Execute command "tmpDir\\CPython3.9.6arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.6arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.6arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -9580,9 +9378,6 @@ exports[`WindowsBuilder for version 3.9.7 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.9.7",
   "Copy folder defaultExtractedPath\\extractedv3.9.7\\python-cpython to tmpDir\\CPython3.9.7arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.9.7",
-  "Execute command "tmpDir\\CPython3.9.7arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.7arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.7arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -9670,9 +9465,6 @@ exports[`WindowsBuilder for version 3.9.8 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.9.8",
   "Copy folder defaultExtractedPath\\extractedv3.9.8\\python-cpython to tmpDir\\CPython3.9.8arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.9.8",
-  "Execute command "tmpDir\\CPython3.9.8arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.8arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.8arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -9760,9 +9552,6 @@ exports[`WindowsBuilder for version 3.9.9 has a stable interaction with @actions
   "Recursively remove path defaultDownloadPath\\v3.9.9",
   "Copy folder defaultExtractedPath\\extractedv3.9.9\\python-cpython to tmpDir\\CPython3.9.9arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.9.9",
-  "Execute command "tmpDir\\CPython3.9.9arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.9arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.9arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -9850,9 +9639,6 @@ exports[`WindowsBuilder for version 3.9.10 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.9.10",
   "Copy folder defaultExtractedPath\\extractedv3.9.10\\python-cpython to tmpDir\\CPython3.9.10arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.9.10",
-  "Execute command "tmpDir\\CPython3.9.10arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.10arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.10arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -9940,9 +9726,6 @@ exports[`WindowsBuilder for version 3.9.11 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.9.11",
   "Copy folder defaultExtractedPath\\extractedv3.9.11\\python-cpython to tmpDir\\CPython3.9.11arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.9.11",
-  "Execute command "tmpDir\\CPython3.9.11arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.11arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.11arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -10030,9 +9813,6 @@ exports[`WindowsBuilder for version 3.9.12 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.9.12",
   "Copy folder defaultExtractedPath\\extractedv3.9.12\\python-cpython to tmpDir\\CPython3.9.12arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.9.12",
-  "Execute command "tmpDir\\CPython3.9.12arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.12arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.12arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -10120,9 +9900,6 @@ exports[`WindowsBuilder for version 3.9.13 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.9.13",
   "Copy folder defaultExtractedPath\\extractedv3.9.13\\python-cpython to tmpDir\\CPython3.9.13arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.9.13",
-  "Execute command "tmpDir\\CPython3.9.13arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.13arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.13arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -10210,9 +9987,6 @@ exports[`WindowsBuilder for version 3.9.14 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.9.14",
   "Copy folder defaultExtractedPath\\extractedv3.9.14\\python-cpython to tmpDir\\CPython3.9.14arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.9.14",
-  "Execute command "tmpDir\\CPython3.9.14arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.14arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.14arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -10300,9 +10074,6 @@ exports[`WindowsBuilder for version 3.9.15 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.9.15",
   "Copy folder defaultExtractedPath\\extractedv3.9.15\\python-cpython to tmpDir\\CPython3.9.15arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.9.15",
-  "Execute command "tmpDir\\CPython3.9.15arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.15arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.15arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -10390,9 +10161,6 @@ exports[`WindowsBuilder for version 3.9.16 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.9.16",
   "Copy folder defaultExtractedPath\\extractedv3.9.16\\python-cpython to tmpDir\\CPython3.9.16arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.9.16",
-  "Execute command "tmpDir\\CPython3.9.16arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.16arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.9.16arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -10480,9 +10248,6 @@ exports[`WindowsBuilder for version 3.10.0 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.10.0",
   "Copy folder defaultExtractedPath\\extractedv3.10.0\\python-cpython to tmpDir\\CPython3.10.0arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.10.0",
-  "Execute command "tmpDir\\CPython3.10.0arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.0arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.0arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -10570,9 +10335,6 @@ exports[`WindowsBuilder for version 3.10.1 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.10.1",
   "Copy folder defaultExtractedPath\\extractedv3.10.1\\python-cpython to tmpDir\\CPython3.10.1arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.10.1",
-  "Execute command "tmpDir\\CPython3.10.1arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.1arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.1arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -10660,9 +10422,6 @@ exports[`WindowsBuilder for version 3.10.2 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.10.2",
   "Copy folder defaultExtractedPath\\extractedv3.10.2\\python-cpython to tmpDir\\CPython3.10.2arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.10.2",
-  "Execute command "tmpDir\\CPython3.10.2arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.2arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.2arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -10750,9 +10509,6 @@ exports[`WindowsBuilder for version 3.10.3 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.10.3",
   "Copy folder defaultExtractedPath\\extractedv3.10.3\\python-cpython to tmpDir\\CPython3.10.3arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.10.3",
-  "Execute command "tmpDir\\CPython3.10.3arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.3arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.3arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -10840,9 +10596,6 @@ exports[`WindowsBuilder for version 3.10.4 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.10.4",
   "Copy folder defaultExtractedPath\\extractedv3.10.4\\python-cpython to tmpDir\\CPython3.10.4arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.10.4",
-  "Execute command "tmpDir\\CPython3.10.4arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.4arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.4arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -10930,9 +10683,6 @@ exports[`WindowsBuilder for version 3.10.5 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.10.5",
   "Copy folder defaultExtractedPath\\extractedv3.10.5\\python-cpython to tmpDir\\CPython3.10.5arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.10.5",
-  "Execute command "tmpDir\\CPython3.10.5arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.5arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.5arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -11020,9 +10770,6 @@ exports[`WindowsBuilder for version 3.10.6 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.10.6",
   "Copy folder defaultExtractedPath\\extractedv3.10.6\\python-cpython to tmpDir\\CPython3.10.6arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.10.6",
-  "Execute command "tmpDir\\CPython3.10.6arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.6arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.6arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -11110,9 +10857,6 @@ exports[`WindowsBuilder for version 3.10.7 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.10.7",
   "Copy folder defaultExtractedPath\\extractedv3.10.7\\python-cpython to tmpDir\\CPython3.10.7arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.10.7",
-  "Execute command "tmpDir\\CPython3.10.7arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.7arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.7arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -11200,9 +10944,6 @@ exports[`WindowsBuilder for version 3.10.8 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.10.8",
   "Copy folder defaultExtractedPath\\extractedv3.10.8\\python-cpython to tmpDir\\CPython3.10.8arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.10.8",
-  "Execute command "tmpDir\\CPython3.10.8arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.8arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.8arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -11290,9 +11031,6 @@ exports[`WindowsBuilder for version 3.10.9 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.10.9",
   "Copy folder defaultExtractedPath\\extractedv3.10.9\\python-cpython to tmpDir\\CPython3.10.9arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.10.9",
-  "Execute command "tmpDir\\CPython3.10.9arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.9arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.9arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -11380,9 +11118,6 @@ exports[`WindowsBuilder for version 3.10.10 has a stable interaction with @actio
   "Recursively remove path defaultDownloadPath\\v3.10.10",
   "Copy folder defaultExtractedPath\\extractedv3.10.10\\python-cpython to tmpDir\\CPython3.10.10arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.10.10",
-  "Execute command "tmpDir\\CPython3.10.10arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.10arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.10.10arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -11470,9 +11205,6 @@ exports[`WindowsBuilder for version 3.11.0 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.11.0",
   "Copy folder defaultExtractedPath\\extractedv3.11.0\\python-cpython to tmpDir\\CPython3.11.0arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.11.0",
-  "Execute command "tmpDir\\CPython3.11.0arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.11.0arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.11.0arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -11560,9 +11292,6 @@ exports[`WindowsBuilder for version 3.11.1 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.11.1",
   "Copy folder defaultExtractedPath\\extractedv3.11.1\\python-cpython to tmpDir\\CPython3.11.1arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.11.1",
-  "Execute command "tmpDir\\CPython3.11.1arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.11.1arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.11.1arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;
@@ -11650,9 +11379,6 @@ exports[`WindowsBuilder for version 3.11.2 has a stable interaction with @action
   "Recursively remove path defaultDownloadPath\\v3.11.2",
   "Copy folder defaultExtractedPath\\extractedv3.11.2\\python-cpython to tmpDir\\CPython3.11.2arm64win32",
   "Recursively remove path defaultExtractedPath\\extractedv3.11.2",
-  "Execute command "tmpDir\\CPython3.11.2arm64win32\\PCbuild\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.11.2arm64win32\\Tools\\msi\\get_externals.bat "",
-  "Execute command "tmpDir\\CPython3.11.2arm64win32\\Tools\\msi\\build.bat -arm64"",
   "Throw "Unsupported architecture"",
 ]
 `;

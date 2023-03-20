@@ -62,6 +62,19 @@ export default class WindowsBuilder extends Builder {
         'PCbuild',
         'get_externals.bat'
       );
+      let buildPath = path.join(this.path, 'PCbuild');
+      switch (this.arch) {
+        case 'x64':
+          buildPath = path.join(buildPath, 'amd64', 'en-us');
+          break;
+        case 'x86':
+          buildPath = path.join(buildPath, 'win32', 'en-us');
+          break;
+        default:
+          throw new Error('Unsupported architecture');
+      }
+
+      // Fetch external dependencies
 
       core.startGroup('Fetching external dependencies');
       if (await utils.exists(externalsPcBuild)) {
@@ -84,17 +97,6 @@ export default class WindowsBuilder extends Builder {
 
       // Detect installer full path
 
-      let buildPath = path.join(this.path, 'PCbuild');
-      switch (this.arch) {
-        case 'x64':
-          buildPath = path.join(buildPath, 'amd64', 'en-us');
-          break;
-        case 'x86':
-          buildPath = path.join(buildPath, 'win32', 'en-us');
-          break;
-        default:
-          throw new Error('Unsupported architecture');
-      }
       const candidates: string[] = [];
       for (const file of await utils.readdir(buildPath)) {
         if (file.startsWith('python-') && file.endsWith('.exe')) {
