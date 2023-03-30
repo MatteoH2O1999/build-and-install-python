@@ -19,6 +19,7 @@ import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
 import * as utils from '../../utils';
 import {PythonTag} from '../factory';
+import findPs from 'find-process';
 import {jest} from '@jest/globals';
 import os from 'os';
 import path from 'path';
@@ -59,8 +60,13 @@ export async function mockToolkit(
   const mockedPath = jest.mocked(path);
   const mockedTc = jest.mocked(tc);
   const mockedOs = jest.mocked(os);
+  const mockedFindPs = jest.mocked(findPs);
 
   const actualPath: typeof path = jest.requireActual('path');
+
+  // Mock find-process implementation
+
+  mockedFindPs.mockResolvedValue([]);
 
   // Mock os implementation
 
