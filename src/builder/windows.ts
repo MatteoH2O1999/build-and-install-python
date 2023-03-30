@@ -28,6 +28,7 @@ import {
   windowsBuildDependencies
 } from '../constants';
 import Builder from './builder';
+import findPs from 'find-process';
 import os from 'os';
 import path from 'path';
 import semver from 'semver';
@@ -317,6 +318,18 @@ export default class WindowsBuilder extends Builder {
 
   protected async cleanEnvironment(): Promise<void> {
     core.startGroup('Cleaning environment');
+
+    const processes = await findPs('name', /[mM][sS][bB][uU][iI][lL][dD]/);
+
+    for (const p of processes) {
+      core.info(`Killing process ${p.cmd} (${p.pid})...`);
+      process.kill(p.pid);
+    }
+
+    core.info('Removing externals...');
+    await exec.exec('powershell attrib -h -r /d /s', [], {
+      cwd: path.join(this.path, 'externals')
+    });
 
     core.info('Cleaning temp MSBUILD variable...');
     core.exportVariable('MSBUILD', this.MSBUILD);

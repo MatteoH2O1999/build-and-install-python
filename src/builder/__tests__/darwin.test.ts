@@ -24,6 +24,7 @@ jest.mock('@actions/cache');
 jest.mock('@actions/tool-cache');
 jest.mock('@actions/io');
 jest.mock('@actions/exec');
+jest.mock('find-process');
 jest.mock('path');
 jest.mock('os');
 jest.mock('../../utils');
