@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`class Builder clean method throws an error if path does not exist 1`] = `"Cannot clear nonExistingPath as it does not exist."`;
-
-exports[`class Builder clean method throws an error if path is not defined 1`] = `"Base dir is not set."`;
-
-exports[`class Builder prepareSources method throws an error if the extracted folder does not have a subfolder starting with "python-cpython" 1`] = `"Expected directory to start with "python-cpython...", got otherFolder"`;
-
-exports[`class Builder prepareSources method throws an error if the extracted folder has more than 1 subfolders 1`] = `"Expected only one folder. Got otherFolder,python-cpython"`;
