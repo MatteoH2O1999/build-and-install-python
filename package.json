@@ -36,7 +36,7 @@
         "@actions/io": "^1.1.3",
         "@actions/tool-cache": "^2.0.1",
         "find-process": "^1.4.7",
-        "semver": "^7.4.0"
+        "semver": "^7.5.0"
     },
     "devDependencies": {
         "@matteoh2o1999/github-actions-jest-reporter": "^1.2.0",
