@@ -7,6 +7,11 @@ on:
         required: true
         description: The specific version to check
         type: string
+      allow-prereleases:
+          required: true
+          default: false
+          description: Whether to include prereleases on the check
+          type: boolean
 
 env:
   NODE_VERSION: 16
@@ -60,6 +65,7 @@ jobs:
           python-version: ${{ inputs.python-version }}
           allow-build: info
           cache-build: true
+          allow-prereleases: ${{ inputs.allow-prereleases }}
       - name: Setup Python ${{ inputs.python-version }}
         uses: actions/setup-python@v4
         id: setup
@@ -99,6 +105,7 @@ jobs:
           python-version: ${{ inputs.python-version }}
           allow-build: info
           cache-build: true
+          allow-prereleases: ${{ inputs.allow-prereleases }}
       - name: Setup Python ${{ inputs.python-version }}
         uses: actions/setup-python@v4
         id: setup
