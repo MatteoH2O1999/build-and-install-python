@@ -18,6 +18,16 @@ exports[`Parsed inputs "allow-build" using allow-build" with value "ok" throws a
 
 exports[`Parsed inputs "allow-build" using allow-build" with value "yes" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "yes"."`;
 
+exports[`Parsed inputs "allow-prereleases" empty "allow-prereleases" throws an Error 1`] = `"Expected boolean value for input "allow-prereleases". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got ""."`;
+
+exports[`Parsed inputs "allow-prereleases" using "allow-prereleases" with value "0" throws an Error 1`] = `"Expected boolean value for input "allow-prereleases". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "0"."`;
+
+exports[`Parsed inputs "allow-prereleases" using "allow-prereleases" with value "1" throws an Error 1`] = `"Expected boolean value for input "allow-prereleases". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "1"."`;
+
+exports[`Parsed inputs "allow-prereleases" using "allow-prereleases" with value "FalSe" throws an Error 1`] = `"Expected boolean value for input "allow-prereleases". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "FalSe"."`;
+
+exports[`Parsed inputs "allow-prereleases" using "allow-prereleases" with value "TRue" throws an Error 1`] = `"Expected boolean value for input "allow-prereleases". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "TRue"."`;
+
 exports[`Parsed inputs "cache-build" empty "cache-build" throws an Error 1`] = `"Expected boolean value for input "cache-build". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got ""."`;
 
 exports[`Parsed inputs "cache-build" using "cache-build" with value "0" throws an Error 1`] = `"Expected boolean value for input "cache-build". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "0"."`;

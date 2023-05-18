@@ -68,6 +68,7 @@ describe('main', () => {
   describe('input parsing', () => {
     test('calls inputs.parseInputs', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: false,
@@ -101,6 +102,7 @@ describe('main', () => {
   describe('actions/setup-python result', () => {
     test('calls version.getSetupPythonResult', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: false,
@@ -120,6 +122,7 @@ describe('main', () => {
 
     test('handles a failure in version.getSetupPythonResult with CPython', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: false,
@@ -144,6 +147,7 @@ describe('main', () => {
 
     test('handles a failure in version.getSetupPythonResult with PyPy', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: false,
@@ -170,6 +174,7 @@ describe('main', () => {
     describe('CPython', () => {
       test('success', async () => {
         mockedInputs.parseInputs.mockResolvedValueOnce({
+          allowPrereleases: false,
           architecture: 'x64',
           buildBehavior: inputs.BuildBehavior.Info,
           cache: false,
@@ -205,6 +210,7 @@ describe('main', () => {
 
       test('failure', async () => {
         mockedInputs.parseInputs.mockResolvedValueOnce({
+          allowPrereleases: false,
           architecture: 'x64',
           buildBehavior: inputs.BuildBehavior.Info,
           cache: false,
@@ -237,6 +243,7 @@ describe('main', () => {
     describe('PyPy', () => {
       test('success', async () => {
         mockedInputs.parseInputs.mockResolvedValueOnce({
+          allowPrereleases: false,
           architecture: 'x64',
           buildBehavior: inputs.BuildBehavior.Info,
           cache: false,
@@ -272,6 +279,7 @@ describe('main', () => {
 
       test('failure', async () => {
         mockedInputs.parseInputs.mockResolvedValueOnce({
+          allowPrereleases: false,
           architecture: 'x64',
           buildBehavior: inputs.BuildBehavior.Info,
           cache: false,
@@ -309,6 +317,7 @@ describe('main', () => {
   describe('Build behaior', () => {
     test('Error leads to a failed action with an error message', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Error,
         cache: false,
@@ -331,6 +340,7 @@ describe('main', () => {
 
     test('Warn leads to building from source with a warning', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Warn,
         cache: false,
@@ -372,6 +382,7 @@ describe('main', () => {
 
     test('Info leads to building from source with a message in the logs', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: false,
@@ -415,6 +426,7 @@ describe('main', () => {
 
     test('Allow leads to building from source with a message in the debug logs', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Allow,
         cache: false,
@@ -460,6 +472,7 @@ describe('main', () => {
   describe('builder.getBuilder', () => {
     test('calls builder.getBuilder', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: false,
@@ -490,6 +503,7 @@ describe('main', () => {
 
     test('handles builder.getBuilder returning null', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: false,
@@ -516,6 +530,7 @@ describe('main', () => {
 
     test('fails to handle a failure in builder.getBuilder', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: false,
@@ -539,6 +554,7 @@ describe('main', () => {
   describe('Builder', () => {
     test('cache false leads to calling build, clean and postInstall on the builder', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: false,
@@ -582,6 +598,7 @@ describe('main', () => {
 
     test('cache-hit leads to calling restoreCache, postInstall and clean on the builder', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: true,
@@ -625,6 +642,7 @@ describe('main', () => {
 
     test('cache-miss leads to calling restoreCache, build, saveCache, postInstall and clean on the builder', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: true,
@@ -671,6 +689,7 @@ describe('main', () => {
 
     test('handles failure in restoreCache', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: true,
@@ -711,6 +730,7 @@ describe('main', () => {
 
     test('handles failure in build', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: true,
@@ -754,6 +774,7 @@ describe('main', () => {
 
     test('handles failure in saveCache', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: true,
@@ -797,6 +818,7 @@ describe('main', () => {
 
     test('handles failure in postInstall', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: true,
@@ -846,6 +868,7 @@ describe('main', () => {
 
     test('fails to handle failure in clean', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
         architecture: 'x64',
         buildBehavior: inputs.BuildBehavior.Info,
         cache: true,

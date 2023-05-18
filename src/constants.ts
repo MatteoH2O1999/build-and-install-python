@@ -21,7 +21,8 @@ export enum InputNames {
   CACHE_BUILD = 'cache-build',
   ALLOW_BUILD = 'allow-build',
   TOKEN = 'token',
-  CHECK_LATEST = 'check-latest'
+  CHECK_LATEST = 'check-latest',
+  PRERELEASES = 'allow-prereleases'
 }
 
 export enum OutputNames {

@@ -82,6 +82,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       }
     },
     inputs: {
+      allowPrereleases: false,
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
@@ -106,6 +107,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       }
     },
     inputs: {
+      allowPrereleases: false,
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
@@ -130,6 +132,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       }
     },
     inputs: {
+      allowPrereleases: false,
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
@@ -154,6 +157,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       }
     },
     inputs: {
+      allowPrereleases: false,
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
@@ -178,6 +182,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       }
     },
     inputs: {
+      allowPrereleases: false,
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
@@ -202,6 +207,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       }
     },
     inputs: {
+      allowPrereleases: false,
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
@@ -226,6 +232,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       }
     },
     inputs: {
+      allowPrereleases: false,
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
@@ -250,6 +257,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       }
     },
     inputs: {
+      allowPrereleases: false,
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
@@ -274,6 +282,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       }
     },
     inputs: {
+      allowPrereleases: false,
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
@@ -298,12 +307,113 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       }
     },
     inputs: {
+      allowPrereleases: false,
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
       token: 'token',
       version: new PythonVersion('3')
+    }
+  },
+  {
+    expectedResult: {
+      darwin: {
+        success: true,
+        version: '3.12.0-alpha.3'
+      },
+      linux: {
+        success: true,
+        version: '3.12.0-alpha.3'
+      },
+      win32: {
+        success: true,
+        version: '3.12.0-alpha.3'
+      }
+    },
+    inputs: {
+      allowPrereleases: true,
+      architecture: process.arch,
+      buildBehavior: BuildBehavior.Info,
+      cache: true,
+      checkLatest: false,
+      token: 'token',
+      version: new PythonVersion('3.12')
+    }
+  },
+  {
+    expectedResult: {
+      darwin: {
+        success: false,
+        version: ''
+      },
+      linux: {
+        success: false,
+        version: ''
+      },
+      win32: {
+        success: false,
+        version: ''
+      }
+    },
+    inputs: {
+      allowPrereleases: true,
+      architecture: process.arch,
+      buildBehavior: BuildBehavior.Info,
+      cache: true,
+      checkLatest: false,
+      token: 'token',
+      version: new PythonVersion('3.12.0')
+    }
+  },
+  {
+    expectedResult: {
+      darwin: {
+        success: false,
+        version: ''
+      },
+      linux: {
+        success: false,
+        version: ''
+      },
+      win32: {
+        success: false,
+        version: ''
+      }
+    },
+    inputs: {
+      allowPrereleases: false,
+      architecture: process.arch,
+      buildBehavior: BuildBehavior.Info,
+      cache: true,
+      checkLatest: false,
+      token: 'token',
+      version: new PythonVersion('3.12')
+    }
+  },
+  {
+    expectedResult: {
+      darwin: {
+        success: false,
+        version: ''
+      },
+      linux: {
+        success: false,
+        version: ''
+      },
+      win32: {
+        success: false,
+        version: ''
+      }
+    },
+    inputs: {
+      allowPrereleases: true,
+      architecture: process.arch,
+      buildBehavior: BuildBehavior.Info,
+      cache: true,
+      checkLatest: false,
+      token: 'token',
+      version: new PythonVersion('3.13')
     }
   }
 ];

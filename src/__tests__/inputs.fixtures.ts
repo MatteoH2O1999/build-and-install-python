@@ -82,6 +82,7 @@ export type MockedInputs = {
   allowBuild: string;
   token: string;
   checkLatest: string;
+  allowPrereleases: string;
 };
 
 export function mockInput(
@@ -104,6 +105,8 @@ export function mockInput(
     return inputs.token;
   } else if (input === InputNames.CHECK_LATEST) {
     return inputs.checkLatest;
+  } else if (input === InputNames.PRERELEASES) {
+    return inputs.allowPrereleases;
   } else {
     return '';
   }
