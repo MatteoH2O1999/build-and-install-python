@@ -92,9 +92,36 @@ export async function getSetupPythonResult(
         inputs.architecture
       );
       if (matchVersion === undefined) {
-        success = false;
-        resultVersionString = '';
-        core.debug('Could not find specified version in manifest.');
+        const splitVersion = inputs.version.version.split('.');
+        if (
+          inputs.allowPrereleases &&
+          splitVersion[1] !== 'x' &&
+          splitVersion[2] === 'x'
+        ) {
+          core.debug('Testing for prerelease versions');
+          const preReleaseVersion = `~${splitVersion[0]}.${splitVersion[1]}.0-0`;
+          const matchPreRelease = await tc.findFromManifest(
+            preReleaseVersion,
+            false,
+            manifest,
+            inputs.architecture
+          );
+          if (matchPreRelease === undefined) {
+            success = false;
+            resultVersionString = '';
+            core.debug('Could not find specified version in manifest.');
+          } else {
+            success = true;
+            resultVersionString = matchPreRelease.version;
+            core.debug(
+              `CPython version resolved to prerelease ${resultVersionString}`
+            );
+          }
+        } else {
+          success = false;
+          resultVersionString = '';
+          core.debug('Could not find specified version in manifest.');
+        }
       } else {
         resultVersionString = matchVersion.version;
         success = true;

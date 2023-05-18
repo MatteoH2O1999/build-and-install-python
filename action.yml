@@ -25,6 +25,9 @@ inputs:
   token:
     description: "The token used to authenticate when fetching Python distributions from https://github.com/actions/python-versions. When running this action on github.com, the default value is sufficient. When running on GHES, you can pass a personal access token for github.com if you are experiencing rate limiting."
     default: ${{ github.server_url == 'https://github.com' && github.token || '' }}
+  allow-prereleases:
+    description: "When 'true', a version range passed to 'python-version' input will match prerelease versions if no GA versions are found. Only 'x.y' version range is supported for CPython."
+    default: false
 outputs:
   python-version:
     description: The parsed (and eventually built) python version

@@ -23,6 +23,7 @@ import {InputNames} from '../constants';
 
 const mockedInputs: MockedInputs = {
   allowBuild: 'warn',
+  allowPrereleases: 'false',
   architecture: 'x64',
   cacheBuild: 'false',
   checkLatest: 'false',
@@ -92,6 +93,7 @@ describe('Parsed inputs', () => {
     mockedInputs.pythonVersionFile = 'file';
     mockedInputs.token = 'token';
     mockedInputs.checkLatest = 'false';
+    mockedInputs.allowPrereleases = 'false';
   });
 
   describe(`"${InputNames.PYTHON_VERSION}" and "${InputNames.PYTHON_VERSION_FILE}"`, () => {
@@ -260,6 +262,47 @@ describe('Parsed inputs', () => {
 
     test(`empty "${InputNames.CHECK_LATEST}" throws an Error`, async () => {
       mockedInputs.checkLatest = '';
+
+      await expect(inputs.parseInputs()).rejects.toThrowErrorMatchingSnapshot();
+    });
+  });
+
+  describe(`"${InputNames.PRERELEASES}"`, () => {
+    test.each(['false', 'FALSE', 'False'])(
+      `using "${InputNames.PRERELEASES}" with value "%s" leads to "false"`,
+      async latest => {
+        mockedInputs.allowPrereleases = latest;
+
+        const parsedInputs = await inputs.parseInputs();
+
+        expect(parsedInputs.allowPrereleases).toBe(false);
+      }
+    );
+
+    test.each(['true', 'TRUE', 'True'])(
+      `using "${InputNames.PRERELEASES}" with value "%s" leads to "true"`,
+      async latest => {
+        mockedInputs.allowPrereleases = latest;
+
+        const parsedInputs = await inputs.parseInputs();
+
+        expect(parsedInputs.allowPrereleases).toBe(true);
+      }
+    );
+
+    test.each(['TRue', 'FalSe', '1', '0'])(
+      `using "${InputNames.PRERELEASES}" with value "%s" throws an Error`,
+      async latest => {
+        mockedInputs.allowPrereleases = latest;
+
+        await expect(
+          inputs.parseInputs()
+        ).rejects.toThrowErrorMatchingSnapshot();
+      }
+    );
+
+    test(`empty "${InputNames.PRERELEASES}" throws an Error`, async () => {
+      mockedInputs.allowPrereleases = '';
 
       await expect(inputs.parseInputs()).rejects.toThrowErrorMatchingSnapshot();
     });

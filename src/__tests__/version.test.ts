@@ -87,6 +87,7 @@ describe(`getSetupPythonResult with manifest url ${manifestUrl}`, () => {
     };
 
     const result = await getSetupPythonResult({
+      allowPrereleases: false,
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: false,
@@ -108,6 +109,7 @@ describe(`getSetupPythonResult with manifest url ${manifestUrl}`, () => {
     };
 
     const result = await getSetupPythonResult({
+      allowPrereleases: false,
       architecture: process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: false,
@@ -120,7 +122,7 @@ describe(`getSetupPythonResult with manifest url ${manifestUrl}`, () => {
   });
 
   test.each(SetupPythonTests)(
-    `returns $expectedResult.${process.platform} for input version $inputs.version.type-$inputs.version.version and architecture $inputs.architecture`,
+    `returns $expectedResult.${process.platform} for input version $inputs.version.type-$inputs.version.version for $inputs.architecture and allow prereleases $inputs.allowPrereleases`,
     async ({expectedResult, inputs}) => {
       mockedTC.find.mockReturnValue('');
       let platformResult: SetupPythonResult;

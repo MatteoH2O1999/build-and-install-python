@@ -74,6 +74,7 @@ export type ActionInputs = {
   buildBehavior: BuildBehavior;
   token: string;
   checkLatest: boolean;
+  allowPrereleases: boolean;
 };
 
 async function getBehavior(): Promise<BuildBehavior> {
@@ -139,6 +140,21 @@ async function getCheckLatest(): Promise<boolean> {
   }
 }
 
+async function getAllowPrereleases(): Promise<boolean> {
+  core.debug('Parsing allow prereleases input');
+  try {
+    return core.getBooleanInput(InputNames.PRERELEASES);
+  } catch (error) {
+    throw new Error(
+      `Expected boolean value for input "${
+        InputNames.PRERELEASES
+      }". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "${core.getInput(
+        InputNames.PRERELEASES
+      )}".`
+    );
+  }
+}
+
 async function getArchitecture(): Promise<string> {
   const archString: string = core.getInput(InputNames.ARCHITECTURE);
   core.debug(`Parsing architecture string "${archString}"`);
@@ -190,6 +206,7 @@ async function extractPythonVersion(): Promise<string> {
 
 export async function parseInputs(): Promise<ActionInputs> {
   return {
+    allowPrereleases: await getAllowPrereleases(),
     architecture: await getArchitecture(),
     buildBehavior: await getBehavior(),
     cache: await getCache(),
