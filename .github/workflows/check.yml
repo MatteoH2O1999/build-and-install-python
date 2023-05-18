@@ -5,12 +5,12 @@ on:
     inputs:
       python-version:
         required: true
-        description: The specific version to check
+        description: Specific version to check
         type: string
       allow-prereleases:
           required: true
           default: false
-          description: Whether to include prereleases on the check
+          description: Include prereleases in the check
           type: boolean
 
 env:
