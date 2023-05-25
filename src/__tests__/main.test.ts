@@ -501,6 +501,37 @@ describe('main', () => {
       );
     });
 
+    test('calls builder.getBuilder with build behavior "force" and setup python result successful', async () => {
+      mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
+        architecture: 'x64',
+        buildBehavior: inputs.BuildBehavior.Force,
+        cache: false,
+        checkLatest: false,
+        token: 'token',
+        version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+      });
+      mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        success: true,
+        version: '3.6.15'
+      });
+      mockedVersion.isPyPy.mockReturnValueOnce(false);
+      mockedBuilder.getBuilder.mockResolvedValueOnce(
+        new MockBuilder({version: '3.6.15', zipBall: 'zipballUri'}, 'x64')
+      );
+
+      await main();
+
+      expect(mockedBuilder.getBuilder).toBeCalledTimes(1);
+      expect(mockedBuilder.getBuilder).toBeCalledWith(
+        {
+          type: inputs.PythonType.CPython,
+          version: '3.6.x'
+        },
+        'x64'
+      );
+    });
+
     test('handles builder.getBuilder returning null', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
         allowPrereleases: false,
