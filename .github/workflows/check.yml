@@ -63,7 +63,7 @@ jobs:
         uses: ./
         with:
           python-version: ${{ inputs.python-version }}
-          allow-build: info
+          allow-build: force
           cache-build: true
           allow-prereleases: ${{ inputs.allow-prereleases }}
       - name: Setup Python ${{ inputs.python-version }}
@@ -103,7 +103,7 @@ jobs:
         uses: ./
         with:
           python-version: ${{ inputs.python-version }}
-          allow-build: info
+          allow-build: force
           cache-build: true
           allow-prereleases: ${{ inputs.allow-prereleases }}
       - name: Setup Python ${{ inputs.python-version }}
