@@ -64,7 +64,8 @@ export enum BuildBehavior {
   Allow = 'allow',
   Info = 'info',
   Warn = 'warn',
-  Error = 'error'
+  Error = 'error',
+  Force = 'force'
 }
 
 export type ActionInputs = {
@@ -99,12 +100,16 @@ async function getBehavior(): Promise<BuildBehavior> {
     core.debug('Found behavior "allow".');
     return BuildBehavior.Allow;
   }
+  if (behaviorInput === 'force') {
+    core.debug('Found behavior "force".');
+    return BuildBehavior.Force;
+  }
   throw new Error(
     `Unrecognized input value for "${
       InputNames.ALLOW_BUILD
     }". Expected one of "${BuildBehavior.Allow}", "${BuildBehavior.Info}", "${
       BuildBehavior.Warn
-    }", "${BuildBehavior.Error}". Got "${core.getInput(
+    }", "${BuildBehavior.Error}, ${BuildBehavior.Force}". Got "${core.getInput(
       InputNames.ALLOW_BUILD
     )}".`
   );

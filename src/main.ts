@@ -82,7 +82,10 @@ export default async function main(): Promise<void> {
   }
   core.debug('setup-python version resolved.');
 
-  if (setupPythonResult.success) {
+  if (
+    setupPythonResult.success &&
+    inputs.buildBehavior !== BuildBehavior.Force
+  ) {
     // actions/setup-python already supports the version: doing nothing
 
     if (isPyPy(inputs.version)) {
@@ -107,9 +110,12 @@ export default async function main(): Promise<void> {
       core.setOutput(OutputNames.PYTHON_VERSION, '');
       return;
     }
-    core.info(
-      `CPython version ${inputs.version.version} is not supported by actions/setup-python.`
-    );
+
+    if (!setupPythonResult.success) {
+      core.info(
+        `CPython version ${inputs.version.version} is not supported by actions/setup-python.`
+      );
+    }
 
     // Apply inputs.buildBehavior
 
@@ -139,6 +145,11 @@ export default async function main(): Promise<void> {
       case BuildBehavior.Allow:
         core.debug(
           `CPython version ${inputs.version.version} will be built from source.`
+        );
+        break;
+      case BuildBehavior.Force:
+        core.info(
+          `CPython version ${inputs.version.version} will be built from source regardless of actions/setup-python support.`
         );
         break;
     }

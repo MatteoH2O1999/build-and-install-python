@@ -1,22 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Parsed inputs "allow-build" empty "allow-build" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got ""."`;
+exports[`Parsed inputs "allow-build" empty "allow-build" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error, force". Got ""."`;
 
-exports[`Parsed inputs "allow-build" using allow-build" with value "Al low" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "Al low"."`;
+exports[`Parsed inputs "allow-build" using allow-build" with value "Al low" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error, force". Got "Al low"."`;
 
-exports[`Parsed inputs "allow-build" using allow-build" with value "In fo" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "In fo"."`;
+exports[`Parsed inputs "allow-build" using allow-build" with value "In fo" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error, force". Got "In fo"."`;
 
-exports[`Parsed inputs "allow-build" using allow-build" with value "True" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "True"."`;
+exports[`Parsed inputs "allow-build" using allow-build" with value "True" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error, force". Got "True"."`;
 
-exports[`Parsed inputs "allow-build" using allow-build" with value "false" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "false"."`;
+exports[`Parsed inputs "allow-build" using allow-build" with value "false" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error, force". Got "false"."`;
 
-exports[`Parsed inputs "allow-build" using allow-build" with value "forbid" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "forbid"."`;
+exports[`Parsed inputs "allow-build" using allow-build" with value "forbid" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error, force". Got "forbid"."`;
 
-exports[`Parsed inputs "allow-build" using allow-build" with value "no" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "no"."`;
+exports[`Parsed inputs "allow-build" using allow-build" with value "no" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error, force". Got "no"."`;
 
-exports[`Parsed inputs "allow-build" using allow-build" with value "ok" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "ok"."`;
+exports[`Parsed inputs "allow-build" using allow-build" with value "ok" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error, force". Got "ok"."`;
 
-exports[`Parsed inputs "allow-build" using allow-build" with value "yes" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error". Got "yes"."`;
+exports[`Parsed inputs "allow-build" using allow-build" with value "yes" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error, force". Got "yes"."`;
 
 exports[`Parsed inputs "allow-prereleases" empty "allow-prereleases" throws an Error 1`] = `"Expected boolean value for input "allow-prereleases". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got ""."`;
 

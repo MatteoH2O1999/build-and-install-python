@@ -359,6 +359,17 @@ describe('Parsed inputs', () => {
       }
     );
 
+    test.each(['force', 'Force', 'FORCE', ' FoRce  '])(
+      `using "${InputNames.ALLOW_BUILD}" with value "%s" leads to "error" behavior`,
+      async behavior => {
+        mockedInputs.allowBuild = behavior;
+
+        const parsedInputs = await inputs.parseInputs();
+
+        expect(parsedInputs.buildBehavior).toBe(inputs.BuildBehavior.Force);
+      }
+    );
+
     test.each([
       'In fo',
       'Al low',
