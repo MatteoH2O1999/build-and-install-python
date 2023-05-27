@@ -243,10 +243,12 @@ export default class MacOSBuilder extends Builder {
       await utils.symlink(pythonExecutable, python3Executable);
     }
     const mainBinExecutable = path.join(installedPath, 'bin', 'python');
-    core.info(
-      `Creating symlink from ${pythonExecutable} to ${mainBinExecutable}`
-    );
-    await utils.symlink(pythonExecutable, mainBinExecutable);
+    if (semver.gte(this.specificVersion, '3.0.0')) {
+      core.info(
+        `Creating symlink from ${pythonExecutable} to ${mainBinExecutable}`
+      );
+      await utils.symlink(pythonExecutable, mainBinExecutable);
+    }
 
     // Add executable bits
 
@@ -254,9 +256,11 @@ export default class MacOSBuilder extends Builder {
       pythonExecutable,
       mainExecutable,
       binExecutable,
-      mainBinExecutable,
-      path.join(installedPath, 'bin', 'python3')
+      mainBinExecutable
     ];
+    if (semver.gte(this.specificVersion, '3.0.0')) {
+      executables.push(path.join(installedPath, 'bin', 'python3'));
+    }
     for (const executable of executables) {
       core.info(`Adding executable bit to ${executable}`);
       await exec.exec(`chmod +x ${executable}`);
