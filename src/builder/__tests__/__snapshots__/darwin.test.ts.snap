@@ -76,12 +76,10 @@ exports[`MacOSBuilder for version 2.7.1 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -92,12 +90,10 @@ exports[`MacOSBuilder for version 2.7.1 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -108,12 +104,10 @@ exports[`MacOSBuilder for version 2.7.1 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -214,12 +208,10 @@ exports[`MacOSBuilder for version 2.7.2 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -230,12 +222,10 @@ exports[`MacOSBuilder for version 2.7.2 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -246,12 +236,10 @@ exports[`MacOSBuilder for version 2.7.2 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -352,12 +340,10 @@ exports[`MacOSBuilder for version 2.7.3 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -368,12 +354,10 @@ exports[`MacOSBuilder for version 2.7.3 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -384,12 +368,10 @@ exports[`MacOSBuilder for version 2.7.3 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -490,12 +472,10 @@ exports[`MacOSBuilder for version 2.7.4 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -506,12 +486,10 @@ exports[`MacOSBuilder for version 2.7.4 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -522,12 +500,10 @@ exports[`MacOSBuilder for version 2.7.4 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -628,12 +604,10 @@ exports[`MacOSBuilder for version 2.7.5 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -644,12 +618,10 @@ exports[`MacOSBuilder for version 2.7.5 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -660,12 +632,10 @@ exports[`MacOSBuilder for version 2.7.5 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -766,12 +736,10 @@ exports[`MacOSBuilder for version 2.7.6 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -782,12 +750,10 @@ exports[`MacOSBuilder for version 2.7.6 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -798,12 +764,10 @@ exports[`MacOSBuilder for version 2.7.6 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -904,12 +868,10 @@ exports[`MacOSBuilder for version 2.7.7 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -920,12 +882,10 @@ exports[`MacOSBuilder for version 2.7.7 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -936,12 +896,10 @@ exports[`MacOSBuilder for version 2.7.7 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1042,12 +1000,10 @@ exports[`MacOSBuilder for version 2.7.8 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1058,12 +1014,10 @@ exports[`MacOSBuilder for version 2.7.8 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1074,12 +1028,10 @@ exports[`MacOSBuilder for version 2.7.8 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1180,12 +1132,10 @@ exports[`MacOSBuilder for version 2.7.9 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1196,12 +1146,10 @@ exports[`MacOSBuilder for version 2.7.9 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1212,12 +1160,10 @@ exports[`MacOSBuilder for version 2.7.9 has a stable interaction with @actions/t
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1318,12 +1264,10 @@ exports[`MacOSBuilder for version 2.7.10 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1334,12 +1278,10 @@ exports[`MacOSBuilder for version 2.7.10 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1350,12 +1292,10 @@ exports[`MacOSBuilder for version 2.7.10 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1456,12 +1396,10 @@ exports[`MacOSBuilder for version 2.7.11 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1472,12 +1410,10 @@ exports[`MacOSBuilder for version 2.7.11 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1488,12 +1424,10 @@ exports[`MacOSBuilder for version 2.7.11 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1594,12 +1528,10 @@ exports[`MacOSBuilder for version 2.7.12 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1610,12 +1542,10 @@ exports[`MacOSBuilder for version 2.7.12 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1626,12 +1556,10 @@ exports[`MacOSBuilder for version 2.7.12 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1732,12 +1660,10 @@ exports[`MacOSBuilder for version 2.7.13 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1748,12 +1674,10 @@ exports[`MacOSBuilder for version 2.7.13 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1764,12 +1688,10 @@ exports[`MacOSBuilder for version 2.7.13 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1870,12 +1792,10 @@ exports[`MacOSBuilder for version 2.7.14 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1886,12 +1806,10 @@ exports[`MacOSBuilder for version 2.7.14 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -1902,12 +1820,10 @@ exports[`MacOSBuilder for version 2.7.14 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -2008,12 +1924,10 @@ exports[`MacOSBuilder for version 2.7.15 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -2024,12 +1938,10 @@ exports[`MacOSBuilder for version 2.7.15 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -2040,12 +1952,10 @@ exports[`MacOSBuilder for version 2.7.15 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -2146,12 +2056,10 @@ exports[`MacOSBuilder for version 2.7.16 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -2162,12 +2070,10 @@ exports[`MacOSBuilder for version 2.7.16 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -2178,12 +2084,10 @@ exports[`MacOSBuilder for version 2.7.16 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -2284,12 +2188,10 @@ exports[`MacOSBuilder for version 2.7.17 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -2300,12 +2202,10 @@ exports[`MacOSBuilder for version 2.7.17 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -2316,12 +2216,10 @@ exports[`MacOSBuilder for version 2.7.17 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -2422,12 +2320,10 @@ exports[`MacOSBuilder for version 2.7.18 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -2438,12 +2334,10 @@ exports[`MacOSBuilder for version 2.7.18 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
@@ -2454,12 +2348,10 @@ exports[`MacOSBuilder for version 2.7.18 has a stable interaction with @actions/
   "Execute command "brew install readline "",
   "Create symlink in path installPath/python pointing to installPath/bin/python2.7",
   "Create symlink in path installPath/bin/python27 pointing to installPath/bin/python2.7",
-  "Create symlink in path installPath/bin/python pointing to installPath/bin/python2.7",
   "Execute command "chmod +x installPath/bin/python2.7 "",
   "Execute command "chmod +x installPath/python "",
   "Execute command "chmod +x installPath/bin/python27 "",
   "Execute command "chmod +x installPath/bin/python "",
-  "Execute command "chmod +x installPath/bin/python3 "",
 ]
 `;
 
