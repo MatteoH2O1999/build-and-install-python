@@ -276,6 +276,11 @@ export default class MacOSBuilder extends Builder {
       url.url,
       path.join(tempPath, `${url.name}.rb`)
     );
+    const sslContent = await utils.readFile(ssl);
+    await utils.writeFile(
+      ssl,
+      sslContent.replace('system "make", "test"\n', '')
+    );
     await exec.exec(`brew install ./${url.name}.rb`, [], {cwd: tempPath});
     let installPath = '';
     await exec.exec(`brew --prefix ${url.name}`, [], {
