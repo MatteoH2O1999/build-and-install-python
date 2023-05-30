@@ -25,9 +25,11 @@ jest.mock('fs', () => ({
   promises: {
     readFile: jest.fn(),
     readdir: jest.fn(),
+    realpath: jest.fn(),
     symlink: jest.fn(),
     writeFile: jest.fn()
-  }
+  },
+  realpathSync: jest.fn()
 }));
 
 const mockedFs = jest.mocked(fs);
@@ -117,6 +119,40 @@ describe('Utils', () => {
         'path',
         'content to write'
       );
+    });
+  });
+
+  describe('realpath', () => {
+    test('calls fs.promises.realpath', async () => {
+      await utils.realpath('path');
+
+      expect(mockedFs.promises.realpath).toBeCalledTimes(1);
+      expect(mockedFs.promises.realpath).toBeCalledWith('path', undefined);
+    });
+
+    test('returns what fs.promises.realpath returns', async () => {
+      mockedFs.promises.realpath.mockResolvedValueOnce('realpath');
+
+      const content = await utils.realpath('path');
+
+      expect(content).toEqual('realpath');
+    });
+  });
+
+  describe('realpathSync', () => {
+    test('calls fs.realpathSync', () => {
+      utils.realpathSync('path');
+
+      expect(mockedFs.realpathSync).toBeCalledTimes(1);
+      expect(mockedFs.realpathSync).toBeCalledWith('path', undefined);
+    });
+
+    test('returns what fs.realpathSync returns', () => {
+      mockedFs.realpathSync.mockReturnValueOnce('realpath');
+
+      const content = utils.realpathSync('path');
+
+      expect(content).toEqual('realpath');
     });
   });
 });

@@ -155,6 +155,12 @@ export async function mockToolkit(
     return true;
   });
   mockedUtils.readFile.mockResolvedValue('');
+  mockedUtils.realpath.mockImplementation(async p => {
+    return p.toString();
+  });
+  mockedUtils.realpathSync.mockImplementation(p => {
+    return p.toString();
+  });
 
   // Mock @actions/exec implementation
 
