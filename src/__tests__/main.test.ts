@@ -19,6 +19,7 @@ import * as constants from '../constants';
 import * as core from '@actions/core';
 import * as inputs from '../inputs';
 import * as tc from '@actions/tool-cache';
+import * as utils from '../utils';
 import * as version from '../version';
 import {describe, expect, jest, test} from '@jest/globals';
 import main from '../main';
@@ -32,6 +33,7 @@ jest.mock('../inputs');
 jest.mock('../version');
 jest.mock('../builder/factory');
 jest.mock('os');
+jest.mock('../utils');
 
 const mockedCore = jest.mocked(core);
 const mockedTc = jest.mocked(tc);
@@ -39,8 +41,15 @@ const mockedInputs = jest.mocked(inputs);
 const mockedVersion = jest.mocked(version);
 const mockedBuilder = jest.mocked(builder);
 const mockedOs = jest.mocked(os);
+const mockedUtils = jest.mocked(utils);
 
 mockedOs.tmpdir.mockReturnValue('');
+mockedUtils.realpath.mockImplementation(async p => {
+  return p.toString();
+});
+mockedUtils.realpathSync.mockImplementation(p => {
+  return p.toString();
+});
 
 class MockBuilder extends builder.Builder {
   override async build(): Promise<string> {

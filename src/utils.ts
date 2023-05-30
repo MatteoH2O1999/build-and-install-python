@@ -63,3 +63,17 @@ export async function writeFile(
 ): Promise<void> {
   return await fs.promises.writeFile(file, data);
 }
+
+export async function realpath(
+  path: fs.PathLike,
+  options?: BufferEncoding | fs.ObjectEncodingOptions | null
+): Promise<string> {
+  return await fs.promises.realpath(path, options);
+}
+
+export function realpathSync(
+  path: fs.PathLike,
+  options?: fs.EncodingOption
+): string {
+  return fs.realpathSync(path, options);
+}

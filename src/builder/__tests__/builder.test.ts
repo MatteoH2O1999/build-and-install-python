@@ -19,6 +19,7 @@
 import * as cache from '@actions/cache';
 import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
+import * as utils from '../../utils';
 import {
   afterEach,
   beforeEach,
@@ -37,10 +38,26 @@ jest.mock('@actions/core');
 jest.mock('@actions/io');
 jest.mock('@actions/cache');
 jest.mock('@actions/tool-cache');
+jest.mock('../../utils', () => {
+  const actualUtils: typeof utils = jest.requireActual('../../utils');
+  return {
+    ...actualUtils,
+    realpath: jest.fn(),
+    realpathSync: jest.fn()
+  };
+});
 
 const mockedIo = jest.mocked(io);
 const mockedCache = jest.mocked(cache);
 const mockedTc = jest.mocked(tc);
+const mockedUtils = jest.mocked(utils);
+
+mockedUtils.realpath.mockImplementation(async p => {
+  return p.toString();
+});
+mockedUtils.realpathSync.mockImplementation(p => {
+  return p.toString();
+});
 
 class MockBuilder extends Builder {
   built = false;
