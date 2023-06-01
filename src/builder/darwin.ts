@@ -372,5 +372,24 @@ export default class MacOSBuilder extends Builder {
         h2py
       );
     }
+
+    const configureFile = await utils.readFile(
+      path.join(this.path, 'configure')
+    );
+
+    await utils.writeFile(
+      path.join(this.path, 'configure'),
+      configureFile
+        .replace('\nMULTIARCH=$($CC --print-multiarch 2>/dev/null)', '\n')
+        .replace(
+          'if test x$PLATFORM_TRIPLET != x && test x$MULTIARCH != x; then',
+          [
+            'if test x$PLATFORM_TRIPLET != xdarwin; then',
+            '  MULTIARCH=$($CC --print-multiarch 2>/dev/null)',
+            'fi',
+            'if test x$PLATFORM_TRIPLET != x && test x$MULTIARCH != x; then'
+          ].join('\n')
+        )
+    );
   }
 }
