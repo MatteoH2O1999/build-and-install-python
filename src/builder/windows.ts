@@ -54,8 +54,7 @@ export default class WindowsBuilder extends Builder {
     await this.prepareSources();
     core.debug('Sources ready');
 
-    let pythonExecutable: string;
-    let returnPath: string;
+    let installer: string;
 
     // Build python
 
@@ -126,6 +125,15 @@ export default class WindowsBuilder extends Builder {
 
       core.startGroup('Fetching external dependencies');
       if (await utils.exists(externalsPcBuild)) {
+        const externalsPcBuildContent = await utils.readFile(externalsPcBuild);
+        await utils.writeFile(
+          externalsPcBuild,
+          externalsPcBuildContent
+            .replace(/svn /g, 'git svn ')
+            .replace(/export/g, 'clone')
+            .replace(/svn co /g, 'svn clone ')
+        );
+
         if (semver.lt(this.specificVersion, '3.7.0')) {
           core.info('Detected version < 3.7. Updating tcl/tk version...');
           const fileContent = await utils.readFile(externalsPcBuild);
@@ -150,6 +158,15 @@ export default class WindowsBuilder extends Builder {
         throw new Error('Could not fetch external PCbuild dependencies');
       }
       if (await utils.exists(externalsMsi)) {
+        const externalsMsiContent = await utils.readFile(externalsMsi);
+        await utils.writeFile(
+          externalsMsi,
+          externalsMsiContent
+            .replace(/svn /g, 'git svn ')
+            .replace(/export/g, 'clone')
+            .replace(/svn co /g, 'svn clone ')
+        );
+
         await exec.exec(externalsMsi);
         if (semver.lt(this.specificVersion, '3.7.0')) {
           core.info(
@@ -185,12 +202,14 @@ export default class WindowsBuilder extends Builder {
       process.env['CL'] = envCL32;
       await exec.exec(`"${this.msbuild}"`, [
         path.join(this.path, 'Tools', 'msi', 'launcher', 'launcher.wixproj'),
-        '/p:Platform=x86'
+        '/p:Platform=x86',
+        '/p:PlatformToolset=v140'
       ]);
       process.env['CL'] = '';
       await exec.exec(`"${this.msbuild}"`, [
         path.join(this.path, 'Tools', 'msi', 'bundle', 'snapshot.wixproj'),
-        `/p:Platform=${this.arch}`
+        `/p:Platform=${this.arch}`,
+        '/p:PlatformToolset=v140'
       ]);
       core.endGroup();
 
@@ -207,35 +226,72 @@ export default class WindowsBuilder extends Builder {
       if (candidates.length !== 1) {
         throw new Error(`Expected one candidate, got ${candidates}`);
       }
-      const installer = path.join(buildPath, candidates[0]);
+      installer = path.join(buildPath, candidates[0]);
       core.info(`Installer: ${installer}`);
-
-      // Generate exec arguments
-
-      const execArguments: string[] = [
-        `TargetDir=${path.join(this.path, this.buildSuffix())}`,
-        'Include_pip=0',
-        'CompileAll=1',
-        'Include_launcher=0',
-        'InstallLauncherAllUsers=0'
-      ];
-      core.info(`Installer arguments: ${execArguments}`);
-
-      await exec.exec(installer, [...execArguments, '/quiet']);
-
-      returnPath = path.join(this.path, this.buildSuffix());
-      pythonExecutable = path.join(returnPath, 'python.exe');
-      if (!(await utils.exists(pythonExecutable))) {
-        throw new Error('Could not find built Python executable');
-      }
-      core.info(`Python executable: ${pythonExecutable}`);
-
-      core.endGroup();
     } else {
-      throw new Error(
-        'Unsupported build method, open an issue at https://github.com/MatteoH2O1999/build-and-install-python/issues'
+      // PCBuild + msi.py
+
+      const externalsPcBuild = path.join(
+        this.path,
+        'PCbuild',
+        'get_externals.bat'
       );
+      const props = path.join(this.path, 'PCbuild', 'python.props');
+
+      if (!(await utils.exists(props))) {
+        throw new Error(
+          'Cannot use msbuild with a vcbuild project. Please open an issue at https://github.com/MatteoH2O1999/build-and-install-python/issues'
+        );
+      }
+
+      const pcBuildProject = path.join(this.path, 'PCbuild', 'pcbuild.sln');
+      if (await utils.exists(externalsPcBuild)) {
+        core.startGroup('Fetching external dependencies');
+        await exec.exec(externalsPcBuild);
+        core.endGroup();
+      }
+
+      core.startGroup('Building Python');
+      await exec.exec(
+        `"${this.msbuild}"`,
+        [
+          pcBuildProject,
+          '/p:Configuration=Release',
+          `/p:Platform=${this.arch}`,
+          '/p:IncludeExternals=true',
+          '/p:PlatformToolset=v140',
+          '/p:WindowsTargetPlatformVersion=10.0.17763.0'
+        ],
+        {}
+      );
+      core.endGroup();
+
+      await exec.exec('tree', [], {cwd: path.join(this.path, 'PCbuild')});
+
+      installer = path.join(this.path, `python${this.specificVersion}.msi`);
     }
+
+    // Generate exec arguments
+
+    const execArguments: string[] = [
+      `TargetDir=${path.join(this.path, this.buildSuffix())}`,
+      'Include_pip=0',
+      'CompileAll=1',
+      'Include_launcher=0',
+      'InstallLauncherAllUsers=0'
+    ];
+    core.info(`Installer arguments: ${execArguments}`);
+
+    await exec.exec(installer, [...execArguments, '/quiet']);
+
+    const returnPath = path.join(this.path, this.buildSuffix());
+    const pythonExecutable = path.join(returnPath, 'python.exe');
+    if (!(await utils.exists(pythonExecutable))) {
+      throw new Error('Could not find built Python executable');
+    }
+    core.info(`Python executable: ${pythonExecutable}`);
+
+    core.endGroup();
 
     // Clean environment
 
