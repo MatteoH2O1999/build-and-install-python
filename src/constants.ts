@@ -41,7 +41,7 @@ const defaultPyPy3 = 'pypy3.9';
 
 export {defaultPyPy2, defaultPyPy3};
 
-const windowsBuildDependencies = ['Microsoft.VisualStudio.Component.VC.140'];
+const windowsBuildDependencies: string[] = [];
 
 const vsInstallerUrl = 'https://aka.ms/vs/17/release/vs_enterprise.exe';
 
