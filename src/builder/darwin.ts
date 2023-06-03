@@ -165,14 +165,12 @@ export default class MacOSBuilder extends Builder {
       });
     }
     this.sslPath = this.sslPath.trim();
-    if (semver.lt(this.specificVersion, '3.7.0')) {
-      process.env[
-        'LDFLAGS'
-      ] += `-L${this.sslPath}/lib -L${zlibPath}/lib -L${readLinePath}/lib `;
-      process.env[
-        'CFLAGS'
-      ] += `-I${this.sslPath}/include -I${zlibPath}/include -I${readLinePath}/include `;
-    }
+    process.env[
+      'LDFLAGS'
+    ] += `-L${this.sslPath}/lib -L${zlibPath}/lib -L${readLinePath}/lib `;
+    process.env[
+      'CFLAGS'
+    ] += `-I${this.sslPath}/include -I${zlibPath}/include -I${readLinePath}/include `;
     core.info(`OpenSSL path: ${this.sslPath}`);
 
     // Fix for Python 3.0 SVN version
