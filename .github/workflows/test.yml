@@ -18,35 +18,10 @@ env:
   NODE_VERSION: 16
 
 jobs:
-  # Prepare npm cache for following jobs
-  prepare_cache:
-    runs-on: ${{ matrix.os }}
-    name: Prepare cache for ${{ matrix.os }}
-    if: always()
-    strategy:
-      fail-fast: true
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
-      - name: Setup NodeJS ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
-        id: setup_node
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: npm
-      - name: Install dependencies
-        if: ${{ steps.setup_node.outputs.cache-hit != 'true' }}
-        run: npm ci
-
   # Run unit tests
   unit_tests:
     runs-on: ${{ matrix.os }}
     name: Unit tests on ${{ matrix.os }}
-    needs: prepare_cache
     if: always()
     strategy:
       fail-fast: false
@@ -61,7 +36,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: npm
       - name: Install dependencies
         run: npm ci
       - name: Run tests
@@ -78,7 +52,6 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     name: Lint code
-    needs: prepare_cache
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -88,7 +61,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: npm
       - name: Install dependencies
         run: npm ci
       - name: Run prettier
@@ -100,7 +72,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: Test build
-    needs: prepare_cache
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -110,7 +81,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: npm
       - name: Install dependencies
         run: npm ci
       - name: Build Typescript
@@ -198,7 +168,6 @@ jobs:
   # CodeQL security scan
   codeql:
     runs-on: ubuntu-latest
-    needs: prepare_cache
     name: CodeQL Scan
     if: ${{ github.event_name != 'release' }}
     steps:
@@ -233,7 +202,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: npm
       - name: Install dependencies
         run: npm ci
       - name: Build Typescript
