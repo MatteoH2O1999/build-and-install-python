@@ -136,7 +136,7 @@ jobs:
         uses: ./
         with:
           python-version: ${{ matrix.python-version }}
-          allow-build: info
+          allow-build: force
       - name: Setup Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         id: setup
