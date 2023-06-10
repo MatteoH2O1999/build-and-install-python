@@ -41,7 +41,7 @@ const defaultPyPy3 = 'pypy3.9';
 
 export {defaultPyPy2, defaultPyPy3};
 
-const windowsBuildDependencies = ['Microsoft.VisualStudio.Component.VC.140'];
+const windowsBuildDependencies: string[] = [];
 
 const vsInstallerUrl = 'https://aka.ms/vs/17/release/vs_enterprise.exe';
 
@@ -100,4 +100,7 @@ const toolsetVersion = (version: string): string => {
 const toolsetRe =
   /<PlatformToolset[a-zA-Z0-9.()[\]{}_\-:,;!"£$%&/()='?^\s]*>[a-zA-Z0-9.()[\]{}_\-:,;!"£$%&/()='?^\s]+<\/PlatformToolset>/;
 
-export {toolsetRe, toolsetVersion, winSdkVersion, winSdkRe};
+const fixedWixLine =
+  '<AdditionalLibraryDirectories Condition="$(PlatformToolset.StartsWith(`v14`))">$(WixInstallPath)sdk\\vs2017\\lib\\x86</AdditionalLibraryDirectories>';
+
+export {toolsetRe, toolsetVersion, winSdkVersion, winSdkRe, fixedWixLine};

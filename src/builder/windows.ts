@@ -20,6 +20,7 @@ import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
 import * as utils from '../utils';
 import {
+  fixedWixLine,
   toolsetRe,
   toolsetVersion,
   vsInstallerUrl,
@@ -28,6 +29,7 @@ import {
   windowsBuildDependencies
 } from '../constants';
 import Builder from './builder';
+import {PythonTag} from './factory';
 import findPs from 'find-process';
 import os from 'os';
 import path from 'path';
@@ -40,6 +42,35 @@ export default class WindowsBuilder extends Builder {
   private readonly MSBUILD: string = process.env.MSBUILD || '';
   private vsInstallationPath: string | undefined;
   private msbuild = '';
+  private readonly toolset: string;
+  private readonly sdk: string;
+  private readonly vsDependencies: string[];
+
+  constructor(specificVersion: PythonTag, arch: string) {
+    super(specificVersion, arch);
+
+    let toolsetVer = 'v140';
+    const sdkVer = '10.0.17763.0';
+    const dependencies = [...windowsBuildDependencies];
+
+    if (semver.gte(this.specificVersion, '3.7.0')) {
+      toolsetVer = 'v141';
+    }
+    if (semver.gte(this.specificVersion, '3.8.0')) {
+      toolsetVer = 'v142';
+    }
+    if (semver.gte(this.specificVersion, '3.11.0')) {
+      toolsetVer = 'v143';
+    }
+
+    if (toolsetVer === 'v140') {
+      dependencies.push('Microsoft.VisualStudio.Component.VC.140');
+    }
+
+    this.toolset = toolsetVer;
+    this.sdk = sdkVer;
+    this.vsDependencies = dependencies;
+  }
 
   override async build(): Promise<string> {
     // Prepare envirnoment
@@ -83,6 +114,7 @@ export default class WindowsBuilder extends Builder {
         'bootstrap',
         'pythonba.vcxproj'
       );
+      const docs = path.join(this.path, 'Doc', 'make.bat');
       let buildPath = path.join(this.path, 'PCbuild');
       switch (this.arch) {
         case 'x64':
@@ -112,13 +144,17 @@ export default class WindowsBuilder extends Builder {
 
       const propsContent = await utils.readFile(props);
       const fixedProps = propsContent
-        .replace(winSdkRe, winSdkVersion('10.0.17763.0'))
-        .replace(toolsetRe, toolsetVersion('v140'));
+        .replace(winSdkRe, winSdkVersion(this.sdk))
+        .replace(toolsetRe, toolsetVersion(this.toolset));
       await utils.writeFile(props, fixedProps);
       const bootstrapperContent = await utils.readFile(bootstrapper);
       const fixedBootstrapperContent = bootstrapperContent
-        .replace(winSdkRe, winSdkVersion('10.0.17763.0'))
-        .replace(toolsetRe, toolsetVersion('v140'));
+        .replace(winSdkRe, winSdkVersion(this.sdk))
+        .replace(toolsetRe, toolsetVersion(this.toolset))
+        .replace(
+          '</AdditionalDependencies>',
+          `</AdditionalDependencies>${fixedWixLine}`
+        );
       await utils.writeFile(bootstrapper, fixedBootstrapperContent);
 
       // Fetch external dependencies
@@ -132,6 +168,7 @@ export default class WindowsBuilder extends Builder {
             .replace(/svn /g, 'git svn ')
             .replace(/export/g, 'clone')
             .replace(/svn co /g, 'svn clone ')
+            .replace(/http/g, 'https')
         );
 
         if (semver.lt(this.specificVersion, '3.7.0')) {
@@ -165,6 +202,7 @@ export default class WindowsBuilder extends Builder {
             .replace(/svn /g, 'git svn ')
             .replace(/export/g, 'clone')
             .replace(/svn co /g, 'svn clone ')
+            .replace(/http/g, 'https')
         );
 
         await exec.exec(externalsMsi);
@@ -198,18 +236,22 @@ export default class WindowsBuilder extends Builder {
       await exec.exec(pcBuild.concat(` -p ${this.arch}`), ['-d', '-e']);
       core.endGroup();
 
+      core.startGroup('Building docs');
+      await exec.exec(docs, ['html']);
+      core.endGroup();
+
       core.startGroup('Building installer');
       process.env['CL'] = envCL32;
       await exec.exec(`"${this.msbuild}"`, [
         path.join(this.path, 'Tools', 'msi', 'launcher', 'launcher.wixproj'),
         '/p:Platform=x86',
-        '/p:PlatformToolset=v140'
+        `/p:PlatformToolset=${this.toolset}`
       ]);
       process.env['CL'] = '';
       await exec.exec(`"${this.msbuild}"`, [
         path.join(this.path, 'Tools', 'msi', 'bundle', 'snapshot.wixproj'),
         `/p:Platform=${this.arch}`,
-        '/p:PlatformToolset=v140'
+        `/p:PlatformToolset=${this.toolset}`
       ]);
       core.endGroup();
 
@@ -237,10 +279,18 @@ export default class WindowsBuilder extends Builder {
         'get_externals.bat'
       );
       const props = path.join(this.path, 'PCbuild', 'python.props');
+      const tcltkProps = path.join(this.path, 'PCbuild', 'tcltk.props');
 
       if (!(await utils.exists(props))) {
         throw new Error(
           'Cannot use msbuild with a vcbuild project. Please open an issue at https://github.com/MatteoH2O1999/build-and-install-python/issues'
+        );
+      }
+      if (await utils.exists(tcltkProps)) {
+        const tcltkPropsContent = await utils.readFile(tcltkProps);
+        await utils.writeFile(
+          tcltkProps,
+          tcltkPropsContent.replace(/_VC9/g, '_VC13')
         );
       }
 
@@ -259,8 +309,8 @@ export default class WindowsBuilder extends Builder {
           '/p:Configuration=Release',
           `/p:Platform=${this.arch}`,
           '/p:IncludeExternals=true',
-          '/p:PlatformToolset=v140',
-          '/p:WindowsTargetPlatformVersion=10.0.17763.0'
+          `/p:PlatformToolset=${this.toolset}`,
+          `/p:WindowsTargetPlatformVersion=${this.sdk}`
         ],
         {}
       );
@@ -362,7 +412,7 @@ export default class WindowsBuilder extends Builder {
       path.join(os.tmpdir(), 'vs_installer.exe')
     );
     core.info('vs_installer downloaded');
-    for (const dependency of windowsBuildDependencies) {
+    for (const dependency of this.vsDependencies) {
       await exec.exec(
         `${installer} modify --installPath "${this.vsInstallationPath}" --add ${dependency} --quiet --norestart --force --wait`
       );
@@ -395,7 +445,7 @@ export default class WindowsBuilder extends Builder {
       path.join(os.tmpdir(), 'vs_installer.exe')
     );
     core.info('vs_installer downloaded');
-    for (const dependency of windowsBuildDependencies) {
+    for (const dependency of this.vsDependencies) {
       await exec.exec(
         `${installer} modify --installPath "${this.vsInstallationPath}" --remove ${dependency} --quiet --norestart --force --wait`
       );
