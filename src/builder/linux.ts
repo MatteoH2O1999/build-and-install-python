@@ -94,11 +94,11 @@ export default class LinuxBuilder extends Builder {
 
     if (semver.lt(this.specificVersion, '3.5.0')) {
       core.info('Detected version <3.5. An older compiler will be used...');
-      await exec.exec('sudo apt install gcc-9');
+      await exec.exec('sudo apt install -y gcc-9');
       process.env['CC'] = 'gcc-9';
     } else if (semver.lt(this.specificVersion, '3.7.0')) {
       core.info('Detected version <3.7. An older compiler will be used...');
-      await exec.exec('sudo apt install gcc-10');
+      await exec.exec('sudo apt install -y gcc-10');
       process.env['CC'] = 'gcc-10';
     }
 
