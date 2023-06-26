@@ -22,6 +22,7 @@ import * as tc from '@actions/tool-cache';
 import * as utils from '../utils';
 import * as version from '../version';
 import {describe, expect, jest, test} from '@jest/globals';
+import {OS} from '../builder/patches';
 import main from '../main';
 import os from 'os';
 
@@ -71,6 +72,9 @@ class MockBuilder extends builder.Builder {
     return 'restored/path';
   }
   protected override async prepareSources(): Promise<void> {}
+  protected os(): OS {
+    return 'linux';
+  }
 }
 
 describe('main', () => {

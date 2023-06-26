@@ -88,19 +88,3 @@ const ssl102Url: sslUrl = {
 };
 
 export {ssl102Url};
-
-const winSdkVersion = (version: string): string => {
-  return `<DefaultWindowsSDKVersion>${version}</DefaultWindowsSDKVersion>`;
-};
-const winSdkRe =
-  /<DefaultWindowsSDKVersion>[0-9.]+<\/DefaultWindowsSDKVersion>/;
-const toolsetVersion = (version: string): string => {
-  return `<PlatformToolset>${version}</PlatformToolset>`;
-};
-const toolsetRe =
-  /<PlatformToolset[a-zA-Z0-9.()[\]{}_\-:,;!"£$%&/()='?^\s]*>[a-zA-Z0-9.()[\]{}_\-:,;!"£$%&/()='?^\s]+<\/PlatformToolset>/;
-
-const fixedWixLine =
-  '<AdditionalLibraryDirectories Condition="$(PlatformToolset.StartsWith(`v14`))">$(WixInstallPath)sdk\\vs2017\\lib\\x86</AdditionalLibraryDirectories>';
-
-export {toolsetRe, toolsetVersion, winSdkVersion, winSdkRe, fixedWixLine};
