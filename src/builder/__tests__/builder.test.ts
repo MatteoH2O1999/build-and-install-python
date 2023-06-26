@@ -29,6 +29,7 @@ import {
   test
 } from '@jest/globals';
 import Builder from '../builder';
+import {OS} from '../patches';
 import {PythonTag} from '../factory';
 import fs from 'fs';
 import os from 'os';
@@ -38,6 +39,7 @@ jest.mock('@actions/core');
 jest.mock('@actions/io');
 jest.mock('@actions/cache');
 jest.mock('@actions/tool-cache');
+jest.mock('../patches');
 jest.mock('../../utils', () => {
   const actualUtils: typeof utils = jest.requireActual('../../utils');
   return {
@@ -82,6 +84,10 @@ class MockBuilder extends Builder {
 
   async postInstall(installedPath: string): Promise<void> {
     this.postInstalled = installedPath;
+  }
+
+  protected os(): OS {
+    return 'linux';
   }
 }
 

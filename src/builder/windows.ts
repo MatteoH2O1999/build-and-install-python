@@ -19,16 +19,9 @@ import * as exec from '@actions/exec';
 import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
 import * as utils from '../utils';
-import {
-  fixedWixLine,
-  toolsetRe,
-  toolsetVersion,
-  vsInstallerUrl,
-  winSdkRe,
-  winSdkVersion,
-  windowsBuildDependencies
-} from '../constants';
+import {vsInstallerUrl, windowsBuildDependencies} from '../constants';
 import Builder from './builder';
+import {OS} from './patches';
 import {PythonTag} from './factory';
 import findPs from 'find-process';
 import os from 'os';
@@ -37,6 +30,17 @@ import semver from 'semver';
 
 const envCL32 = '/D_WIN32';
 const envCL64 = '/D_WIN64 /D_AMD64_';
+
+function winSdkVersion(version: string): string {
+  return `<DefaultWindowsSDKVersion>${version}</DefaultWindowsSDKVersion>`;
+}
+const winSdkRe =
+  /<DefaultWindowsSDKVersion>[0-9.]+<\/DefaultWindowsSDKVersion>/;
+function toolsetVersion(version: string): string {
+  return `<PlatformToolset>${version}</PlatformToolset>`;
+}
+const toolsetRe =
+  /<PlatformToolset[a-zA-Z0-9.()[\]{}_\-:,;!"£$%&/()='?^\s]*>[a-zA-Z0-9.()[\]{}_\-:,;!"£$%&/()='?^\s]+<\/PlatformToolset>/;
 
 export default class WindowsBuilder extends Builder {
   private readonly MSBUILD: string = process.env.MSBUILD || '';
@@ -73,268 +77,201 @@ export default class WindowsBuilder extends Builder {
   }
 
   override async build(): Promise<string> {
-    // Prepare envirnoment
-
-    core.debug('Preparing runner environment for build...');
-    await this.prepareEnvironment();
-    core.debug('Environment ready.');
-
-    // Prepare sources
-
-    core.debug('Preparing sources...');
-    await this.prepareSources();
-    core.debug('Sources ready');
-
     let installer: string;
 
-    // Build python
+    installer = await this.getInstaller();
 
-    const buildFile = path.join(this.path, 'Tools', 'msi', 'build.bat');
-    const pcBuild = path.join(this.path, 'PCbuild', 'build.bat');
-    if (await utils.exists(buildFile)) {
-      // Can build with msi tool
+    if (!installer) {
+      // Prepare envirnoment
 
-      const externalsMsi = path.join(
-        this.path,
-        'Tools',
-        'msi',
-        'get_externals.bat'
-      );
-      const externalsPcBuild = path.join(
-        this.path,
-        'PCbuild',
-        'get_externals.bat'
-      );
-      const props = path.join(this.path, 'PCbuild', 'python.props');
-      const bootstrapper = path.join(
-        this.path,
-        'Tools',
-        'msi',
-        'bundle',
-        'bootstrap',
-        'pythonba.vcxproj'
-      );
-      const docs = path.join(this.path, 'Doc', 'make.bat');
-      let buildPath = path.join(this.path, 'PCbuild');
-      switch (this.arch) {
-        case 'x64':
-          buildPath = path.join(buildPath, 'amd64', 'en-us');
-          if (semver.lt(this.specificVersion, '3.7.0')) {
-            process.env['CL'] = envCL64;
-          }
-          break;
-        case 'x86':
-          buildPath = path.join(buildPath, 'win32', 'en-us');
-          if (semver.lt(this.specificVersion, '3.7.0')) {
-            process.env['CL'] = envCL32;
-          }
-          break;
-        default:
-          throw new Error('Unsupported architecture');
-      }
+      core.debug('Preparing runner environment for build...');
+      await this.prepareEnvironment();
+      core.debug('Environment ready.');
 
-      // Fix windows build sdk and toolset version
+      // Prepare sources
 
-      if (!(await utils.exists(props))) {
-        throw new Error('Could not find "python.props" file');
-      }
-      if (!(await utils.exists(bootstrapper))) {
-        throw new Error('Could not find "pythonba.vcxproj"');
-      }
+      core.debug('Preparing sources...');
+      await this.prepareSources();
+      core.debug('Sources ready');
 
-      const propsContent = await utils.readFile(props);
-      const fixedProps = propsContent
-        .replace(winSdkRe, winSdkVersion(this.sdk))
-        .replace(toolsetRe, toolsetVersion(this.toolset));
-      await utils.writeFile(props, fixedProps);
-      const bootstrapperContent = await utils.readFile(bootstrapper);
-      const fixedBootstrapperContent = bootstrapperContent
-        .replace(winSdkRe, winSdkVersion(this.sdk))
-        .replace(toolsetRe, toolsetVersion(this.toolset))
-        .replace(
-          '</AdditionalDependencies>',
-          `</AdditionalDependencies>${fixedWixLine}`
+      // Build python
+
+      const buildFile = path.join(this.path, 'Tools', 'msi', 'build.bat');
+      const pcBuild = path.join(this.path, 'PCbuild', 'build.bat');
+      if (await utils.exists(buildFile)) {
+        // Can build with msi tool
+
+        const externalsMsi = path.join(
+          this.path,
+          'Tools',
+          'msi',
+          'get_externals.bat'
         );
-      await utils.writeFile(bootstrapper, fixedBootstrapperContent);
-
-      // Fetch external dependencies
-
-      core.startGroup('Fetching external dependencies');
-      if (await utils.exists(externalsPcBuild)) {
-        const externalsPcBuildContent = await utils.readFile(externalsPcBuild);
-        await utils.writeFile(
-          externalsPcBuild,
-          externalsPcBuildContent
-            .replace(/svn /g, 'git svn ')
-            .replace(/export/g, 'clone')
-            .replace(/svn co /g, 'svn clone ')
-            .replace(/http/g, 'https')
+        const externalsPcBuild = path.join(
+          this.path,
+          'PCbuild',
+          'get_externals.bat'
         );
-
-        if (semver.lt(this.specificVersion, '3.7.0')) {
-          core.info('Detected version < 3.7. Updating tcl/tk version...');
-          const fileContent = await utils.readFile(externalsPcBuild);
-          await utils.writeFile(
-            externalsPcBuild,
-            fileContent
-              .replace(/ tk-[0-9.]+/, ' tk-8.6.10.0')
-              .replace(/ tcl-core-[0-9.]+/, ' tcl-core-8.6.10.0')
-          );
-          const tkProps = path.join(this.path, 'PCbuild', 'tcltk.props');
-          const tkPropsContent = await utils.readFile(tkProps);
-          await utils.writeFile(
-            tkProps,
-            tkPropsContent.replace(
-              /<TclPatchLevel>[0-9]+<\/TclPatchLevel>/,
-              '<TclPatchLevel>10</TclPatchLevel>'
-            )
-          );
+        const props = path.join(this.path, 'PCbuild', 'python.props');
+        const bootstrapper = path.join(
+          this.path,
+          'Tools',
+          'msi',
+          'bundle',
+          'bootstrap',
+          'pythonba.vcxproj'
+        );
+        const docs = path.join(this.path, 'Doc', 'make.bat');
+        let buildPath = path.join(this.path, 'PCbuild');
+        switch (this.arch) {
+          case 'x64':
+            buildPath = path.join(buildPath, 'amd64', 'en-us');
+            if (semver.lt(this.specificVersion, '3.7.0')) {
+              process.env['CL'] = envCL64;
+            }
+            break;
+          case 'x86':
+            buildPath = path.join(buildPath, 'win32', 'en-us');
+            if (semver.lt(this.specificVersion, '3.7.0')) {
+              process.env['CL'] = envCL32;
+            }
+            break;
+          default:
+            throw new Error('Unsupported architecture');
         }
-        await exec.exec(externalsPcBuild);
-      } else {
-        throw new Error('Could not fetch external PCbuild dependencies');
-      }
-      if (await utils.exists(externalsMsi)) {
-        const externalsMsiContent = await utils.readFile(externalsMsi);
-        await utils.writeFile(
-          externalsMsi,
-          externalsMsiContent
-            .replace(/svn /g, 'git svn ')
-            .replace(/export/g, 'clone')
-            .replace(/svn co /g, 'svn clone ')
-            .replace(/http/g, 'https')
-        );
 
-        await exec.exec(externalsMsi);
-        if (semver.lt(this.specificVersion, '3.7.0')) {
-          core.info(
-            'Detected version < 3.7. Copying correct vcredist140.dll to main folder...'
-          );
-          const dllPath = path.join(
-            this.path,
-            'externals',
-            'windows-installer',
-            'redist',
-            this.arch
-          );
-          await io.cp(
-            dllPath,
-            path.join(this.path, 'externals', 'windows-installer', 'redist'),
-            {copySourceDirectory: false, recursive: true}
-          );
+        // Fix windows build sdk and toolset version
+
+        if (!(await utils.exists(props))) {
+          throw new Error('Could not find "python.props" file');
         }
-      } else {
-        throw new Error('Could not fetch external msi dependencies');
-      }
-      core.endGroup();
-
-      core.startGroup('Building Python');
-      await exec.exec(pcBuild.concat(` -p ${this.arch}`), ['-e']);
-      core.endGroup();
-
-      core.startGroup('Building Python debug');
-      await exec.exec(pcBuild.concat(` -p ${this.arch}`), ['-d', '-e']);
-      core.endGroup();
-
-      core.startGroup('Building docs');
-      await exec.exec(docs, ['html']);
-      core.endGroup();
-
-      core.startGroup('Building installer');
-      process.env['CL'] = envCL32;
-      await exec.exec(`"${this.msbuild}"`, [
-        path.join(this.path, 'Tools', 'msi', 'launcher', 'launcher.wixproj'),
-        '/p:Platform=x86',
-        `/p:PlatformToolset=${this.toolset}`
-      ]);
-      process.env['CL'] = '';
-      await exec.exec(`"${this.msbuild}"`, [
-        path.join(this.path, 'Tools', 'msi', 'bundle', 'snapshot.wixproj'),
-        `/p:Platform=${this.arch}`,
-        `/p:PlatformToolset=${this.toolset}`
-      ]);
-      core.endGroup();
-
-      core.startGroup('Installing Python to temp folder');
-
-      // Detect installer full path
-
-      const candidates: string[] = [];
-      for (const file of await utils.readdir(buildPath)) {
-        if (file.startsWith('python-') && file.endsWith('.exe')) {
-          candidates.push(file);
+        if (!(await utils.exists(bootstrapper))) {
+          throw new Error('Could not find "pythonba.vcxproj"');
         }
-      }
-      if (candidates.length !== 1) {
-        throw new Error(`Expected one candidate, got ${candidates}`);
-      }
-      installer = path.join(buildPath, candidates[0]);
-      core.info(`Installer: ${installer}`);
-    } else {
-      // PCBuild + msi.py
-
-      const externalsPcBuild = path.join(
-        this.path,
-        'PCbuild',
-        'get_externals.bat'
-      );
-      const props = path.join(this.path, 'PCbuild', 'python.props');
-      const tcltkProps = path.join(this.path, 'PCbuild', 'tcltk.props');
-
-      if (!(await utils.exists(props))) {
-        throw new Error(
-          'Cannot use msbuild with a vcbuild project. Please open an issue at https://github.com/MatteoH2O1999/build-and-install-python/issues'
-        );
-      }
-      if (await utils.exists(tcltkProps)) {
-        const tcltkPropsContent = await utils.readFile(tcltkProps);
+        const propsContent = await utils.readFile(props);
         await utils.writeFile(
-          tcltkProps,
-          tcltkPropsContent.replace(/_VC9/g, '_VC13')
+          props,
+          propsContent
+            .replace(winSdkRe, winSdkVersion(this.sdk))
+            .replace(toolsetRe, toolsetVersion(this.toolset))
         );
-      }
+        const bootstrapperContent = await utils.readFile(bootstrapper);
+        await utils.writeFile(
+          bootstrapper,
+          bootstrapperContent
+            .replace(winSdkRe, winSdkVersion(this.sdk))
+            .replace(toolsetRe, toolsetVersion(this.toolset))
+        );
 
-      const pcBuildProject = path.join(this.path, 'PCbuild', 'pcbuild.sln');
-      if (await utils.exists(externalsPcBuild)) {
+        // Fetch external dependencies
+
         core.startGroup('Fetching external dependencies');
-        await exec.exec(externalsPcBuild);
+        if (await utils.exists(externalsPcBuild)) {
+          await exec.exec(externalsPcBuild);
+        } else {
+          throw new Error('Could not fetch external PCbuild dependencies');
+        }
+        if (await utils.exists(externalsMsi)) {
+          await exec.exec(externalsMsi);
+          if (semver.lt(this.specificVersion, '3.7.0')) {
+            core.info(
+              'Detected version < 3.7. Copying correct vcredist140.dll to main folder...'
+            );
+            const dllPath = path.join(
+              this.path,
+              'externals',
+              'windows-installer',
+              'redist',
+              this.arch
+            );
+            await io.cp(
+              dllPath,
+              path.join(this.path, 'externals', 'windows-installer', 'redist'),
+              {copySourceDirectory: false, recursive: true}
+            );
+          }
+        } else {
+          throw new Error('Could not fetch external msi dependencies');
+        }
         core.endGroup();
-      }
 
-      core.startGroup('Building Python');
-      await exec.exec(
-        `"${this.msbuild}"`,
-        [
-          pcBuildProject,
-          '/p:Configuration=Release',
-          `/p:Platform=${this.arch}`,
-          '/p:IncludeExternals=true',
+        core.startGroup('Building Python');
+        await exec.exec(
+          pcBuild,
+          [
+            `-p ${this.arch}`,
+            '-e',
+            `"/p:PlatformToolset=${this.toolset}"`,
+            `"/p:WindowsTargetPlatformVersion=${this.sdk}"`
+          ],
+          {
+            windowsVerbatimArguments: true
+          }
+        );
+        core.endGroup();
+
+        core.startGroup('Building Python debug');
+        await exec.exec(
+          pcBuild,
+          [
+            `-p ${this.arch}`,
+            '-d',
+            '-e',
+            `"/p:PlatformToolset=${this.toolset}"`,
+            `"/p:WindowsTargetPlatformVersion=${this.sdk}"`
+          ],
+          {
+            windowsVerbatimArguments: true
+          }
+        );
+        core.endGroup();
+
+        if (semver.gte(this.specificVersion, '3.7.0')) {
+          core.startGroup('Building docs');
+          await exec.exec(docs, ['html']);
+          core.endGroup();
+        }
+
+        core.startGroup('Building installer');
+        process.env['CL'] = envCL32;
+        await exec.exec(`"${this.msbuild}"`, [
+          path.join(this.path, 'Tools', 'msi', 'launcher', 'launcher.wixproj'),
+          '/p:Platform=x86',
           `/p:PlatformToolset=${this.toolset}`,
           `/p:WindowsTargetPlatformVersion=${this.sdk}`
-        ],
-        {}
-      );
-      core.endGroup();
+        ]);
+        process.env['CL'] = '';
+        await exec.exec(`"${this.msbuild}"`, [
+          path.join(this.path, 'Tools', 'msi', 'bundle', 'snapshot.wixproj'),
+          `/p:Platform=${this.arch}`,
+          `/p:PlatformToolset=${this.toolset}`,
+          `/p:WindowsTargetPlatformVersion=${this.sdk}`
+        ]);
+        core.endGroup();
 
-      await exec.exec('tree', [], {cwd: path.join(this.path, 'PCbuild')});
+        // Detect installer full path
 
-      installer = path.join(this.path, `python${this.specificVersion}.msi`);
+        const candidates: string[] = [];
+        for (const file of await utils.readdir(buildPath)) {
+          if (file.startsWith('python-') && file.endsWith('.exe')) {
+            candidates.push(file);
+          }
+        }
+        if (candidates.length !== 1) {
+          throw new Error(`Expected one candidate, got ${candidates}`);
+        }
+        installer = path.join(buildPath, candidates[0]);
+        core.info(`Installer: ${installer}`);
+      } else {
+        throw new Error(
+          `Cannot build CPython versions that do not include msi project. Please open an issue at https://github.com/MatteoH2O1999/setup-python/issues`
+        );
+      }
     }
 
-    // Generate exec arguments
+    core.startGroup('Installing Python to temp folder');
 
-    const execArguments: string[] = [
-      `TargetDir=${path.join(this.path, this.buildSuffix())}`,
-      'Include_pip=0',
-      'CompileAll=1',
-      'Include_launcher=0',
-      'InstallLauncherAllUsers=0'
-    ];
-    core.info(`Installer arguments: ${execArguments}`);
-
-    await exec.exec(installer, [...execArguments, '/quiet']);
-
-    const returnPath = path.join(this.path, this.buildSuffix());
+    const returnPath = await this.install(installer);
     const pythonExecutable = path.join(returnPath, 'python.exe');
     if (!(await utils.exists(pythonExecutable))) {
       throw new Error('Could not find built Python executable');
@@ -477,7 +414,41 @@ export default class WindowsBuilder extends Builder {
     core.endGroup();
   }
 
+  private async getInstaller(): Promise<string> {
+    return '';
+  }
+
+  private async install(installerPath: string): Promise<string> {
+    let execArguments: string[];
+    if (installerPath.endsWith('.exe')) {
+      execArguments = [
+        `TargetDir=${path.join(this.path, this.buildSuffix())}`,
+        'Include_pip=0',
+        'CompileAll=1',
+        'Include_launcher=0',
+        'InstallLauncherAllUsers=0',
+        '/quiet'
+      ];
+    } else if (installerPath.endsWith('.msi')) {
+      execArguments = [];
+    } else {
+      throw new Error(
+        `Invalid installer extension. Expected .exe or .msi, got ${installerPath
+          .split('.')
+          .at(-1)}`
+      );
+    }
+    core.info(`Installer arguments: ${execArguments}`);
+    await exec.exec(installerPath, [...execArguments]);
+
+    return path.join(this.path, this.buildSuffix());
+  }
+
   protected override async additionalCachePaths(): Promise<string[]> {
     return [];
+  }
+
+  protected override os(): OS {
+    return 'windows';
   }
 }

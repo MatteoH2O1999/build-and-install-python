@@ -21,6 +21,7 @@ import * as tc from '@actions/tool-cache';
 import * as utils from '../utils';
 import {ssl102Url, sslUrl} from '../constants';
 import Builder from './builder';
+import {OS} from './patches';
 import os from 'os';
 import path from 'path';
 import semver from 'semver';
@@ -333,61 +334,7 @@ export default class MacOSBuilder extends Builder {
     return additionalPaths;
   }
 
-  protected override async prepareSources(): Promise<void> {
-    await super.prepareSources();
-
-    // Fix for missing header files
-
-    if (
-      semver.gte(this.specificVersion, '3.0.0') &&
-      semver.lt(this.specificVersion, '3.1.0')
-    ) {
-      core.info(
-        'Detected Python version==3.0.x. Applying fix for missing headers...'
-      );
-      let headerPath = '';
-      await exec.exec('xcrun --sdk macosx --show-sdk-path', [], {
-        listeners: {
-          stdout: (buffer: Buffer) => {
-            headerPath = headerPath.concat(buffer.toString());
-          }
-        },
-        silent: true
-      });
-      headerPath = headerPath.trim();
-      const h2py = (
-        await utils.readFile(
-          path.join(this.path, 'Tools', 'scripts', 'h2py.py')
-        )
-      )
-        .toString()
-        .replace(
-          "fp = open(filename, 'r')",
-          `filename=filename.replace('/usr/lib', '${headerPath}/usr/lib').replace('/usr/include', '${headerPath}/usr/include');fp=open(filename, 'r')`
-        );
-      await utils.writeFile(
-        path.join(this.path, 'Tools', 'scripts', 'h2py.py'),
-        h2py
-      );
-    }
-
-    const configureFile = await utils.readFile(
-      path.join(this.path, 'configure')
-    );
-
-    await utils.writeFile(
-      path.join(this.path, 'configure'),
-      configureFile
-        .replace('\nMULTIARCH=$($CC --print-multiarch 2>/dev/null)', '\n')
-        .replace(
-          'if test x$PLATFORM_TRIPLET != x && test x$MULTIARCH != x; then',
-          [
-            'if test x$PLATFORM_TRIPLET != xdarwin; then',
-            '  MULTIARCH=$($CC --print-multiarch 2>/dev/null)',
-            'fi',
-            'if test x$PLATFORM_TRIPLET != x && test x$MULTIARCH != x; then'
-          ].join('\n')
-        )
-    );
+  protected override os(): OS {
+    return 'darwin';
   }
 }

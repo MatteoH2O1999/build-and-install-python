@@ -19,6 +19,7 @@ import * as core from '@actions/core';
 import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
 import * as utils from '../utils';
+import {OS, patches} from './patches';
 import {PythonTag} from './factory';
 import os from 'os';
 import path from 'path';
@@ -63,6 +64,8 @@ export default abstract class Builder {
   protected abstract CacheKeyOs(): string;
 
   protected abstract additionalCachePaths(): Promise<string[]>;
+
+  protected abstract os(): OS;
 
   abstract postInstall(installedPath: string): Promise<void>;
 
@@ -145,6 +148,12 @@ export default abstract class Builder {
       recursive: true
     });
     await io.rmRF(sourcePath);
+    core.endGroup();
+
+    core.startGroup('Applying patches to source files');
+    for (const patch of patches) {
+      await patch.apply(this.path, this.os(), this.specificVersion);
+    }
     core.endGroup();
   }
 }

@@ -20,6 +20,7 @@ import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
 import * as utils from '../utils';
 import Builder from './builder';
+import {OS} from './patches';
 import path from 'path';
 import semver from 'semver';
 import {ubuntuDependencies} from '../constants';
@@ -219,5 +220,9 @@ export default class LinuxBuilder extends Builder {
 
   protected override async additionalCachePaths(): Promise<string[]> {
     return [];
+  }
+
+  protected override os(): OS {
+    return 'linux';
   }
 }
