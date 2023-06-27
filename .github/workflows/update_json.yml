@@ -57,7 +57,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Audit dependencies
-        run: npm audit
+        run: npm audit || true
       - name: Fix dependencies vulnerabilities
         run: npm audit fix
       - name: Create or update pull request
