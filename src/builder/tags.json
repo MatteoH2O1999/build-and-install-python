@@ -2132,6 +2132,10 @@
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/legacy-trunk"
   },
   {
+    "version": "3.7",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/3.7"
+  },
+  {
     "version": "3.6",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/3.6"
   },
