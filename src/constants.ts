@@ -88,3 +88,7 @@ const ssl102Url: sslUrl = {
 };
 
 export {ssl102Url};
+
+const ftpPythonUrl = 'https://www.python.org/ftp/python';
+
+export {ftpPythonUrl};
