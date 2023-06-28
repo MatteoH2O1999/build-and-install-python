@@ -19,7 +19,11 @@ import * as exec from '@actions/exec';
 import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
 import * as utils from '../utils';
-import {vsInstallerUrl, windowsBuildDependencies} from '../constants';
+import {
+  ftpPythonUrl,
+  vsInstallerUrl,
+  windowsBuildDependencies
+} from '../constants';
 import Builder from './builder';
 import {OS} from './patches';
 import {PythonTag} from './factory';
@@ -264,9 +268,14 @@ export default class WindowsBuilder extends Builder {
         core.info(`Installer: ${installer}`);
       } else {
         throw new Error(
-          `Cannot build CPython versions that do not include msi project. Please open an issue at https://github.com/MatteoH2O1999/setup-python/issues`
+          'Cannot build CPython versions that do not include msi project'
         );
       }
+      // Clean environment
+
+      core.debug('Cleaning environment...');
+      await this.cleanEnvironment();
+      core.debug('Environment cleaned');
     }
 
     core.startGroup('Installing Python to temp folder');
@@ -279,12 +288,6 @@ export default class WindowsBuilder extends Builder {
     core.info(`Python executable: ${pythonExecutable}`);
 
     core.endGroup();
-
-    // Clean environment
-
-    core.debug('Cleaning environment...');
-    await this.cleanEnvironment();
-    core.debug('Environment cleaned');
 
     return returnPath;
   }
@@ -415,13 +418,52 @@ export default class WindowsBuilder extends Builder {
   }
 
   private async getInstaller(): Promise<string> {
-    return '';
+    let archLabel: string;
+    switch (this.arch) {
+      case 'x64':
+        archLabel = 'amd64';
+        break;
+      case 'arm64':
+        archLabel = 'arm64';
+        break;
+      default:
+        return '';
+    }
+    const filename = `python-${this.specificVersion}.${archLabel}`;
+    let installerPath = '';
+    try {
+      const exeName = `${filename}.exe`;
+      installerPath = await tc.downloadTool(
+        `${ftpPythonUrl}/${this.specificVersion}/${exeName}`,
+        path.join(this.path, exeName)
+      );
+    } catch (error) {
+      installerPath = '';
+    }
+    if (!installerPath) {
+      try {
+        const msiName = `${filename}.msi`;
+        installerPath = await tc.downloadTool(
+          `${ftpPythonUrl}/${this.specificVersion}/${msiName}`,
+          path.join(this.path, msiName)
+        );
+      } catch (error) {
+        installerPath = '';
+      }
+    }
+    if (installerPath) {
+      core.info(`Using installer from python.org/ftp/python: ${installerPath}`);
+    } else {
+      core.info(
+        `No installer found from python.org/ftp/python. Will build from source`
+      );
+    }
+    return installerPath;
   }
 
   private async install(installerPath: string): Promise<string> {
-    let execArguments: string[];
     if (installerPath.endsWith('.exe')) {
-      execArguments = [
+      const execArguments: string[] = [
         `TargetDir=${path.join(this.path, this.buildSuffix())}`,
         'Include_pip=0',
         'CompileAll=1',
@@ -429,8 +471,16 @@ export default class WindowsBuilder extends Builder {
         'InstallLauncherAllUsers=0',
         '/quiet'
       ];
+      core.info(`Installer arguments: ${execArguments}`);
+      await exec.exec(installerPath, [...execArguments]);
     } else if (installerPath.endsWith('.msi')) {
-      execArguments = [];
+      const installerArguments: string[] = [
+        '/i',
+        installerPath,
+        `TARGETDIR=${path.join(this.path, this.buildSuffix())}`,
+        '/qn'
+      ];
+      await exec.exec('msiexec', [...installerArguments]);
     } else {
       throw new Error(
         `Invalid installer extension. Expected .exe or .msi, got ${installerPath
@@ -438,8 +488,6 @@ export default class WindowsBuilder extends Builder {
           .at(-1)}`
       );
     }
-    core.info(`Installer arguments: ${execArguments}`);
-    await exec.exec(installerPath, [...execArguments]);
 
     return path.join(this.path, this.buildSuffix());
   }

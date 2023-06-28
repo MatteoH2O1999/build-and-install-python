@@ -29,6 +29,10 @@ jest.mock('path');
 jest.mock('os');
 jest.mock('../../utils');
 
+WindowsBuilder.prototype['getInstaller'] = async () => {
+  return '';
+};
+
 const mockedTc = jest.mocked(tc);
 
 let interactions: string[];
