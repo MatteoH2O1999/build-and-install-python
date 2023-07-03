@@ -16,6 +16,7 @@
 
 import * as cache from '@actions/cache';
 import * as core from '@actions/core';
+import * as exec from '@actions/exec';
 import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
 import * as utils from '../utils';
@@ -154,6 +155,48 @@ export default abstract class Builder {
     for (const patch of patches) {
       await patch.apply(this.path, this.os(), this.specificVersion);
     }
+    core.endGroup();
+  }
+
+  async initPip(pythonPath: string): Promise<void> {
+    core.startGroup('Initializing pip');
+    const pythonExecutable = path.join(
+      pythonPath,
+      process.platform === 'win32' ? 'python.exe' : 'python'
+    );
+    if (!(await utils.exists(pythonExecutable))) {
+      throw new Error(`${pythonExecutable} is not a valid path`);
+    }
+    try {
+      core.info('Trying to use ensurepip...');
+      await exec.exec(`${pythonExecutable} -m ensurepip`, [], {silent: true});
+    } catch (error) {
+      core.info('Ensurepip failed. Trying using get_pip.py...');
+      const splitVersion = this.specificVersion.split('.');
+      const version = parseInt(splitVersion[0]);
+      const major = parseInt(splitVersion[1]);
+      const pipMajor = Math.max(major, 2);
+      const url = `https://bootstrap.pypa.io/pip/${version}.${pipMajor}/get-pip.py`;
+      core.info(`Downloading get_pip.py from "${url}"`);
+      const getPip = await tc.downloadTool(url);
+      const realGetPip = await utils.realpath(getPip);
+      core.info(`get_pip.py downloaded to "${realGetPip}"`);
+      try {
+        await exec.exec(`${pythonExecutable} ${realGetPip}`, [], {
+          silent: true
+        });
+      } catch (e) {
+        if (major < 2) {
+          core.info('Pip for Python < 3.2 is not available.');
+          core.endGroup();
+          return;
+        }
+        throw e;
+      } finally {
+        await io.rmRF(realGetPip);
+      }
+    }
+    core.info('pip initialized successfully');
     core.endGroup();
   }
 }

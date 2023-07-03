@@ -75,6 +75,7 @@ class MockBuilder extends builder.Builder {
   protected os(): OS {
     return 'linux';
   }
+  override async initPip(): Promise<void> {}
 }
 
 describe('main', () => {
@@ -596,7 +597,7 @@ describe('main', () => {
   });
 
   describe('Builder', () => {
-    test('cache false leads to calling build, clean and postInstall on the builder', async () => {
+    test('cache false leads to calling build, clean, initPip and postInstall on the builder', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
         allowPrereleases: false,
         architecture: 'x64',
@@ -620,6 +621,7 @@ describe('main', () => {
       const mockInstanceClean = jest.spyOn(instance, 'clean');
       const mockInstanceSaveCache = jest.spyOn(instance, 'saveCache');
       const mockInstanceRestoreCache = jest.spyOn(instance, 'restoreCache');
+      const mockInstanceInitPip = jest.spyOn(instance, 'initPip');
       mockedBuilder.getBuilder.mockResolvedValueOnce(instance);
       mockedTc.cacheDir.mockResolvedValueOnce('install/path');
 
@@ -638,9 +640,11 @@ describe('main', () => {
         '3.6.15',
         'x64'
       );
+      expect(mockInstanceInitPip).toBeCalledTimes(1);
+      expect(mockInstanceInitPip).toBeCalledWith('install/path');
     });
 
-    test('cache-hit leads to calling restoreCache, postInstall and clean on the builder', async () => {
+    test('cache-hit leads to calling restoreCache, postInstall, initPip and clean on the builder', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
         allowPrereleases: false,
         architecture: 'x64',
@@ -664,6 +668,7 @@ describe('main', () => {
       const mockInstanceClean = jest.spyOn(instance, 'clean');
       const mockInstanceSaveCache = jest.spyOn(instance, 'saveCache');
       const mockInstanceRestoreCache = jest.spyOn(instance, 'restoreCache');
+      const mockInstanceInitPip = jest.spyOn(instance, 'initPip');
       mockedBuilder.getBuilder.mockResolvedValueOnce(instance);
       mockedTc.cacheDir.mockResolvedValueOnce('install/path');
 
@@ -682,9 +687,11 @@ describe('main', () => {
         '3.6.15',
         'x64'
       );
+      expect(mockInstanceInitPip).toBeCalledTimes(1);
+      expect(mockInstanceInitPip).toBeCalledWith('install/path');
     });
 
-    test('cache-miss leads to calling restoreCache, build, saveCache, postInstall and clean on the builder', async () => {
+    test('cache-miss leads to calling restoreCache, build, saveCache, postInstall, initPip and clean on the builder', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
         allowPrereleases: false,
         architecture: 'x64',
@@ -711,6 +718,7 @@ describe('main', () => {
       const mockInstanceClean = jest.spyOn(instance, 'clean');
       const mockInstanceSaveCache = jest.spyOn(instance, 'saveCache');
       const mockInstanceRestoreCache = jest.spyOn(instance, 'restoreCache');
+      const mockInstanceInitPip = jest.spyOn(instance, 'initPip');
       mockedBuilder.getBuilder.mockResolvedValueOnce(instance);
       mockedTc.cacheDir.mockResolvedValueOnce('install/path');
 
@@ -729,6 +737,8 @@ describe('main', () => {
         '3.6.15',
         'x64'
       );
+      expect(mockInstanceInitPip).toBeCalledTimes(1);
+      expect(mockInstanceInitPip).toBeCalledWith('install/path');
     });
 
     test('handles failure in restoreCache', async () => {
@@ -758,6 +768,7 @@ describe('main', () => {
       const mockInstanceClean = jest.spyOn(instance, 'clean');
       const mockInstanceSaveCache = jest.spyOn(instance, 'saveCache');
       const mockInstanceRestoreCache = jest.spyOn(instance, 'restoreCache');
+      const mockInstanceInitPip = jest.spyOn(instance, 'initPip');
       mockedBuilder.getBuilder.mockResolvedValueOnce(instance);
       mockedTc.cacheDir.mockResolvedValueOnce('install/path');
 
@@ -770,6 +781,7 @@ describe('main', () => {
       expect(mockedTc.cacheDir).not.toBeCalled();
       expect(mockInstanceRestoreCache).toBeCalledTimes(1);
       expect(mockedCore.setFailed.mock.calls).toMatchSnapshot();
+      expect(mockInstanceInitPip).not.toBeCalled();
     });
 
     test('handles failure in build', async () => {
@@ -802,6 +814,7 @@ describe('main', () => {
       const mockInstanceClean = jest.spyOn(instance, 'clean');
       const mockInstanceSaveCache = jest.spyOn(instance, 'saveCache');
       const mockInstanceRestoreCache = jest.spyOn(instance, 'restoreCache');
+      const mockInstanceInitPip = jest.spyOn(instance, 'initPip');
       mockedBuilder.getBuilder.mockResolvedValueOnce(instance);
       mockedTc.cacheDir.mockResolvedValueOnce('install/path');
 
@@ -814,6 +827,7 @@ describe('main', () => {
       expect(mockedTc.cacheDir).not.toBeCalled();
       expect(mockInstanceRestoreCache).toBeCalledTimes(1);
       expect(mockedCore.setFailed.mock.calls).toMatchSnapshot();
+      expect(mockInstanceInitPip).not.toBeCalled();
     });
 
     test('handles failure in saveCache', async () => {
@@ -846,6 +860,7 @@ describe('main', () => {
       const mockInstanceClean = jest.spyOn(instance, 'clean');
       const mockInstanceSaveCache = jest.spyOn(instance, 'saveCache');
       const mockInstanceRestoreCache = jest.spyOn(instance, 'restoreCache');
+      const mockInstanceInitPip = jest.spyOn(instance, 'initPip');
       mockedBuilder.getBuilder.mockResolvedValueOnce(instance);
       mockedTc.cacheDir.mockResolvedValueOnce('install/path');
 
@@ -858,6 +873,7 @@ describe('main', () => {
       expect(mockedTc.cacheDir).not.toBeCalled();
       expect(mockInstanceRestoreCache).toBeCalledTimes(1);
       expect(mockedCore.setFailed.mock.calls).toMatchSnapshot();
+      expect(mockInstanceInitPip).not.toBeCalled();
     });
 
     test('handles failure in postInstall', async () => {
@@ -890,6 +906,7 @@ describe('main', () => {
       const mockInstanceClean = jest.spyOn(instance, 'clean');
       const mockInstanceSaveCache = jest.spyOn(instance, 'saveCache');
       const mockInstanceRestoreCache = jest.spyOn(instance, 'restoreCache');
+      const mockInstanceInitPip = jest.spyOn(instance, 'initPip');
       mockedBuilder.getBuilder.mockResolvedValueOnce(instance);
       mockedTc.cacheDir.mockResolvedValueOnce('install/path');
 
@@ -907,6 +924,60 @@ describe('main', () => {
         'x64'
       );
       expect(mockInstanceRestoreCache).toBeCalledTimes(1);
+      expect(mockedCore.setFailed.mock.calls).toMatchSnapshot();
+      expect(mockInstanceInitPip).not.toBeCalled();
+    });
+
+    test('handles failure in initPip', async () => {
+      mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
+        architecture: 'x64',
+        buildBehavior: inputs.BuildBehavior.Info,
+        cache: true,
+        checkLatest: false,
+        token: 'token',
+        version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+      });
+      mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        success: false,
+        version: '3.6.15'
+      });
+      mockedVersion.isPyPy.mockReturnValueOnce(false);
+      const instance = new MockBuilder(
+        {version: '3.6.15', zipBall: 'zipballUri'},
+        'x64'
+      );
+      instance.initPip = async () => {
+        throw new Error('Failure in initPip');
+      };
+      instance.restoreCache = async () => {
+        return null;
+      };
+      const mockInstanceBuild = jest.spyOn(instance, 'build');
+      const mockInstancePostInstall = jest.spyOn(instance, 'postInstall');
+      const mockInstanceClean = jest.spyOn(instance, 'clean');
+      const mockInstanceSaveCache = jest.spyOn(instance, 'saveCache');
+      const mockInstanceRestoreCache = jest.spyOn(instance, 'restoreCache');
+      const mockInstanceInitPip = jest.spyOn(instance, 'initPip');
+      mockedBuilder.getBuilder.mockResolvedValueOnce(instance);
+      mockedTc.cacheDir.mockResolvedValueOnce('install/path');
+
+      await main();
+
+      expect(mockInstanceBuild).toBeCalledTimes(1);
+      expect(mockInstancePostInstall).toBeCalledTimes(1);
+      expect(mockInstanceClean).not.toBeCalled();
+      expect(mockInstanceSaveCache).toBeCalledTimes(1);
+      expect(mockedTc.cacheDir).toBeCalledTimes(1);
+      expect(mockedTc.cacheDir).toBeCalledWith(
+        'build/path',
+        'Python',
+        '3.6.15',
+        'x64'
+      );
+      expect(mockInstanceRestoreCache).toBeCalledTimes(1);
+      expect(mockInstanceInitPip).toBeCalledTimes(1);
+      expect(mockInstanceInitPip).toBeCalledWith('install/path');
       expect(mockedCore.setFailed.mock.calls).toMatchSnapshot();
     });
 
@@ -940,6 +1011,7 @@ describe('main', () => {
       const mockInstanceClean = jest.spyOn(instance, 'clean');
       const mockInstanceSaveCache = jest.spyOn(instance, 'saveCache');
       const mockInstanceRestoreCache = jest.spyOn(instance, 'restoreCache');
+      const mockInstanceInitPip = jest.spyOn(instance, 'initPip');
       mockedBuilder.getBuilder.mockResolvedValueOnce(instance);
       mockedTc.cacheDir.mockResolvedValueOnce('install/path');
 
@@ -956,6 +1028,8 @@ describe('main', () => {
         'x64'
       );
       expect(mockInstanceRestoreCache).toBeCalledTimes(1);
+      expect(mockInstanceInitPip).toBeCalledTimes(1);
+      expect(mockInstanceInitPip).toBeCalledWith('install/path');
       expect(mockedCore.setFailed).not.toBeCalled();
     });
   });

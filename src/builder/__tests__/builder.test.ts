@@ -17,6 +17,7 @@
 /* eslint-disable no-restricted-imports */
 
 import * as cache from '@actions/cache';
+import * as exec from '@actions/exec';
 import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
 import * as utils from '../../utils';
@@ -36,6 +37,7 @@ import os from 'os';
 import path from 'path';
 
 jest.mock('@actions/core');
+jest.mock('@actions/exec');
 jest.mock('@actions/io');
 jest.mock('@actions/cache');
 jest.mock('@actions/tool-cache');
@@ -44,6 +46,7 @@ jest.mock('../../utils', () => {
   const actualUtils: typeof utils = jest.requireActual('../../utils');
   return {
     ...actualUtils,
+    exists: jest.fn(),
     realpath: jest.fn(),
     realpathSync: jest.fn()
   };
@@ -51,6 +54,7 @@ jest.mock('../../utils', () => {
 
 const mockedIo = jest.mocked(io);
 const mockedCache = jest.mocked(cache);
+const mockedExec = jest.mocked(exec);
 const mockedTc = jest.mocked(tc);
 const mockedUtils = jest.mocked(utils);
 
@@ -59,6 +63,10 @@ mockedUtils.realpath.mockImplementation(async p => {
 });
 mockedUtils.realpathSync.mockImplementation(p => {
   return p.toString();
+});
+mockedUtils.exists.mockImplementation(async p => {
+  const actualUtils: typeof utils = jest.requireActual('../../utils');
+  return await actualUtils.exists(p);
 });
 
 class MockBuilder extends Builder {
@@ -388,6 +396,107 @@ describe('class Builder', () => {
       mockedTc.extractZip.mockResolvedValueOnce(tempDir);
 
       await builder['prepareSources']();
+    });
+  });
+
+  describe('initPip method', () => {
+    let tempDir: string;
+    let exePath: string;
+
+    beforeEach(() => {
+      tempDir = fs.mkdtempSync(`${os.tmpdir()}${path.sep}`);
+      exePath = path.join(
+        tempDir,
+        process.platform === 'win32' ? 'python.exe' : 'python'
+      );
+      fs.writeFileSync(exePath, 'exe');
+    });
+
+    afterEach(() => {
+      fs.rmSync(tempDir, {recursive: true});
+    });
+
+    test('Checks if path/python exists', async () => {
+      const tag: PythonTag = {version: '3.5.2', zipBall: 'zipballUrl'};
+      const builder = new MockBuilder(tag, 'x64');
+
+      await builder.initPip(tempDir);
+
+      expect(mockedUtils.exists).toBeCalledTimes(1);
+      expect(mockedUtils.exists).toBeCalledWith(exePath);
+    });
+
+    test('Fails if python executable does not exist', async () => {
+      const tag: PythonTag = {version: '3.5.2', zipBall: 'zipballUrl'};
+      const builder = new MockBuilder(tag, 'x64');
+
+      await expect(builder.initPip('installedDir')).rejects.toThrowError();
+    });
+
+    test('Calls ensurepip and returns if success', async () => {
+      const tag: PythonTag = {version: '3.5.2', zipBall: 'zipballUrl'};
+      const builder = new MockBuilder(tag, 'x64');
+      mockedExec.exec.mockResolvedValueOnce(0);
+
+      await builder.initPip(tempDir);
+
+      expect(mockedExec.exec).toBeCalledTimes(1);
+      expect(mockedExec.exec.mock.calls[0][0]).toEqual(
+        `${exePath} -m ensurepip`
+      );
+    });
+
+    test('Calls get_pip.py if ensurepip fails', async () => {
+      const tag: PythonTag = {version: '3.5.2', zipBall: 'zipballUrl'};
+      const builder = new MockBuilder(tag, 'x64');
+      mockedExec.exec.mockRejectedValueOnce(new Error('ensurepip failed'));
+      mockedExec.exec.mockResolvedValueOnce(0);
+      mockedTc.downloadTool.mockResolvedValueOnce('get_pip.py');
+
+      await builder.initPip(tempDir);
+
+      expect(mockedExec.exec).toBeCalledTimes(2);
+      expect(mockedExec.exec.mock.calls[0][0]).toEqual(
+        `${exePath} -m ensurepip`
+      );
+      expect(mockedExec.exec.mock.calls[1][0]).toEqual(`${exePath} get_pip.py`);
+      expect(mockedTc.downloadTool).toBeCalledTimes(1);
+      expect(mockedTc.downloadTool.mock.calls[0][0]).toEqual(
+        'https://bootstrap.pypa.io/pip/3.5/get-pip.py'
+      );
+    });
+
+    test('Fails if get_pip.py fails and Python version >= 3.2', async () => {
+      const tag: PythonTag = {version: '3.5.2', zipBall: 'zipballUrl'};
+      const builder = new MockBuilder(tag, 'x64');
+      mockedExec.exec.mockRejectedValueOnce(new Error('ensurepip failed'));
+      mockedExec.exec.mockRejectedValueOnce(new Error('get_pip.py failed'));
+      mockedTc.downloadTool.mockResolvedValueOnce('get_pip.py');
+
+      await expect(
+        builder.initPip(tempDir)
+      ).rejects.toThrowErrorMatchingSnapshot();
+      mockedExec.exec.mockReset();
+    });
+
+    test('Does nothing if get_pip.py fails and Python version < 3.2', async () => {
+      const tag: PythonTag = {version: '3.1.2', zipBall: 'zipballUrl'};
+      const builder = new MockBuilder(tag, 'x64');
+      mockedExec.exec.mockRejectedValueOnce(new Error('ensurepip failed'));
+      mockedExec.exec.mockRejectedValueOnce(new Error('get_pip.py failed'));
+      mockedTc.downloadTool.mockResolvedValueOnce('get_pip.py');
+
+      await builder.initPip(tempDir);
+
+      expect(mockedExec.exec).toBeCalledTimes(2);
+      expect(mockedExec.exec.mock.calls[0][0]).toEqual(
+        `${exePath} -m ensurepip`
+      );
+      expect(mockedExec.exec.mock.calls[1][0]).toEqual(`${exePath} get_pip.py`);
+      expect(mockedTc.downloadTool).toBeCalledTimes(1);
+      expect(mockedTc.downloadTool.mock.calls[0][0]).toEqual(
+        'https://bootstrap.pypa.io/pip/3.2/get-pip.py'
+      );
     });
   });
 });

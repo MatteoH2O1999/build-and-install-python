@@ -261,6 +261,24 @@ export default async function main(): Promise<void> {
       return;
     }
 
+    // Initialize pip
+
+    try {
+      core.debug('Initializing pip...');
+      await builder.initPip(installedPath);
+      core.debug('Pip initialized');
+    } catch (error) {
+      let message = 'Error during pip initialization.';
+      if (error instanceof Error) {
+        message = message.concat('\n').concat(error.message);
+        if (error.stack) {
+          core.info(error.stack);
+        }
+      }
+      core.setFailed(message);
+      return;
+    }
+
     // Clean build folder
 
     await builder.clean();
