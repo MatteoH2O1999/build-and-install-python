@@ -67,6 +67,12 @@ exports[`main Build behaior Allow leads to building from source with a message i
   [
     "Post-install operations done",
   ],
+  [
+    "Initializing pip...",
+  ],
+  [
+    "Pip initialized",
+  ],
 ]
 `;
 
@@ -147,6 +153,12 @@ exports[`main Build behaior Info leads to building from source with a message in
   [
     "Post-install operations done",
   ],
+  [
+    "Initializing pip...",
+  ],
+  [
+    "Pip initialized",
+  ],
 ]
 `;
 
@@ -165,6 +177,15 @@ exports[`main Builder handles failure in build 1`] = `
   [
     "Error while building Python.
 Failure in build",
+  ],
+]
+`;
+
+exports[`main Builder handles failure in initPip 1`] = `
+[
+  [
+    "Error during pip initialization.
+Failure in initPip",
   ],
 ]
 `;
