@@ -32,14 +32,7 @@ export class PythonVersion {
   constructor(pythonVersion: string) {
     core.debug(`Parsing version string "${pythonVersion}"...`);
     pythonVersion = pythonVersion.toLowerCase().trim();
-    if (pythonVersion.length === 0) {
-      pythonVersion = 'x';
-    }
-    while (pythonVersion.split('.').length < 3) {
-      pythonVersion = pythonVersion.concat('.x');
-    }
     core.debug(`Full semver range string: "${pythonVersion}".`);
-    core.debug('Checking Python type (CPython or PyPy).');
     if (pythonVersion.includes('pypy')) {
       this.type = PythonType.PyPy;
       pythonVersion = pythonVersion.replace('pypy', '').replace('-', '');
@@ -47,15 +40,14 @@ export class PythonVersion {
       this.type = PythonType.CPython;
     }
     core.debug(`Python type: "${this.type}".`);
-    if (pythonVersion.startsWith('v')) {
-      pythonVersion = pythonVersion.replace('v', '');
-    }
-    if (semverValidRange(pythonVersion) === null) {
+    pythonVersion = pythonVersion.replace(/v/g, '');
+    const range = semverValidRange(pythonVersion);
+    if (!range) {
       throw new Error(
         `An invalid semver string was supplied. Got "${pythonVersion}".`
       );
     }
-    this.version = pythonVersion;
+    this.version = range;
     core.debug(`Final resolved version range: "${this.version}".`);
   }
 }
