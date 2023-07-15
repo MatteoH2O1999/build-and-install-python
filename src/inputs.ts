@@ -15,8 +15,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import * as core from '@actions/core';
-import * as utils from './utils';
 import {InputNames} from './constants';
+import {getVersionInputFromFile} from 'setup-python/src/utils';
 import os from 'os';
 import semverValidRange from 'semver/ranges/valid';
 
@@ -172,39 +172,51 @@ async function getArchitecture(): Promise<string> {
 }
 
 async function extractPythonVersion(): Promise<string> {
-  let pythonVersion: string = core.getInput(InputNames.PYTHON_VERSION);
+  let pythonVersions: string[] = core.getMultilineInput(
+    InputNames.PYTHON_VERSION
+  );
   let pythonVersionFile: string = core.getInput(InputNames.PYTHON_VERSION_FILE);
   core.debug(
-    `Parsing python-version string "${pythonVersion}" and python-version-file string "${pythonVersionFile}"`
+    `Parsing python-version string "${pythonVersions.join(
+      ' '
+    )}" and python-version-file string "${pythonVersionFile}"`
   );
 
-  if (pythonVersion !== '' && pythonVersionFile !== '') {
+  if (pythonVersions.length > 0 && pythonVersionFile !== '') {
     core.warning(
       `Both "${InputNames.PYTHON_VERSION}" and "${InputNames.PYTHON_VERSION_FILE}" inputs were supplied. Only "${InputNames.PYTHON_VERSION}" will be used.`
     );
   }
 
-  if (pythonVersion === '' && pythonVersionFile === '') {
+  if (pythonVersions.length === 0 && pythonVersionFile === '') {
     core.info(
       `Neither "${InputNames.PYTHON_VERSION}" and "${InputNames.PYTHON_VERSION_FILE}" inputs were supplied. Defaulting to using ".python-version" file...`
     );
     pythonVersionFile = '.python-version';
   }
 
-  if (pythonVersion !== '') {
-    core.debug(`Using python-version specified version "${pythonVersion}"...`);
-    return pythonVersion;
-  }
-
-  if (pythonVersionFile !== '') {
-    if (await utils.exists(pythonVersionFile)) {
-      core.info(`Obtaining version from ${pythonVersionFile}...`);
-      pythonVersion = await utils.readFile(pythonVersionFile, 'utf-8');
-      core.info(`Resolved ${pythonVersionFile} to ${pythonVersion}.`);
-    } else {
-      core.warning(`${pythonVersionFile} doesn't exist.`);
+  if (pythonVersions.length === 0) {
+    try {
+      pythonVersions = getVersionInputFromFile(pythonVersionFile);
+    } catch (error) {
+      if (error instanceof Error) {
+        core.warning(error.message);
+      }
+      pythonVersions = [];
     }
   }
+
+  let pythonVersion = '';
+
+  if (pythonVersions.length > 0) {
+    if (pythonVersions.length > 1) {
+      core.warning(
+        `This action does not support installing multiple versions. Will instll only ${pythonVersions[0]}`
+      );
+    }
+    pythonVersion = pythonVersions[0];
+  }
+
   core.debug(`Using python version string "${pythonVersion}"...`);
   return pythonVersion;
 }

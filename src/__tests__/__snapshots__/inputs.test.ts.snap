@@ -51,7 +51,7 @@ exports[`Parsed inputs "check-latest" using "check-latest" with value "TRue" thr
 exports[`Parsed inputs "python-version" and "python-version-file" empty "python-version" and specified non-esisting "python-version-file" leads to a warning and a x.x.x version 1`] = `
 [
   [
-    "file doesn't exist.",
+    "File does not exist",
   ],
 ]
 `;
