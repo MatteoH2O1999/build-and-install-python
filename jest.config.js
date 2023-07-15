@@ -24,5 +24,6 @@ module.exports = {
     verbose: true,
     collectCoverageFrom: ['<rootDir>/src/**'],
     collectCoverage: true,
-    coveragePathIgnorePatterns: ['__tests__']
+    coveragePathIgnorePatterns: ['__tests__'],
+    transformIgnorePatterns: ['\\.pnp\\.[^\\\/]+$', '/node_modules/(?!(setup-python)/)']
   }

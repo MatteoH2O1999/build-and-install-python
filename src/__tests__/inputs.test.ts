@@ -16,7 +16,7 @@
 
 import * as core from '@actions/core';
 import * as inputs from '../inputs';
-import * as utils from '../utils';
+import * as utils from 'setup-python/src/utils';
 import {MockedInputs, mockInput, pythonVersions} from './inputs.fixtures';
 import {beforeEach, describe, expect, jest, test} from '@jest/globals';
 import {InputNames} from '../constants';
@@ -33,7 +33,7 @@ const mockedInputs: MockedInputs = {
 };
 
 jest.mock('@actions/core');
-jest.mock('../utils');
+jest.mock('setup-python/src/utils');
 
 const mockedCore = jest.mocked(core);
 const mockedUtils = jest.mocked(utils);
@@ -54,6 +54,20 @@ mockedCore.getBooleanInput.mockImplementation(
 mockedCore.getInput.mockImplementation(
   (name: string, options: core.InputOptions | undefined) => {
     return mockInput(mockedInputs, name, options);
+  }
+);
+mockedCore.getMultilineInput.mockImplementation(
+  (name: string, options: core.InputOptions | undefined) => {
+    const inp: string[] = core
+      .getInput(name, options)
+      .split('\n')
+      .filter(x => x !== '');
+
+    if (options && options.trimWhitespace === false) {
+      return inp;
+    }
+
+    return inp.map(input => input.trim());
   }
 );
 
@@ -100,69 +114,65 @@ describe('Parsed inputs', () => {
     test('both empty leads to using ".python-version"', async () => {
       mockedInputs.pythonVersion = '';
       mockedInputs.pythonVersionFile = '';
+      mockedUtils.getVersionInputFromFile.mockReturnValue([]);
 
       await inputs.parseInputs();
 
-      expect(mockedUtils.exists).toBeCalledTimes(1);
-      expect(mockedUtils.exists).toBeCalledWith('.python-version');
-      expect(mockedUtils.readFile).not.toBeCalled();
+      expect(mockedUtils.getVersionInputFromFile).toBeCalledTimes(1);
+      expect(mockedUtils.getVersionInputFromFile).toBeCalledWith(
+        '.python-version'
+      );
     });
 
     test(`specified "${InputNames.PYTHON_VERSION}" and empty "${InputNames.PYTHON_VERSION_FILE}" leads to using "${InputNames.PYTHON_VERSION}"`, async () => {
       mockedInputs.pythonVersion = '3.5.4';
       mockedInputs.pythonVersionFile = '';
-      mockedUtils.readFile.mockResolvedValue('3.9.0');
+      mockedUtils.getVersionInputFromFile.mockReturnValue(['3.9.0']);
 
       const parsedInputs = await inputs.parseInputs();
 
-      expect(mockedUtils.exists).not.toBeCalled();
-      expect(mockedUtils.readFile).not.toBeCalled();
+      expect(mockedUtils.getVersionInputFromFile).not.toBeCalled();
       expect(parsedInputs.version).toEqual(new inputs.PythonVersion('3.5.4'));
     });
 
     test(`empty "${InputNames.PYTHON_VERSION}" and specified existing "${InputNames.PYTHON_VERSION_FILE}" leads to using "${InputNames.PYTHON_VERSION_FILE}"`, async () => {
       mockedInputs.pythonVersion = '';
       mockedInputs.pythonVersionFile = 'file';
-      mockedUtils.exists.mockResolvedValue(true);
-      mockedUtils.readFile.mockResolvedValue('3.9.0');
+      mockedUtils.getVersionInputFromFile.mockReturnValue(['3.9.0']);
 
       const parsedInputs = await inputs.parseInputs();
 
-      expect(mockedUtils.exists).toBeCalledTimes(1);
-      expect(mockedUtils.exists).toBeCalledWith('file');
-      expect(mockedUtils.readFile).toBeCalledTimes(1);
-      expect(mockedUtils.readFile).toBeCalledWith('file', 'utf-8');
+      expect(mockedUtils.getVersionInputFromFile).toBeCalledTimes(1);
+      expect(mockedUtils.getVersionInputFromFile).toBeCalledWith('file');
       expect(parsedInputs.version).toEqual(new inputs.PythonVersion('3.9.0'));
     });
 
     test(`empty "${InputNames.PYTHON_VERSION}" and specified non-esisting "${InputNames.PYTHON_VERSION_FILE}" leads to a warning and a x.x.x version`, async () => {
       mockedInputs.pythonVersion = '';
       mockedInputs.pythonVersionFile = 'file';
-      mockedUtils.exists.mockResolvedValue(false);
-      mockedUtils.readFile.mockResolvedValue('3.9.0');
+      mockedUtils.getVersionInputFromFile.mockImplementation(() => {
+        throw new Error('File does not exist');
+      });
 
       const parsedInputs = await inputs.parseInputs();
 
       expect(mockedCore.warning.mock.calls).toMatchSnapshot();
       expect(mockedCore.warning).toBeCalledTimes(1);
-      expect(mockedUtils.exists).toBeCalledTimes(1);
-      expect(mockedUtils.exists).toBeCalledWith('file');
-      expect(mockedUtils.readFile).not.toBeCalled();
+      expect(mockedUtils.getVersionInputFromFile).toBeCalledTimes(1);
+      expect(mockedUtils.getVersionInputFromFile).toBeCalledWith('file');
       expect(parsedInputs.version).toEqual(new inputs.PythonVersion('x.x.x'));
     });
 
     test(`specified "${InputNames.PYTHON_VERSION}" and specified existing "${InputNames.PYTHON_VERSION_FILE}" leads to a warning and to using "${InputNames.PYTHON_VERSION}"`, async () => {
       mockedInputs.pythonVersion = '3.10.10';
       mockedInputs.pythonVersionFile = 'file';
-      mockedUtils.exists.mockResolvedValue(true);
-      mockedUtils.readFile.mockResolvedValue('3.9.0');
+      mockedUtils.getVersionInputFromFile.mockReturnValue(['3.9.0']);
 
       const parsedInputs = await inputs.parseInputs();
 
       expect(mockedCore.warning.mock.calls).toMatchSnapshot();
       expect(mockedCore.warning).toBeCalledTimes(1);
-      expect(mockedUtils.exists).not.toBeCalled();
-      expect(mockedUtils.readFile).not.toBeCalled();
+      expect(mockedUtils.getVersionInputFromFile).not.toBeCalled();
       expect(parsedInputs.version).toEqual(new inputs.PythonVersion('3.10.10'));
     });
   });
