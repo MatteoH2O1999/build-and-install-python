@@ -27,22 +27,22 @@ export type PythonVersionTest = {
 const pythonVersions: PythonVersionTest[] = [
   {
     expectedType: PythonType.CPython,
-    expectedVersion: '2.7.x',
+    expectedVersion: '>=2.7.0 <2.8.0-0',
     inputVersionString: '2.7'
   },
   {
     expectedType: PythonType.CPython,
-    expectedVersion: '3.x.x',
+    expectedVersion: '>=3.0.0 <4.0.0-0',
     inputVersionString: '3'
   },
   {
     expectedType: PythonType.CPython,
-    expectedVersion: '3.9.x',
+    expectedVersion: '>=3.9.0 <3.10.0-0',
     inputVersionString: '3.9'
   },
   {
     expectedType: PythonType.CPython,
-    expectedVersion: '3.8.x',
+    expectedVersion: '>=3.8.0 <3.9.0-0',
     inputVersionString: '3.8.X'
   },
   {
@@ -52,22 +52,22 @@ const pythonVersions: PythonVersionTest[] = [
   },
   {
     expectedType: PythonType.PyPy,
-    expectedVersion: '3.9.x',
+    expectedVersion: '>=3.9.0 <3.10.0-0',
     inputVersionString: 'pypy3.9'
   },
   {
     expectedType: PythonType.CPython,
-    expectedVersion: '3.3.x',
+    expectedVersion: '>=3.3.0 <3.4.0-0',
     inputVersionString: 'v3.3'
   },
   {
     expectedType: PythonType.CPython,
-    expectedVersion: 'x.x.x',
+    expectedVersion: '*',
     inputVersionString: ''
   },
   {
     expectedType: PythonType.PyPy,
-    expectedVersion: '3.9.x',
+    expectedVersion: '>=3.9.0 <3.10.0-0',
     inputVersionString: 'pypy-3.9'
   }
 ];
