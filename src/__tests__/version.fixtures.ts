@@ -95,6 +95,31 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     expectedResult: {
       darwin: {
         success: true,
+        version: '3.11.1'
+      },
+      linux: {
+        success: true,
+        version: '3.11.1'
+      },
+      win32: {
+        success: true,
+        version: '3.11.1'
+      }
+    },
+    inputs: {
+      allowPrereleases: false,
+      architecture: process.arch,
+      buildBehavior: BuildBehavior.Info,
+      cache: true,
+      checkLatest: false,
+      token: 'token',
+      version: new PythonVersion('>=2.7.0 <3.0.0-0 || >=3.8.0 <3.12.0-0')
+    }
+  },
+  {
+    expectedResult: {
+      darwin: {
+        success: true,
         version: '2.7.18'
       },
       linux: {
@@ -294,6 +319,31 @@ const SetupPythonTests: SetupPythonResultTest[] = [
   {
     expectedResult: {
       darwin: {
+        success: false,
+        version: ''
+      },
+      linux: {
+        success: false,
+        version: ''
+      },
+      win32: {
+        success: false,
+        version: ''
+      }
+    },
+    inputs: {
+      allowPrereleases: false,
+      architecture: process.arch,
+      buildBehavior: BuildBehavior.Info,
+      cache: true,
+      checkLatest: false,
+      token: 'token',
+      version: new PythonVersion('pypy>=2.0.0 <3.0.0 || >=5.0.0 <6.0.0')
+    }
+  },
+  {
+    expectedResult: {
+      darwin: {
         success: true,
         version: '3.11.1'
       },
@@ -364,6 +414,31 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       checkLatest: false,
       token: 'token',
       version: new PythonVersion('3.12.0')
+    }
+  },
+  {
+    expectedResult: {
+      darwin: {
+        success: false,
+        version: ''
+      },
+      linux: {
+        success: false,
+        version: ''
+      },
+      win32: {
+        success: false,
+        version: ''
+      }
+    },
+    inputs: {
+      allowPrereleases: true,
+      architecture: process.arch,
+      buildBehavior: BuildBehavior.Info,
+      cache: true,
+      checkLatest: false,
+      token: 'token',
+      version: new PythonVersion('>=2.12.0 <2.13.0-0 || >=2.14.0 <2.15.0-0')
     }
   },
   {

@@ -17,8 +17,14 @@
 import * as core from '@actions/core';
 import * as tc from '@actions/tool-cache';
 import {ActionInputs, PythonType, PythonVersion} from './inputs';
-import {ManifestUrl, defaultPyPy2, defaultPyPy3} from './constants';
+import {
+  ManifestUrl,
+  anyVersionString,
+  defaultPyPy2,
+  defaultPyPy3
+} from './constants';
 import path from 'path';
+import semver from 'semver';
 
 export function isPyPy(version: PythonVersion): boolean {
   core.debug('Checking if version is PyPy.');
@@ -38,23 +44,44 @@ export async function getSetupPythonResult(
   if (isPyPy(inputs.version)) {
     core.debug('Version is PyPy.');
     const completeVersion = inputs.version.version;
-    const semverSplice = completeVersion.split('.');
-    if (semverSplice[0] === 'x') {
+    if (completeVersion === anyVersionString) {
       resultVersionString = defaultPyPy3;
       success = true;
-    } else if (semverSplice[1] === 'x') {
-      success = true;
-      if (semverSplice[0] === '2') {
-        resultVersionString = defaultPyPy2;
-      } else if (semverSplice[0] === '3') {
-        resultVersionString = defaultPyPy3;
+    } else {
+      const minVersion =
+        semver.minVersion(completeVersion) || new semver.SemVer('*');
+      const vers = minVersion.major;
+      const major = minVersion.minor;
+      const nextVer = `>=${vers + 1}.0.0-0`;
+      const nextMajor = `>=${vers}.${major + 1}.0-0`;
+      if (
+        !semver.intersects(completeVersion, nextVer) &&
+        semver.intersects(completeVersion, nextMajor)
+      ) {
+        core.debug('Detected range a.x.x');
+        switch (vers) {
+          case 2:
+            success = true;
+            resultVersionString = defaultPyPy2;
+            break;
+          case 3:
+            success = true;
+            resultVersionString = defaultPyPy3;
+            break;
+          default:
+            success = false;
+            resultVersionString = '';
+            break;
+        }
+      } else if (!semver.intersects(completeVersion, nextMajor)) {
+        core.debug('Detected range a.b.x');
+        success = true;
+        resultVersionString = `pypy${vers}.${major}`;
       } else {
+        core.debug(`Impossible to solve range ${completeVersion}`);
         success = false;
         resultVersionString = '';
       }
-    } else {
-      success = true;
-      resultVersionString = `pypy${semverSplice[0]}.${semverSplice[1]}`;
     }
     if (success) {
       core.debug(`PyPy version resolved to "${resultVersionString}".`);
@@ -92,14 +119,23 @@ export async function getSetupPythonResult(
         inputs.architecture
       );
       if (matchVersion === undefined) {
-        const splitVersion = inputs.version.version.split('.');
+        const minVersion = semver.minVersion(inputs.version.version);
         if (
           inputs.allowPrereleases &&
-          splitVersion[1] !== 'x' &&
-          splitVersion[2] === 'x'
+          minVersion &&
+          !semver.intersects(
+            inputs.version.version,
+            `>=${minVersion.major}.${minVersion.minor + 1}.0-0`
+          ) &&
+          semver.intersects(
+            inputs.version.version,
+            `>=${minVersion.major}.${minVersion.minor}.${
+              minVersion.patch + 1
+            }-0`
+          )
         ) {
           core.debug('Testing for prerelease versions');
-          const preReleaseVersion = `~${splitVersion[0]}.${splitVersion[1]}.0-0`;
+          const preReleaseVersion = `~${minVersion.major}.${minVersion.minor}.0-0`;
           const matchPreRelease = await tc.findFromManifest(
             preReleaseVersion,
             false,
