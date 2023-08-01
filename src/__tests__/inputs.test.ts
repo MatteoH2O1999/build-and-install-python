@@ -135,6 +135,17 @@ describe('Parsed inputs', () => {
       expect(parsedInputs.version).toEqual(new inputs.PythonVersion('3.5.4'));
     });
 
+    test(`multiple specified "${InputNames.PYTHON_VERSION}" and empty "${InputNames.PYTHON_VERSION_FILE}" leads to using first "${InputNames.PYTHON_VERSION}"`, async () => {
+      mockedInputs.pythonVersion = '3.5.4\n3.6.2';
+      mockedInputs.pythonVersionFile = '';
+      mockedUtils.getVersionInputFromFile.mockReturnValue(['3.9.0']);
+
+      const parsedInputs = await inputs.parseInputs();
+
+      expect(mockedUtils.getVersionInputFromFile).not.toBeCalled();
+      expect(parsedInputs.version).toEqual(new inputs.PythonVersion('3.5.4'));
+    });
+
     test(`empty "${InputNames.PYTHON_VERSION}" and specified existing "${InputNames.PYTHON_VERSION_FILE}" leads to using "${InputNames.PYTHON_VERSION_FILE}"`, async () => {
       mockedInputs.pythonVersion = '';
       mockedInputs.pythonVersionFile = 'file';
