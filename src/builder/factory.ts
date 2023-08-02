@@ -32,7 +32,10 @@ export default async function getBuilder(
       `Only CPython can be built from source. Got ${version.type}.`
     );
   }
-  const specificVersion = await getSpecificVersion(version.version);
+  const specificVersion = await getSpecificVersion(
+    version.version,
+    ['win32'].includes(process.platform)
+  );
   if (specificVersion === null) {
     core.info(
       `Could not resolve version range ${version.version} to any available CPython tag.`
@@ -57,20 +60,35 @@ export default async function getBuilder(
 }
 
 async function getSpecificVersion(
-  versionRange: string
+  versionRange: string,
+  preferInstaller: boolean
 ): Promise<PythonTag | null> {
-  const tags: PythonTag[] = cpythonTags;
-
+  const tags = cpythonTags.map(value => {
+    return {...value, installer: value.installer || !preferInstaller};
+  });
   let specificVersion: PythonTag | null = null;
+  let installer = false;
   for (const tag of tags) {
-    const semverString = semver.valid(tag.version)?.replace('v', '');
+    const semverString = semver.clean(semver.valid(tag.version) || '');
     core.debug(`Checking tag ${tag.version}`);
     if (semverString && semver.satisfies(semverString, versionRange)) {
-      if (
-        specificVersion === null ||
-        semver.gte(semverString, specificVersion.version)
-      ) {
+      if (specificVersion === null) {
         specificVersion = {version: semverString, zipBall: tag.zipBall};
+        installer = tag.installer;
+      } else if (!installer) {
+        if (tag.installer) {
+          installer = true;
+          specificVersion = {version: semverString, zipBall: tag.zipBall};
+        } else if (semver.gte(semverString, specificVersion.version)) {
+          specificVersion = {version: semverString, zipBall: tag.zipBall};
+        }
+      } else {
+        if (
+          tag.installer &&
+          semver.gte(semverString, specificVersion.version)
+        ) {
+          specificVersion = {version: semverString, zipBall: tag.zipBall};
+        }
       }
     }
   }
