@@ -429,10 +429,10 @@ export default class WindowsBuilder extends Builder {
       default:
         return '';
     }
-    const filename = `python-${this.specificVersion}.${archLabel}`;
+    const filename = `python-${this.specificVersion}`;
     let installerPath = '';
     try {
-      const exeName = `${filename}.exe`;
+      const exeName = `${filename}-${archLabel}.exe`;
       installerPath = await tc.downloadTool(
         `${ftpPythonUrl}/${this.specificVersion}/${exeName}`,
         path.join(this.path, exeName)
@@ -442,7 +442,7 @@ export default class WindowsBuilder extends Builder {
     }
     if (!installerPath) {
       try {
-        const msiName = `${filename}.msi`;
+        const msiName = `${filename}.${archLabel}.msi`;
         installerPath = await tc.downloadTool(
           `${ftpPythonUrl}/${this.specificVersion}/${msiName}`,
           path.join(this.path, msiName)

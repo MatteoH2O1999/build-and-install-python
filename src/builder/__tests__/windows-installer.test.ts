@@ -48,8 +48,8 @@ describe('WindowsBuilder.getInstaller method', () => {
     expect(installer).toEqual('exe');
     expect(mockedTc.downloadTool).toBeCalledTimes(1);
     expect(mockedTc.downloadTool).toBeCalledWith(
-      `${ftpPythonUrl}/3.4.1/python-3.4.1.amd64.exe`,
-      'path/python-3.4.1.amd64.exe'
+      `${ftpPythonUrl}/3.4.1/python-3.4.1-amd64.exe`,
+      'path/python-3.4.1-amd64.exe'
     );
   });
 
@@ -68,8 +68,8 @@ describe('WindowsBuilder.getInstaller method', () => {
     expect(installer).toEqual('msi');
     expect(mockedTc.downloadTool).toBeCalledTimes(2);
     expect(mockedTc.downloadTool).toBeCalledWith(
-      `${ftpPythonUrl}/3.4.1/python-3.4.1.amd64.exe`,
-      'path/python-3.4.1.amd64.exe'
+      `${ftpPythonUrl}/3.4.1/python-3.4.1-amd64.exe`,
+      'path/python-3.4.1-amd64.exe'
     );
     expect(mockedTc.downloadTool).toBeCalledWith(
       `${ftpPythonUrl}/3.4.1/python-3.4.1.amd64.msi`,
@@ -92,8 +92,8 @@ describe('WindowsBuilder.getInstaller method', () => {
     expect(installer).toEqual('');
     expect(mockedTc.downloadTool).toBeCalledTimes(2);
     expect(mockedTc.downloadTool).toBeCalledWith(
-      `${ftpPythonUrl}/3.4.1/python-3.4.1.amd64.exe`,
-      'path/python-3.4.1.amd64.exe'
+      `${ftpPythonUrl}/3.4.1/python-3.4.1-amd64.exe`,
+      'path/python-3.4.1-amd64.exe'
     );
     expect(mockedTc.downloadTool).toBeCalledWith(
       `${ftpPythonUrl}/3.4.1/python-3.4.1.amd64.msi`,
