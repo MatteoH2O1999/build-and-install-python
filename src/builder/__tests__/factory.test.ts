@@ -23,6 +23,14 @@ import WindowsBuilder from '../windows';
 import getBuilder from '../factory';
 
 jest.mock('@actions/core');
+jest.mock('../tags.json', () => {
+  const actual: unknown[] = jest.requireActual('../tags.json');
+  actual.reverse();
+  return {
+    __esModule: true,
+    default: actual
+  };
+});
 
 function detectExpectedClass():
   | typeof LinuxBuilder

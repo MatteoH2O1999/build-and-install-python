@@ -28,56 +28,56 @@ const tests: ExpectedTestResult[] = [
     expectedArchitecture: 'x64',
     expectedSpecificVersion: '2.7.18',
     inputArchitecture: 'x64',
-    inputVersion: {type: PythonType.CPython, version: '2.7.x'}
+    inputVersion: {type: PythonType.CPython, version: '>=2.7.0 <2.8.0-0'}
   },
   {
     expectedArchitecture: 'x64',
     expectedSpecificVersion: '3.0.1',
     inputArchitecture: 'x64',
-    inputVersion: {type: PythonType.CPython, version: '3.0.x'}
+    inputVersion: {type: PythonType.CPython, version: '>=3.0.0 <3.1.0-0'}
   },
   {
     expectedArchitecture: 'x64',
-    expectedSpecificVersion: '3.1.5',
+    expectedSpecificVersion: process.platform === 'win32' ? '3.1.4' : '3.1.5',
     inputArchitecture: 'x64',
-    inputVersion: {type: PythonType.CPython, version: '3.1.x'}
+    inputVersion: {type: PythonType.CPython, version: '>=3.1.0 <3.2.0-0'}
   },
   {
     expectedArchitecture: 'x64',
-    expectedSpecificVersion: '3.2.6',
+    expectedSpecificVersion: process.platform === 'win32' ? '3.2.5' : '3.2.6',
     inputArchitecture: 'x64',
-    inputVersion: {type: PythonType.CPython, version: '3.2.x'}
+    inputVersion: {type: PythonType.CPython, version: '>=3.2.0 <3.3.0-0'}
   },
   {
     expectedArchitecture: 'x64',
-    expectedSpecificVersion: '3.3.7',
+    expectedSpecificVersion: process.platform === 'win32' ? '3.3.5' : '3.3.7',
     inputArchitecture: 'x64',
-    inputVersion: {type: PythonType.CPython, version: '3.3.x'}
+    inputVersion: {type: PythonType.CPython, version: '>=3.3.0 <3.4.0-0'}
   },
   {
     expectedArchitecture: 'x64',
-    expectedSpecificVersion: '3.4.10',
+    expectedSpecificVersion: process.platform === 'win32' ? '3.4.4' : '3.4.10',
     inputArchitecture: 'x64',
-    inputVersion: {type: PythonType.CPython, version: '3.4.x'}
+    inputVersion: {type: PythonType.CPython, version: '>=3.4.0 <3.5.0-0'}
   },
   {
     expectedArchitecture: 'x64',
-    expectedSpecificVersion: '3.5.10',
+    expectedSpecificVersion: process.platform === 'win32' ? '3.5.4' : '3.5.10',
     inputArchitecture: 'x64',
-    inputVersion: {type: PythonType.CPython, version: '3.5.x'}
+    inputVersion: {type: PythonType.CPython, version: '>=3.5.0 <3.6.0-0'}
   },
   {
     expectedArchitecture: 'x64',
-    expectedSpecificVersion: '3.6.15',
+    expectedSpecificVersion: process.platform === 'win32' ? '3.6.8' : '3.6.15',
     inputArchitecture: 'x64',
-    inputVersion: {type: PythonType.CPython, version: '3.6.x'}
+    inputVersion: {type: PythonType.CPython, version: '>=3.6.0 <3.7.0-0'}
   },
-  // {
-  //   expectedArchitecture: 'x64',
-  //   expectedSpecificVersion: '3.7.16',
-  //   inputArchitecture: 'x64',
-  //   inputVersion: {type: PythonType.CPython, version: '3.7.x'}
-  // },
+  {
+    expectedArchitecture: 'x64',
+    expectedSpecificVersion: process.platform === 'win32' ? '3.7.9' : '3.7.17',
+    inputArchitecture: 'x64',
+    inputVersion: {type: PythonType.CPython, version: '>=3.7.0 <3.8.0-0'}
+  },
   // {
   //   expectedArchitecture: 'x64',
   //   expectedSpecificVersion: '3.8.16',
@@ -115,10 +115,10 @@ const tests: ExpectedTestResult[] = [
   //   inputVersion: {type: PythonType.CPython, version: '3.x.x'}
   // },
   {
-    expectedArchitecture: 'x64',
+    expectedArchitecture: 'x32',
     expectedSpecificVersion: '2.7.18',
-    inputArchitecture: 'x64',
-    inputVersion: {type: PythonType.CPython, version: '2.x.x'}
+    inputArchitecture: 'x32',
+    inputVersion: {type: PythonType.CPython, version: '>=2.0.0 <3.0.0-0'}
   }
 ];
 
