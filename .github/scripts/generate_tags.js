@@ -1,41 +1,40 @@
+const axios = require('axios').default;
 const core = require('@actions/core');
 const github = require('@actions/github');
 const fs = require('fs');
 const path = require('path');
+const semver = require('semver');
+
+const ftpPythonUrl = 'https://www.python.org/ftp/python';
 
 async function updateJson() {
   const octokit = github.getOctokit(process.env['GITHUB_TOKEN']);
   const tags = [];
-  let index = 1;
-  let changed = true;
-  while (changed) {
-    changed = false;
-    let response = null;
-    core.startGroup(`Getting tags ${(index - 1) * 100}-${index * 100}`);
-    while (response === null) {
-      try {
-        response = await octokit.rest.repos.listTags({
-          owner: 'python',
-          page: index,
-          per_page: 100,
-          repo: 'cpython'
-        });
-      } catch (error) {
-        core.info('Rest API rate limit reached. Retrying in 60 seconds...');
-        await new Promise(r => setTimeout(r, 60000));
+  core.startGroup('Getting tags');
+  for (const tag of await octokit.paginate(octokit.rest.repos.listTags, {owner: 'python', repo: 'cpython', per_page: 100})) {
+    core.info(`Received tag ${tag.name}`);
+    let installer = false;
+    const cleanTag = semver.clean(tag.name);
+    const exts = ['.msi', '.exe'];
+    const filename = `python-${cleanTag}.amd64`;
+    for (const ext of exts) {
+      const url = `${ftpPythonUrl}/${cleanTag}/${filename}${ext}`;
+      let done = false;
+      while (!done) {
+        const response = await axios.get(url);
+        if (response.status === axios.HttpStatusCode.Ok) {
+          installer = true;
+          done = true;
+        } else if (response.status === axios.HttpStatusCode.NotFound) {
+          done = true;
+        } else {
+          await new Promise(resolve => setTimeout(resolve, 2000));
+        }
       }
     }
-    if (response.status !== 200) {
-      throw new Error('Error in getting tags.');
-    }
-    changed = response.data.length === 100;
-    for (const tag of response.data) {
-      core.info(`Received tag ${tag.name}`)
-      tags.push({version: tag.name, zipBall: tag.zipball_url});
-    }
-    core.endGroup();
-    index++;
+    tags.push({installer, version: tag.name, zipBall: tag.zipball_url});
   }
+  core.endGroup();
   return JSON.stringify(tags, null, 2);
 }
 
