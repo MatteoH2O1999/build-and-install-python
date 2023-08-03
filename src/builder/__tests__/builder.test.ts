@@ -440,9 +440,12 @@ describe('class Builder', () => {
 
       await builder.initPip(tempDir);
 
-      expect(mockedExec.exec).toBeCalledTimes(1);
+      expect(mockedExec.exec).toBeCalledTimes(2);
       expect(mockedExec.exec.mock.calls[0][0]).toEqual(
         `${exePath} -m ensurepip`
+      );
+      expect(mockedExec.exec.mock.calls[1][0]).toEqual(
+        `${exePath} -m pip install --upgrade pip`
       );
     });
 
