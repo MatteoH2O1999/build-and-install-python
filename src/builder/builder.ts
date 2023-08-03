@@ -170,6 +170,9 @@ export default abstract class Builder {
     try {
       core.info('Trying to use ensurepip...');
       await exec.exec(`${pythonExecutable} -m ensurepip`, [], {silent: true});
+      await exec.exec(`${pythonExecutable} -m pip install --upgrade pip`, [], {
+        silent: true
+      });
     } catch (error) {
       core.info('Ensurepip failed. Trying using get_pip.py...');
       const splitVersion = this.specificVersion.split('.');
