@@ -189,8 +189,8 @@ export default abstract class Builder {
           silent: true
         });
       } catch (e) {
-        if (major < 2) {
-          core.info('Pip for Python < 3.2 is not available.');
+        if (major < 3) {
+          core.info('Pip for Python < 3.3 is not available.');
           core.endGroup();
           return;
         }
