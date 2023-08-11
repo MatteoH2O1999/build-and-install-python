@@ -14,6 +14,10 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+const testedLabels = ['ubuntu-22.04', 'windows-2022', 'macos-12'];
+
+export {testedLabels};
+
 export enum InputNames {
   PYTHON_VERSION = 'python-version',
   PYTHON_VERSION_FILE = 'python-version-file',

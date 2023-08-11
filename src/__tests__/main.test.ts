@@ -35,6 +35,7 @@ jest.mock('../version');
 jest.mock('../builder/factory');
 jest.mock('os');
 jest.mock('../utils');
+jest.mock('../label');
 
 const mockedCore = jest.mocked(core);
 const mockedTc = jest.mocked(tc);

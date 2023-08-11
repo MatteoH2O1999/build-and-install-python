@@ -19,9 +19,13 @@ import * as tc from '@actions/tool-cache';
 import {ActionInputs, BuildBehavior, parseInputs} from './inputs';
 import {InputNames, OutputNames} from './constants';
 import {SetupPythonResult, getSetupPythonResult, isPyPy} from './version';
+import {emitWarnings} from './label';
 import getBuilder from './builder';
 
 export default async function main(): Promise<void> {
+  // Emit relevant warnings
+  await emitWarnings();
+
   let inputs: ActionInputs;
   let setupPythonResult: SetupPythonResult;
 
