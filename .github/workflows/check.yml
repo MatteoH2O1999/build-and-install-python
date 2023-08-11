@@ -12,6 +12,17 @@ on:
           default: false
           description: Include prereleases in the check
           type: boolean
+      allow-build:
+        required: true
+        description: Behavior to use for the action
+        type: choice
+        default: info
+        options:
+          - info
+          - warn
+          - force
+          - allow
+          - error
 
 env:
   NODE_VERSION: 16
@@ -63,7 +74,7 @@ jobs:
         uses: ./
         with:
           python-version: ${{ inputs.python-version }}
-          allow-build: force
+          allow-build: ${{ inputs.allow-build }}
           cache-build: true
           allow-prereleases: ${{ inputs.allow-prereleases }}
       - name: Setup Python ${{ inputs.python-version }}
@@ -103,7 +114,7 @@ jobs:
         uses: ./
         with:
           python-version: ${{ inputs.python-version }}
-          allow-build: force
+          allow-build: ${{ inputs.allow-build }}
           cache-build: true
           allow-prereleases: ${{ inputs.allow-prereleases }}
       - name: Setup Python ${{ inputs.python-version }}
