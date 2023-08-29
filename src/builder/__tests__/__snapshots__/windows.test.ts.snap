@@ -9370,6 +9370,98 @@ exports[`WindowsBuilder for version 3.8.17 identifies the correct additional pat
 
 exports[`WindowsBuilder for version 3.8.17 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
 
+exports[`WindowsBuilder for version 3.8.18 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
+[
+  "Execute command "vswhere "",
+  "Execute command "vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" "",
+  "Execute command "vswhere -property installationPath "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.8.18 to defaultDownloadPath\\v3.8.18",
+  "Extract defaultDownloadPath\\v3.8.18 to defaultExtractedPath\\extractedv3.8.18",
+  "Recursively remove path defaultDownloadPath\\v3.8.18",
+  "Copy folder defaultExtractedPath\\extractedv3.8.18\\python-cpython to tmpDir\\CPython3.8.18arm64win32",
+  "Recursively remove path defaultExtractedPath\\extractedv3.8.18",
+  "Throw "Unsupported architecture"",
+]
+`;
+
+exports[`WindowsBuilder for version 3.8.18 has a stable interaction with @actions/toolkit during build for arch x64 1`] = `
+[
+  "Execute command "vswhere "",
+  "Execute command "vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" "",
+  "Execute command "vswhere -property installationPath "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.8.18 to defaultDownloadPath\\v3.8.18",
+  "Extract defaultDownloadPath\\v3.8.18 to defaultExtractedPath\\extractedv3.8.18",
+  "Recursively remove path defaultDownloadPath\\v3.8.18",
+  "Copy folder defaultExtractedPath\\extractedv3.8.18\\python-cpython to tmpDir\\CPython3.8.18x64win32",
+  "Recursively remove path defaultExtractedPath\\extractedv3.8.18",
+  "Execute command "tmpDir\\CPython3.8.18x64win32\\PCbuild\\get_externals.bat "",
+  "Execute command "tmpDir\\CPython3.8.18x64win32\\Tools\\msi\\get_externals.bat "",
+  "Execute command "tmpDir\\CPython3.8.18x64win32\\PCbuild\\build.bat -p x64 -e "/p:PlatformToolset=v142" "/p:WindowsTargetPlatformVersion=10.0.17763.0""",
+  "Execute command "tmpDir\\CPython3.8.18x64win32\\PCbuild\\build.bat -p x64 -d -e "/p:PlatformToolset=v142" "/p:WindowsTargetPlatformVersion=10.0.17763.0""",
+  "Execute command "tmpDir\\CPython3.8.18x64win32\\Doc\\make.bat html"",
+  "Execute command ""vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" " tmpDir\\CPython3.8.18x64win32\\Tools\\msi\\launcher\\launcher.wixproj /p:Platform=x86 /p:PlatformToolset=v142 /p:WindowsTargetPlatformVersion=10.0.17763.0"",
+  "Execute command ""vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" " tmpDir\\CPython3.8.18x64win32\\Tools\\msi\\bundle\\snapshot.wixproj /p:Platform=x64 /p:PlatformToolset=v142 /p:WindowsTargetPlatformVersion=10.0.17763.0"",
+  "Execute command "powershell attrib -h -r /d /s "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Execute command "tmpDir\\CPython3.8.18x64win32\\PCbuild\\amd64\\en-us\\python-v3.8.18.exe TargetDir=tmpDir\\CPython3.8.18x64win32\\win32pythonInstalledFolder Include_pip=0 CompileAll=1 Include_launcher=0 InstallLauncherAllUsers=0 /quiet"",
+]
+`;
+
+exports[`WindowsBuilder for version 3.8.18 has a stable interaction with @actions/toolkit during build for arch x86 1`] = `
+[
+  "Execute command "vswhere "",
+  "Execute command "vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" "",
+  "Execute command "vswhere -property installationPath "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.8.18 to defaultDownloadPath\\v3.8.18",
+  "Extract defaultDownloadPath\\v3.8.18 to defaultExtractedPath\\extractedv3.8.18",
+  "Recursively remove path defaultDownloadPath\\v3.8.18",
+  "Copy folder defaultExtractedPath\\extractedv3.8.18\\python-cpython to tmpDir\\CPython3.8.18x86win32",
+  "Recursively remove path defaultExtractedPath\\extractedv3.8.18",
+  "Execute command "tmpDir\\CPython3.8.18x86win32\\PCbuild\\get_externals.bat "",
+  "Execute command "tmpDir\\CPython3.8.18x86win32\\Tools\\msi\\get_externals.bat "",
+  "Execute command "tmpDir\\CPython3.8.18x86win32\\PCbuild\\build.bat -p x86 -e "/p:PlatformToolset=v142" "/p:WindowsTargetPlatformVersion=10.0.17763.0""",
+  "Execute command "tmpDir\\CPython3.8.18x86win32\\PCbuild\\build.bat -p x86 -d -e "/p:PlatformToolset=v142" "/p:WindowsTargetPlatformVersion=10.0.17763.0""",
+  "Execute command "tmpDir\\CPython3.8.18x86win32\\Doc\\make.bat html"",
+  "Execute command ""vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" " tmpDir\\CPython3.8.18x86win32\\Tools\\msi\\launcher\\launcher.wixproj /p:Platform=x86 /p:PlatformToolset=v142 /p:WindowsTargetPlatformVersion=10.0.17763.0"",
+  "Execute command ""vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" " tmpDir\\CPython3.8.18x86win32\\Tools\\msi\\bundle\\snapshot.wixproj /p:Platform=x86 /p:PlatformToolset=v142 /p:WindowsTargetPlatformVersion=10.0.17763.0"",
+  "Execute command "powershell attrib -h -r /d /s "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Execute command "tmpDir\\CPython3.8.18x86win32\\PCbuild\\win32\\en-us\\python-v3.8.18.exe TargetDir=tmpDir\\CPython3.8.18x86win32\\win32pythonInstalledFolder Include_pip=0 CompileAll=1 Include_launcher=0 InstallLauncherAllUsers=0 /quiet"",
+]
+`;
+
+exports[`WindowsBuilder for version 3.8.18 has a stable interaction with @actions/toolkit during postInstall for arch arm64 1`] = `
+[
+  "Create symlink in path installPath\\python3.exe pointing to installPath\\python.exe",
+]
+`;
+
+exports[`WindowsBuilder for version 3.8.18 has a stable interaction with @actions/toolkit during postInstall for arch x64 1`] = `
+[
+  "Create symlink in path installPath\\python3.exe pointing to installPath\\python.exe",
+]
+`;
+
+exports[`WindowsBuilder for version 3.8.18 has a stable interaction with @actions/toolkit during postInstall for arch x86 1`] = `
+[
+  "Create symlink in path installPath\\python3.exe pointing to installPath\\python.exe",
+]
+`;
+
+exports[`WindowsBuilder for version 3.8.18 identifies the correct additional paths to cache for arch arm64 1`] = `[]`;
+
+exports[`WindowsBuilder for version 3.8.18 identifies the correct additional paths to cache for arch x64 1`] = `[]`;
+
+exports[`WindowsBuilder for version 3.8.18 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
+
 exports[`WindowsBuilder for version 3.9.0 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
 [
   "Execute command "vswhere "",
@@ -11026,6 +11118,98 @@ exports[`WindowsBuilder for version 3.9.17 identifies the correct additional pat
 
 exports[`WindowsBuilder for version 3.9.17 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
 
+exports[`WindowsBuilder for version 3.9.18 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
+[
+  "Execute command "vswhere "",
+  "Execute command "vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" "",
+  "Execute command "vswhere -property installationPath "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.9.18 to defaultDownloadPath\\v3.9.18",
+  "Extract defaultDownloadPath\\v3.9.18 to defaultExtractedPath\\extractedv3.9.18",
+  "Recursively remove path defaultDownloadPath\\v3.9.18",
+  "Copy folder defaultExtractedPath\\extractedv3.9.18\\python-cpython to tmpDir\\CPython3.9.18arm64win32",
+  "Recursively remove path defaultExtractedPath\\extractedv3.9.18",
+  "Throw "Unsupported architecture"",
+]
+`;
+
+exports[`WindowsBuilder for version 3.9.18 has a stable interaction with @actions/toolkit during build for arch x64 1`] = `
+[
+  "Execute command "vswhere "",
+  "Execute command "vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" "",
+  "Execute command "vswhere -property installationPath "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.9.18 to defaultDownloadPath\\v3.9.18",
+  "Extract defaultDownloadPath\\v3.9.18 to defaultExtractedPath\\extractedv3.9.18",
+  "Recursively remove path defaultDownloadPath\\v3.9.18",
+  "Copy folder defaultExtractedPath\\extractedv3.9.18\\python-cpython to tmpDir\\CPython3.9.18x64win32",
+  "Recursively remove path defaultExtractedPath\\extractedv3.9.18",
+  "Execute command "tmpDir\\CPython3.9.18x64win32\\PCbuild\\get_externals.bat "",
+  "Execute command "tmpDir\\CPython3.9.18x64win32\\Tools\\msi\\get_externals.bat "",
+  "Execute command "tmpDir\\CPython3.9.18x64win32\\PCbuild\\build.bat -p x64 -e "/p:PlatformToolset=v142" "/p:WindowsTargetPlatformVersion=10.0.17763.0""",
+  "Execute command "tmpDir\\CPython3.9.18x64win32\\PCbuild\\build.bat -p x64 -d -e "/p:PlatformToolset=v142" "/p:WindowsTargetPlatformVersion=10.0.17763.0""",
+  "Execute command "tmpDir\\CPython3.9.18x64win32\\Doc\\make.bat html"",
+  "Execute command ""vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" " tmpDir\\CPython3.9.18x64win32\\Tools\\msi\\launcher\\launcher.wixproj /p:Platform=x86 /p:PlatformToolset=v142 /p:WindowsTargetPlatformVersion=10.0.17763.0"",
+  "Execute command ""vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" " tmpDir\\CPython3.9.18x64win32\\Tools\\msi\\bundle\\snapshot.wixproj /p:Platform=x64 /p:PlatformToolset=v142 /p:WindowsTargetPlatformVersion=10.0.17763.0"",
+  "Execute command "powershell attrib -h -r /d /s "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Execute command "tmpDir\\CPython3.9.18x64win32\\PCbuild\\amd64\\en-us\\python-v3.9.18.exe TargetDir=tmpDir\\CPython3.9.18x64win32\\win32pythonInstalledFolder Include_pip=0 CompileAll=1 Include_launcher=0 InstallLauncherAllUsers=0 /quiet"",
+]
+`;
+
+exports[`WindowsBuilder for version 3.9.18 has a stable interaction with @actions/toolkit during build for arch x86 1`] = `
+[
+  "Execute command "vswhere "",
+  "Execute command "vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" "",
+  "Execute command "vswhere -property installationPath "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.9.18 to defaultDownloadPath\\v3.9.18",
+  "Extract defaultDownloadPath\\v3.9.18 to defaultExtractedPath\\extractedv3.9.18",
+  "Recursively remove path defaultDownloadPath\\v3.9.18",
+  "Copy folder defaultExtractedPath\\extractedv3.9.18\\python-cpython to tmpDir\\CPython3.9.18x86win32",
+  "Recursively remove path defaultExtractedPath\\extractedv3.9.18",
+  "Execute command "tmpDir\\CPython3.9.18x86win32\\PCbuild\\get_externals.bat "",
+  "Execute command "tmpDir\\CPython3.9.18x86win32\\Tools\\msi\\get_externals.bat "",
+  "Execute command "tmpDir\\CPython3.9.18x86win32\\PCbuild\\build.bat -p x86 -e "/p:PlatformToolset=v142" "/p:WindowsTargetPlatformVersion=10.0.17763.0""",
+  "Execute command "tmpDir\\CPython3.9.18x86win32\\PCbuild\\build.bat -p x86 -d -e "/p:PlatformToolset=v142" "/p:WindowsTargetPlatformVersion=10.0.17763.0""",
+  "Execute command "tmpDir\\CPython3.9.18x86win32\\Doc\\make.bat html"",
+  "Execute command ""vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" " tmpDir\\CPython3.9.18x86win32\\Tools\\msi\\launcher\\launcher.wixproj /p:Platform=x86 /p:PlatformToolset=v142 /p:WindowsTargetPlatformVersion=10.0.17763.0"",
+  "Execute command ""vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" " tmpDir\\CPython3.9.18x86win32\\Tools\\msi\\bundle\\snapshot.wixproj /p:Platform=x86 /p:PlatformToolset=v142 /p:WindowsTargetPlatformVersion=10.0.17763.0"",
+  "Execute command "powershell attrib -h -r /d /s "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Execute command "tmpDir\\CPython3.9.18x86win32\\PCbuild\\win32\\en-us\\python-v3.9.18.exe TargetDir=tmpDir\\CPython3.9.18x86win32\\win32pythonInstalledFolder Include_pip=0 CompileAll=1 Include_launcher=0 InstallLauncherAllUsers=0 /quiet"",
+]
+`;
+
+exports[`WindowsBuilder for version 3.9.18 has a stable interaction with @actions/toolkit during postInstall for arch arm64 1`] = `
+[
+  "Create symlink in path installPath\\python3.exe pointing to installPath\\python.exe",
+]
+`;
+
+exports[`WindowsBuilder for version 3.9.18 has a stable interaction with @actions/toolkit during postInstall for arch x64 1`] = `
+[
+  "Create symlink in path installPath\\python3.exe pointing to installPath\\python.exe",
+]
+`;
+
+exports[`WindowsBuilder for version 3.9.18 has a stable interaction with @actions/toolkit during postInstall for arch x86 1`] = `
+[
+  "Create symlink in path installPath\\python3.exe pointing to installPath\\python.exe",
+]
+`;
+
+exports[`WindowsBuilder for version 3.9.18 identifies the correct additional paths to cache for arch arm64 1`] = `[]`;
+
+exports[`WindowsBuilder for version 3.9.18 identifies the correct additional paths to cache for arch x64 1`] = `[]`;
+
+exports[`WindowsBuilder for version 3.9.18 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
+
 exports[`WindowsBuilder for version 3.10.0 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
 [
   "Execute command "vswhere "",
@@ -12222,6 +12406,98 @@ exports[`WindowsBuilder for version 3.10.12 identifies the correct additional pa
 
 exports[`WindowsBuilder for version 3.10.12 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
 
+exports[`WindowsBuilder for version 3.10.13 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
+[
+  "Execute command "vswhere "",
+  "Execute command "vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" "",
+  "Execute command "vswhere -property installationPath "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.10.13 to defaultDownloadPath\\v3.10.13",
+  "Extract defaultDownloadPath\\v3.10.13 to defaultExtractedPath\\extractedv3.10.13",
+  "Recursively remove path defaultDownloadPath\\v3.10.13",
+  "Copy folder defaultExtractedPath\\extractedv3.10.13\\python-cpython to tmpDir\\CPython3.10.13arm64win32",
+  "Recursively remove path defaultExtractedPath\\extractedv3.10.13",
+  "Throw "Unsupported architecture"",
+]
+`;
+
+exports[`WindowsBuilder for version 3.10.13 has a stable interaction with @actions/toolkit during build for arch x64 1`] = `
+[
+  "Execute command "vswhere "",
+  "Execute command "vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" "",
+  "Execute command "vswhere -property installationPath "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.10.13 to defaultDownloadPath\\v3.10.13",
+  "Extract defaultDownloadPath\\v3.10.13 to defaultExtractedPath\\extractedv3.10.13",
+  "Recursively remove path defaultDownloadPath\\v3.10.13",
+  "Copy folder defaultExtractedPath\\extractedv3.10.13\\python-cpython to tmpDir\\CPython3.10.13x64win32",
+  "Recursively remove path defaultExtractedPath\\extractedv3.10.13",
+  "Execute command "tmpDir\\CPython3.10.13x64win32\\PCbuild\\get_externals.bat "",
+  "Execute command "tmpDir\\CPython3.10.13x64win32\\Tools\\msi\\get_externals.bat "",
+  "Execute command "tmpDir\\CPython3.10.13x64win32\\PCbuild\\build.bat -p x64 -e "/p:PlatformToolset=v142" "/p:WindowsTargetPlatformVersion=10.0.17763.0""",
+  "Execute command "tmpDir\\CPython3.10.13x64win32\\PCbuild\\build.bat -p x64 -d -e "/p:PlatformToolset=v142" "/p:WindowsTargetPlatformVersion=10.0.17763.0""",
+  "Execute command "tmpDir\\CPython3.10.13x64win32\\Doc\\make.bat html"",
+  "Execute command ""vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" " tmpDir\\CPython3.10.13x64win32\\Tools\\msi\\launcher\\launcher.wixproj /p:Platform=x86 /p:PlatformToolset=v142 /p:WindowsTargetPlatformVersion=10.0.17763.0"",
+  "Execute command ""vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" " tmpDir\\CPython3.10.13x64win32\\Tools\\msi\\bundle\\snapshot.wixproj /p:Platform=x64 /p:PlatformToolset=v142 /p:WindowsTargetPlatformVersion=10.0.17763.0"",
+  "Execute command "powershell attrib -h -r /d /s "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Execute command "tmpDir\\CPython3.10.13x64win32\\PCbuild\\amd64\\en-us\\python-v3.10.13.exe TargetDir=tmpDir\\CPython3.10.13x64win32\\win32pythonInstalledFolder Include_pip=0 CompileAll=1 Include_launcher=0 InstallLauncherAllUsers=0 /quiet"",
+]
+`;
+
+exports[`WindowsBuilder for version 3.10.13 has a stable interaction with @actions/toolkit during build for arch x86 1`] = `
+[
+  "Execute command "vswhere "",
+  "Execute command "vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" "",
+  "Execute command "vswhere -property installationPath "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.10.13 to defaultDownloadPath\\v3.10.13",
+  "Extract defaultDownloadPath\\v3.10.13 to defaultExtractedPath\\extractedv3.10.13",
+  "Recursively remove path defaultDownloadPath\\v3.10.13",
+  "Copy folder defaultExtractedPath\\extractedv3.10.13\\python-cpython to tmpDir\\CPython3.10.13x86win32",
+  "Recursively remove path defaultExtractedPath\\extractedv3.10.13",
+  "Execute command "tmpDir\\CPython3.10.13x86win32\\PCbuild\\get_externals.bat "",
+  "Execute command "tmpDir\\CPython3.10.13x86win32\\Tools\\msi\\get_externals.bat "",
+  "Execute command "tmpDir\\CPython3.10.13x86win32\\PCbuild\\build.bat -p x86 -e "/p:PlatformToolset=v142" "/p:WindowsTargetPlatformVersion=10.0.17763.0""",
+  "Execute command "tmpDir\\CPython3.10.13x86win32\\PCbuild\\build.bat -p x86 -d -e "/p:PlatformToolset=v142" "/p:WindowsTargetPlatformVersion=10.0.17763.0""",
+  "Execute command "tmpDir\\CPython3.10.13x86win32\\Doc\\make.bat html"",
+  "Execute command ""vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" " tmpDir\\CPython3.10.13x86win32\\Tools\\msi\\launcher\\launcher.wixproj /p:Platform=x86 /p:PlatformToolset=v142 /p:WindowsTargetPlatformVersion=10.0.17763.0"",
+  "Execute command ""vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" " tmpDir\\CPython3.10.13x86win32\\Tools\\msi\\bundle\\snapshot.wixproj /p:Platform=x86 /p:PlatformToolset=v142 /p:WindowsTargetPlatformVersion=10.0.17763.0"",
+  "Execute command "powershell attrib -h -r /d /s "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Execute command "tmpDir\\CPython3.10.13x86win32\\PCbuild\\win32\\en-us\\python-v3.10.13.exe TargetDir=tmpDir\\CPython3.10.13x86win32\\win32pythonInstalledFolder Include_pip=0 CompileAll=1 Include_launcher=0 InstallLauncherAllUsers=0 /quiet"",
+]
+`;
+
+exports[`WindowsBuilder for version 3.10.13 has a stable interaction with @actions/toolkit during postInstall for arch arm64 1`] = `
+[
+  "Create symlink in path installPath\\python3.exe pointing to installPath\\python.exe",
+]
+`;
+
+exports[`WindowsBuilder for version 3.10.13 has a stable interaction with @actions/toolkit during postInstall for arch x64 1`] = `
+[
+  "Create symlink in path installPath\\python3.exe pointing to installPath\\python.exe",
+]
+`;
+
+exports[`WindowsBuilder for version 3.10.13 has a stable interaction with @actions/toolkit during postInstall for arch x86 1`] = `
+[
+  "Create symlink in path installPath\\python3.exe pointing to installPath\\python.exe",
+]
+`;
+
+exports[`WindowsBuilder for version 3.10.13 identifies the correct additional paths to cache for arch arm64 1`] = `[]`;
+
+exports[`WindowsBuilder for version 3.10.13 identifies the correct additional paths to cache for arch x64 1`] = `[]`;
+
+exports[`WindowsBuilder for version 3.10.13 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
+
 exports[`WindowsBuilder for version 3.11.0 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
 [
   "Execute command "vswhere "",
@@ -12681,3 +12957,95 @@ exports[`WindowsBuilder for version 3.11.4 identifies the correct additional pat
 exports[`WindowsBuilder for version 3.11.4 identifies the correct additional paths to cache for arch x64 1`] = `[]`;
 
 exports[`WindowsBuilder for version 3.11.4 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
+
+exports[`WindowsBuilder for version 3.11.5 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
+[
+  "Execute command "vswhere "",
+  "Execute command "vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" "",
+  "Execute command "vswhere -property installationPath "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.11.5 to defaultDownloadPath\\v3.11.5",
+  "Extract defaultDownloadPath\\v3.11.5 to defaultExtractedPath\\extractedv3.11.5",
+  "Recursively remove path defaultDownloadPath\\v3.11.5",
+  "Copy folder defaultExtractedPath\\extractedv3.11.5\\python-cpython to tmpDir\\CPython3.11.5arm64win32",
+  "Recursively remove path defaultExtractedPath\\extractedv3.11.5",
+  "Throw "Unsupported architecture"",
+]
+`;
+
+exports[`WindowsBuilder for version 3.11.5 has a stable interaction with @actions/toolkit during build for arch x64 1`] = `
+[
+  "Execute command "vswhere "",
+  "Execute command "vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" "",
+  "Execute command "vswhere -property installationPath "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.11.5 to defaultDownloadPath\\v3.11.5",
+  "Extract defaultDownloadPath\\v3.11.5 to defaultExtractedPath\\extractedv3.11.5",
+  "Recursively remove path defaultDownloadPath\\v3.11.5",
+  "Copy folder defaultExtractedPath\\extractedv3.11.5\\python-cpython to tmpDir\\CPython3.11.5x64win32",
+  "Recursively remove path defaultExtractedPath\\extractedv3.11.5",
+  "Execute command "tmpDir\\CPython3.11.5x64win32\\PCbuild\\get_externals.bat "",
+  "Execute command "tmpDir\\CPython3.11.5x64win32\\Tools\\msi\\get_externals.bat "",
+  "Execute command "tmpDir\\CPython3.11.5x64win32\\PCbuild\\build.bat -p x64 -e "/p:PlatformToolset=v143" "/p:WindowsTargetPlatformVersion=10.0.17763.0""",
+  "Execute command "tmpDir\\CPython3.11.5x64win32\\PCbuild\\build.bat -p x64 -d -e "/p:PlatformToolset=v143" "/p:WindowsTargetPlatformVersion=10.0.17763.0""",
+  "Execute command "tmpDir\\CPython3.11.5x64win32\\Doc\\make.bat html"",
+  "Execute command ""vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" " tmpDir\\CPython3.11.5x64win32\\Tools\\msi\\launcher\\launcher.wixproj /p:Platform=x86 /p:PlatformToolset=v143 /p:WindowsTargetPlatformVersion=10.0.17763.0"",
+  "Execute command ""vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" " tmpDir\\CPython3.11.5x64win32\\Tools\\msi\\bundle\\snapshot.wixproj /p:Platform=x64 /p:PlatformToolset=v143 /p:WindowsTargetPlatformVersion=10.0.17763.0"",
+  "Execute command "powershell attrib -h -r /d /s "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Execute command "tmpDir\\CPython3.11.5x64win32\\PCbuild\\amd64\\en-us\\python-v3.11.5.exe TargetDir=tmpDir\\CPython3.11.5x64win32\\win32pythonInstalledFolder Include_pip=0 CompileAll=1 Include_launcher=0 InstallLauncherAllUsers=0 /quiet"",
+]
+`;
+
+exports[`WindowsBuilder for version 3.11.5 has a stable interaction with @actions/toolkit during build for arch x86 1`] = `
+[
+  "Execute command "vswhere "",
+  "Execute command "vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" "",
+  "Execute command "vswhere -property installationPath "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.11.5 to defaultDownloadPath\\v3.11.5",
+  "Extract defaultDownloadPath\\v3.11.5 to defaultExtractedPath\\extractedv3.11.5",
+  "Recursively remove path defaultDownloadPath\\v3.11.5",
+  "Copy folder defaultExtractedPath\\extractedv3.11.5\\python-cpython to tmpDir\\CPython3.11.5x86win32",
+  "Recursively remove path defaultExtractedPath\\extractedv3.11.5",
+  "Execute command "tmpDir\\CPython3.11.5x86win32\\PCbuild\\get_externals.bat "",
+  "Execute command "tmpDir\\CPython3.11.5x86win32\\Tools\\msi\\get_externals.bat "",
+  "Execute command "tmpDir\\CPython3.11.5x86win32\\PCbuild\\build.bat -p x86 -e "/p:PlatformToolset=v143" "/p:WindowsTargetPlatformVersion=10.0.17763.0""",
+  "Execute command "tmpDir\\CPython3.11.5x86win32\\PCbuild\\build.bat -p x86 -d -e "/p:PlatformToolset=v143" "/p:WindowsTargetPlatformVersion=10.0.17763.0""",
+  "Execute command "tmpDir\\CPython3.11.5x86win32\\Doc\\make.bat html"",
+  "Execute command ""vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" " tmpDir\\CPython3.11.5x86win32\\Tools\\msi\\launcher\\launcher.wixproj /p:Platform=x86 /p:PlatformToolset=v143 /p:WindowsTargetPlatformVersion=10.0.17763.0"",
+  "Execute command ""vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\\**\\Bin\\MSBuild.exe" " tmpDir\\CPython3.11.5x86win32\\Tools\\msi\\bundle\\snapshot.wixproj /p:Platform=x86 /p:PlatformToolset=v143 /p:WindowsTargetPlatformVersion=10.0.17763.0"",
+  "Execute command "powershell attrib -h -r /d /s "",
+  "Download https://aka.ms/vs/17/release/vs_enterprise.exe to tmpDir\\vs_installer.exe",
+  "Recursively remove path tmpDir\\vs_installer.exe",
+  "Execute command "tmpDir\\CPython3.11.5x86win32\\PCbuild\\win32\\en-us\\python-v3.11.5.exe TargetDir=tmpDir\\CPython3.11.5x86win32\\win32pythonInstalledFolder Include_pip=0 CompileAll=1 Include_launcher=0 InstallLauncherAllUsers=0 /quiet"",
+]
+`;
+
+exports[`WindowsBuilder for version 3.11.5 has a stable interaction with @actions/toolkit during postInstall for arch arm64 1`] = `
+[
+  "Create symlink in path installPath\\python3.exe pointing to installPath\\python.exe",
+]
+`;
+
+exports[`WindowsBuilder for version 3.11.5 has a stable interaction with @actions/toolkit during postInstall for arch x64 1`] = `
+[
+  "Create symlink in path installPath\\python3.exe pointing to installPath\\python.exe",
+]
+`;
+
+exports[`WindowsBuilder for version 3.11.5 has a stable interaction with @actions/toolkit during postInstall for arch x86 1`] = `
+[
+  "Create symlink in path installPath\\python3.exe pointing to installPath\\python.exe",
+]
+`;
+
+exports[`WindowsBuilder for version 3.11.5 identifies the correct additional paths to cache for arch arm64 1`] = `[]`;
+
+exports[`WindowsBuilder for version 3.11.5 identifies the correct additional paths to cache for arch x64 1`] = `[]`;
+
+exports[`WindowsBuilder for version 3.11.5 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
