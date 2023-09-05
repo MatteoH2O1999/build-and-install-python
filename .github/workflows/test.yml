@@ -29,7 +29,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: Setup NodeJS ${{ env.NODE_VERSION }}
@@ -54,7 +54,7 @@ jobs:
     name: Lint code
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: Setup NodeJS ${{ env.NODE_VERSION }}
@@ -74,7 +74,7 @@ jobs:
     name: Test build
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: Setup NodeJS ${{ env.NODE_VERSION }}
@@ -106,7 +106,7 @@ jobs:
       matrix-json: ${{ steps.matrix.outputs.matrix }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: Update pip
@@ -172,7 +172,7 @@ jobs:
     if: ${{ github.event_name != 'release' }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: Initialize CodeQL
@@ -194,7 +194,7 @@ jobs:
     needs: [build, lint, unit_tests, check_test_python_build]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
           ref: ${{ github.event.release.tag_name }}
