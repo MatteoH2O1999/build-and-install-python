@@ -34,5 +34,5 @@ outputs:
   architecture:
     description: The target architecture (x86, x64) of the Python interpreter.
 runs:
-  using: node16
+  using: node20
   main: dist/index.js
