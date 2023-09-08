@@ -1,6 +1,11 @@
 [
   {
     "installer": false,
+    "version": "v3.12.0rc2",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.0rc2"
+  },
+  {
+    "installer": false,
     "version": "v3.12.0rc1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.0rc1"
   },
