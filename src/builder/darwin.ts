@@ -19,7 +19,7 @@ import * as exec from '@actions/exec';
 import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
 import * as utils from '../utils';
-import {ssl102Url, sslUrl} from '../constants';
+import {ssl102Url, sslUrl, toolName} from '../constants';
 import Builder from './builder';
 import {OS} from './patches';
 import os from 'os';
@@ -33,6 +33,21 @@ export default class MacOSBuilder extends Builder {
     process.env['LDFLAGS'] = '';
     process.env['CFLAGS'] = '-Wno-implicit-function-declaration ';
     process.env['CPPFLAGS'] = '';
+
+    // Get toolcache path
+
+    await io.mkdirP(path.join(this.path, 'tmp'));
+    const toolPath = await tc.cacheDir(
+      path.join(this.path, 'tmp'),
+      toolName,
+      this.specificVersion,
+      this.arch
+    );
+    const toolFolder = path.dirname(toolPath);
+    await io.rmRF(path.join(this.path, 'tmp'));
+    await io.rmRF(toolFolder);
+    core.debug(`Toolcache path: ${toolPath}`);
+    core.debug(`Toolcache to delete: ${toolFolder}`);
 
     // Prepare envirnoment
 
@@ -48,7 +63,7 @@ export default class MacOSBuilder extends Builder {
 
     // Configure flags
 
-    const flags: string[] = [];
+    const flags: string[] = [`--prefix=${toolPath} `, '--enable-shared'];
     if (semver.lt(this.specificVersion, '3.0.0')) {
       flags.push('--enable-unicode=ucs4');
     }
@@ -74,10 +89,7 @@ export default class MacOSBuilder extends Builder {
       flags.push('--with-lto');
       flags.push(`--with-openssl=${this.sslPath}`);
     }
-    const configCommand = './configure '.concat(
-      `--prefix=${path.join(this.path, this.buildSuffix())} `,
-      flags.join(' ')
-    );
+    const configCommand = './configure '.concat(flags.join(' '));
 
     // Run ./configure
 
@@ -93,6 +105,16 @@ export default class MacOSBuilder extends Builder {
     core.startGroup('Running make install');
     await exec.exec('make install', [], {cwd: this.path});
     core.endGroup();
+
+    // Copy installed version to local path
+
+    core.debug('Copying installed Python from toolcache to localdir...');
+    await io.cp(toolPath, path.join(this.path, this.buildSuffix()), {
+      copySourceDirectory: false,
+      recursive: true
+    });
+    await io.rmRF(toolFolder);
+    core.debug('Python now correctly in this.buildSuffix()');
 
     return path.join(this.path, this.buildSuffix());
   }
