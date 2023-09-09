@@ -17,7 +17,7 @@
 import * as core from '@actions/core';
 import * as tc from '@actions/tool-cache';
 import {ActionInputs, BuildBehavior, parseInputs} from './inputs';
-import {InputNames, OutputNames} from './constants';
+import {InputNames, OutputNames, toolName} from './constants';
 import {SetupPythonResult, getSetupPythonResult, isPyPy} from './version';
 import {emitWarnings} from './label';
 import getBuilder from './builder';
@@ -239,7 +239,7 @@ export default async function main(): Promise<void> {
     core.info('Copying built folder into tool cache.');
     const installedPath = await tc.cacheDir(
       buildPath,
-      'Python',
+      toolName,
       builder.specificVersion,
       builder.arch
     );
