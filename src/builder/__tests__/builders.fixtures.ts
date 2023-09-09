@@ -101,6 +101,14 @@ export async function mockToolkit(
     interactionVector.push(`Extract ${file} to ${dest}`);
     return dest;
   });
+  mockedTc.cacheDir.mockImplementation(
+    async (sourceDir, tool, version, arch) => {
+      interactionVector.push(
+        `Cache source directory ${sourceDir} as tool ${tool} version ${version} for architecture ${arch}`
+      );
+      return path.join('toolcache', tool, version, arch || 'noarch');
+    }
+  );
 
   // Mock path implementation
 
@@ -110,6 +118,9 @@ export async function mockToolkit(
   mockedPath.resolve.mockImplementation((...paths) =>
     actualPath.resolve(...paths)
   );
+  mockedPath.dirname.mockImplementation(p => {
+    return actualPath.dirname(p);
+  });
 
   // Mock @actions/io implementation
 
@@ -121,6 +132,9 @@ export async function mockToolkit(
       options = {};
     }
     interactionVector.push(`Copy folder ${source} to ${dest}`);
+  });
+  mockedIo.mkdirP.mockImplementation(async fsPath => {
+    interactionVector.push(`Create directory with path ${fsPath}`);
   });
 
   // Mock fs implementation

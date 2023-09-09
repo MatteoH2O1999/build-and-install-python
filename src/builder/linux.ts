@@ -19,16 +19,31 @@ import * as exec from '@actions/exec';
 import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
 import * as utils from '../utils';
+import {toolName, ubuntuDependencies} from '../constants';
 import Builder from './builder';
 import {OS} from './patches';
 import path from 'path';
 import semver from 'semver';
-import {ubuntuDependencies} from '../constants';
 
 export default class LinuxBuilder extends Builder {
   private ssl = false;
 
   override async build(): Promise<string> {
+    // Get toolcache path
+
+    await io.mkdirP(path.join(this.path, 'tmp'));
+    const toolPath = await tc.cacheDir(
+      path.join(this.path, 'tmp'),
+      toolName,
+      this.specificVersion,
+      this.arch
+    );
+    const toolFolder = path.dirname(toolPath);
+    await io.rmRF(path.join(this.path, 'tmp'));
+    await io.rmRF(toolFolder);
+    core.debug(`Toolcache path: ${toolPath}`);
+    core.debug(`Toolcache to delete: ${toolFolder}`);
+
     // Prepare envirnoment
 
     core.debug('Preparing runner environment for build...');
@@ -43,7 +58,11 @@ export default class LinuxBuilder extends Builder {
 
     // Configure flags
 
-    const flags: string[] = [];
+    const flags: string[] = [
+      `--prefix=${toolPath} `,
+      '--enable-shared',
+      `LDFLAGS="-Wl,--rpath=${path.join(toolPath, 'lib')}"`
+    ];
     if (semver.lt(this.specificVersion, '3.0.0')) {
       flags.push('--enable-unicode=ucs4');
     }
@@ -53,10 +72,7 @@ export default class LinuxBuilder extends Builder {
     if (semver.gte(this.specificVersion, '3.7.0')) {
       flags.push('--enable-optimizations');
     }
-    const configCommand = './configure '.concat(
-      `--prefix=${path.join(this.path, this.buildSuffix())} `,
-      flags.join(' ')
-    );
+    const configCommand = './configure '.concat(flags.join(' '));
 
     // Run ./configure
 
@@ -72,6 +88,16 @@ export default class LinuxBuilder extends Builder {
     core.startGroup('Running make install');
     await exec.exec('make install', [], {cwd: this.path});
     core.endGroup();
+
+    // Copy installed version to local path
+
+    core.debug('Copying installed Python from toolcache to localdir...');
+    await io.cp(toolPath, path.join(this.path, this.buildSuffix()), {
+      copySourceDirectory: false,
+      recursive: true
+    });
+    await io.rmRF(toolFolder);
+    core.debug('Python now correctly in this.buildSuffix()');
 
     return path.join(this.path, this.buildSuffix());
   }
