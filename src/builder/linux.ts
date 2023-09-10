@@ -91,15 +91,16 @@ export default class LinuxBuilder extends Builder {
 
     // Copy installed version to local path
 
-    core.debug('Copying installed Python from toolcache to localdir...');
-    await io.cp(toolPath, path.join(this.path, this.buildSuffix()), {
+    const installDir = path.join(this.path, this.buildSuffix());
+    core.debug(`Copying installed Python from ${toolPath} to ${installDir}...`);
+    await io.cp(toolPath, installDir, {
       copySourceDirectory: false,
       recursive: true
     });
     await io.rmRF(toolFolder);
     core.debug('Python now correctly in this.buildSuffix()');
 
-    return path.join(this.path, this.buildSuffix());
+    return installDir;
   }
 
   override buildSuffix(): string {
