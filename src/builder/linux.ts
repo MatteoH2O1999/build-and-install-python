@@ -114,6 +114,10 @@ export default class LinuxBuilder extends Builder {
   private async prepareEnvironment(): Promise<void> {
     core.startGroup('Installing dependencies');
 
+    // Update apt index
+
+    await exec.exec('sudo apt update');
+
     // Install dependencies
 
     await exec.exec('sudo apt install -y', ubuntuDependencies);
