@@ -41,7 +41,7 @@
     },
     "devDependencies": {
         "@matteoh2o1999/github-actions-jest-reporter": "^2.0.0",
-        "@types/node": "^20.7.1",
+        "@types/node": "^20.8.0",
         "@typescript-eslint/parser": "^5.62.0",
         "@vercel/ncc": "^0.38.0",
         "axios": "^1.5.1",
