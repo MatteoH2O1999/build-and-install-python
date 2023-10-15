@@ -178,9 +178,9 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
-          languages: Typescript
+          languages: javascript
           source-root: src
-          packs: codeql/javascript-experimental-atm-queries
+          queries: security-and-quality
       - name: Autobuild
         uses: github/codeql-action/autobuild@v2
       - name: Perform CodeQL Analysis
