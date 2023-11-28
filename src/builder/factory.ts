@@ -54,7 +54,7 @@ export default async function getBuilder(
       return new MacOSBuilder(specificVersion, arch);
   }
   core.info(
-    `Building CPython on ${process.platform} is not yet supported. Feel free to open an issue at https://github.com/MatteoH2O1999/build-and-install-python`
+    `Building CPython on ${process.platform} is not yet supported. Feel free to open an issue at https://github.com/MatteoH2O1999/setup-python`
   );
   return null;
 }
