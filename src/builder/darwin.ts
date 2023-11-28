@@ -19,7 +19,7 @@ import * as exec from '@actions/exec';
 import * as io from '@actions/io';
 import * as tc from '@actions/tool-cache';
 import * as utils from '../utils';
-import {ssl102Url, sslUrl, toolName} from '../constants';
+import {darwinDependencies, ssl102Url, sslUrl, toolName} from '../constants';
 import Builder from './builder';
 import {OS} from './patches';
 import os from 'os';
@@ -315,9 +315,9 @@ export default class MacOSBuilder extends Builder {
   }
 
   private async installGeneralDependencies(): Promise<void> {
-    await exec.exec('brew install zlib', [], {ignoreReturnCode: true});
-    await exec.exec('brew install sqlite3', [], {ignoreReturnCode: true});
-    await exec.exec('brew install readline', [], {ignoreReturnCode: true});
+    await exec.exec(`brew install ${darwinDependencies.join(' ')}`, [], {
+      ignoreReturnCode: true
+    });
   }
 
   protected override async additionalCachePaths(): Promise<string[]> {

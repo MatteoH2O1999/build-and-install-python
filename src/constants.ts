@@ -82,7 +82,9 @@ const ubuntuDependencies = [
   'uuid-dev'
 ];
 
-export {ubuntuDependencies};
+const darwinDependencies = ['zlib', 'sqlite3', 'readline'];
+
+export {darwinDependencies, ubuntuDependencies};
 
 export type sslUrl = {
   name: string;
