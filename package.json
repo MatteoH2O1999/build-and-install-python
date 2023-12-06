@@ -37,7 +37,7 @@
         "@actions/tool-cache": "^2.0.1",
         "find-process": "^1.4.7",
         "semver": "^7.5.4",
-        "setup-python": "github:actions/setup-python#v4.7.1"
+        "setup-python": "github:actions/setup-python#v4.8.0"
     },
     "devDependencies": {
         "@matteoh2o1999/github-actions-jest-reporter": "^2.0.0",
