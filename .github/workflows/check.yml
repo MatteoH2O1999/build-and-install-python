@@ -78,7 +78,7 @@ jobs:
           cache-build: true
           allow-prereleases: ${{ inputs.allow-prereleases }}
       - name: Setup Python ${{ inputs.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         id: setup
         with:
           python-version: ${{ steps.build.outputs.python-version }}
@@ -118,7 +118,7 @@ jobs:
           cache-build: true
           allow-prereleases: ${{ inputs.allow-prereleases }}
       - name: Setup Python ${{ inputs.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         id: setup
         with:
           python-version: ${{ steps.build.outputs.python-version }}
