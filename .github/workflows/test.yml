@@ -178,8 +178,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
-          languages: javascript
-          source-root: src
+          languages: javascript-typescript
           queries: security-and-quality
       - name: Autobuild
         uses: github/codeql-action/autobuild@v2
