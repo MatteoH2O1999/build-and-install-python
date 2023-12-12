@@ -52,7 +52,7 @@ const pythonVersions: PythonVersionTest[] = [
   },
   {
     expectedType: PythonType.PyPy,
-    expectedVersion: '>=3.9.0 <3.10.0-0',
+    expectedVersion: 'pypy3.9',
     inputVersionString: 'pypy3.9'
   },
   {
@@ -67,8 +67,23 @@ const pythonVersions: PythonVersionTest[] = [
   },
   {
     expectedType: PythonType.PyPy,
-    expectedVersion: '>=3.9.0 <3.10.0-0',
+    expectedVersion: 'pypy-3.9',
     inputVersionString: 'pypy-3.9'
+  },
+  {
+    expectedType: PythonType.GraalPy,
+    expectedVersion: 'graalpy-22.3',
+    inputVersionString: 'graalpy-22.3'
+  },
+  {
+    expectedType: PythonType.GraalPy,
+    expectedVersion: 'graalpy22.3',
+    inputVersionString: 'graalpy22.3'
+  },
+  {
+    expectedType: PythonType.GraalPy,
+    expectedVersion: 'graalpy-22.3',
+    inputVersionString: 'Graalpy-22.3'
   }
 ];
 

@@ -168,19 +168,43 @@ describe('main', () => {
         cache: false,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.PyPy, version: '3.6.x'}
+        version: {type: inputs.PythonType.PyPy, version: 'pyp3.6'}
       });
       mockedVersion.getSetupPythonResult.mockRejectedValueOnce(
         new Error('fail actions/setup-python')
       );
-      mockedVersion.isPyPy.mockReturnValueOnce(true);
 
       await main();
 
       expect(mockedVersion.getSetupPythonResult).toHaveBeenCalledTimes(1);
       expect(mockedCore.setOutput).toBeCalledWith(
         constants.OutputNames.PYTHON_VERSION,
-        'pypy3.6.x'
+        'pyp3.6'
+      );
+      expect(mockedCore.setFailed.mock.calls).toMatchSnapshot();
+      expect(mockedBuilder.getBuilder).not.toHaveBeenCalled();
+    });
+
+    test('handles a failure in version.getSetupPythonResult with GraalPy', async () => {
+      mockedInputs.parseInputs.mockResolvedValueOnce({
+        allowPrereleases: false,
+        architecture: 'x64',
+        buildBehavior: inputs.BuildBehavior.Info,
+        cache: false,
+        checkLatest: false,
+        token: 'token',
+        version: {type: inputs.PythonType.GraalPy, version: 'pyp3.6'}
+      });
+      mockedVersion.getSetupPythonResult.mockRejectedValueOnce(
+        new Error('fail actions/setup-python')
+      );
+
+      await main();
+
+      expect(mockedVersion.getSetupPythonResult).toHaveBeenCalledTimes(1);
+      expect(mockedCore.setOutput).toBeCalledWith(
+        constants.OutputNames.PYTHON_VERSION,
+        'pyp3.6'
       );
       expect(mockedCore.setFailed.mock.calls).toMatchSnapshot();
       expect(mockedBuilder.getBuilder).not.toHaveBeenCalled();
@@ -201,7 +225,9 @@ describe('main', () => {
           success: true,
           version: '3.6.2'
         });
-        mockedVersion.isPyPy.mockReturnValueOnce(false);
+        mockedVersion.isPyPy.mockResolvedValue(false);
+        mockedVersion.isGraalPy.mockResolvedValue(false);
+        mockedVersion.isCpython.mockResolvedValue(true);
 
         await main();
 
@@ -214,8 +240,8 @@ describe('main', () => {
           'x64'
         );
         expect(mockedCore.setOutput).toBeCalledTimes(2);
-        expect(mockedVersion.isPyPy).toHaveBeenCalledTimes(1);
-        expect(mockedVersion.isPyPy).toBeCalledWith({
+        expect(mockedVersion.isCpython).toHaveBeenCalledTimes(1);
+        expect(mockedVersion.isCpython).toBeCalledWith({
           type: inputs.PythonType.CPython,
           version: '3.6.x'
         });
@@ -237,7 +263,9 @@ describe('main', () => {
           success: false,
           version: '3.6.2'
         });
-        mockedVersion.isPyPy.mockReturnValueOnce(false);
+        mockedVersion.isPyPy.mockResolvedValue(false);
+        mockedVersion.isGraalPy.mockResolvedValue(false);
+        mockedVersion.isCpython.mockResolvedValue(true);
 
         await main();
 
@@ -246,8 +274,8 @@ describe('main', () => {
           'x64'
         );
         expect(mockedCore.setOutput).toBeCalledTimes(1);
-        expect(mockedVersion.isPyPy).toBeCalledTimes(1);
-        expect(mockedVersion.isPyPy).toBeCalledWith({
+        expect(mockedVersion.isCpython).toBeCalledTimes(1);
+        expect(mockedVersion.isCpython).toBeCalledWith({
           type: inputs.PythonType.CPython,
           version: '3.6.x'
         });
@@ -264,13 +292,15 @@ describe('main', () => {
           cache: false,
           checkLatest: false,
           token: 'token',
-          version: {type: inputs.PythonType.PyPy, version: '3.6.x'}
+          version: {type: inputs.PythonType.PyPy, version: 'pypy3.6'}
         });
         mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
           success: true,
           version: 'pypy3.6'
         });
-        mockedVersion.isPyPy.mockReturnValueOnce(true);
+        mockedVersion.isPyPy.mockResolvedValue(true);
+        mockedVersion.isGraalPy.mockResolvedValue(false);
+        mockedVersion.isCpython.mockResolvedValue(false);
 
         await main();
 
@@ -286,7 +316,7 @@ describe('main', () => {
         expect(mockedVersion.isPyPy).toHaveBeenCalledTimes(1);
         expect(mockedVersion.isPyPy).toBeCalledWith({
           type: inputs.PythonType.PyPy,
-          version: '3.6.x'
+          version: 'pypy3.6'
         });
         expect(mockedBuilder.getBuilder).not.toBeCalled();
         expect(mockedCore.setFailed).not.toBeCalled();
@@ -300,13 +330,15 @@ describe('main', () => {
           cache: false,
           checkLatest: false,
           token: 'token',
-          version: {type: inputs.PythonType.PyPy, version: '3.6.x'}
+          version: {type: inputs.PythonType.PyPy, version: 'pypy3.6'}
         });
         mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
           success: false,
           version: 'pypy3.6'
         });
-        mockedVersion.isPyPy.mockReturnValueOnce(true);
+        mockedVersion.isPyPy.mockResolvedValue(true);
+        mockedVersion.isGraalPy.mockResolvedValue(false);
+        mockedVersion.isCpython.mockResolvedValue(false);
 
         await main();
 
@@ -316,20 +348,97 @@ describe('main', () => {
         );
         expect(mockedCore.setOutput).toBeCalledWith(
           constants.OutputNames.PYTHON_VERSION,
-          ''
+          'pypy3.6'
         );
         expect(mockedCore.setOutput).toBeCalledTimes(2);
         expect(mockedVersion.isPyPy).toBeCalledTimes(1);
         expect(mockedVersion.isPyPy).toBeCalledWith({
           type: inputs.PythonType.PyPy,
-          version: '3.6.x'
+          version: 'pypy3.6'
         });
-        expect(mockedCore.setFailed.mock.calls).toMatchSnapshot();
+        expect(mockedCore.setFailed).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('GraalPy', () => {
+      test('success', async () => {
+        mockedInputs.parseInputs.mockResolvedValueOnce({
+          allowPrereleases: false,
+          architecture: 'x64',
+          buildBehavior: inputs.BuildBehavior.Info,
+          cache: false,
+          checkLatest: false,
+          token: 'token',
+          version: {type: inputs.PythonType.GraalPy, version: 'graalpy-22.3'}
+        });
+        mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+          success: true,
+          version: 'graalpy-22.3'
+        });
+        mockedVersion.isPyPy.mockResolvedValue(false);
+        mockedVersion.isGraalPy.mockResolvedValue(true);
+        mockedVersion.isCpython.mockResolvedValue(false);
+
+        await main();
+
+        expect(mockedCore.setOutput).toBeCalledWith(
+          constants.OutputNames.PYTHON_VERSION,
+          'graalpy-22.3'
+        );
+        expect(mockedCore.setOutput).toBeCalledWith(
+          constants.OutputNames.ARCHITECTURE,
+          'x64'
+        );
+        expect(mockedCore.setOutput).toBeCalledTimes(2);
+        expect(mockedVersion.isGraalPy).toHaveBeenCalledTimes(1);
+        expect(mockedVersion.isGraalPy).toBeCalledWith({
+          type: inputs.PythonType.GraalPy,
+          version: 'graalpy-22.3'
+        });
+        expect(mockedBuilder.getBuilder).not.toBeCalled();
+        expect(mockedCore.setFailed).not.toBeCalled();
+      });
+
+      test('failure', async () => {
+        mockedInputs.parseInputs.mockResolvedValueOnce({
+          allowPrereleases: false,
+          architecture: 'x64',
+          buildBehavior: inputs.BuildBehavior.Info,
+          cache: false,
+          checkLatest: false,
+          token: 'token',
+          version: {type: inputs.PythonType.GraalPy, version: 'graalpy-22.3'}
+        });
+        mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+          success: false,
+          version: 'graalpy-22.3'
+        });
+        mockedVersion.isPyPy.mockResolvedValue(false);
+        mockedVersion.isGraalPy.mockResolvedValue(true);
+        mockedVersion.isCpython.mockResolvedValue(false);
+
+        await main();
+
+        expect(mockedCore.setOutput).toBeCalledWith(
+          constants.OutputNames.ARCHITECTURE,
+          'x64'
+        );
+        expect(mockedCore.setOutput).toBeCalledWith(
+          constants.OutputNames.PYTHON_VERSION,
+          'graalpy-22.3'
+        );
+        expect(mockedCore.setOutput).toBeCalledTimes(2);
+        expect(mockedVersion.isGraalPy).toBeCalledTimes(1);
+        expect(mockedVersion.isGraalPy).toBeCalledWith({
+          type: inputs.PythonType.GraalPy,
+          version: 'graalpy-22.3'
+        });
+        expect(mockedCore.setFailed).not.toHaveBeenCalled();
       });
     });
   });
 
-  describe('Build behaior', () => {
+  describe('Build behavior', () => {
     test('Error leads to a failed action with an error message', async () => {
       mockedInputs.parseInputs.mockResolvedValueOnce({
         allowPrereleases: false,
@@ -344,7 +453,9 @@ describe('main', () => {
         success: false,
         version: '3.6.15'
       });
-      mockedVersion.isPyPy.mockReturnValueOnce(false);
+      mockedVersion.isPyPy.mockResolvedValue(false);
+      mockedVersion.isGraalPy.mockResolvedValue(false);
+      mockedVersion.isCpython.mockResolvedValue(true);
 
       await main();
 
@@ -367,7 +478,9 @@ describe('main', () => {
         success: false,
         version: '3.6.15'
       });
-      mockedVersion.isPyPy.mockReturnValueOnce(false);
+      mockedVersion.isPyPy.mockResolvedValue(false);
+      mockedVersion.isGraalPy.mockResolvedValue(false);
+      mockedVersion.isCpython.mockResolvedValue(true);
       mockedBuilder.getBuilder.mockResolvedValueOnce(
         new MockBuilder({version: '3.6.15', zipBall: 'zipballUri'}, 'x64')
       );
@@ -409,7 +522,9 @@ describe('main', () => {
         success: false,
         version: '3.6.15'
       });
-      mockedVersion.isPyPy.mockReturnValueOnce(false);
+      mockedVersion.isPyPy.mockResolvedValue(false);
+      mockedVersion.isGraalPy.mockResolvedValue(false);
+      mockedVersion.isCpython.mockResolvedValue(true);
       mockedBuilder.getBuilder.mockResolvedValueOnce(
         new MockBuilder({version: '3.6.15', zipBall: 'zipballUri'}, 'x64')
       );
@@ -453,7 +568,9 @@ describe('main', () => {
         success: false,
         version: '3.6.15'
       });
-      mockedVersion.isPyPy.mockReturnValueOnce(false);
+      mockedVersion.isPyPy.mockResolvedValue(false);
+      mockedVersion.isGraalPy.mockResolvedValue(false);
+      mockedVersion.isCpython.mockResolvedValue(true);
       mockedBuilder.getBuilder.mockResolvedValueOnce(
         new MockBuilder({version: '3.6.15', zipBall: 'zipballUri'}, 'x64')
       );
@@ -499,7 +616,9 @@ describe('main', () => {
         success: false,
         version: '3.6.15'
       });
-      mockedVersion.isPyPy.mockReturnValueOnce(false);
+      mockedVersion.isPyPy.mockResolvedValue(false);
+      mockedVersion.isGraalPy.mockResolvedValue(false);
+      mockedVersion.isCpython.mockResolvedValue(true);
       mockedBuilder.getBuilder.mockResolvedValueOnce(
         new MockBuilder({version: '3.6.15', zipBall: 'zipballUri'}, 'x64')
       );
@@ -530,7 +649,9 @@ describe('main', () => {
         success: true,
         version: '3.6.15'
       });
-      mockedVersion.isPyPy.mockReturnValueOnce(false);
+      mockedVersion.isPyPy.mockResolvedValue(false);
+      mockedVersion.isGraalPy.mockResolvedValue(false);
+      mockedVersion.isCpython.mockResolvedValue(true);
       mockedBuilder.getBuilder.mockResolvedValueOnce(
         new MockBuilder({version: '3.6.15', zipBall: 'zipballUri'}, 'x64')
       );
@@ -561,7 +682,9 @@ describe('main', () => {
         success: false,
         version: '3.6.15'
       });
-      mockedVersion.isPyPy.mockReturnValueOnce(false);
+      mockedVersion.isPyPy.mockResolvedValue(false);
+      mockedVersion.isGraalPy.mockResolvedValue(false);
+      mockedVersion.isCpython.mockResolvedValue(true);
       mockedBuilder.getBuilder.mockResolvedValueOnce(null);
 
       await main();
@@ -588,7 +711,9 @@ describe('main', () => {
         success: false,
         version: '3.6.15'
       });
-      mockedVersion.isPyPy.mockReturnValueOnce(false);
+      mockedVersion.isPyPy.mockResolvedValue(false);
+      mockedVersion.isGraalPy.mockResolvedValue(false);
+      mockedVersion.isCpython.mockResolvedValue(true);
       mockedBuilder.getBuilder.mockRejectedValueOnce(
         new Error('error getBuilder')
       );
@@ -612,7 +737,9 @@ describe('main', () => {
         success: false,
         version: '3.6.15'
       });
-      mockedVersion.isPyPy.mockReturnValueOnce(false);
+      mockedVersion.isPyPy.mockResolvedValue(false);
+      mockedVersion.isGraalPy.mockResolvedValue(false);
+      mockedVersion.isCpython.mockResolvedValue(true);
       const instance = new MockBuilder(
         {version: '3.6.15', zipBall: 'zipballUri'},
         'x64'
@@ -659,7 +786,9 @@ describe('main', () => {
         success: false,
         version: '3.6.15'
       });
-      mockedVersion.isPyPy.mockReturnValueOnce(false);
+      mockedVersion.isPyPy.mockResolvedValue(false);
+      mockedVersion.isGraalPy.mockResolvedValue(false);
+      mockedVersion.isCpython.mockResolvedValue(true);
       const instance = new MockBuilder(
         {version: '3.6.15', zipBall: 'zipballUri'},
         'x64'
@@ -706,7 +835,9 @@ describe('main', () => {
         success: false,
         version: '3.6.15'
       });
-      mockedVersion.isPyPy.mockReturnValueOnce(false);
+      mockedVersion.isPyPy.mockResolvedValue(false);
+      mockedVersion.isGraalPy.mockResolvedValue(false);
+      mockedVersion.isCpython.mockResolvedValue(true);
       const instance = new MockBuilder(
         {version: '3.6.15', zipBall: 'zipballUri'},
         'x64'
@@ -756,7 +887,9 @@ describe('main', () => {
         success: false,
         version: '3.6.15'
       });
-      mockedVersion.isPyPy.mockReturnValueOnce(false);
+      mockedVersion.isPyPy.mockResolvedValue(false);
+      mockedVersion.isGraalPy.mockResolvedValue(false);
+      mockedVersion.isCpython.mockResolvedValue(true);
       const instance = new MockBuilder(
         {version: '3.6.15', zipBall: 'zipballUri'},
         'x64'
@@ -799,7 +932,9 @@ describe('main', () => {
         success: false,
         version: '3.6.15'
       });
-      mockedVersion.isPyPy.mockReturnValueOnce(false);
+      mockedVersion.isPyPy.mockResolvedValue(false);
+      mockedVersion.isGraalPy.mockResolvedValue(false);
+      mockedVersion.isCpython.mockResolvedValue(true);
       const instance = new MockBuilder(
         {version: '3.6.15', zipBall: 'zipballUri'},
         'x64'
@@ -845,7 +980,9 @@ describe('main', () => {
         success: false,
         version: '3.6.15'
       });
-      mockedVersion.isPyPy.mockReturnValueOnce(false);
+      mockedVersion.isPyPy.mockResolvedValue(false);
+      mockedVersion.isGraalPy.mockResolvedValue(false);
+      mockedVersion.isCpython.mockResolvedValue(true);
       const instance = new MockBuilder(
         {version: '3.6.15', zipBall: 'zipballUri'},
         'x64'
@@ -891,7 +1028,9 @@ describe('main', () => {
         success: false,
         version: '3.6.15'
       });
-      mockedVersion.isPyPy.mockReturnValueOnce(false);
+      mockedVersion.isPyPy.mockResolvedValue(false);
+      mockedVersion.isGraalPy.mockResolvedValue(false);
+      mockedVersion.isCpython.mockResolvedValue(true);
       const instance = new MockBuilder(
         {version: '3.6.15', zipBall: 'zipballUri'},
         'x64'
@@ -943,7 +1082,9 @@ describe('main', () => {
         success: false,
         version: '3.6.15'
       });
-      mockedVersion.isPyPy.mockReturnValueOnce(false);
+      mockedVersion.isPyPy.mockResolvedValue(false);
+      mockedVersion.isGraalPy.mockResolvedValue(false);
+      mockedVersion.isCpython.mockResolvedValue(true);
       const instance = new MockBuilder(
         {version: '3.6.15', zipBall: 'zipballUri'},
         'x64'
@@ -996,7 +1137,9 @@ describe('main', () => {
         success: false,
         version: '3.6.15'
       });
-      mockedVersion.isPyPy.mockReturnValueOnce(false);
+      mockedVersion.isPyPy.mockResolvedValue(false);
+      mockedVersion.isGraalPy.mockResolvedValue(false);
+      mockedVersion.isCpython.mockResolvedValue(true);
       const instance = new MockBuilder(
         {version: '3.6.15', zipBall: 'zipballUri'},
         'x64'

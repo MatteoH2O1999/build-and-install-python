@@ -18,7 +18,13 @@ import * as core from '@actions/core';
 import * as tc from '@actions/tool-cache';
 import {ActionInputs, BuildBehavior, parseInputs} from './inputs';
 import {InputNames, OutputNames, toolName} from './constants';
-import {SetupPythonResult, getSetupPythonResult, isPyPy} from './version';
+import {
+  SetupPythonResult,
+  getSetupPythonResult,
+  isCpython,
+  isGraalPy,
+  isPyPy
+} from './version';
 import {emitWarnings} from './label';
 import getBuilder from './builder';
 
@@ -66,14 +72,7 @@ export default async function main(): Promise<void> {
   try {
     setupPythonResult = await getSetupPythonResult(inputs);
   } catch (error) {
-    let version = '';
-    if (isPyPy(inputs.version)) {
-      version = 'pypy';
-    }
-    core.setOutput(
-      OutputNames.PYTHON_VERSION,
-      version.concat(inputs.version.version)
-    );
+    core.setOutput(OutputNames.PYTHON_VERSION, inputs.version.version);
     let message = 'Error while resolving setup-python version.';
     if (error instanceof Error) {
       message = message.concat('\n').concat(error.message);
@@ -86,35 +85,25 @@ export default async function main(): Promise<void> {
   }
   core.debug('setup-python version resolved.');
 
+  if (!(await isCpython(inputs.version))) {
+    if (await isGraalPy(inputs.version)) {
+      core.info('GraalPy support is delegated to actions/setup-python...');
+    } else if (await isPyPy(inputs.version)) {
+      core.info('PyPy support is delegated to actions/setup-python...');
+    }
+    core.setOutput(OutputNames.PYTHON_VERSION, inputs.version.version);
+    return;
+  }
+
   if (
     setupPythonResult.success &&
     inputs.buildBehavior !== BuildBehavior.Force
   ) {
     // actions/setup-python already supports the version: doing nothing
 
-    if (isPyPy(inputs.version)) {
-      core.info(
-        `PyPy version ${inputs.version.version} is supported by actions/setup-python with specific version ${setupPythonResult.version}.`
-      );
-    } else {
-      core.info(
-        `CPython version ${inputs.version.version} is supported by actions/setup-python with specific version ${setupPythonResult.version}.`
-      );
-    }
     core.setOutput(OutputNames.PYTHON_VERSION, setupPythonResult.version);
     return;
   } else {
-    if (isPyPy(inputs.version)) {
-      // This action does not support building PyPy
-
-      core.info(
-        `PyPy version ${inputs.version.version} is not supported by actions/setup-python.`
-      );
-      core.setFailed('This action does not support building PyPy from source');
-      core.setOutput(OutputNames.PYTHON_VERSION, '');
-      return;
-    }
-
     if (!setupPythonResult.success) {
       core.info(
         `CPython version ${inputs.version.version} is not supported by actions/setup-python.`

@@ -42,12 +42,6 @@ export enum ManifestUrl {
   BRANCH = 'main'
 }
 
-const defaultPyPy2 = 'pypy2.7';
-const defaultPyPy3 = 'pypy3.9';
-const anyVersionString = '*';
-
-export {defaultPyPy2, defaultPyPy3, anyVersionString};
-
 const windowsBuildDependencies: string[] = [];
 
 const vsInstallerUrl = 'https://aka.ms/vs/17/release/vs_enterprise.exe';
