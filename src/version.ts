@@ -17,18 +17,23 @@
 import * as core from '@actions/core';
 import * as tc from '@actions/tool-cache';
 import {ActionInputs, PythonType, PythonVersion} from './inputs';
-import {
-  ManifestUrl,
-  anyVersionString,
-  defaultPyPy2,
-  defaultPyPy3
-} from './constants';
+import {ManifestUrl} from './constants';
 import path from 'path';
 import semver from 'semver';
 
-export function isPyPy(version: PythonVersion): boolean {
+export async function isPyPy(version: PythonVersion): Promise<boolean> {
   core.debug('Checking if version is PyPy.');
   return version.type === PythonType.PyPy;
+}
+
+export async function isGraalPy(version: PythonVersion): Promise<boolean> {
+  core.debug('Checking if version is GraalPy.');
+  return version.type === PythonType.GraalPy;
+}
+
+export async function isCpython(version: PythonVersion): Promise<boolean> {
+  core.debug('checking if version is CPython');
+  return version.type === PythonType.CPython;
 }
 
 export type SetupPythonResult = {
@@ -41,53 +46,14 @@ export async function getSetupPythonResult(
 ): Promise<SetupPythonResult> {
   let resultVersionString: string;
   let success: boolean;
-  if (isPyPy(inputs.version)) {
+  if (await isPyPy(inputs.version)) {
     core.debug('Version is PyPy.');
-    const completeVersion = inputs.version.version;
-    if (completeVersion === anyVersionString) {
-      resultVersionString = defaultPyPy3;
-      success = true;
-    } else {
-      const minVersion =
-        semver.minVersion(completeVersion) || new semver.SemVer('*');
-      const vers = minVersion.major;
-      const major = minVersion.minor;
-      const nextVer = `>=${vers + 1}.0.0-0`;
-      const nextMajor = `>=${vers}.${major + 1}.0-0`;
-      if (
-        !semver.intersects(completeVersion, nextVer) &&
-        semver.intersects(completeVersion, nextMajor)
-      ) {
-        core.debug('Detected range a.x.x');
-        switch (vers) {
-          case 2:
-            success = true;
-            resultVersionString = defaultPyPy2;
-            break;
-          case 3:
-            success = true;
-            resultVersionString = defaultPyPy3;
-            break;
-          default:
-            success = false;
-            resultVersionString = '';
-            break;
-        }
-      } else if (!semver.intersects(completeVersion, nextMajor)) {
-        core.debug('Detected range a.b.x');
-        success = true;
-        resultVersionString = `pypy${vers}.${major}`;
-      } else {
-        core.debug(`Impossible to solve range ${completeVersion}`);
-        success = false;
-        resultVersionString = '';
-      }
-    }
-    if (success) {
-      core.debug(`PyPy version resolved to "${resultVersionString}".`);
-    } else {
-      core.debug(`Could not resolve PyPy version "${inputs.version.version}".`);
-    }
+    success = true;
+    resultVersionString = inputs.version.version;
+  } else if (await isGraalPy(inputs.version)) {
+    core.debug('Version is GraalPy.');
+    success = true;
+    resultVersionString = inputs.version.version;
   } else {
     core.debug('Version is CPython.');
     core.debug('Checking local tool cache...');

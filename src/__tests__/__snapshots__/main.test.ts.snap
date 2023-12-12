@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`main Build behaior Allow leads to building from source with a message in the debug logs 1`] = `
+exports[`main Build behavior Allow leads to building from source with a message in the debug logs 1`] = `
 [
   [
     "CPython version 3.6.x is not supported by actions/setup-python.",
@@ -14,7 +14,7 @@ exports[`main Build behaior Allow leads to building from source with a message i
 ]
 `;
 
-exports[`main Build behaior Allow leads to building from source with a message in the debug logs 2`] = `
+exports[`main Build behavior Allow leads to building from source with a message in the debug logs 2`] = `
 [
   [
     "Builder cache key: CPython3.6.15x64os",
@@ -76,7 +76,7 @@ exports[`main Build behaior Allow leads to building from source with a message i
 ]
 `;
 
-exports[`main Build behaior Error leads to a failed action with an error message 1`] = `
+exports[`main Build behavior Error leads to a failed action with an error message 1`] = `
 [
   [
     "CPython version 3.6.x is not supported by actions/setup-python.
@@ -86,7 +86,7 @@ exports[`main Build behaior Error leads to a failed action with an error message
 ]
 `;
 
-exports[`main Build behaior Info leads to building from source with a message in the logs 1`] = `
+exports[`main Build behavior Info leads to building from source with a message in the logs 1`] = `
 [
   [
     "CPython version 3.6.x is not supported by actions/setup-python.",
@@ -103,7 +103,7 @@ exports[`main Build behaior Info leads to building from source with a message in
 ]
 `;
 
-exports[`main Build behaior Info leads to building from source with a message in the logs 2`] = `
+exports[`main Build behavior Info leads to building from source with a message in the logs 2`] = `
 [
   [
     "Builder cache key: CPython3.6.15x64os",
@@ -162,7 +162,7 @@ exports[`main Build behaior Info leads to building from source with a message in
 ]
 `;
 
-exports[`main Build behaior Warn leads to building from source with a warning 1`] = `
+exports[`main Build behavior Warn leads to building from source with a warning 1`] = `
 [
   [
     "CPython version 3.6.x is not supported by actions/setup-python.
@@ -217,15 +217,16 @@ Failure in saveCache",
 ]
 `;
 
-exports[`main actions/setup-python result PyPy failure 1`] = `
+exports[`main actions/setup-python result handles a failure in version.getSetupPythonResult with CPython 1`] = `
 [
   [
-    "This action does not support building PyPy from source",
+    "Error while resolving setup-python version.
+fail actions/setup-python",
   ],
 ]
 `;
 
-exports[`main actions/setup-python result handles a failure in version.getSetupPythonResult with CPython 1`] = `
+exports[`main actions/setup-python result handles a failure in version.getSetupPythonResult with GraalPy 1`] = `
 [
   [
     "Error while resolving setup-python version.

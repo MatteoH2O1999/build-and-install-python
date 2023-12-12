@@ -17,8 +17,14 @@
 import * as manifestTC from '@actions/tool-cache/lib/manifest';
 import * as tc from '@actions/tool-cache';
 import {BuildBehavior, PythonVersion} from '../inputs';
-import {PyPyTest, SetupPythonTests, manifestUrl} from './version.fixtures';
-import {SetupPythonResult, getSetupPythonResult, isPyPy} from '../version';
+import {IsTypeTest, SetupPythonTests, manifestUrl} from './version.fixtures';
+import {
+  SetupPythonResult,
+  getSetupPythonResult,
+  isCpython,
+  isGraalPy,
+  isPyPy
+} from '../version';
 import {beforeAll, describe, expect, jest, test} from '@jest/globals';
 import axios from 'axios';
 
@@ -62,10 +68,28 @@ mockedManifestTC._findMatch.mockImplementation(
 );
 
 describe('Is PyPy', () => {
-  test.each(PyPyTest)(
+  test.each(IsTypeTest)(
     'returns $expectedPyPy with python version $pythonVersion.type-$pythonVersion.version',
-    ({pythonVersion, expectedPyPy}) => {
-      expect(isPyPy(pythonVersion)).toBe(expectedPyPy);
+    async ({pythonVersion, expectedPyPy}) => {
+      expect(await isPyPy(pythonVersion)).toBe(expectedPyPy);
+    }
+  );
+});
+
+describe('Is GraalPy', () => {
+  test.each(IsTypeTest)(
+    'returns $expectedGraalPy with python version $pythonVersion.type-$pythonVersion.version',
+    async ({pythonVersion, expectedGraalPy}) => {
+      expect(await isGraalPy(pythonVersion)).toBe(expectedGraalPy);
+    }
+  );
+});
+
+describe('Is CPython', () => {
+  test.each(IsTypeTest)(
+    'returns $expectedCPython with python version $pythonVersion.type-$pythonVersion.version',
+    async ({pythonVersion, expectedCPython}) => {
+      expect(await isCpython(pythonVersion)).toBe(expectedCPython);
     }
   );
 });

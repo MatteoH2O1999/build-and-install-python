@@ -22,7 +22,8 @@ import semverValidRange from 'semver/ranges/valid';
 
 export enum PythonType {
   CPython = 'cpython',
-  PyPy = 'pypy'
+  PyPy = 'pypy',
+  GraalPy = 'graalpy'
 }
 
 export class PythonVersion {
@@ -35,19 +36,22 @@ export class PythonVersion {
     core.debug(`Full semver range string: "${pythonVersion}".`);
     if (pythonVersion.includes('pypy')) {
       this.type = PythonType.PyPy;
-      pythonVersion = pythonVersion.replace('pypy', '').replace('-', '');
+      this.version = pythonVersion;
+    } else if (pythonVersion.includes('graalpy')) {
+      this.type = PythonType.GraalPy;
+      this.version = pythonVersion;
     } else {
       this.type = PythonType.CPython;
+      pythonVersion = pythonVersion.replace(/v/g, '');
+      const range = semverValidRange(pythonVersion);
+      if (!range) {
+        throw new Error(
+          `An invalid semver string was supplied. Got "${pythonVersion}".`
+        );
+      }
+      this.version = range;
     }
     core.debug(`Python type: "${this.type}".`);
-    pythonVersion = pythonVersion.replace(/v/g, '');
-    const range = semverValidRange(pythonVersion);
-    if (!range) {
-      throw new Error(
-        `An invalid semver string was supplied. Got "${pythonVersion}".`
-      );
-    }
-    this.version = range;
     core.debug(`Final resolved version range: "${this.version}".`);
   }
 }

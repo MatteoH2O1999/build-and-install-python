@@ -15,46 +15,73 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import {ActionInputs, BuildBehavior, PythonVersion} from '../inputs';
-import {defaultPyPy2, defaultPyPy3} from '../constants';
 import {SetupPythonResult} from '../version';
 
-export type IsPyPyTest = {
+export type TypeTest = {
   pythonVersion: PythonVersion;
   expectedPyPy: boolean;
+  expectedGraalPy: boolean;
+  expectedCPython: boolean;
 };
 
-const PyPyTest: IsPyPyTest[] = [
+const IsTypeTest: TypeTest[] = [
   {
+    expectedCPython: false,
+    expectedGraalPy: false,
     expectedPyPy: true,
     pythonVersion: new PythonVersion('pypy3.9')
   },
   {
+    expectedCPython: false,
+    expectedGraalPy: false,
     expectedPyPy: true,
     pythonVersion: new PythonVersion('pypy3')
   },
   {
+    expectedCPython: true,
+    expectedGraalPy: false,
     expectedPyPy: false,
     pythonVersion: new PythonVersion('3.9')
   },
   {
+    expectedCPython: true,
+    expectedGraalPy: false,
     expectedPyPy: false,
     pythonVersion: new PythonVersion('')
   },
   {
+    expectedCPython: true,
+    expectedGraalPy: false,
     expectedPyPy: false,
     pythonVersion: new PythonVersion('2')
   },
   {
+    expectedCPython: false,
+    expectedGraalPy: false,
     expectedPyPy: true,
     pythonVersion: new PythonVersion('pypy-3.5')
   },
   {
+    expectedCPython: false,
+    expectedGraalPy: false,
     expectedPyPy: true,
     pythonVersion: new PythonVersion('pypyx')
+  },
+  {
+    expectedCPython: false,
+    expectedGraalPy: true,
+    expectedPyPy: false,
+    pythonVersion: new PythonVersion('graalpy-22.3')
+  },
+  {
+    expectedCPython: false,
+    expectedGraalPy: true,
+    expectedPyPy: false,
+    pythonVersion: new PythonVersion('graalpy22.3')
   }
 ];
 
-export {PyPyTest};
+export {IsTypeTest};
 
 export type SetupPythonResultTest = {
   inputs: ActionInputs;
@@ -220,15 +247,65 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     expectedResult: {
       darwin: {
         success: true,
-        version: defaultPyPy3
+        version: 'graalpy-22.3'
       },
       linux: {
         success: true,
-        version: defaultPyPy3
+        version: 'graalpy-22.3'
       },
       win32: {
         success: true,
-        version: defaultPyPy3
+        version: 'graalpy-22.3'
+      }
+    },
+    inputs: {
+      allowPrereleases: false,
+      architecture: process.arch,
+      buildBehavior: BuildBehavior.Info,
+      cache: true,
+      checkLatest: false,
+      token: 'token',
+      version: new PythonVersion('graalpy-22.3')
+    }
+  },
+  {
+    expectedResult: {
+      darwin: {
+        success: true,
+        version: 'graalpy22.3'
+      },
+      linux: {
+        success: true,
+        version: 'graalpy22.3'
+      },
+      win32: {
+        success: true,
+        version: 'graalpy22.3'
+      }
+    },
+    inputs: {
+      allowPrereleases: false,
+      architecture: process.arch,
+      buildBehavior: BuildBehavior.Info,
+      cache: true,
+      checkLatest: false,
+      token: 'token',
+      version: new PythonVersion('GraalPy22.3')
+    }
+  },
+  {
+    expectedResult: {
+      darwin: {
+        success: true,
+        version: 'pypy3'
+      },
+      linux: {
+        success: true,
+        version: 'pypy3'
+      },
+      win32: {
+        success: true,
+        version: 'pypy3'
       }
     },
     inputs: {
@@ -245,15 +322,15 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     expectedResult: {
       darwin: {
         success: true,
-        version: defaultPyPy3
+        version: 'pypyx'
       },
       linux: {
         success: true,
-        version: defaultPyPy3
+        version: 'pypyx'
       },
       win32: {
         success: true,
-        version: defaultPyPy3
+        version: 'pypyx'
       }
     },
     inputs: {
@@ -270,15 +347,15 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     expectedResult: {
       darwin: {
         success: true,
-        version: defaultPyPy2
+        version: 'pypy2'
       },
       linux: {
         success: true,
-        version: defaultPyPy2
+        version: 'pypy2'
       },
       win32: {
         success: true,
-        version: defaultPyPy2
+        version: 'pypy2'
       }
     },
     inputs: {
@@ -294,16 +371,16 @@ const SetupPythonTests: SetupPythonResultTest[] = [
   {
     expectedResult: {
       darwin: {
-        success: false,
-        version: ''
+        success: true,
+        version: 'pypy1'
       },
       linux: {
-        success: false,
-        version: ''
+        success: true,
+        version: 'pypy1'
       },
       win32: {
-        success: false,
-        version: ''
+        success: true,
+        version: 'pypy1'
       }
     },
     inputs: {
@@ -319,16 +396,16 @@ const SetupPythonTests: SetupPythonResultTest[] = [
   {
     expectedResult: {
       darwin: {
-        success: false,
-        version: ''
+        success: true,
+        version: 'pypy>=2.0.0 <3.0.0 || >=5.0.0 <6.0.0'
       },
       linux: {
-        success: false,
-        version: ''
+        success: true,
+        version: 'pypy>=2.0.0 <3.0.0 || >=5.0.0 <6.0.0'
       },
       win32: {
-        success: false,
-        version: ''
+        success: true,
+        version: 'pypy>=2.0.0 <3.0.0 || >=5.0.0 <6.0.0'
       }
     },
     inputs: {
