@@ -85,6 +85,8 @@ export default async function main(): Promise<void> {
   }
   core.debug('setup-python version resolved.');
 
+  // PyPy and GraalPy are delegated to actions/setup-python
+
   if (!(await isCpython(inputs.version))) {
     if (await isGraalPy(inputs.version)) {
       core.info('GraalPy support is delegated to actions/setup-python...');
