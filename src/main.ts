@@ -101,6 +101,9 @@ export default async function main(): Promise<void> {
   ) {
     // actions/setup-python already supports the version: doing nothing
 
+    core.info(
+      `CPython version ${inputs.version.version} is supported by actions/setup-python with specific version ${setupPythonResult.version}.`
+    );
     core.setOutput(OutputNames.PYTHON_VERSION, setupPythonResult.version);
     return;
   } else {
