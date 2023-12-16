@@ -127,10 +127,8 @@ export async function mockToolkit(
   mockedIo.rmRF.mockImplementation(async inputPath => {
     interactionVector.push(`Recursively remove path ${inputPath}`);
   });
-  mockedIo.cp.mockImplementation(async (source, dest, options) => {
-    if (!options) {
-      options = {};
-    }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  mockedIo.cp.mockImplementation(async (source, dest, _options) => {
     interactionVector.push(`Copy folder ${source} to ${dest}`);
   });
   mockedIo.mkdirP.mockImplementation(async fsPath => {
@@ -185,7 +183,7 @@ export async function mockToolkit(
     if (!options) {
       options = {};
     }
-    if (options && options.listeners && options.listeners.stdout) {
+    if (options.listeners && options.listeners.stdout) {
       options.listeners.stdout(Buffer.from(`${command} ${args.join(' ')}`));
     }
     interactionVector.push(`Execute command "${command} ${args.join(' ')}"`);

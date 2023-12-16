@@ -59,7 +59,7 @@ describe.each(getTags())(
       try {
         await builder.build();
       } catch (error) {
-        null;
+        /* nop */
       }
 
       expect(mockedTc.downloadTool).toBeCalledWith(zipBall);

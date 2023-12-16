@@ -43,4 +43,4 @@ core.info(`Updating ${jsonPath}`);
 
 updateJson().then((jsonString) => {
   fs.writeFileSync(jsonPath, jsonString)
-})
+});

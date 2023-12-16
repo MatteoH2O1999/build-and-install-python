@@ -302,7 +302,7 @@ describe('class Builder', () => {
       try {
         await builder['prepareSources']();
       } catch (error) {
-        null;
+        /* nop */
       }
 
       expect(mockedTc.downloadTool).toBeCalledWith('zipballUrl');
@@ -317,7 +317,7 @@ describe('class Builder', () => {
       try {
         await builder['prepareSources']();
       } catch (error) {
-        null;
+        /* nop */
       }
 
       expect(mockedTc.extractZip).toBeCalledWith('downloadPath');
@@ -332,7 +332,7 @@ describe('class Builder', () => {
       try {
         await builder['prepareSources']();
       } catch (error) {
-        null;
+        /* nop */
       }
 
       expect(mockedIo.rmRF).toBeCalledWith('downloadPath');
