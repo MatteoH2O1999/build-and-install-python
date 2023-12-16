@@ -44,7 +44,7 @@ function toolsetVersion(version: string): string {
   return `<PlatformToolset>${version}</PlatformToolset>`;
 }
 const toolsetRe =
-  /<PlatformToolset[a-zA-Z0-9.()[\]{}_\-:,;!"£$%&/()='?^\s]*>[a-zA-Z0-9.()[\]{}_\-:,;!"£$%&/()='?^\s]+<\/PlatformToolset>/;
+  /<PlatformToolset[a-zA-Z0-9.[\]{}_\-:,;!"£$%&/()='?^\s]*>[a-zA-Z0-9.()[\]{}_\-:,;!"£$%&/='?^\s]+<\/PlatformToolset>/;
 
 export default class WindowsBuilder extends Builder {
   private readonly MSBUILD: string = process.env.MSBUILD || '';
