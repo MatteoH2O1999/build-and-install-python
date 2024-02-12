@@ -40,7 +40,7 @@
         "setup-python": "github:actions/setup-python#v5.0.0"
     },
     "devDependencies": {
-        "@matteoh2o1999/github-actions-jest-reporter": "^2.0.0",
+        "@matteoh2o1999/github-actions-jest-reporter": "^3.0.0",
         "@types/node": "^20.11.17",
         "@typescript-eslint/parser": "^5.62.0",
         "@vercel/ncc": "^0.38.1",
