@@ -18,12 +18,18 @@ import * as core from '@actions/core';
 import {InputNames} from './constants';
 import {getVersionInputFromFile} from 'setup-python/src/utils';
 import os from 'os';
+import {pythonVersionToSemantic} from 'setup-python/src/find-python';
 import semverValidRange from 'semver/ranges/valid';
 
 export enum PythonType {
   CPython = 'cpython',
   PyPy = 'pypy',
   GraalPy = 'graalpy'
+}
+
+function parseDevSyntax(version: string): string {
+  const devRegex = /^(\d+)\.(\d+)-dev$/;
+  return version.replace(devRegex, '~$1.$2.0-0');
 }
 
 export class PythonVersion {
@@ -42,7 +48,9 @@ export class PythonVersion {
       this.version = pythonVersion;
     } else {
       this.type = PythonType.CPython;
-      pythonVersion = pythonVersion.replace(/v/g, '');
+      pythonVersion = pythonVersion.replace(/^v/g, '');
+      pythonVersion = parseDevSyntax(pythonVersion);
+      pythonVersion = pythonVersionToSemantic(pythonVersion, false);
       const range = semverValidRange(pythonVersion);
       if (!range) {
         throw new Error(

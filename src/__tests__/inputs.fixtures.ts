@@ -62,6 +62,16 @@ const pythonVersions: PythonVersionTest[] = [
   },
   {
     expectedType: PythonType.CPython,
+    expectedVersion: '3.9.0-a2',
+    inputVersionString: '3.9.0a2'
+  },
+  {
+    expectedType: PythonType.CPython,
+    expectedVersion: '>=3.9.0-0 <3.10.0-0',
+    inputVersionString: '3.9-dev'
+  },
+  {
+    expectedType: PythonType.CPython,
     expectedVersion: '*',
     inputVersionString: ''
   },
