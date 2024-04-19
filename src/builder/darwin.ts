@@ -351,6 +351,7 @@ export default class MacOSBuilder extends Builder {
       await io.rmRF(ssl);
       additionalPaths.push(openssl102Path.trim());
       additionalPaths.push(openssl102Cellar.trim());
+      additionalPaths.push(ssl102Url.certificate_path.trim());
     }
     return additionalPaths;
   }

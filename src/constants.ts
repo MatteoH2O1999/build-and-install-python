@@ -83,9 +83,11 @@ export {darwinDependencies, ubuntuDependencies};
 export type sslUrl = {
   name: string;
   url: string;
+  certificate_path: string;
 };
 
 const ssl102Url: sslUrl = {
+  certificate_path: '/usr/local/etc/openssl/certs',
   name: 'openssl@1.0',
   url: 'https://raw.githubusercontent.com/rbenv/homebrew-tap/e472b7861b49cc082d1db0f66f265368da107589/Formula/openssl%401.0.rb'
 };
