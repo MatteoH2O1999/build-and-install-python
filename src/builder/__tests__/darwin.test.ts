@@ -84,6 +84,7 @@ describe.each(getTags())(
       'has a stable interaction with @actions/toolkit during postInstall for arch %s',
       async arch => {
         const builder = new MacOSBuilder({version, zipBall}, arch);
+        builder['sslPath'] = 'path';
 
         try {
           await builder.postInstall('installPath');
