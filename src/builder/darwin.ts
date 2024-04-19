@@ -220,7 +220,7 @@ export default class MacOSBuilder extends Builder {
     // Handle ssl version
 
     if (semver.lt(this.specificVersion, '3.5.0')) {
-      core.info('OpenSSL version 1.0.2 is already installed');
+      await this.installOldSsl(ssl102Url);
     } else if (semver.lt(this.specificVersion, '3.9.0')) {
       core.info(
         'Detected version <3.9. OpenSSL version 1.1 will be installed...'
@@ -290,6 +290,10 @@ export default class MacOSBuilder extends Builder {
   }
 
   private async installOldSsl(url: sslUrl): Promise<string> {
+    if (this.sslPath.length !== 0) {
+      core.info('Correct version of OpenSSl already installed');
+      return this.sslPath;
+    }
     core.info(`Downloading ${url.url}`);
     const tempPath = process.env['RUNNER_TEMP'] || os.tmpdir();
     const ssl = await tc.downloadTool(
@@ -301,7 +305,13 @@ export default class MacOSBuilder extends Builder {
       ssl,
       sslContent.replace('system "make", "test"\n', '')
     );
-    await exec.exec(`brew install ./${url.name}.rb`, [], {cwd: tempPath});
+    if (!this.restored) {
+      await exec.exec(`brew install ./${url.name}.rb`, [], {cwd: tempPath});
+    } else {
+      await exec.exec(`brew post_install ./${url.name}.rb`, [], {
+        cwd: tempPath
+      });
+    }
     let installPath = '';
     await exec.exec(`brew --prefix ${url.name}`, [], {
       listeners: {
