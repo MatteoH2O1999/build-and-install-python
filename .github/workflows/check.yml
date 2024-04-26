@@ -8,10 +8,10 @@ on:
         description: Specific version to check
         type: string
       allow-prereleases:
-          required: true
-          default: false
-          description: Include prereleases in the check
-          type: boolean
+        required: true
+        default: false
+        description: Include prereleases in the check
+        type: boolean
       allow-build:
         required: true
         description: Behavior to use for the action
@@ -63,7 +63,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-12, windows-2022, ubuntu-22.04]
+        os: [macos-14, windows-2022, ubuntu-22.04]
     steps:
       - name: Download built action
         uses: actions/download-artifact@v4
@@ -103,7 +103,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-12, windows-2022, ubuntu-22.04]
+        os: [macos-14, windows-2022, ubuntu-22.04]
     steps:
       - name: Download built action
         uses: actions/download-artifact@v4
