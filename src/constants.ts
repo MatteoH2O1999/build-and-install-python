@@ -16,7 +16,7 @@
 
 const toolName = 'Python';
 
-const testedLabels = ['ubuntu-22.04', 'windows-2022', 'macos-12'];
+const testedLabels = ['ubuntu-22.04', 'windows-2022', 'macos-14'];
 
 export {testedLabels, toolName};
 
