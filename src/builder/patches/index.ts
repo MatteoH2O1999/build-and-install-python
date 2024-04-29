@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import ArmDarwin from './arm-darwin';
 import BootstrapperWix from './bootstrapper-wix';
 import ExternalsSvn from './externals-svn';
 import H2PYHeaders from './h2py-headers';
@@ -23,6 +24,7 @@ import TCLTKExternalVersion from './tcltk-external-version';
 import TCLTKProps_VC9 from './tcltkprops-vc9';
 
 const patches: Patch[] = [
+  new ArmDarwin(),
   new BootstrapperWix(),
   new ExternalsSvn(),
   new H2PYHeaders(),
