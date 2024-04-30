@@ -134,7 +134,7 @@ describe(`getSetupPythonResult with manifest url ${manifestUrl}`, () => {
 
     const result = await getSetupPythonResult({
       allowPrereleases: false,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: false,
       checkLatest: true,
