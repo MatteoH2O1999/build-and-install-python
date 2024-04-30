@@ -110,7 +110,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     },
     inputs: {
       allowPrereleases: false,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
@@ -135,7 +135,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     },
     inputs: {
       allowPrereleases: false,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
@@ -160,7 +160,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     },
     inputs: {
       allowPrereleases: false,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
@@ -185,7 +185,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     },
     inputs: {
       allowPrereleases: false,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
@@ -210,7 +210,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     },
     inputs: {
       allowPrereleases: false,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
@@ -235,7 +235,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     },
     inputs: {
       allowPrereleases: false,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
@@ -260,7 +260,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     },
     inputs: {
       allowPrereleases: false,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
@@ -285,7 +285,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     },
     inputs: {
       allowPrereleases: false,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
@@ -310,7 +310,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     },
     inputs: {
       allowPrereleases: false,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
@@ -335,7 +335,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     },
     inputs: {
       allowPrereleases: false,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
@@ -360,7 +360,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     },
     inputs: {
       allowPrereleases: false,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
@@ -385,7 +385,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     },
     inputs: {
       allowPrereleases: false,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
@@ -410,7 +410,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     },
     inputs: {
       allowPrereleases: false,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
@@ -435,7 +435,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     },
     inputs: {
       allowPrereleases: false,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
@@ -460,7 +460,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     },
     inputs: {
       allowPrereleases: true,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
@@ -485,7 +485,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     },
     inputs: {
       allowPrereleases: true,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
@@ -510,7 +510,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     },
     inputs: {
       allowPrereleases: true,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
@@ -535,7 +535,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     },
     inputs: {
       allowPrereleases: false,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
@@ -560,7 +560,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
     },
     inputs: {
       allowPrereleases: true,
-      architecture: process.arch,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
       buildBehavior: BuildBehavior.Info,
       cache: true,
       checkLatest: false,
