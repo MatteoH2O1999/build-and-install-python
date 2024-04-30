@@ -29,7 +29,7 @@ export default class ArmDarwin extends Patch {
       path.join(baseDir, 'configure'),
       configureFile.replace(
         /case `\/usr\/bin\/arch` in/g,
-        'case `/usr/bin/arch` in\narm64)\nMACOSX_DEFAULT_ARCH="x86_64"\n;;'
+        'case `/usr/bin/arch` in\narm64)\nMACOSX_DEFAULT_ARCH="arm64"\n;;'
       )
     );
   }
