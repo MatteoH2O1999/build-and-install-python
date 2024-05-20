@@ -21,6 +21,7 @@ import Builder from './builder';
 import LinuxBuilder from './linux';
 import MacOSBuilder from './darwin';
 import WindowsBuilder from './windows';
+import {checkMinVersion} from '../version';
 import cpythonTags from './tags.json';
 
 export default async function getBuilder(
@@ -45,6 +46,9 @@ export default async function getBuilder(
   core.info(
     `Version range ${version.version} resolved to ${specificVersion.version}. Source code uri: ${specificVersion.zipBall}`
   );
+
+  await checkMinVersion(specificVersion.version);
+
   switch (process.platform) {
     case 'win32':
       return new WindowsBuilder(specificVersion, arch);
