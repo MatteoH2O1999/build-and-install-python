@@ -13,16 +13,13 @@
 //
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
-import semver from 'semver';
 
 const toolName = 'Python';
 
 const testedLabels = ['ubuntu-22.04', 'windows-2022', 'macos-14'];
 
-const minSupportedVersion =
-  semver
-    .minVersion(semver.validRange('3.7', {includePrerelease: true}) || '*')
-    ?.toString() || '0.0.0-0';
+const minSupportedVersion = '3.7.0-0';
+
 export {testedLabels, toolName, minSupportedVersion};
 
 export enum InputNames {
