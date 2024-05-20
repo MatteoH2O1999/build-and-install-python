@@ -17,7 +17,7 @@
 import * as core from '@actions/core';
 import * as tc from '@actions/tool-cache';
 import {ActionInputs, PythonType, PythonVersion} from './inputs';
-import {ManifestUrl} from './constants';
+import {ManifestUrl, minSupportedVersion} from './constants';
 import path from 'path';
 import semver from 'semver';
 
@@ -135,4 +135,12 @@ export async function getSetupPythonResult(
     success,
     version: resultVersionString
   };
+}
+
+export async function checkMinVersion(specificVersion: string): Promise<void> {
+  if (semver.lt(specificVersion, minSupportedVersion)) {
+    core.warning(
+      `Specific version ${specificVersion} is no longer officially supported. This action will not break support intentionally but no effort will be spent in supporting it.`
+    );
+  }
 }
