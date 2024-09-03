@@ -98,6 +98,7 @@ jobs:
             action.yml
           retention-days: 1
           if-no-files-found: error
+          include-hidden-files: true
 
   # Test build of different python versions
   create_matrix:
