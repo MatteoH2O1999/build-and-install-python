@@ -1,6 +1,11 @@
 [
   {
     "installer": false,
+    "version": "v3.13.0rc2",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.0rc2"
+  },
+  {
+    "installer": false,
     "version": "v3.13.0rc1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.0rc1"
   },
@@ -53,6 +58,11 @@
     "installer": false,
     "version": "v3.13.0a1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.0a1"
+  },
+  {
+    "installer": true,
+    "version": "v3.12.6",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.6"
   },
   {
     "installer": true,
@@ -153,6 +163,11 @@
     "installer": false,
     "version": "v3.12.0a1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.0a1"
+  },
+  {
+    "installer": false,
+    "version": "v3.11.10",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.11.10"
   },
   {
     "installer": true,
@@ -273,6 +288,11 @@
     "installer": false,
     "version": "v3.11.0a1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.11.0a1"
+  },
+  {
+    "installer": false,
+    "version": "v3.10.15",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.10.15"
   },
   {
     "installer": false,
@@ -413,6 +433,11 @@
     "installer": false,
     "version": "v3.10.0a1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.10.0a1"
+  },
+  {
+    "installer": false,
+    "version": "v3.9.20",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.9.20"
   },
   {
     "installer": false,
@@ -588,6 +613,11 @@
     "installer": false,
     "version": "v3.9.0a1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.9.0a1"
+  },
+  {
+    "installer": false,
+    "version": "v3.8.20",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.8.20"
   },
   {
     "installer": false,
