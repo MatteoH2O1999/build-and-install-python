@@ -1,5 +1,10 @@
 [
   {
+    "installer": true,
+    "version": "v3.13.0",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.0"
+  },
+  {
     "installer": false,
     "version": "v3.13.0rc3",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.0rc3"
@@ -2863,6 +2868,11 @@
     "installer": false,
     "version": "legacy-trunk",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/legacy-trunk"
+  },
+  {
+    "installer": false,
+    "version": "3.8",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/3.8"
   },
   {
     "installer": false,
