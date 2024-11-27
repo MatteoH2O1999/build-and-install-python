@@ -301,7 +301,7 @@ describe('class Builder', () => {
 
       try {
         await builder['prepareSources']();
-      } catch (error) {
+      } catch {
         /* nop */
       }
 
@@ -316,7 +316,7 @@ describe('class Builder', () => {
 
       try {
         await builder['prepareSources']();
-      } catch (error) {
+      } catch {
         /* nop */
       }
 
@@ -331,7 +331,7 @@ describe('class Builder', () => {
 
       try {
         await builder['prepareSources']();
-      } catch (error) {
+      } catch {
         /* nop */
       }
 

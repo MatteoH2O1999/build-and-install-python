@@ -306,7 +306,7 @@ export default class WindowsBuilder extends Builder {
     core.startGroup('Searching for msbuild.exe');
     try {
       await exec.exec('vswhere', [], {silent: true});
-    } catch (error) {
+    } catch {
       await exec.exec('choco install vswhere', [], {ignoreReturnCode: true});
     }
     let msBuildPath = '';
@@ -437,7 +437,7 @@ export default class WindowsBuilder extends Builder {
         `${ftpPythonUrl}/${this.specificVersion}/${exeName}`,
         path.join(this.path, exeName)
       );
-    } catch (error) {
+    } catch {
       installerPath = '';
     }
     if (!installerPath) {
@@ -447,7 +447,7 @@ export default class WindowsBuilder extends Builder {
           `${ftpPythonUrl}/${this.specificVersion}/${msiName}`,
           path.join(this.path, msiName)
         );
-      } catch (error) {
+      } catch {
         installerPath = '';
       }
     }

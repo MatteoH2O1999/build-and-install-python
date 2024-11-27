@@ -85,6 +85,7 @@ describe('Utils', () => {
 
   describe('readFile', () => {
     test('calls fs.promises.readFile', async () => {
+      mockedFs.promises.readFile.mockResolvedValueOnce('string content');
       await utils.readFile('path');
 
       expect(mockedFs.promises.readFile).toBeCalledTimes(1);

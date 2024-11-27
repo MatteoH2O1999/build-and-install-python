@@ -173,7 +173,7 @@ export default abstract class Builder {
       await exec.exec(`${pythonExecutable} -m pip install --upgrade pip`, [], {
         silent: true
       });
-    } catch (error) {
+    } catch {
       core.info('Ensurepip failed. Trying using get_pip.py...');
       const splitVersion = this.specificVersion.split('.');
       const version = parseInt(splitVersion[0]);

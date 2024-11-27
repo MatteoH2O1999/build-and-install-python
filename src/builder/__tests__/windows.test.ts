@@ -58,7 +58,7 @@ describe.each(getTags())(
 
       try {
         await builder.build();
-      } catch (error) {
+      } catch {
         /* nop */
       }
 
