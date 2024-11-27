@@ -123,7 +123,7 @@ async function getCache(): Promise<boolean> {
   core.debug('Parsing cache behavior...');
   try {
     return core.getBooleanInput(InputNames.CACHE_BUILD);
-  } catch (error) {
+  } catch {
     throw new Error(
       `Expected boolean value for input "${
         InputNames.CACHE_BUILD
@@ -138,7 +138,7 @@ async function getCheckLatest(): Promise<boolean> {
   core.debug('Parsing check latest input');
   try {
     return core.getBooleanInput(InputNames.CHECK_LATEST);
-  } catch (error) {
+  } catch {
     throw new Error(
       `Expected boolean value for input "${
         InputNames.CHECK_LATEST
@@ -153,7 +153,7 @@ async function getAllowPrereleases(): Promise<boolean> {
   core.debug('Parsing allow prereleases input');
   try {
     return core.getBooleanInput(InputNames.PRERELEASES);
-  } catch (error) {
+  } catch {
     throw new Error(
       `Expected boolean value for input "${
         InputNames.PRERELEASES

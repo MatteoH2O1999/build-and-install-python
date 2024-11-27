@@ -53,8 +53,10 @@ export async function readFile(
   const content = await fs.promises.readFile(path, options);
   if (content instanceof Buffer) {
     return content.toString();
+  } else if (typeof content == 'string') {
+    return content;
   }
-  return content;
+  throw new Error('Unreachable');
 }
 
 export async function writeFile(
