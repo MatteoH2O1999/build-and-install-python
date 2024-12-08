@@ -18252,6 +18252,135 @@ exports[`MacOSBuilder for version 3.9.20 identifies the correct additional paths
 
 exports[`MacOSBuilder for version 3.9.20 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
 
+exports[`MacOSBuilder for version 3.9.21 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.9.21arm64darwin/tmp",
+  "Cache source directory tmpDir/CPython3.9.21arm64darwin/tmp as tool Python version 3.9.21 for architecture arm64",
+  "Recursively remove path tmpDir/CPython3.9.21arm64darwin/tmp",
+  "Recursively remove path toolcache/Python/3.9.21",
+  "Execute command "xcode-select --install "",
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew --prefix zlib "",
+  "Execute command "brew --prefix readline "",
+  "Execute command "brew install openssl "",
+  "Execute command "brew --prefix openssl "",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.9.21 to defaultDownloadPath/v3.9.21",
+  "Extract defaultDownloadPath/v3.9.21 to defaultExtractedPath/extractedv3.9.21",
+  "Recursively remove path defaultDownloadPath/v3.9.21",
+  "Copy folder defaultExtractedPath/extractedv3.9.21/python-cpython to tmpDir/CPython3.9.21arm64darwin",
+  "Recursively remove path defaultExtractedPath/extractedv3.9.21",
+  "Execute command "brew --prefix sqlite3 "",
+  "Execute command "./configure --prefix=toolcache/Python/3.9.21/arm64  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.9.21/arm64 to tmpDir/CPython3.9.21arm64darwin/installDir",
+  "Recursively remove path toolcache/Python/3.9.21",
+]
+`;
+
+exports[`MacOSBuilder for version 3.9.21 has a stable interaction with @actions/toolkit during build for arch x64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.9.21x64darwin/tmp",
+  "Cache source directory tmpDir/CPython3.9.21x64darwin/tmp as tool Python version 3.9.21 for architecture x64",
+  "Recursively remove path tmpDir/CPython3.9.21x64darwin/tmp",
+  "Recursively remove path toolcache/Python/3.9.21",
+  "Execute command "xcode-select --install "",
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew --prefix zlib "",
+  "Execute command "brew --prefix readline "",
+  "Execute command "brew install openssl "",
+  "Execute command "brew --prefix openssl "",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.9.21 to defaultDownloadPath/v3.9.21",
+  "Extract defaultDownloadPath/v3.9.21 to defaultExtractedPath/extractedv3.9.21",
+  "Recursively remove path defaultDownloadPath/v3.9.21",
+  "Copy folder defaultExtractedPath/extractedv3.9.21/python-cpython to tmpDir/CPython3.9.21x64darwin",
+  "Recursively remove path defaultExtractedPath/extractedv3.9.21",
+  "Execute command "brew --prefix sqlite3 "",
+  "Execute command "./configure --prefix=toolcache/Python/3.9.21/x64  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.9.21/x64 to tmpDir/CPython3.9.21x64darwin/installDir",
+  "Recursively remove path toolcache/Python/3.9.21",
+]
+`;
+
+exports[`MacOSBuilder for version 3.9.21 has a stable interaction with @actions/toolkit during build for arch x86 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.9.21x86darwin/tmp",
+  "Cache source directory tmpDir/CPython3.9.21x86darwin/tmp as tool Python version 3.9.21 for architecture x86",
+  "Recursively remove path tmpDir/CPython3.9.21x86darwin/tmp",
+  "Recursively remove path toolcache/Python/3.9.21",
+  "Execute command "xcode-select --install "",
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew --prefix zlib "",
+  "Execute command "brew --prefix readline "",
+  "Execute command "brew install openssl "",
+  "Execute command "brew --prefix openssl "",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.9.21 to defaultDownloadPath/v3.9.21",
+  "Extract defaultDownloadPath/v3.9.21 to defaultExtractedPath/extractedv3.9.21",
+  "Recursively remove path defaultDownloadPath/v3.9.21",
+  "Copy folder defaultExtractedPath/extractedv3.9.21/python-cpython to tmpDir/CPython3.9.21x86darwin",
+  "Recursively remove path defaultExtractedPath/extractedv3.9.21",
+  "Execute command "brew --prefix sqlite3 "",
+  "Execute command "./configure --prefix=toolcache/Python/3.9.21/x86  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.9.21/x86 to tmpDir/CPython3.9.21x86darwin/installDir",
+  "Recursively remove path toolcache/Python/3.9.21",
+]
+`;
+
+exports[`MacOSBuilder for version 3.9.21 has a stable interaction with @actions/toolkit during postInstall for arch arm64 1`] = `
+[
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew install openssl "",
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.9",
+  "Create symlink in path installPath/bin/python39 pointing to installPath/bin/python3.9",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.9",
+  "Execute command "chmod +x installPath/bin/python3.9 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python39 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`MacOSBuilder for version 3.9.21 has a stable interaction with @actions/toolkit during postInstall for arch x64 1`] = `
+[
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew install openssl "",
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.9",
+  "Create symlink in path installPath/bin/python39 pointing to installPath/bin/python3.9",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.9",
+  "Execute command "chmod +x installPath/bin/python3.9 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python39 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`MacOSBuilder for version 3.9.21 has a stable interaction with @actions/toolkit during postInstall for arch x86 1`] = `
+[
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew install openssl "",
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.9",
+  "Create symlink in path installPath/bin/python39 pointing to installPath/bin/python3.9",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.9",
+  "Execute command "chmod +x installPath/bin/python3.9 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python39 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`MacOSBuilder for version 3.9.21 identifies the correct additional paths to cache for arch arm64 1`] = `[]`;
+
+exports[`MacOSBuilder for version 3.9.21 identifies the correct additional paths to cache for arch x64 1`] = `[]`;
+
+exports[`MacOSBuilder for version 3.9.21 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
+
 exports[`MacOSBuilder for version 3.10.0 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
 [
   "Create directory with path tmpDir/CPython3.10.0arm64darwin/tmp",
@@ -20316,6 +20445,135 @@ exports[`MacOSBuilder for version 3.10.15 identifies the correct additional path
 
 exports[`MacOSBuilder for version 3.10.15 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
 
+exports[`MacOSBuilder for version 3.10.16 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.10.16arm64darwin/tmp",
+  "Cache source directory tmpDir/CPython3.10.16arm64darwin/tmp as tool Python version 3.10.16 for architecture arm64",
+  "Recursively remove path tmpDir/CPython3.10.16arm64darwin/tmp",
+  "Recursively remove path toolcache/Python/3.10.16",
+  "Execute command "xcode-select --install "",
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew --prefix zlib "",
+  "Execute command "brew --prefix readline "",
+  "Execute command "brew install openssl "",
+  "Execute command "brew --prefix openssl "",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.10.16 to defaultDownloadPath/v3.10.16",
+  "Extract defaultDownloadPath/v3.10.16 to defaultExtractedPath/extractedv3.10.16",
+  "Recursively remove path defaultDownloadPath/v3.10.16",
+  "Copy folder defaultExtractedPath/extractedv3.10.16/python-cpython to tmpDir/CPython3.10.16arm64darwin",
+  "Recursively remove path defaultExtractedPath/extractedv3.10.16",
+  "Execute command "brew --prefix sqlite3 "",
+  "Execute command "./configure --prefix=toolcache/Python/3.10.16/arm64  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.10.16/arm64 to tmpDir/CPython3.10.16arm64darwin/installDir",
+  "Recursively remove path toolcache/Python/3.10.16",
+]
+`;
+
+exports[`MacOSBuilder for version 3.10.16 has a stable interaction with @actions/toolkit during build for arch x64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.10.16x64darwin/tmp",
+  "Cache source directory tmpDir/CPython3.10.16x64darwin/tmp as tool Python version 3.10.16 for architecture x64",
+  "Recursively remove path tmpDir/CPython3.10.16x64darwin/tmp",
+  "Recursively remove path toolcache/Python/3.10.16",
+  "Execute command "xcode-select --install "",
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew --prefix zlib "",
+  "Execute command "brew --prefix readline "",
+  "Execute command "brew install openssl "",
+  "Execute command "brew --prefix openssl "",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.10.16 to defaultDownloadPath/v3.10.16",
+  "Extract defaultDownloadPath/v3.10.16 to defaultExtractedPath/extractedv3.10.16",
+  "Recursively remove path defaultDownloadPath/v3.10.16",
+  "Copy folder defaultExtractedPath/extractedv3.10.16/python-cpython to tmpDir/CPython3.10.16x64darwin",
+  "Recursively remove path defaultExtractedPath/extractedv3.10.16",
+  "Execute command "brew --prefix sqlite3 "",
+  "Execute command "./configure --prefix=toolcache/Python/3.10.16/x64  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.10.16/x64 to tmpDir/CPython3.10.16x64darwin/installDir",
+  "Recursively remove path toolcache/Python/3.10.16",
+]
+`;
+
+exports[`MacOSBuilder for version 3.10.16 has a stable interaction with @actions/toolkit during build for arch x86 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.10.16x86darwin/tmp",
+  "Cache source directory tmpDir/CPython3.10.16x86darwin/tmp as tool Python version 3.10.16 for architecture x86",
+  "Recursively remove path tmpDir/CPython3.10.16x86darwin/tmp",
+  "Recursively remove path toolcache/Python/3.10.16",
+  "Execute command "xcode-select --install "",
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew --prefix zlib "",
+  "Execute command "brew --prefix readline "",
+  "Execute command "brew install openssl "",
+  "Execute command "brew --prefix openssl "",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.10.16 to defaultDownloadPath/v3.10.16",
+  "Extract defaultDownloadPath/v3.10.16 to defaultExtractedPath/extractedv3.10.16",
+  "Recursively remove path defaultDownloadPath/v3.10.16",
+  "Copy folder defaultExtractedPath/extractedv3.10.16/python-cpython to tmpDir/CPython3.10.16x86darwin",
+  "Recursively remove path defaultExtractedPath/extractedv3.10.16",
+  "Execute command "brew --prefix sqlite3 "",
+  "Execute command "./configure --prefix=toolcache/Python/3.10.16/x86  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.10.16/x86 to tmpDir/CPython3.10.16x86darwin/installDir",
+  "Recursively remove path toolcache/Python/3.10.16",
+]
+`;
+
+exports[`MacOSBuilder for version 3.10.16 has a stable interaction with @actions/toolkit during postInstall for arch arm64 1`] = `
+[
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew install openssl "",
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.10",
+  "Create symlink in path installPath/bin/python310 pointing to installPath/bin/python3.10",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.10",
+  "Execute command "chmod +x installPath/bin/python3.10 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python310 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`MacOSBuilder for version 3.10.16 has a stable interaction with @actions/toolkit during postInstall for arch x64 1`] = `
+[
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew install openssl "",
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.10",
+  "Create symlink in path installPath/bin/python310 pointing to installPath/bin/python3.10",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.10",
+  "Execute command "chmod +x installPath/bin/python3.10 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python310 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`MacOSBuilder for version 3.10.16 has a stable interaction with @actions/toolkit during postInstall for arch x86 1`] = `
+[
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew install openssl "",
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.10",
+  "Create symlink in path installPath/bin/python310 pointing to installPath/bin/python3.10",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.10",
+  "Execute command "chmod +x installPath/bin/python3.10 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python310 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`MacOSBuilder for version 3.10.16 identifies the correct additional paths to cache for arch arm64 1`] = `[]`;
+
+exports[`MacOSBuilder for version 3.10.16 identifies the correct additional paths to cache for arch x64 1`] = `[]`;
+
+exports[`MacOSBuilder for version 3.10.16 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
+
 exports[`MacOSBuilder for version 3.11.0 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
 [
   "Create directory with path tmpDir/CPython3.11.0arm64darwin/tmp",
@@ -21735,6 +21993,135 @@ exports[`MacOSBuilder for version 3.11.10 identifies the correct additional path
 
 exports[`MacOSBuilder for version 3.11.10 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
 
+exports[`MacOSBuilder for version 3.11.11 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.11.11arm64darwin/tmp",
+  "Cache source directory tmpDir/CPython3.11.11arm64darwin/tmp as tool Python version 3.11.11 for architecture arm64",
+  "Recursively remove path tmpDir/CPython3.11.11arm64darwin/tmp",
+  "Recursively remove path toolcache/Python/3.11.11",
+  "Execute command "xcode-select --install "",
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew --prefix zlib "",
+  "Execute command "brew --prefix readline "",
+  "Execute command "brew install openssl "",
+  "Execute command "brew --prefix openssl "",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.11.11 to defaultDownloadPath/v3.11.11",
+  "Extract defaultDownloadPath/v3.11.11 to defaultExtractedPath/extractedv3.11.11",
+  "Recursively remove path defaultDownloadPath/v3.11.11",
+  "Copy folder defaultExtractedPath/extractedv3.11.11/python-cpython to tmpDir/CPython3.11.11arm64darwin",
+  "Recursively remove path defaultExtractedPath/extractedv3.11.11",
+  "Execute command "brew --prefix sqlite3 "",
+  "Execute command "./configure --prefix=toolcache/Python/3.11.11/arm64  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.11.11/arm64 to tmpDir/CPython3.11.11arm64darwin/installDir",
+  "Recursively remove path toolcache/Python/3.11.11",
+]
+`;
+
+exports[`MacOSBuilder for version 3.11.11 has a stable interaction with @actions/toolkit during build for arch x64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.11.11x64darwin/tmp",
+  "Cache source directory tmpDir/CPython3.11.11x64darwin/tmp as tool Python version 3.11.11 for architecture x64",
+  "Recursively remove path tmpDir/CPython3.11.11x64darwin/tmp",
+  "Recursively remove path toolcache/Python/3.11.11",
+  "Execute command "xcode-select --install "",
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew --prefix zlib "",
+  "Execute command "brew --prefix readline "",
+  "Execute command "brew install openssl "",
+  "Execute command "brew --prefix openssl "",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.11.11 to defaultDownloadPath/v3.11.11",
+  "Extract defaultDownloadPath/v3.11.11 to defaultExtractedPath/extractedv3.11.11",
+  "Recursively remove path defaultDownloadPath/v3.11.11",
+  "Copy folder defaultExtractedPath/extractedv3.11.11/python-cpython to tmpDir/CPython3.11.11x64darwin",
+  "Recursively remove path defaultExtractedPath/extractedv3.11.11",
+  "Execute command "brew --prefix sqlite3 "",
+  "Execute command "./configure --prefix=toolcache/Python/3.11.11/x64  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.11.11/x64 to tmpDir/CPython3.11.11x64darwin/installDir",
+  "Recursively remove path toolcache/Python/3.11.11",
+]
+`;
+
+exports[`MacOSBuilder for version 3.11.11 has a stable interaction with @actions/toolkit during build for arch x86 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.11.11x86darwin/tmp",
+  "Cache source directory tmpDir/CPython3.11.11x86darwin/tmp as tool Python version 3.11.11 for architecture x86",
+  "Recursively remove path tmpDir/CPython3.11.11x86darwin/tmp",
+  "Recursively remove path toolcache/Python/3.11.11",
+  "Execute command "xcode-select --install "",
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew --prefix zlib "",
+  "Execute command "brew --prefix readline "",
+  "Execute command "brew install openssl "",
+  "Execute command "brew --prefix openssl "",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.11.11 to defaultDownloadPath/v3.11.11",
+  "Extract defaultDownloadPath/v3.11.11 to defaultExtractedPath/extractedv3.11.11",
+  "Recursively remove path defaultDownloadPath/v3.11.11",
+  "Copy folder defaultExtractedPath/extractedv3.11.11/python-cpython to tmpDir/CPython3.11.11x86darwin",
+  "Recursively remove path defaultExtractedPath/extractedv3.11.11",
+  "Execute command "brew --prefix sqlite3 "",
+  "Execute command "./configure --prefix=toolcache/Python/3.11.11/x86  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.11.11/x86 to tmpDir/CPython3.11.11x86darwin/installDir",
+  "Recursively remove path toolcache/Python/3.11.11",
+]
+`;
+
+exports[`MacOSBuilder for version 3.11.11 has a stable interaction with @actions/toolkit during postInstall for arch arm64 1`] = `
+[
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew install openssl "",
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.11",
+  "Create symlink in path installPath/bin/python311 pointing to installPath/bin/python3.11",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.11",
+  "Execute command "chmod +x installPath/bin/python3.11 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python311 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`MacOSBuilder for version 3.11.11 has a stable interaction with @actions/toolkit during postInstall for arch x64 1`] = `
+[
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew install openssl "",
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.11",
+  "Create symlink in path installPath/bin/python311 pointing to installPath/bin/python3.11",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.11",
+  "Execute command "chmod +x installPath/bin/python3.11 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python311 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`MacOSBuilder for version 3.11.11 has a stable interaction with @actions/toolkit during postInstall for arch x86 1`] = `
+[
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew install openssl "",
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.11",
+  "Create symlink in path installPath/bin/python311 pointing to installPath/bin/python3.11",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.11",
+  "Execute command "chmod +x installPath/bin/python3.11 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python311 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`MacOSBuilder for version 3.11.11 identifies the correct additional paths to cache for arch arm64 1`] = `[]`;
+
+exports[`MacOSBuilder for version 3.11.11 identifies the correct additional paths to cache for arch x64 1`] = `[]`;
+
+exports[`MacOSBuilder for version 3.11.11 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
+
 exports[`MacOSBuilder for version 3.12.0 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
 [
   "Create directory with path tmpDir/CPython3.12.0arm64darwin/tmp",
@@ -22767,6 +23154,135 @@ exports[`MacOSBuilder for version 3.12.7 identifies the correct additional paths
 
 exports[`MacOSBuilder for version 3.12.7 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
 
+exports[`MacOSBuilder for version 3.12.8 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.12.8arm64darwin/tmp",
+  "Cache source directory tmpDir/CPython3.12.8arm64darwin/tmp as tool Python version 3.12.8 for architecture arm64",
+  "Recursively remove path tmpDir/CPython3.12.8arm64darwin/tmp",
+  "Recursively remove path toolcache/Python/3.12.8",
+  "Execute command "xcode-select --install "",
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew --prefix zlib "",
+  "Execute command "brew --prefix readline "",
+  "Execute command "brew install openssl "",
+  "Execute command "brew --prefix openssl "",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.8 to defaultDownloadPath/v3.12.8",
+  "Extract defaultDownloadPath/v3.12.8 to defaultExtractedPath/extractedv3.12.8",
+  "Recursively remove path defaultDownloadPath/v3.12.8",
+  "Copy folder defaultExtractedPath/extractedv3.12.8/python-cpython to tmpDir/CPython3.12.8arm64darwin",
+  "Recursively remove path defaultExtractedPath/extractedv3.12.8",
+  "Execute command "brew --prefix sqlite3 "",
+  "Execute command "./configure --prefix=toolcache/Python/3.12.8/arm64  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.12.8/arm64 to tmpDir/CPython3.12.8arm64darwin/installDir",
+  "Recursively remove path toolcache/Python/3.12.8",
+]
+`;
+
+exports[`MacOSBuilder for version 3.12.8 has a stable interaction with @actions/toolkit during build for arch x64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.12.8x64darwin/tmp",
+  "Cache source directory tmpDir/CPython3.12.8x64darwin/tmp as tool Python version 3.12.8 for architecture x64",
+  "Recursively remove path tmpDir/CPython3.12.8x64darwin/tmp",
+  "Recursively remove path toolcache/Python/3.12.8",
+  "Execute command "xcode-select --install "",
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew --prefix zlib "",
+  "Execute command "brew --prefix readline "",
+  "Execute command "brew install openssl "",
+  "Execute command "brew --prefix openssl "",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.8 to defaultDownloadPath/v3.12.8",
+  "Extract defaultDownloadPath/v3.12.8 to defaultExtractedPath/extractedv3.12.8",
+  "Recursively remove path defaultDownloadPath/v3.12.8",
+  "Copy folder defaultExtractedPath/extractedv3.12.8/python-cpython to tmpDir/CPython3.12.8x64darwin",
+  "Recursively remove path defaultExtractedPath/extractedv3.12.8",
+  "Execute command "brew --prefix sqlite3 "",
+  "Execute command "./configure --prefix=toolcache/Python/3.12.8/x64  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.12.8/x64 to tmpDir/CPython3.12.8x64darwin/installDir",
+  "Recursively remove path toolcache/Python/3.12.8",
+]
+`;
+
+exports[`MacOSBuilder for version 3.12.8 has a stable interaction with @actions/toolkit during build for arch x86 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.12.8x86darwin/tmp",
+  "Cache source directory tmpDir/CPython3.12.8x86darwin/tmp as tool Python version 3.12.8 for architecture x86",
+  "Recursively remove path tmpDir/CPython3.12.8x86darwin/tmp",
+  "Recursively remove path toolcache/Python/3.12.8",
+  "Execute command "xcode-select --install "",
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew --prefix zlib "",
+  "Execute command "brew --prefix readline "",
+  "Execute command "brew install openssl "",
+  "Execute command "brew --prefix openssl "",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.8 to defaultDownloadPath/v3.12.8",
+  "Extract defaultDownloadPath/v3.12.8 to defaultExtractedPath/extractedv3.12.8",
+  "Recursively remove path defaultDownloadPath/v3.12.8",
+  "Copy folder defaultExtractedPath/extractedv3.12.8/python-cpython to tmpDir/CPython3.12.8x86darwin",
+  "Recursively remove path defaultExtractedPath/extractedv3.12.8",
+  "Execute command "brew --prefix sqlite3 "",
+  "Execute command "./configure --prefix=toolcache/Python/3.12.8/x86  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.12.8/x86 to tmpDir/CPython3.12.8x86darwin/installDir",
+  "Recursively remove path toolcache/Python/3.12.8",
+]
+`;
+
+exports[`MacOSBuilder for version 3.12.8 has a stable interaction with @actions/toolkit during postInstall for arch arm64 1`] = `
+[
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew install openssl "",
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.12",
+  "Create symlink in path installPath/bin/python312 pointing to installPath/bin/python3.12",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.12",
+  "Execute command "chmod +x installPath/bin/python3.12 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python312 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`MacOSBuilder for version 3.12.8 has a stable interaction with @actions/toolkit during postInstall for arch x64 1`] = `
+[
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew install openssl "",
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.12",
+  "Create symlink in path installPath/bin/python312 pointing to installPath/bin/python3.12",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.12",
+  "Execute command "chmod +x installPath/bin/python3.12 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python312 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`MacOSBuilder for version 3.12.8 has a stable interaction with @actions/toolkit during postInstall for arch x86 1`] = `
+[
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew install openssl "",
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.12",
+  "Create symlink in path installPath/bin/python312 pointing to installPath/bin/python3.12",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.12",
+  "Execute command "chmod +x installPath/bin/python3.12 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python312 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`MacOSBuilder for version 3.12.8 identifies the correct additional paths to cache for arch arm64 1`] = `[]`;
+
+exports[`MacOSBuilder for version 3.12.8 identifies the correct additional paths to cache for arch x64 1`] = `[]`;
+
+exports[`MacOSBuilder for version 3.12.8 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
+
 exports[`MacOSBuilder for version 3.13.0 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
 [
   "Create directory with path tmpDir/CPython3.13.0arm64darwin/tmp",
@@ -22895,3 +23411,132 @@ exports[`MacOSBuilder for version 3.13.0 identifies the correct additional paths
 exports[`MacOSBuilder for version 3.13.0 identifies the correct additional paths to cache for arch x64 1`] = `[]`;
 
 exports[`MacOSBuilder for version 3.13.0 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
+
+exports[`MacOSBuilder for version 3.13.1 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.13.1arm64darwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.1arm64darwin/tmp as tool Python version 3.13.1 for architecture arm64",
+  "Recursively remove path tmpDir/CPython3.13.1arm64darwin/tmp",
+  "Recursively remove path toolcache/Python/3.13.1",
+  "Execute command "xcode-select --install "",
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew --prefix zlib "",
+  "Execute command "brew --prefix readline "",
+  "Execute command "brew install openssl "",
+  "Execute command "brew --prefix openssl "",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.1 to defaultDownloadPath/v3.13.1",
+  "Extract defaultDownloadPath/v3.13.1 to defaultExtractedPath/extractedv3.13.1",
+  "Recursively remove path defaultDownloadPath/v3.13.1",
+  "Copy folder defaultExtractedPath/extractedv3.13.1/python-cpython to tmpDir/CPython3.13.1arm64darwin",
+  "Recursively remove path defaultExtractedPath/extractedv3.13.1",
+  "Execute command "brew --prefix sqlite3 "",
+  "Execute command "./configure --prefix=toolcache/Python/3.13.1/arm64  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.13.1/arm64 to tmpDir/CPython3.13.1arm64darwin/installDir",
+  "Recursively remove path toolcache/Python/3.13.1",
+]
+`;
+
+exports[`MacOSBuilder for version 3.13.1 has a stable interaction with @actions/toolkit during build for arch x64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.13.1x64darwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.1x64darwin/tmp as tool Python version 3.13.1 for architecture x64",
+  "Recursively remove path tmpDir/CPython3.13.1x64darwin/tmp",
+  "Recursively remove path toolcache/Python/3.13.1",
+  "Execute command "xcode-select --install "",
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew --prefix zlib "",
+  "Execute command "brew --prefix readline "",
+  "Execute command "brew install openssl "",
+  "Execute command "brew --prefix openssl "",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.1 to defaultDownloadPath/v3.13.1",
+  "Extract defaultDownloadPath/v3.13.1 to defaultExtractedPath/extractedv3.13.1",
+  "Recursively remove path defaultDownloadPath/v3.13.1",
+  "Copy folder defaultExtractedPath/extractedv3.13.1/python-cpython to tmpDir/CPython3.13.1x64darwin",
+  "Recursively remove path defaultExtractedPath/extractedv3.13.1",
+  "Execute command "brew --prefix sqlite3 "",
+  "Execute command "./configure --prefix=toolcache/Python/3.13.1/x64  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.13.1/x64 to tmpDir/CPython3.13.1x64darwin/installDir",
+  "Recursively remove path toolcache/Python/3.13.1",
+]
+`;
+
+exports[`MacOSBuilder for version 3.13.1 has a stable interaction with @actions/toolkit during build for arch x86 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.13.1x86darwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.1x86darwin/tmp as tool Python version 3.13.1 for architecture x86",
+  "Recursively remove path tmpDir/CPython3.13.1x86darwin/tmp",
+  "Recursively remove path toolcache/Python/3.13.1",
+  "Execute command "xcode-select --install "",
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew --prefix zlib "",
+  "Execute command "brew --prefix readline "",
+  "Execute command "brew install openssl "",
+  "Execute command "brew --prefix openssl "",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.1 to defaultDownloadPath/v3.13.1",
+  "Extract defaultDownloadPath/v3.13.1 to defaultExtractedPath/extractedv3.13.1",
+  "Recursively remove path defaultDownloadPath/v3.13.1",
+  "Copy folder defaultExtractedPath/extractedv3.13.1/python-cpython to tmpDir/CPython3.13.1x86darwin",
+  "Recursively remove path defaultExtractedPath/extractedv3.13.1",
+  "Execute command "brew --prefix sqlite3 "",
+  "Execute command "./configure --prefix=toolcache/Python/3.13.1/x86  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.13.1/x86 to tmpDir/CPython3.13.1x86darwin/installDir",
+  "Recursively remove path toolcache/Python/3.13.1",
+]
+`;
+
+exports[`MacOSBuilder for version 3.13.1 has a stable interaction with @actions/toolkit during postInstall for arch arm64 1`] = `
+[
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew install openssl "",
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.13",
+  "Create symlink in path installPath/bin/python313 pointing to installPath/bin/python3.13",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.13",
+  "Execute command "chmod +x installPath/bin/python3.13 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python313 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`MacOSBuilder for version 3.13.1 has a stable interaction with @actions/toolkit during postInstall for arch x64 1`] = `
+[
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew install openssl "",
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.13",
+  "Create symlink in path installPath/bin/python313 pointing to installPath/bin/python3.13",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.13",
+  "Execute command "chmod +x installPath/bin/python3.13 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python313 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`MacOSBuilder for version 3.13.1 has a stable interaction with @actions/toolkit during postInstall for arch x86 1`] = `
+[
+  "Execute command "brew install zlib sqlite3 readline "",
+  "Execute command "brew install openssl "",
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.13",
+  "Create symlink in path installPath/bin/python313 pointing to installPath/bin/python3.13",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.13",
+  "Execute command "chmod +x installPath/bin/python3.13 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python313 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`MacOSBuilder for version 3.13.1 identifies the correct additional paths to cache for arch arm64 1`] = `[]`;
+
+exports[`MacOSBuilder for version 3.13.1 identifies the correct additional paths to cache for arch x64 1`] = `[]`;
+
+exports[`MacOSBuilder for version 3.13.1 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
