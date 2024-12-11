@@ -18,7 +18,7 @@ const toolName = 'Python';
 
 const testedLabels = ['ubuntu-24.04', 'windows-2022', 'macos-14'];
 
-const minSupportedVersion = '3.7.0-0';
+const minSupportedVersion = '3.8.0-0';
 
 export {testedLabels, toolName, minSupportedVersion};
 
