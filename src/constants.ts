@@ -16,7 +16,7 @@
 
 const toolName = 'Python';
 
-const testedLabels = ['ubuntu-22.04', 'windows-2022', 'macos-14'];
+const testedLabels = ['ubuntu-24.04', 'windows-2022', 'macos-14'];
 
 const minSupportedVersion = '3.7.0-0';
 
