@@ -56,6 +56,7 @@ jobs:
             action.yml
           retention-days: 1
           if-no-files-found: error
+          include-hidden-files: true
   test_python_build:
     needs: build
     runs-on: ${{ matrix.os }}
