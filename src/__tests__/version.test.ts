@@ -49,13 +49,13 @@ const mockedManifestTC = jest.mocked(manifestTC);
 const originalManifest: typeof manifestTC = jest.requireActual(
   '@actions/tool-cache/lib/manifest'
 );
-mockedManifestTC._getOsVersion.mockImplementation(() => {
+originalManifest['_getOsVersion'] = () => {
   if (process.platform === 'linux') {
     return '22.04';
   } else {
-    return originalManifest._getOsVersion();
+    return '';
   }
-});
+};
 mockedManifestTC._findMatch.mockImplementation(
   async (versionSpec, stable, candidates, archFilter) => {
     return await originalManifest._findMatch(
