@@ -35,6 +35,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          persist-credentials: false
           submodules: recursive
       - name: Setup NodeJS ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4

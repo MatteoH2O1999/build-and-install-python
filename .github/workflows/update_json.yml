@@ -12,10 +12,14 @@ jobs:
   update_cpython_tags:
     runs-on: ubuntu-latest
     name: Update CPython JSON tags and trees
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          persist-credentials: false
           ref: master
       - name: Setup NodeJS ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
@@ -48,10 +52,14 @@ jobs:
   audit_dependencies:
     runs-on: ubuntu-latest
     name: Audit dependencies
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          persist-credentials: false
           ref: master
       - name: Setup NodeJS ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4

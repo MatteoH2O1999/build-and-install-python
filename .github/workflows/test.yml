@@ -3,10 +3,10 @@ name: CI/CD
 on:
   push:
     branches:
-      - "master"
+      - 'master'
   pull_request:
     branches:
-      - "master"
+      - 'master'
   release:
     types: [published]
 
@@ -31,6 +31,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          persist-credentials: false
           submodules: recursive
       - name: Setup NodeJS ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
@@ -57,6 +58,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          persist-credentials: false
           submodules: recursive
       - name: Setup NodeJS ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
@@ -77,6 +79,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          persist-credentials: false
           submodules: recursive
       - name: Setup NodeJS ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
@@ -110,6 +113,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          persist-credentials: false
           submodules: recursive
       - name: Update pip
         run: python -m pip install --upgrade pip
@@ -172,10 +176,13 @@ jobs:
     runs-on: ubuntu-latest
     name: CodeQL Scan
     if: ${{ github.event_name != 'release' }}
+    permissions:
+      security-events: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          persist-credentials: false
           submodules: recursive
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
@@ -193,10 +200,13 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and release
     needs: [build, lint, unit_tests, check_test_python_build]
+    permissions:
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          persist-credentials: false
           submodules: recursive
           ref: ${{ github.event.release.tag_name }}
       - name: Setup NodeJS ${{ env.NODE_VERSION }}
