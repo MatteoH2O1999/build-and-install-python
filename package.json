@@ -38,18 +38,18 @@
     },
     "devDependencies": {
         "@matteoh2o1999/github-actions-jest-reporter": "^3.0.0",
-        "@stylistic/eslint-plugin-ts": "^3.0.1",
+        "@stylistic/eslint-plugin-ts": "^3.1.0",
         "@types/node": "^22.13.1",
         "@types/semver": "^7.5.8",
         "@typescript-eslint/parser": "^8.23.0",
         "@vercel/ncc": "^0.38.3",
         "axios": "^1.7.9",
-        "eslint": "^9.19.0",
+        "eslint": "^9.20.0",
         "eslint-plugin-github": "^5.1.8",
         "eslint-plugin-jest": "^28.11.0",
         "jest": "^29.7.0",
         "js-yaml": "^4.1.0",
-        "prettier": "^3.4.2",
+        "prettier": "^3.5.0",
         "ts-jest": "^29.2.5",
         "typescript": "^5.7.3"
     }
