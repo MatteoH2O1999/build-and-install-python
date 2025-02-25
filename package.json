@@ -41,7 +41,7 @@
         "@stylistic/eslint-plugin-ts": "^4.0.1",
         "@types/node": "^22.13.5",
         "@types/semver": "^7.5.8",
-        "@typescript-eslint/parser": "^8.24.1",
+        "@typescript-eslint/parser": "^8.25.0",
         "@vercel/ncc": "^0.38.3",
         "axios": "^1.7.9",
         "eslint": "^9.21.0",
