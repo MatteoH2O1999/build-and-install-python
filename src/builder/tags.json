@@ -1,6 +1,11 @@
 [
   {
     "installer": false,
+    "version": "v3.14.0a7",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.14.0a7"
+  },
+  {
+    "installer": false,
     "version": "v3.14.0a6",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.14.0a6"
   },
@@ -28,6 +33,11 @@
     "installer": false,
     "version": "v3.14.0a1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.14.0a1"
+  },
+  {
+    "installer": true,
+    "version": "v3.13.3",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.3"
   },
   {
     "installer": true,
@@ -108,6 +118,11 @@
     "installer": false,
     "version": "v3.13.0a1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.0a1"
+  },
+  {
+    "installer": true,
+    "version": "v3.12.10",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.10"
   },
   {
     "installer": true,
@@ -228,6 +243,11 @@
     "installer": false,
     "version": "v3.12.0a1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.0a1"
+  },
+  {
+    "installer": false,
+    "version": "v3.11.12",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.11.12"
   },
   {
     "installer": false,
@@ -358,6 +378,11 @@
     "installer": false,
     "version": "v3.11.0a1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.11.0a1"
+  },
+  {
+    "installer": false,
+    "version": "v3.10.17",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.10.17"
   },
   {
     "installer": false,
@@ -508,6 +533,11 @@
     "installer": false,
     "version": "v3.10.0a1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.10.0a1"
+  },
+  {
+    "installer": false,
+    "version": "v3.9.22",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.9.22"
   },
   {
     "installer": false,
