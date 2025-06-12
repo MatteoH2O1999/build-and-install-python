@@ -16791,6 +16791,114 @@ exports[`LinuxBuilder for version 3.9.22 identifies the correct additional paths
 
 exports[`LinuxBuilder for version 3.9.22 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
 
+exports[`LinuxBuilder for version 3.9.23 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.9.23arm64nix/tmp",
+  "Cache source directory tmpDir/CPython3.9.23arm64nix/tmp as tool Python version 3.9.23 for architecture arm64",
+  "Recursively remove path tmpDir/CPython3.9.23arm64nix/tmp",
+  "Recursively remove path toolcache/Python/3.9.23",
+  "Execute command "sudo apt update "",
+  "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.9.23 to defaultDownloadPath/v3.9.23",
+  "Extract defaultDownloadPath/v3.9.23 to defaultExtractedPath/extractedv3.9.23",
+  "Recursively remove path defaultDownloadPath/v3.9.23",
+  "Copy folder defaultExtractedPath/extractedv3.9.23/python-cpython to tmpDir/CPython3.9.23arm64nix",
+  "Recursively remove path defaultExtractedPath/extractedv3.9.23",
+  "Execute command "./configure --prefix=toolcache/Python/3.9.23/arm64  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.9.23/arm64/lib" --enable-loadable-sqlite-extensions --enable-optimizations "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.9.23/arm64 to tmpDir/CPython3.9.23arm64nix/installDir",
+  "Recursively remove path toolcache/Python/3.9.23",
+]
+`;
+
+exports[`LinuxBuilder for version 3.9.23 has a stable interaction with @actions/toolkit during build for arch x64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.9.23x64nix/tmp",
+  "Cache source directory tmpDir/CPython3.9.23x64nix/tmp as tool Python version 3.9.23 for architecture x64",
+  "Recursively remove path tmpDir/CPython3.9.23x64nix/tmp",
+  "Recursively remove path toolcache/Python/3.9.23",
+  "Execute command "sudo apt update "",
+  "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.9.23 to defaultDownloadPath/v3.9.23",
+  "Extract defaultDownloadPath/v3.9.23 to defaultExtractedPath/extractedv3.9.23",
+  "Recursively remove path defaultDownloadPath/v3.9.23",
+  "Copy folder defaultExtractedPath/extractedv3.9.23/python-cpython to tmpDir/CPython3.9.23x64nix",
+  "Recursively remove path defaultExtractedPath/extractedv3.9.23",
+  "Execute command "./configure --prefix=toolcache/Python/3.9.23/x64  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.9.23/x64/lib" --enable-loadable-sqlite-extensions --enable-optimizations "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.9.23/x64 to tmpDir/CPython3.9.23x64nix/installDir",
+  "Recursively remove path toolcache/Python/3.9.23",
+]
+`;
+
+exports[`LinuxBuilder for version 3.9.23 has a stable interaction with @actions/toolkit during build for arch x86 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.9.23x86nix/tmp",
+  "Cache source directory tmpDir/CPython3.9.23x86nix/tmp as tool Python version 3.9.23 for architecture x86",
+  "Recursively remove path tmpDir/CPython3.9.23x86nix/tmp",
+  "Recursively remove path toolcache/Python/3.9.23",
+  "Execute command "sudo apt update "",
+  "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.9.23 to defaultDownloadPath/v3.9.23",
+  "Extract defaultDownloadPath/v3.9.23 to defaultExtractedPath/extractedv3.9.23",
+  "Recursively remove path defaultDownloadPath/v3.9.23",
+  "Copy folder defaultExtractedPath/extractedv3.9.23/python-cpython to tmpDir/CPython3.9.23x86nix",
+  "Recursively remove path defaultExtractedPath/extractedv3.9.23",
+  "Execute command "./configure --prefix=toolcache/Python/3.9.23/x86  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.9.23/x86/lib" --enable-loadable-sqlite-extensions --enable-optimizations "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.9.23/x86 to tmpDir/CPython3.9.23x86nix/installDir",
+  "Recursively remove path toolcache/Python/3.9.23",
+]
+`;
+
+exports[`LinuxBuilder for version 3.9.23 has a stable interaction with @actions/toolkit during postInstall for arch arm64 1`] = `
+[
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.9",
+  "Create symlink in path installPath/bin/python39 pointing to installPath/bin/python3.9",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.9",
+  "Execute command "chmod +x installPath/bin/python3.9 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python39 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`LinuxBuilder for version 3.9.23 has a stable interaction with @actions/toolkit during postInstall for arch x64 1`] = `
+[
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.9",
+  "Create symlink in path installPath/bin/python39 pointing to installPath/bin/python3.9",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.9",
+  "Execute command "chmod +x installPath/bin/python3.9 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python39 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`LinuxBuilder for version 3.9.23 has a stable interaction with @actions/toolkit during postInstall for arch x86 1`] = `
+[
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.9",
+  "Create symlink in path installPath/bin/python39 pointing to installPath/bin/python3.9",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.9",
+  "Execute command "chmod +x installPath/bin/python3.9 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python39 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`LinuxBuilder for version 3.9.23 identifies the correct additional paths to cache for arch arm64 1`] = `[]`;
+
+exports[`LinuxBuilder for version 3.9.23 identifies the correct additional paths to cache for arch x64 1`] = `[]`;
+
+exports[`LinuxBuilder for version 3.9.23 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
+
 exports[`LinuxBuilder for version 3.10.0 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
 [
   "Create directory with path tmpDir/CPython3.10.0arm64nix/tmp",
@@ -18735,6 +18843,114 @@ exports[`LinuxBuilder for version 3.10.17 identifies the correct additional path
 
 exports[`LinuxBuilder for version 3.10.17 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
 
+exports[`LinuxBuilder for version 3.10.18 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.10.18arm64nix/tmp",
+  "Cache source directory tmpDir/CPython3.10.18arm64nix/tmp as tool Python version 3.10.18 for architecture arm64",
+  "Recursively remove path tmpDir/CPython3.10.18arm64nix/tmp",
+  "Recursively remove path toolcache/Python/3.10.18",
+  "Execute command "sudo apt update "",
+  "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.10.18 to defaultDownloadPath/v3.10.18",
+  "Extract defaultDownloadPath/v3.10.18 to defaultExtractedPath/extractedv3.10.18",
+  "Recursively remove path defaultDownloadPath/v3.10.18",
+  "Copy folder defaultExtractedPath/extractedv3.10.18/python-cpython to tmpDir/CPython3.10.18arm64nix",
+  "Recursively remove path defaultExtractedPath/extractedv3.10.18",
+  "Execute command "./configure --prefix=toolcache/Python/3.10.18/arm64  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.10.18/arm64/lib" --enable-loadable-sqlite-extensions --enable-optimizations "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.10.18/arm64 to tmpDir/CPython3.10.18arm64nix/installDir",
+  "Recursively remove path toolcache/Python/3.10.18",
+]
+`;
+
+exports[`LinuxBuilder for version 3.10.18 has a stable interaction with @actions/toolkit during build for arch x64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.10.18x64nix/tmp",
+  "Cache source directory tmpDir/CPython3.10.18x64nix/tmp as tool Python version 3.10.18 for architecture x64",
+  "Recursively remove path tmpDir/CPython3.10.18x64nix/tmp",
+  "Recursively remove path toolcache/Python/3.10.18",
+  "Execute command "sudo apt update "",
+  "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.10.18 to defaultDownloadPath/v3.10.18",
+  "Extract defaultDownloadPath/v3.10.18 to defaultExtractedPath/extractedv3.10.18",
+  "Recursively remove path defaultDownloadPath/v3.10.18",
+  "Copy folder defaultExtractedPath/extractedv3.10.18/python-cpython to tmpDir/CPython3.10.18x64nix",
+  "Recursively remove path defaultExtractedPath/extractedv3.10.18",
+  "Execute command "./configure --prefix=toolcache/Python/3.10.18/x64  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.10.18/x64/lib" --enable-loadable-sqlite-extensions --enable-optimizations "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.10.18/x64 to tmpDir/CPython3.10.18x64nix/installDir",
+  "Recursively remove path toolcache/Python/3.10.18",
+]
+`;
+
+exports[`LinuxBuilder for version 3.10.18 has a stable interaction with @actions/toolkit during build for arch x86 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.10.18x86nix/tmp",
+  "Cache source directory tmpDir/CPython3.10.18x86nix/tmp as tool Python version 3.10.18 for architecture x86",
+  "Recursively remove path tmpDir/CPython3.10.18x86nix/tmp",
+  "Recursively remove path toolcache/Python/3.10.18",
+  "Execute command "sudo apt update "",
+  "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.10.18 to defaultDownloadPath/v3.10.18",
+  "Extract defaultDownloadPath/v3.10.18 to defaultExtractedPath/extractedv3.10.18",
+  "Recursively remove path defaultDownloadPath/v3.10.18",
+  "Copy folder defaultExtractedPath/extractedv3.10.18/python-cpython to tmpDir/CPython3.10.18x86nix",
+  "Recursively remove path defaultExtractedPath/extractedv3.10.18",
+  "Execute command "./configure --prefix=toolcache/Python/3.10.18/x86  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.10.18/x86/lib" --enable-loadable-sqlite-extensions --enable-optimizations "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.10.18/x86 to tmpDir/CPython3.10.18x86nix/installDir",
+  "Recursively remove path toolcache/Python/3.10.18",
+]
+`;
+
+exports[`LinuxBuilder for version 3.10.18 has a stable interaction with @actions/toolkit during postInstall for arch arm64 1`] = `
+[
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.10",
+  "Create symlink in path installPath/bin/python310 pointing to installPath/bin/python3.10",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.10",
+  "Execute command "chmod +x installPath/bin/python3.10 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python310 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`LinuxBuilder for version 3.10.18 has a stable interaction with @actions/toolkit during postInstall for arch x64 1`] = `
+[
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.10",
+  "Create symlink in path installPath/bin/python310 pointing to installPath/bin/python3.10",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.10",
+  "Execute command "chmod +x installPath/bin/python3.10 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python310 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`LinuxBuilder for version 3.10.18 has a stable interaction with @actions/toolkit during postInstall for arch x86 1`] = `
+[
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.10",
+  "Create symlink in path installPath/bin/python310 pointing to installPath/bin/python3.10",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.10",
+  "Execute command "chmod +x installPath/bin/python3.10 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python310 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`LinuxBuilder for version 3.10.18 identifies the correct additional paths to cache for arch arm64 1`] = `[]`;
+
+exports[`LinuxBuilder for version 3.10.18 identifies the correct additional paths to cache for arch x64 1`] = `[]`;
+
+exports[`LinuxBuilder for version 3.10.18 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
+
 exports[`LinuxBuilder for version 3.11.0 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
 [
   "Create directory with path tmpDir/CPython3.11.0arm64nix/tmp",
@@ -20139,6 +20355,114 @@ exports[`LinuxBuilder for version 3.11.12 identifies the correct additional path
 
 exports[`LinuxBuilder for version 3.11.12 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
 
+exports[`LinuxBuilder for version 3.11.13 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.11.13arm64nix/tmp",
+  "Cache source directory tmpDir/CPython3.11.13arm64nix/tmp as tool Python version 3.11.13 for architecture arm64",
+  "Recursively remove path tmpDir/CPython3.11.13arm64nix/tmp",
+  "Recursively remove path toolcache/Python/3.11.13",
+  "Execute command "sudo apt update "",
+  "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.11.13 to defaultDownloadPath/v3.11.13",
+  "Extract defaultDownloadPath/v3.11.13 to defaultExtractedPath/extractedv3.11.13",
+  "Recursively remove path defaultDownloadPath/v3.11.13",
+  "Copy folder defaultExtractedPath/extractedv3.11.13/python-cpython to tmpDir/CPython3.11.13arm64nix",
+  "Recursively remove path defaultExtractedPath/extractedv3.11.13",
+  "Execute command "./configure --prefix=toolcache/Python/3.11.13/arm64  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.11.13/arm64/lib" --enable-loadable-sqlite-extensions --enable-optimizations "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.11.13/arm64 to tmpDir/CPython3.11.13arm64nix/installDir",
+  "Recursively remove path toolcache/Python/3.11.13",
+]
+`;
+
+exports[`LinuxBuilder for version 3.11.13 has a stable interaction with @actions/toolkit during build for arch x64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.11.13x64nix/tmp",
+  "Cache source directory tmpDir/CPython3.11.13x64nix/tmp as tool Python version 3.11.13 for architecture x64",
+  "Recursively remove path tmpDir/CPython3.11.13x64nix/tmp",
+  "Recursively remove path toolcache/Python/3.11.13",
+  "Execute command "sudo apt update "",
+  "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.11.13 to defaultDownloadPath/v3.11.13",
+  "Extract defaultDownloadPath/v3.11.13 to defaultExtractedPath/extractedv3.11.13",
+  "Recursively remove path defaultDownloadPath/v3.11.13",
+  "Copy folder defaultExtractedPath/extractedv3.11.13/python-cpython to tmpDir/CPython3.11.13x64nix",
+  "Recursively remove path defaultExtractedPath/extractedv3.11.13",
+  "Execute command "./configure --prefix=toolcache/Python/3.11.13/x64  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.11.13/x64/lib" --enable-loadable-sqlite-extensions --enable-optimizations "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.11.13/x64 to tmpDir/CPython3.11.13x64nix/installDir",
+  "Recursively remove path toolcache/Python/3.11.13",
+]
+`;
+
+exports[`LinuxBuilder for version 3.11.13 has a stable interaction with @actions/toolkit during build for arch x86 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.11.13x86nix/tmp",
+  "Cache source directory tmpDir/CPython3.11.13x86nix/tmp as tool Python version 3.11.13 for architecture x86",
+  "Recursively remove path tmpDir/CPython3.11.13x86nix/tmp",
+  "Recursively remove path toolcache/Python/3.11.13",
+  "Execute command "sudo apt update "",
+  "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.11.13 to defaultDownloadPath/v3.11.13",
+  "Extract defaultDownloadPath/v3.11.13 to defaultExtractedPath/extractedv3.11.13",
+  "Recursively remove path defaultDownloadPath/v3.11.13",
+  "Copy folder defaultExtractedPath/extractedv3.11.13/python-cpython to tmpDir/CPython3.11.13x86nix",
+  "Recursively remove path defaultExtractedPath/extractedv3.11.13",
+  "Execute command "./configure --prefix=toolcache/Python/3.11.13/x86  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.11.13/x86/lib" --enable-loadable-sqlite-extensions --enable-optimizations "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.11.13/x86 to tmpDir/CPython3.11.13x86nix/installDir",
+  "Recursively remove path toolcache/Python/3.11.13",
+]
+`;
+
+exports[`LinuxBuilder for version 3.11.13 has a stable interaction with @actions/toolkit during postInstall for arch arm64 1`] = `
+[
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.11",
+  "Create symlink in path installPath/bin/python311 pointing to installPath/bin/python3.11",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.11",
+  "Execute command "chmod +x installPath/bin/python3.11 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python311 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`LinuxBuilder for version 3.11.13 has a stable interaction with @actions/toolkit during postInstall for arch x64 1`] = `
+[
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.11",
+  "Create symlink in path installPath/bin/python311 pointing to installPath/bin/python3.11",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.11",
+  "Execute command "chmod +x installPath/bin/python3.11 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python311 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`LinuxBuilder for version 3.11.13 has a stable interaction with @actions/toolkit during postInstall for arch x86 1`] = `
+[
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.11",
+  "Create symlink in path installPath/bin/python311 pointing to installPath/bin/python3.11",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.11",
+  "Execute command "chmod +x installPath/bin/python3.11 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python311 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`LinuxBuilder for version 3.11.13 identifies the correct additional paths to cache for arch arm64 1`] = `[]`;
+
+exports[`LinuxBuilder for version 3.11.13 identifies the correct additional paths to cache for arch x64 1`] = `[]`;
+
+exports[`LinuxBuilder for version 3.11.13 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
+
 exports[`LinuxBuilder for version 3.12.0 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
 [
   "Create directory with path tmpDir/CPython3.12.0arm64nix/tmp",
@@ -21327,6 +21651,114 @@ exports[`LinuxBuilder for version 3.12.10 identifies the correct additional path
 
 exports[`LinuxBuilder for version 3.12.10 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
 
+exports[`LinuxBuilder for version 3.12.11 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.12.11arm64nix/tmp",
+  "Cache source directory tmpDir/CPython3.12.11arm64nix/tmp as tool Python version 3.12.11 for architecture arm64",
+  "Recursively remove path tmpDir/CPython3.12.11arm64nix/tmp",
+  "Recursively remove path toolcache/Python/3.12.11",
+  "Execute command "sudo apt update "",
+  "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.11 to defaultDownloadPath/v3.12.11",
+  "Extract defaultDownloadPath/v3.12.11 to defaultExtractedPath/extractedv3.12.11",
+  "Recursively remove path defaultDownloadPath/v3.12.11",
+  "Copy folder defaultExtractedPath/extractedv3.12.11/python-cpython to tmpDir/CPython3.12.11arm64nix",
+  "Recursively remove path defaultExtractedPath/extractedv3.12.11",
+  "Execute command "./configure --prefix=toolcache/Python/3.12.11/arm64  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.12.11/arm64/lib" --enable-loadable-sqlite-extensions --enable-optimizations "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.12.11/arm64 to tmpDir/CPython3.12.11arm64nix/installDir",
+  "Recursively remove path toolcache/Python/3.12.11",
+]
+`;
+
+exports[`LinuxBuilder for version 3.12.11 has a stable interaction with @actions/toolkit during build for arch x64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.12.11x64nix/tmp",
+  "Cache source directory tmpDir/CPython3.12.11x64nix/tmp as tool Python version 3.12.11 for architecture x64",
+  "Recursively remove path tmpDir/CPython3.12.11x64nix/tmp",
+  "Recursively remove path toolcache/Python/3.12.11",
+  "Execute command "sudo apt update "",
+  "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.11 to defaultDownloadPath/v3.12.11",
+  "Extract defaultDownloadPath/v3.12.11 to defaultExtractedPath/extractedv3.12.11",
+  "Recursively remove path defaultDownloadPath/v3.12.11",
+  "Copy folder defaultExtractedPath/extractedv3.12.11/python-cpython to tmpDir/CPython3.12.11x64nix",
+  "Recursively remove path defaultExtractedPath/extractedv3.12.11",
+  "Execute command "./configure --prefix=toolcache/Python/3.12.11/x64  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.12.11/x64/lib" --enable-loadable-sqlite-extensions --enable-optimizations "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.12.11/x64 to tmpDir/CPython3.12.11x64nix/installDir",
+  "Recursively remove path toolcache/Python/3.12.11",
+]
+`;
+
+exports[`LinuxBuilder for version 3.12.11 has a stable interaction with @actions/toolkit during build for arch x86 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.12.11x86nix/tmp",
+  "Cache source directory tmpDir/CPython3.12.11x86nix/tmp as tool Python version 3.12.11 for architecture x86",
+  "Recursively remove path tmpDir/CPython3.12.11x86nix/tmp",
+  "Recursively remove path toolcache/Python/3.12.11",
+  "Execute command "sudo apt update "",
+  "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.11 to defaultDownloadPath/v3.12.11",
+  "Extract defaultDownloadPath/v3.12.11 to defaultExtractedPath/extractedv3.12.11",
+  "Recursively remove path defaultDownloadPath/v3.12.11",
+  "Copy folder defaultExtractedPath/extractedv3.12.11/python-cpython to tmpDir/CPython3.12.11x86nix",
+  "Recursively remove path defaultExtractedPath/extractedv3.12.11",
+  "Execute command "./configure --prefix=toolcache/Python/3.12.11/x86  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.12.11/x86/lib" --enable-loadable-sqlite-extensions --enable-optimizations "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.12.11/x86 to tmpDir/CPython3.12.11x86nix/installDir",
+  "Recursively remove path toolcache/Python/3.12.11",
+]
+`;
+
+exports[`LinuxBuilder for version 3.12.11 has a stable interaction with @actions/toolkit during postInstall for arch arm64 1`] = `
+[
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.12",
+  "Create symlink in path installPath/bin/python312 pointing to installPath/bin/python3.12",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.12",
+  "Execute command "chmod +x installPath/bin/python3.12 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python312 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`LinuxBuilder for version 3.12.11 has a stable interaction with @actions/toolkit during postInstall for arch x64 1`] = `
+[
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.12",
+  "Create symlink in path installPath/bin/python312 pointing to installPath/bin/python3.12",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.12",
+  "Execute command "chmod +x installPath/bin/python3.12 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python312 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`LinuxBuilder for version 3.12.11 has a stable interaction with @actions/toolkit during postInstall for arch x86 1`] = `
+[
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.12",
+  "Create symlink in path installPath/bin/python312 pointing to installPath/bin/python3.12",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.12",
+  "Execute command "chmod +x installPath/bin/python3.12 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python312 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`LinuxBuilder for version 3.12.11 identifies the correct additional paths to cache for arch arm64 1`] = `[]`;
+
+exports[`LinuxBuilder for version 3.12.11 identifies the correct additional paths to cache for arch x64 1`] = `[]`;
+
+exports[`LinuxBuilder for version 3.12.11 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
+
 exports[`LinuxBuilder for version 3.13.0 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
 [
   "Create directory with path tmpDir/CPython3.13.0arm64nix/tmp",
@@ -21758,3 +22190,219 @@ exports[`LinuxBuilder for version 3.13.3 identifies the correct additional paths
 exports[`LinuxBuilder for version 3.13.3 identifies the correct additional paths to cache for arch x64 1`] = `[]`;
 
 exports[`LinuxBuilder for version 3.13.3 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
+
+exports[`LinuxBuilder for version 3.13.4 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.13.4arm64nix/tmp",
+  "Cache source directory tmpDir/CPython3.13.4arm64nix/tmp as tool Python version 3.13.4 for architecture arm64",
+  "Recursively remove path tmpDir/CPython3.13.4arm64nix/tmp",
+  "Recursively remove path toolcache/Python/3.13.4",
+  "Execute command "sudo apt update "",
+  "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.4 to defaultDownloadPath/v3.13.4",
+  "Extract defaultDownloadPath/v3.13.4 to defaultExtractedPath/extractedv3.13.4",
+  "Recursively remove path defaultDownloadPath/v3.13.4",
+  "Copy folder defaultExtractedPath/extractedv3.13.4/python-cpython to tmpDir/CPython3.13.4arm64nix",
+  "Recursively remove path defaultExtractedPath/extractedv3.13.4",
+  "Execute command "./configure --prefix=toolcache/Python/3.13.4/arm64  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.4/arm64/lib" --enable-loadable-sqlite-extensions --enable-optimizations "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.13.4/arm64 to tmpDir/CPython3.13.4arm64nix/installDir",
+  "Recursively remove path toolcache/Python/3.13.4",
+]
+`;
+
+exports[`LinuxBuilder for version 3.13.4 has a stable interaction with @actions/toolkit during build for arch x64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.13.4x64nix/tmp",
+  "Cache source directory tmpDir/CPython3.13.4x64nix/tmp as tool Python version 3.13.4 for architecture x64",
+  "Recursively remove path tmpDir/CPython3.13.4x64nix/tmp",
+  "Recursively remove path toolcache/Python/3.13.4",
+  "Execute command "sudo apt update "",
+  "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.4 to defaultDownloadPath/v3.13.4",
+  "Extract defaultDownloadPath/v3.13.4 to defaultExtractedPath/extractedv3.13.4",
+  "Recursively remove path defaultDownloadPath/v3.13.4",
+  "Copy folder defaultExtractedPath/extractedv3.13.4/python-cpython to tmpDir/CPython3.13.4x64nix",
+  "Recursively remove path defaultExtractedPath/extractedv3.13.4",
+  "Execute command "./configure --prefix=toolcache/Python/3.13.4/x64  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.4/x64/lib" --enable-loadable-sqlite-extensions --enable-optimizations "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.13.4/x64 to tmpDir/CPython3.13.4x64nix/installDir",
+  "Recursively remove path toolcache/Python/3.13.4",
+]
+`;
+
+exports[`LinuxBuilder for version 3.13.4 has a stable interaction with @actions/toolkit during build for arch x86 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.13.4x86nix/tmp",
+  "Cache source directory tmpDir/CPython3.13.4x86nix/tmp as tool Python version 3.13.4 for architecture x86",
+  "Recursively remove path tmpDir/CPython3.13.4x86nix/tmp",
+  "Recursively remove path toolcache/Python/3.13.4",
+  "Execute command "sudo apt update "",
+  "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.4 to defaultDownloadPath/v3.13.4",
+  "Extract defaultDownloadPath/v3.13.4 to defaultExtractedPath/extractedv3.13.4",
+  "Recursively remove path defaultDownloadPath/v3.13.4",
+  "Copy folder defaultExtractedPath/extractedv3.13.4/python-cpython to tmpDir/CPython3.13.4x86nix",
+  "Recursively remove path defaultExtractedPath/extractedv3.13.4",
+  "Execute command "./configure --prefix=toolcache/Python/3.13.4/x86  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.4/x86/lib" --enable-loadable-sqlite-extensions --enable-optimizations "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.13.4/x86 to tmpDir/CPython3.13.4x86nix/installDir",
+  "Recursively remove path toolcache/Python/3.13.4",
+]
+`;
+
+exports[`LinuxBuilder for version 3.13.4 has a stable interaction with @actions/toolkit during postInstall for arch arm64 1`] = `
+[
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.13",
+  "Create symlink in path installPath/bin/python313 pointing to installPath/bin/python3.13",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.13",
+  "Execute command "chmod +x installPath/bin/python3.13 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python313 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`LinuxBuilder for version 3.13.4 has a stable interaction with @actions/toolkit during postInstall for arch x64 1`] = `
+[
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.13",
+  "Create symlink in path installPath/bin/python313 pointing to installPath/bin/python3.13",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.13",
+  "Execute command "chmod +x installPath/bin/python3.13 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python313 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`LinuxBuilder for version 3.13.4 has a stable interaction with @actions/toolkit during postInstall for arch x86 1`] = `
+[
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.13",
+  "Create symlink in path installPath/bin/python313 pointing to installPath/bin/python3.13",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.13",
+  "Execute command "chmod +x installPath/bin/python3.13 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python313 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`LinuxBuilder for version 3.13.4 identifies the correct additional paths to cache for arch arm64 1`] = `[]`;
+
+exports[`LinuxBuilder for version 3.13.4 identifies the correct additional paths to cache for arch x64 1`] = `[]`;
+
+exports[`LinuxBuilder for version 3.13.4 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
+
+exports[`LinuxBuilder for version 3.13.5 has a stable interaction with @actions/toolkit during build for arch arm64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.13.5arm64nix/tmp",
+  "Cache source directory tmpDir/CPython3.13.5arm64nix/tmp as tool Python version 3.13.5 for architecture arm64",
+  "Recursively remove path tmpDir/CPython3.13.5arm64nix/tmp",
+  "Recursively remove path toolcache/Python/3.13.5",
+  "Execute command "sudo apt update "",
+  "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.5 to defaultDownloadPath/v3.13.5",
+  "Extract defaultDownloadPath/v3.13.5 to defaultExtractedPath/extractedv3.13.5",
+  "Recursively remove path defaultDownloadPath/v3.13.5",
+  "Copy folder defaultExtractedPath/extractedv3.13.5/python-cpython to tmpDir/CPython3.13.5arm64nix",
+  "Recursively remove path defaultExtractedPath/extractedv3.13.5",
+  "Execute command "./configure --prefix=toolcache/Python/3.13.5/arm64  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.5/arm64/lib" --enable-loadable-sqlite-extensions --enable-optimizations "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.13.5/arm64 to tmpDir/CPython3.13.5arm64nix/installDir",
+  "Recursively remove path toolcache/Python/3.13.5",
+]
+`;
+
+exports[`LinuxBuilder for version 3.13.5 has a stable interaction with @actions/toolkit during build for arch x64 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.13.5x64nix/tmp",
+  "Cache source directory tmpDir/CPython3.13.5x64nix/tmp as tool Python version 3.13.5 for architecture x64",
+  "Recursively remove path tmpDir/CPython3.13.5x64nix/tmp",
+  "Recursively remove path toolcache/Python/3.13.5",
+  "Execute command "sudo apt update "",
+  "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.5 to defaultDownloadPath/v3.13.5",
+  "Extract defaultDownloadPath/v3.13.5 to defaultExtractedPath/extractedv3.13.5",
+  "Recursively remove path defaultDownloadPath/v3.13.5",
+  "Copy folder defaultExtractedPath/extractedv3.13.5/python-cpython to tmpDir/CPython3.13.5x64nix",
+  "Recursively remove path defaultExtractedPath/extractedv3.13.5",
+  "Execute command "./configure --prefix=toolcache/Python/3.13.5/x64  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.5/x64/lib" --enable-loadable-sqlite-extensions --enable-optimizations "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.13.5/x64 to tmpDir/CPython3.13.5x64nix/installDir",
+  "Recursively remove path toolcache/Python/3.13.5",
+]
+`;
+
+exports[`LinuxBuilder for version 3.13.5 has a stable interaction with @actions/toolkit during build for arch x86 1`] = `
+[
+  "Create directory with path tmpDir/CPython3.13.5x86nix/tmp",
+  "Cache source directory tmpDir/CPython3.13.5x86nix/tmp as tool Python version 3.13.5 for architecture x86",
+  "Recursively remove path tmpDir/CPython3.13.5x86nix/tmp",
+  "Recursively remove path toolcache/Python/3.13.5",
+  "Execute command "sudo apt update "",
+  "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
+  "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.5 to defaultDownloadPath/v3.13.5",
+  "Extract defaultDownloadPath/v3.13.5 to defaultExtractedPath/extractedv3.13.5",
+  "Recursively remove path defaultDownloadPath/v3.13.5",
+  "Copy folder defaultExtractedPath/extractedv3.13.5/python-cpython to tmpDir/CPython3.13.5x86nix",
+  "Recursively remove path defaultExtractedPath/extractedv3.13.5",
+  "Execute command "./configure --prefix=toolcache/Python/3.13.5/x86  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.5/x86/lib" --enable-loadable-sqlite-extensions --enable-optimizations "",
+  "Execute command "make "",
+  "Execute command "make install "",
+  "Copy folder toolcache/Python/3.13.5/x86 to tmpDir/CPython3.13.5x86nix/installDir",
+  "Recursively remove path toolcache/Python/3.13.5",
+]
+`;
+
+exports[`LinuxBuilder for version 3.13.5 has a stable interaction with @actions/toolkit during postInstall for arch arm64 1`] = `
+[
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.13",
+  "Create symlink in path installPath/bin/python313 pointing to installPath/bin/python3.13",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.13",
+  "Execute command "chmod +x installPath/bin/python3.13 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python313 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`LinuxBuilder for version 3.13.5 has a stable interaction with @actions/toolkit during postInstall for arch x64 1`] = `
+[
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.13",
+  "Create symlink in path installPath/bin/python313 pointing to installPath/bin/python3.13",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.13",
+  "Execute command "chmod +x installPath/bin/python3.13 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python313 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`LinuxBuilder for version 3.13.5 has a stable interaction with @actions/toolkit during postInstall for arch x86 1`] = `
+[
+  "Create symlink in path installPath/python pointing to installPath/bin/python3.13",
+  "Create symlink in path installPath/bin/python313 pointing to installPath/bin/python3.13",
+  "Create symlink in path installPath/bin/python pointing to installPath/bin/python3.13",
+  "Execute command "chmod +x installPath/bin/python3.13 "",
+  "Execute command "chmod +x installPath/python "",
+  "Execute command "chmod +x installPath/bin/python313 "",
+  "Execute command "chmod +x installPath/bin/python "",
+  "Execute command "chmod +x installPath/bin/python3 "",
+]
+`;
+
+exports[`LinuxBuilder for version 3.13.5 identifies the correct additional paths to cache for arch arm64 1`] = `[]`;
+
+exports[`LinuxBuilder for version 3.13.5 identifies the correct additional paths to cache for arch x64 1`] = `[]`;
+
+exports[`LinuxBuilder for version 3.13.5 identifies the correct additional paths to cache for arch x86 1`] = `[]`;
