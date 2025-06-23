@@ -46,8 +46,8 @@ describe('WindowsBuilder.getInstaller method', () => {
     const installer = await builder['getInstaller']();
 
     expect(installer).toEqual('exe');
-    expect(mockedTc.downloadTool).toBeCalledTimes(1);
-    expect(mockedTc.downloadTool).toBeCalledWith(
+    expect(mockedTc.downloadTool).toHaveBeenCalledTimes(1);
+    expect(mockedTc.downloadTool).toHaveBeenCalledWith(
       `${ftpPythonUrl}/3.4.1/python-3.4.1-amd64.exe`,
       'path/python-3.4.1-amd64.exe'
     );
@@ -66,12 +66,12 @@ describe('WindowsBuilder.getInstaller method', () => {
     const installer = await builder['getInstaller']();
 
     expect(installer).toEqual('msi');
-    expect(mockedTc.downloadTool).toBeCalledTimes(2);
-    expect(mockedTc.downloadTool).toBeCalledWith(
+    expect(mockedTc.downloadTool).toHaveBeenCalledTimes(2);
+    expect(mockedTc.downloadTool).toHaveBeenCalledWith(
       `${ftpPythonUrl}/3.4.1/python-3.4.1-amd64.exe`,
       'path/python-3.4.1-amd64.exe'
     );
-    expect(mockedTc.downloadTool).toBeCalledWith(
+    expect(mockedTc.downloadTool).toHaveBeenCalledWith(
       `${ftpPythonUrl}/3.4.1/python-3.4.1.amd64.msi`,
       'path/python-3.4.1.amd64.msi'
     );
@@ -90,12 +90,12 @@ describe('WindowsBuilder.getInstaller method', () => {
     const installer = await builder['getInstaller']();
 
     expect(installer).toEqual('');
-    expect(mockedTc.downloadTool).toBeCalledTimes(2);
-    expect(mockedTc.downloadTool).toBeCalledWith(
+    expect(mockedTc.downloadTool).toHaveBeenCalledTimes(2);
+    expect(mockedTc.downloadTool).toHaveBeenCalledWith(
       `${ftpPythonUrl}/3.4.1/python-3.4.1-amd64.exe`,
       'path/python-3.4.1-amd64.exe'
     );
-    expect(mockedTc.downloadTool).toBeCalledWith(
+    expect(mockedTc.downloadTool).toHaveBeenCalledWith(
       `${ftpPythonUrl}/3.4.1/python-3.4.1.amd64.msi`,
       'path/python-3.4.1.amd64.msi'
     );

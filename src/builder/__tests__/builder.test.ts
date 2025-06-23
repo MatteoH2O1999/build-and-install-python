@@ -170,8 +170,8 @@ describe('class Builder', () => {
 
       await builder.clean();
 
-      expect(mockedIo.rmRF).toBeCalledTimes(1);
-      expect(mockedIo.rmRF).toBeCalledWith(tmpDir);
+      expect(mockedIo.rmRF).toHaveBeenCalledTimes(1);
+      expect(mockedIo.rmRF).toHaveBeenCalledWith(tmpDir);
 
       fs.rmdirSync(tmpDir);
     });
@@ -188,7 +188,7 @@ describe('class Builder', () => {
       const restored = await builder.restoreCache();
 
       expect(restored).toBeNull();
-      expect(mockedCache.restoreCache).not.toBeCalled();
+      expect(mockedCache.restoreCache).not.toHaveBeenCalled();
       expect(builder['restored']).toBe(false);
     });
 
@@ -203,8 +203,8 @@ describe('class Builder', () => {
       const restored = await builder.restoreCache();
 
       expect(restored).toBeNull();
-      expect(mockedCache.restoreCache).toBeCalledTimes(1);
-      expect(mockedCache.restoreCache).toBeCalledWith(
+      expect(mockedCache.restoreCache).toHaveBeenCalledTimes(1);
+      expect(mockedCache.restoreCache).toHaveBeenCalledWith(
         [path.join('srcPath', 'suffix'), 'additional', 'paths'],
         'CPythonversionx64key'
       );
@@ -222,8 +222,8 @@ describe('class Builder', () => {
       const restored = await builder.restoreCache();
 
       expect(restored).toEqual(path.join('srcPath', 'suffix'));
-      expect(mockedCache.restoreCache).toBeCalledTimes(1);
-      expect(mockedCache.restoreCache).toBeCalledWith(
+      expect(mockedCache.restoreCache).toHaveBeenCalledTimes(1);
+      expect(mockedCache.restoreCache).toHaveBeenCalledWith(
         [path.join('srcPath', 'suffix'), 'additional', 'paths'],
         'CPythonversionx64key'
       );
@@ -241,7 +241,7 @@ describe('class Builder', () => {
 
       await builder.saveCache();
 
-      expect(mockedCache.saveCache).not.toBeCalled();
+      expect(mockedCache.saveCache).not.toHaveBeenCalled();
     });
 
     test('throws an error after trying to save cache if an error occurs during @actions/cache.saveCache', async () => {
@@ -254,11 +254,11 @@ describe('class Builder', () => {
         new Error('error in saving cache')
       );
 
-      await expect(builder.saveCache()).rejects.toThrowError(
+      await expect(builder.saveCache()).rejects.toThrow(
         new Error('error in saving cache')
       );
-      expect(mockedCache.saveCache).toBeCalledTimes(1);
-      expect(mockedCache.saveCache).toBeCalledWith(
+      expect(mockedCache.saveCache).toHaveBeenCalledTimes(1);
+      expect(mockedCache.saveCache).toHaveBeenCalledWith(
         [path.join('srcPath', 'suffix'), 'additional', 'paths'],
         'CPythonversionx64key'
       );
@@ -273,8 +273,8 @@ describe('class Builder', () => {
 
       await builder.saveCache();
 
-      expect(mockedCache.saveCache).toBeCalledTimes(1);
-      expect(mockedCache.saveCache).toBeCalledWith(
+      expect(mockedCache.saveCache).toHaveBeenCalledTimes(1);
+      expect(mockedCache.saveCache).toHaveBeenCalledWith(
         [path.join('srcPath', 'suffix'), 'additional', 'paths'],
         'CPythonversionx64key'
       );
@@ -305,7 +305,7 @@ describe('class Builder', () => {
         /* nop */
       }
 
-      expect(mockedTc.downloadTool).toBeCalledWith('zipballUrl');
+      expect(mockedTc.downloadTool).toHaveBeenCalledWith('zipballUrl');
     });
 
     test('extracts downloaded sources', async () => {
@@ -320,7 +320,7 @@ describe('class Builder', () => {
         /* nop */
       }
 
-      expect(mockedTc.extractZip).toBeCalledWith('downloadPath');
+      expect(mockedTc.extractZip).toHaveBeenCalledWith('downloadPath');
     });
 
     test('removes downloaded zipBall', async () => {
@@ -335,7 +335,7 @@ describe('class Builder', () => {
         /* nop */
       }
 
-      expect(mockedIo.rmRF).toBeCalledWith('downloadPath');
+      expect(mockedIo.rmRF).toHaveBeenCalledWith('downloadPath');
     });
 
     test('throws an error if the extracted folder has more than 1 subfolders', async () => {
@@ -371,7 +371,7 @@ describe('class Builder', () => {
 
       await builder['prepareSources']();
 
-      expect(mockedIo.cp).toBeCalledWith(
+      expect(mockedIo.cp).toHaveBeenCalledWith(
         path.join(tempDir, 'python-cpython'),
         path.join(os.tmpdir(), 'CPythonversionx64key'),
         {copySourceDirectory: false, recursive: true}
@@ -386,7 +386,7 @@ describe('class Builder', () => {
 
       await builder['prepareSources']();
 
-      expect(mockedIo.rmRF).toBeCalledWith(tempDir);
+      expect(mockedIo.rmRF).toHaveBeenCalledWith(tempDir);
     });
 
     test('returns successfully if folder structure is correct', async () => {
@@ -422,15 +422,15 @@ describe('class Builder', () => {
 
       await builder.initPip(tempDir);
 
-      expect(mockedUtils.exists).toBeCalledTimes(1);
-      expect(mockedUtils.exists).toBeCalledWith(exePath);
+      expect(mockedUtils.exists).toHaveBeenCalledTimes(1);
+      expect(mockedUtils.exists).toHaveBeenCalledWith(exePath);
     });
 
     test('Fails if python executable does not exist', async () => {
       const tag: PythonTag = {version: '3.5.2', zipBall: 'zipballUrl'};
       const builder = new MockBuilder(tag, 'x64');
 
-      await expect(builder.initPip('installedDir')).rejects.toThrowError();
+      await expect(builder.initPip('installedDir')).rejects.toThrow();
     });
 
     test('Calls ensurepip and returns if success', async () => {
@@ -440,7 +440,7 @@ describe('class Builder', () => {
 
       await builder.initPip(tempDir);
 
-      expect(mockedExec.exec).toBeCalledTimes(2);
+      expect(mockedExec.exec).toHaveBeenCalledTimes(2);
       expect(mockedExec.exec.mock.calls[0][0]).toEqual(
         `${exePath} -m ensurepip`
       );
@@ -458,12 +458,12 @@ describe('class Builder', () => {
 
       await builder.initPip(tempDir);
 
-      expect(mockedExec.exec).toBeCalledTimes(2);
+      expect(mockedExec.exec).toHaveBeenCalledTimes(2);
       expect(mockedExec.exec.mock.calls[0][0]).toEqual(
         `${exePath} -m ensurepip`
       );
       expect(mockedExec.exec.mock.calls[1][0]).toEqual(`${exePath} get_pip.py`);
-      expect(mockedTc.downloadTool).toBeCalledTimes(1);
+      expect(mockedTc.downloadTool).toHaveBeenCalledTimes(1);
       expect(mockedTc.downloadTool.mock.calls[0][0]).toEqual(
         'https://bootstrap.pypa.io/pip/3.5/get-pip.py'
       );
@@ -491,12 +491,12 @@ describe('class Builder', () => {
 
       await builder.initPip(tempDir);
 
-      expect(mockedExec.exec).toBeCalledTimes(2);
+      expect(mockedExec.exec).toHaveBeenCalledTimes(2);
       expect(mockedExec.exec.mock.calls[0][0]).toEqual(
         `${exePath} -m ensurepip`
       );
       expect(mockedExec.exec.mock.calls[1][0]).toEqual(`${exePath} get_pip.py`);
-      expect(mockedTc.downloadTool).toBeCalledTimes(1);
+      expect(mockedTc.downloadTool).toHaveBeenCalledTimes(1);
       expect(mockedTc.downloadTool.mock.calls[0][0]).toEqual(
         'https://bootstrap.pypa.io/pip/3.2/get-pip.py'
       );

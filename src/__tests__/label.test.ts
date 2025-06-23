@@ -33,7 +33,7 @@ describe('emitWarnings', () => {
   test('calls getOSInfo', async () => {
     await label.emitWarnings();
 
-    expect(mockedUtils.getOSInfo).toBeCalledTimes(1);
+    expect(mockedUtils.getOSInfo).toHaveBeenCalledTimes(1);
   });
 
   test('logs impossibility to gather information in core.debug', async () => {
@@ -68,7 +68,7 @@ describe('emitWarnings', () => {
 
       await label.emitWarnings();
 
-      expect(mockedCore.warning).not.toBeCalled();
+      expect(mockedCore.warning).not.toHaveBeenCalled();
     }
   );
 });

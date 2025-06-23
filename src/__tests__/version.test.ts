@@ -121,8 +121,8 @@ describe(`getSetupPythonResult with manifest url ${manifestUrl}`, () => {
     });
 
     expect(result).toEqual(expected);
-    expect(mockedTC.findFromManifest).not.toBeCalled();
-    expect(mockedTC.getManifestFromRepo).not.toBeCalled();
+    expect(mockedTC.findFromManifest).not.toHaveBeenCalled();
+    expect(mockedTC.getManifestFromRepo).not.toHaveBeenCalled();
   });
 
   test('returns latest version in range if an older version is present in local tool cache and check-latest is true', async () => {

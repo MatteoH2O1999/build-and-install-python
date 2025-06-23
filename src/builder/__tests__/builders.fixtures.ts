@@ -30,6 +30,21 @@ import treesJson from './cpython.trees.json';
 const archs = ['x64', 'x86', 'arm64'];
 const trees = treesJson as Record<string, string[]>;
 
+function at<T>(this: T[], index: number): T | undefined {
+  if (index < 0) {
+    index += this.length;
+  }
+  return this[index];
+}
+
+declare global {
+  interface Array<T> {
+    at(index: number): T | undefined;
+  }
+}
+
+Array.prototype.at = at;
+
 export {archs};
 
 export function getTags(): PythonTag[] {

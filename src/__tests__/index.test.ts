@@ -24,6 +24,6 @@ describe('Index', () => {
   test('should call main once', async () => {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     require('../index');
-    expect(mockedMain).toBeCalledTimes(1);
+    expect(mockedMain).toHaveBeenCalledTimes(1);
   });
 });

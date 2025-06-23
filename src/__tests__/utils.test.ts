@@ -39,8 +39,8 @@ describe('Utils', () => {
     test('calls fs.promises.readdir', async () => {
       await utils.readdir('path');
 
-      expect(mockedFs.promises.readdir).toBeCalledTimes(1);
-      expect(mockedFs.promises.readdir).toBeCalledWith('path', undefined);
+      expect(mockedFs.promises.readdir).toHaveBeenCalledTimes(1);
+      expect(mockedFs.promises.readdir).toHaveBeenCalledWith('path', undefined);
     });
 
     test('returns what fs.promises.readdir returns', async () => {
@@ -57,8 +57,8 @@ describe('Utils', () => {
     test('calls fs.existsSync', async () => {
       await utils.exists('path');
 
-      expect(mockedFs.existsSync).toBeCalledTimes(1);
-      expect(mockedFs.existsSync).toBeCalledWith('path');
+      expect(mockedFs.existsSync).toHaveBeenCalledTimes(1);
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('path');
     });
 
     test('returns what fs.existsSync returns', async () => {
@@ -74,8 +74,8 @@ describe('Utils', () => {
     test('calls fs.promises.symlink', async () => {
       await utils.symlink('target', 'path');
 
-      expect(mockedFs.promises.symlink).toBeCalledTimes(1);
-      expect(mockedFs.promises.symlink).toBeCalledWith(
+      expect(mockedFs.promises.symlink).toHaveBeenCalledTimes(1);
+      expect(mockedFs.promises.symlink).toHaveBeenCalledWith(
         'target',
         'path',
         undefined
@@ -88,8 +88,11 @@ describe('Utils', () => {
       mockedFs.promises.readFile.mockResolvedValueOnce('string content');
       await utils.readFile('path');
 
-      expect(mockedFs.promises.readFile).toBeCalledTimes(1);
-      expect(mockedFs.promises.readFile).toBeCalledWith('path', undefined);
+      expect(mockedFs.promises.readFile).toHaveBeenCalledTimes(1);
+      expect(mockedFs.promises.readFile).toHaveBeenCalledWith(
+        'path',
+        undefined
+      );
     });
 
     test('returns what fs.promises.readFile returns if it is a string', async () => {
@@ -115,8 +118,8 @@ describe('Utils', () => {
     test('calls fs.promises.writeFile', async () => {
       await utils.writeFile('path', 'content to write');
 
-      expect(mockedFs.promises.writeFile).toBeCalledTimes(1);
-      expect(mockedFs.promises.writeFile).toBeCalledWith(
+      expect(mockedFs.promises.writeFile).toHaveBeenCalledTimes(1);
+      expect(mockedFs.promises.writeFile).toHaveBeenCalledWith(
         'path',
         'content to write'
       );
@@ -127,8 +130,11 @@ describe('Utils', () => {
     test('calls fs.promises.realpath', async () => {
       await utils.realpath('path');
 
-      expect(mockedFs.promises.realpath).toBeCalledTimes(1);
-      expect(mockedFs.promises.realpath).toBeCalledWith('path', undefined);
+      expect(mockedFs.promises.realpath).toHaveBeenCalledTimes(1);
+      expect(mockedFs.promises.realpath).toHaveBeenCalledWith(
+        'path',
+        undefined
+      );
     });
 
     test('returns what fs.promises.realpath returns', async () => {
@@ -144,8 +150,8 @@ describe('Utils', () => {
     test('calls fs.realpathSync', () => {
       utils.realpathSync('path');
 
-      expect(mockedFs.realpathSync).toBeCalledTimes(1);
-      expect(mockedFs.realpathSync).toBeCalledWith('path', undefined);
+      expect(mockedFs.realpathSync).toHaveBeenCalledTimes(1);
+      expect(mockedFs.realpathSync).toHaveBeenCalledWith('path', undefined);
     });
 
     test('returns what fs.realpathSync returns', () => {
