@@ -66,7 +66,8 @@ class MockBuilder extends builder.Builder {
   protected async additionalCachePaths(): Promise<string[]> {
     return ['additional/path'];
   }
-  async postInstall(): Promise<void> {}
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async postInstall(_installedPath: string): Promise<void> {}
   override async clean(): Promise<void> {}
   override async saveCache(): Promise<void> {}
   override async restoreCache(): Promise<string | null> {
@@ -76,7 +77,8 @@ class MockBuilder extends builder.Builder {
   protected os(): OS {
     return 'linux';
   }
-  override async initPip(): Promise<void> {}
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  override async initPip(_pythonPath: string): Promise<void> {}
 }
 
 describe('main', () => {
@@ -152,7 +154,7 @@ describe('main', () => {
       await main();
 
       expect(mockedVersion.getSetupPythonResult).toHaveBeenCalledTimes(1);
-      expect(mockedCore.setOutput).toBeCalledWith(
+      expect(mockedCore.setOutput).toHaveBeenCalledWith(
         constants.OutputNames.PYTHON_VERSION,
         '3.10.x'
       );
@@ -177,7 +179,7 @@ describe('main', () => {
       await main();
 
       expect(mockedVersion.getSetupPythonResult).toHaveBeenCalledTimes(1);
-      expect(mockedCore.setOutput).toBeCalledWith(
+      expect(mockedCore.setOutput).toHaveBeenCalledWith(
         constants.OutputNames.PYTHON_VERSION,
         'pyp3.6'
       );
@@ -202,7 +204,7 @@ describe('main', () => {
       await main();
 
       expect(mockedVersion.getSetupPythonResult).toHaveBeenCalledTimes(1);
-      expect(mockedCore.setOutput).toBeCalledWith(
+      expect(mockedCore.setOutput).toHaveBeenCalledWith(
         constants.OutputNames.PYTHON_VERSION,
         'pyp3.6'
       );
@@ -231,22 +233,22 @@ describe('main', () => {
 
         await main();
 
-        expect(mockedCore.setOutput).toBeCalledWith(
+        expect(mockedCore.setOutput).toHaveBeenCalledWith(
           constants.OutputNames.PYTHON_VERSION,
           '3.6.2'
         );
-        expect(mockedCore.setOutput).toBeCalledWith(
+        expect(mockedCore.setOutput).toHaveBeenCalledWith(
           constants.OutputNames.ARCHITECTURE,
           'x64'
         );
-        expect(mockedCore.setOutput).toBeCalledTimes(2);
+        expect(mockedCore.setOutput).toHaveBeenCalledTimes(2);
         expect(mockedVersion.isCpython).toHaveBeenCalledTimes(1);
-        expect(mockedVersion.isCpython).toBeCalledWith({
+        expect(mockedVersion.isCpython).toHaveBeenCalledWith({
           type: inputs.PythonType.CPython,
           version: '3.6.x'
         });
-        expect(mockedBuilder.getBuilder).not.toBeCalled();
-        expect(mockedCore.setFailed).not.toBeCalled();
+        expect(mockedBuilder.getBuilder).not.toHaveBeenCalled();
+        expect(mockedCore.setFailed).not.toHaveBeenCalled();
       });
 
       test('failure', async () => {
@@ -269,17 +271,17 @@ describe('main', () => {
 
         await main();
 
-        expect(mockedCore.setOutput).toBeCalledWith(
+        expect(mockedCore.setOutput).toHaveBeenCalledWith(
           constants.OutputNames.ARCHITECTURE,
           'x64'
         );
-        expect(mockedCore.setOutput).toBeCalledTimes(1);
-        expect(mockedVersion.isCpython).toBeCalledTimes(1);
-        expect(mockedVersion.isCpython).toBeCalledWith({
+        expect(mockedCore.setOutput).toHaveBeenCalledTimes(1);
+        expect(mockedVersion.isCpython).toHaveBeenCalledTimes(1);
+        expect(mockedVersion.isCpython).toHaveBeenCalledWith({
           type: inputs.PythonType.CPython,
           version: '3.6.x'
         });
-        expect(mockedBuilder.getBuilder).toBeCalledTimes(1);
+        expect(mockedBuilder.getBuilder).toHaveBeenCalledTimes(1);
       });
     });
 
@@ -304,22 +306,22 @@ describe('main', () => {
 
         await main();
 
-        expect(mockedCore.setOutput).toBeCalledWith(
+        expect(mockedCore.setOutput).toHaveBeenCalledWith(
           constants.OutputNames.PYTHON_VERSION,
           'pypy3.6'
         );
-        expect(mockedCore.setOutput).toBeCalledWith(
+        expect(mockedCore.setOutput).toHaveBeenCalledWith(
           constants.OutputNames.ARCHITECTURE,
           'x64'
         );
-        expect(mockedCore.setOutput).toBeCalledTimes(2);
+        expect(mockedCore.setOutput).toHaveBeenCalledTimes(2);
         expect(mockedVersion.isPyPy).toHaveBeenCalledTimes(1);
-        expect(mockedVersion.isPyPy).toBeCalledWith({
+        expect(mockedVersion.isPyPy).toHaveBeenCalledWith({
           type: inputs.PythonType.PyPy,
           version: 'pypy3.6'
         });
-        expect(mockedBuilder.getBuilder).not.toBeCalled();
-        expect(mockedCore.setFailed).not.toBeCalled();
+        expect(mockedBuilder.getBuilder).not.toHaveBeenCalled();
+        expect(mockedCore.setFailed).not.toHaveBeenCalled();
       });
 
       test('failure', async () => {
@@ -342,17 +344,17 @@ describe('main', () => {
 
         await main();
 
-        expect(mockedCore.setOutput).toBeCalledWith(
+        expect(mockedCore.setOutput).toHaveBeenCalledWith(
           constants.OutputNames.ARCHITECTURE,
           'x64'
         );
-        expect(mockedCore.setOutput).toBeCalledWith(
+        expect(mockedCore.setOutput).toHaveBeenCalledWith(
           constants.OutputNames.PYTHON_VERSION,
           'pypy3.6'
         );
-        expect(mockedCore.setOutput).toBeCalledTimes(2);
-        expect(mockedVersion.isPyPy).toBeCalledTimes(1);
-        expect(mockedVersion.isPyPy).toBeCalledWith({
+        expect(mockedCore.setOutput).toHaveBeenCalledTimes(2);
+        expect(mockedVersion.isPyPy).toHaveBeenCalledTimes(1);
+        expect(mockedVersion.isPyPy).toHaveBeenCalledWith({
           type: inputs.PythonType.PyPy,
           version: 'pypy3.6'
         });
@@ -381,22 +383,22 @@ describe('main', () => {
 
         await main();
 
-        expect(mockedCore.setOutput).toBeCalledWith(
+        expect(mockedCore.setOutput).toHaveBeenCalledWith(
           constants.OutputNames.PYTHON_VERSION,
           'graalpy-22.3'
         );
-        expect(mockedCore.setOutput).toBeCalledWith(
+        expect(mockedCore.setOutput).toHaveBeenCalledWith(
           constants.OutputNames.ARCHITECTURE,
           'x64'
         );
-        expect(mockedCore.setOutput).toBeCalledTimes(2);
+        expect(mockedCore.setOutput).toHaveBeenCalledTimes(2);
         expect(mockedVersion.isGraalPy).toHaveBeenCalledTimes(1);
-        expect(mockedVersion.isGraalPy).toBeCalledWith({
+        expect(mockedVersion.isGraalPy).toHaveBeenCalledWith({
           type: inputs.PythonType.GraalPy,
           version: 'graalpy-22.3'
         });
-        expect(mockedBuilder.getBuilder).not.toBeCalled();
-        expect(mockedCore.setFailed).not.toBeCalled();
+        expect(mockedBuilder.getBuilder).not.toHaveBeenCalled();
+        expect(mockedCore.setFailed).not.toHaveBeenCalled();
       });
 
       test('failure', async () => {
@@ -419,17 +421,17 @@ describe('main', () => {
 
         await main();
 
-        expect(mockedCore.setOutput).toBeCalledWith(
+        expect(mockedCore.setOutput).toHaveBeenCalledWith(
           constants.OutputNames.ARCHITECTURE,
           'x64'
         );
-        expect(mockedCore.setOutput).toBeCalledWith(
+        expect(mockedCore.setOutput).toHaveBeenCalledWith(
           constants.OutputNames.PYTHON_VERSION,
           'graalpy-22.3'
         );
-        expect(mockedCore.setOutput).toBeCalledTimes(2);
-        expect(mockedVersion.isGraalPy).toBeCalledTimes(1);
-        expect(mockedVersion.isGraalPy).toBeCalledWith({
+        expect(mockedCore.setOutput).toHaveBeenCalledTimes(2);
+        expect(mockedVersion.isGraalPy).toHaveBeenCalledTimes(1);
+        expect(mockedVersion.isGraalPy).toHaveBeenCalledWith({
           type: inputs.PythonType.GraalPy,
           version: 'graalpy-22.3'
         });
@@ -460,8 +462,8 @@ describe('main', () => {
       await main();
 
       expect(mockedCore.setFailed.mock.calls).toMatchSnapshot();
-      expect(mockedCore.warning).not.toBeCalled();
-      expect(mockedBuilder.getBuilder).not.toBeCalled();
+      expect(mockedCore.warning).not.toHaveBeenCalled();
+      expect(mockedBuilder.getBuilder).not.toHaveBeenCalled();
     });
 
     test('Warn leads to building from source with a warning', async () => {
@@ -488,24 +490,24 @@ describe('main', () => {
       await main();
 
       expect(mockedCore.warning.mock.calls).toMatchSnapshot();
-      expect(mockedCore.setOutput).toBeCalledTimes(2);
-      expect(mockedCore.setOutput).toBeCalledWith(
+      expect(mockedCore.setOutput).toHaveBeenCalledTimes(2);
+      expect(mockedCore.setOutput).toHaveBeenCalledWith(
         constants.OutputNames.ARCHITECTURE,
         'x64'
       );
-      expect(mockedCore.setOutput).toBeCalledWith(
+      expect(mockedCore.setOutput).toHaveBeenCalledWith(
         constants.OutputNames.PYTHON_VERSION,
         '3.6.15'
       );
-      expect(mockedBuilder.getBuilder).toBeCalledTimes(1);
-      expect(mockedBuilder.getBuilder).toBeCalledWith(
+      expect(mockedBuilder.getBuilder).toHaveBeenCalledTimes(1);
+      expect(mockedBuilder.getBuilder).toHaveBeenCalledWith(
         {
           type: inputs.PythonType.CPython,
           version: '3.6.x'
         },
         'x64'
       );
-      expect(mockedCore.setFailed).not.toBeCalled();
+      expect(mockedCore.setFailed).not.toHaveBeenCalled();
     });
 
     test('Info leads to building from source with a message in the logs', async () => {
@@ -533,19 +535,19 @@ describe('main', () => {
 
       expect(mockedCore.info.mock.calls).toMatchSnapshot();
       expect(mockedCore.debug.mock.calls).toMatchSnapshot();
-      expect(mockedCore.warning).not.toBeCalled();
-      expect(mockedCore.setFailed).not.toBeCalled();
-      expect(mockedCore.setOutput).toBeCalledTimes(2);
-      expect(mockedCore.setOutput).toBeCalledWith(
+      expect(mockedCore.warning).not.toHaveBeenCalled();
+      expect(mockedCore.setFailed).not.toHaveBeenCalled();
+      expect(mockedCore.setOutput).toHaveBeenCalledTimes(2);
+      expect(mockedCore.setOutput).toHaveBeenCalledWith(
         constants.OutputNames.ARCHITECTURE,
         'x64'
       );
-      expect(mockedCore.setOutput).toBeCalledWith(
+      expect(mockedCore.setOutput).toHaveBeenCalledWith(
         constants.OutputNames.PYTHON_VERSION,
         '3.6.15'
       );
-      expect(mockedBuilder.getBuilder).toBeCalledTimes(1);
-      expect(mockedBuilder.getBuilder).toBeCalledWith(
+      expect(mockedBuilder.getBuilder).toHaveBeenCalledTimes(1);
+      expect(mockedBuilder.getBuilder).toHaveBeenCalledWith(
         {
           type: inputs.PythonType.CPython,
           version: '3.6.x'
@@ -579,19 +581,19 @@ describe('main', () => {
 
       expect(mockedCore.info.mock.calls).toMatchSnapshot();
       expect(mockedCore.debug.mock.calls).toMatchSnapshot();
-      expect(mockedCore.warning).not.toBeCalled();
-      expect(mockedCore.setFailed).not.toBeCalled();
-      expect(mockedCore.setOutput).toBeCalledTimes(2);
-      expect(mockedCore.setOutput).toBeCalledWith(
+      expect(mockedCore.warning).not.toHaveBeenCalled();
+      expect(mockedCore.setFailed).not.toHaveBeenCalled();
+      expect(mockedCore.setOutput).toHaveBeenCalledTimes(2);
+      expect(mockedCore.setOutput).toHaveBeenCalledWith(
         constants.OutputNames.ARCHITECTURE,
         'x64'
       );
-      expect(mockedCore.setOutput).toBeCalledWith(
+      expect(mockedCore.setOutput).toHaveBeenCalledWith(
         constants.OutputNames.PYTHON_VERSION,
         '3.6.15'
       );
-      expect(mockedBuilder.getBuilder).toBeCalledTimes(1);
-      expect(mockedBuilder.getBuilder).toBeCalledWith(
+      expect(mockedBuilder.getBuilder).toHaveBeenCalledTimes(1);
+      expect(mockedBuilder.getBuilder).toHaveBeenCalledWith(
         {
           type: inputs.PythonType.CPython,
           version: '3.6.x'
@@ -625,8 +627,8 @@ describe('main', () => {
 
       await main();
 
-      expect(mockedBuilder.getBuilder).toBeCalledTimes(1);
-      expect(mockedBuilder.getBuilder).toBeCalledWith(
+      expect(mockedBuilder.getBuilder).toHaveBeenCalledTimes(1);
+      expect(mockedBuilder.getBuilder).toHaveBeenCalledWith(
         {
           type: inputs.PythonType.CPython,
           version: '3.6.x'
@@ -658,8 +660,8 @@ describe('main', () => {
 
       await main();
 
-      expect(mockedBuilder.getBuilder).toBeCalledTimes(1);
-      expect(mockedBuilder.getBuilder).toBeCalledWith(
+      expect(mockedBuilder.getBuilder).toHaveBeenCalledTimes(1);
+      expect(mockedBuilder.getBuilder).toHaveBeenCalledWith(
         {
           type: inputs.PythonType.CPython,
           version: '3.6.x'
@@ -690,8 +692,8 @@ describe('main', () => {
       await main();
 
       expect(mockedCore.setFailed.mock.calls).toMatchSnapshot();
-      expect(mockedCore.setOutput).toBeCalledTimes(1);
-      expect(mockedCore.setOutput).toBeCalledWith(
+      expect(mockedCore.setOutput).toHaveBeenCalledTimes(1);
+      expect(mockedCore.setOutput).toHaveBeenCalledWith(
         constants.OutputNames.ARCHITECTURE,
         'x64'
       );
@@ -718,7 +720,7 @@ describe('main', () => {
         new Error('error getBuilder')
       );
 
-      await expect(main()).rejects.toThrowError(new Error('error getBuilder'));
+      await expect(main()).rejects.toThrow(new Error('error getBuilder'));
     });
   });
 
@@ -755,21 +757,21 @@ describe('main', () => {
 
       await main();
 
-      expect(mockInstanceBuild).toBeCalledTimes(1);
-      expect(mockInstancePostInstall).toBeCalledTimes(1);
-      expect(mockInstancePostInstall).toBeCalledWith('install/path');
-      expect(mockInstanceClean).toBeCalledTimes(1);
-      expect(mockInstanceSaveCache).not.toBeCalled();
-      expect(mockInstanceRestoreCache).not.toBeCalled();
-      expect(mockedTc.cacheDir).toBeCalledTimes(1);
-      expect(mockedTc.cacheDir).toBeCalledWith(
+      expect(mockInstanceBuild).toHaveBeenCalledTimes(1);
+      expect(mockInstancePostInstall).toHaveBeenCalledTimes(1);
+      expect(mockInstancePostInstall).toHaveBeenCalledWith('install/path');
+      expect(mockInstanceClean).toHaveBeenCalledTimes(1);
+      expect(mockInstanceSaveCache).not.toHaveBeenCalled();
+      expect(mockInstanceRestoreCache).not.toHaveBeenCalled();
+      expect(mockedTc.cacheDir).toHaveBeenCalledTimes(1);
+      expect(mockedTc.cacheDir).toHaveBeenCalledWith(
         'build/path',
         'Python',
         '3.6.15',
         'x64'
       );
-      expect(mockInstanceInitPip).toBeCalledTimes(1);
-      expect(mockInstanceInitPip).toBeCalledWith('install/path');
+      expect(mockInstanceInitPip).toHaveBeenCalledTimes(1);
+      expect(mockInstanceInitPip).toHaveBeenCalledWith('install/path');
     });
 
     test('cache-hit leads to calling restoreCache, postInstall, initPip and clean on the builder', async () => {
@@ -804,21 +806,21 @@ describe('main', () => {
 
       await main();
 
-      expect(mockInstanceBuild).not.toBeCalled();
-      expect(mockInstancePostInstall).toBeCalledTimes(1);
-      expect(mockInstancePostInstall).toBeCalledWith('install/path');
-      expect(mockInstanceClean).toBeCalledTimes(1);
-      expect(mockInstanceSaveCache).not.toBeCalled();
-      expect(mockInstanceRestoreCache).toBeCalledTimes(1);
-      expect(mockedTc.cacheDir).toBeCalledTimes(1);
-      expect(mockedTc.cacheDir).toBeCalledWith(
+      expect(mockInstanceBuild).not.toHaveBeenCalled();
+      expect(mockInstancePostInstall).toHaveBeenCalledTimes(1);
+      expect(mockInstancePostInstall).toHaveBeenCalledWith('install/path');
+      expect(mockInstanceClean).toHaveBeenCalledTimes(1);
+      expect(mockInstanceSaveCache).not.toHaveBeenCalled();
+      expect(mockInstanceRestoreCache).toHaveBeenCalledTimes(1);
+      expect(mockedTc.cacheDir).toHaveBeenCalledTimes(1);
+      expect(mockedTc.cacheDir).toHaveBeenCalledWith(
         'restored/path',
         'Python',
         '3.6.15',
         'x64'
       );
-      expect(mockInstanceInitPip).toBeCalledTimes(1);
-      expect(mockInstanceInitPip).toBeCalledWith('install/path');
+      expect(mockInstanceInitPip).toHaveBeenCalledTimes(1);
+      expect(mockInstanceInitPip).toHaveBeenCalledWith('install/path');
     });
 
     test('cache-miss leads to calling restoreCache, build, saveCache, postInstall, initPip and clean on the builder', async () => {
@@ -856,21 +858,21 @@ describe('main', () => {
 
       await main();
 
-      expect(mockInstanceBuild).toBeCalledTimes(1);
-      expect(mockInstancePostInstall).toBeCalledTimes(1);
-      expect(mockInstancePostInstall).toBeCalledWith('install/path');
-      expect(mockInstanceClean).toBeCalledTimes(1);
-      expect(mockInstanceSaveCache).toBeCalledTimes(1);
-      expect(mockInstanceRestoreCache).toBeCalledTimes(1);
-      expect(mockedTc.cacheDir).toBeCalledTimes(1);
-      expect(mockedTc.cacheDir).toBeCalledWith(
+      expect(mockInstanceBuild).toHaveBeenCalledTimes(1);
+      expect(mockInstancePostInstall).toHaveBeenCalledTimes(1);
+      expect(mockInstancePostInstall).toHaveBeenCalledWith('install/path');
+      expect(mockInstanceClean).toHaveBeenCalledTimes(1);
+      expect(mockInstanceSaveCache).toHaveBeenCalledTimes(1);
+      expect(mockInstanceRestoreCache).toHaveBeenCalledTimes(1);
+      expect(mockedTc.cacheDir).toHaveBeenCalledTimes(1);
+      expect(mockedTc.cacheDir).toHaveBeenCalledWith(
         'build/path',
         'Python',
         '3.6.15',
         'x64'
       );
-      expect(mockInstanceInitPip).toBeCalledTimes(1);
-      expect(mockInstanceInitPip).toBeCalledWith('install/path');
+      expect(mockInstanceInitPip).toHaveBeenCalledTimes(1);
+      expect(mockInstanceInitPip).toHaveBeenCalledWith('install/path');
     });
 
     test('handles failure in restoreCache', async () => {
@@ -908,14 +910,14 @@ describe('main', () => {
 
       await main();
 
-      expect(mockInstanceBuild).not.toBeCalled();
-      expect(mockInstancePostInstall).not.toBeCalled();
-      expect(mockInstanceClean).not.toBeCalled();
-      expect(mockInstanceSaveCache).not.toBeCalled();
-      expect(mockedTc.cacheDir).not.toBeCalled();
-      expect(mockInstanceRestoreCache).toBeCalledTimes(1);
+      expect(mockInstanceBuild).not.toHaveBeenCalled();
+      expect(mockInstancePostInstall).not.toHaveBeenCalled();
+      expect(mockInstanceClean).not.toHaveBeenCalled();
+      expect(mockInstanceSaveCache).not.toHaveBeenCalled();
+      expect(mockedTc.cacheDir).not.toHaveBeenCalled();
+      expect(mockInstanceRestoreCache).toHaveBeenCalledTimes(1);
       expect(mockedCore.setFailed.mock.calls).toMatchSnapshot();
-      expect(mockInstanceInitPip).not.toBeCalled();
+      expect(mockInstanceInitPip).not.toHaveBeenCalled();
     });
 
     test('handles failure in build', async () => {
@@ -956,14 +958,14 @@ describe('main', () => {
 
       await main();
 
-      expect(mockInstanceBuild).toBeCalledTimes(1);
-      expect(mockInstancePostInstall).not.toBeCalled();
-      expect(mockInstanceClean).not.toBeCalled();
-      expect(mockInstanceSaveCache).not.toBeCalled();
-      expect(mockedTc.cacheDir).not.toBeCalled();
-      expect(mockInstanceRestoreCache).toBeCalledTimes(1);
+      expect(mockInstanceBuild).toHaveBeenCalledTimes(1);
+      expect(mockInstancePostInstall).not.toHaveBeenCalled();
+      expect(mockInstanceClean).not.toHaveBeenCalled();
+      expect(mockInstanceSaveCache).not.toHaveBeenCalled();
+      expect(mockedTc.cacheDir).not.toHaveBeenCalled();
+      expect(mockInstanceRestoreCache).toHaveBeenCalledTimes(1);
       expect(mockedCore.setFailed.mock.calls).toMatchSnapshot();
-      expect(mockInstanceInitPip).not.toBeCalled();
+      expect(mockInstanceInitPip).not.toHaveBeenCalled();
     });
 
     test('handles failure in saveCache', async () => {
@@ -1004,14 +1006,14 @@ describe('main', () => {
 
       await main();
 
-      expect(mockInstanceBuild).toBeCalledTimes(1);
-      expect(mockInstancePostInstall).not.toBeCalled();
-      expect(mockInstanceClean).not.toBeCalled();
-      expect(mockInstanceSaveCache).toBeCalledTimes(1);
-      expect(mockedTc.cacheDir).not.toBeCalled();
-      expect(mockInstanceRestoreCache).toBeCalledTimes(1);
+      expect(mockInstanceBuild).toHaveBeenCalledTimes(1);
+      expect(mockInstancePostInstall).not.toHaveBeenCalled();
+      expect(mockInstanceClean).not.toHaveBeenCalled();
+      expect(mockInstanceSaveCache).toHaveBeenCalledTimes(1);
+      expect(mockedTc.cacheDir).not.toHaveBeenCalled();
+      expect(mockInstanceRestoreCache).toHaveBeenCalledTimes(1);
       expect(mockedCore.setFailed.mock.calls).toMatchSnapshot();
-      expect(mockInstanceInitPip).not.toBeCalled();
+      expect(mockInstanceInitPip).not.toHaveBeenCalled();
     });
 
     test('handles failure in postInstall', async () => {
@@ -1052,20 +1054,20 @@ describe('main', () => {
 
       await main();
 
-      expect(mockInstanceBuild).toBeCalledTimes(1);
-      expect(mockInstancePostInstall).toBeCalledTimes(1);
-      expect(mockInstanceClean).not.toBeCalled();
-      expect(mockInstanceSaveCache).toBeCalledTimes(1);
-      expect(mockedTc.cacheDir).toBeCalledTimes(1);
-      expect(mockedTc.cacheDir).toBeCalledWith(
+      expect(mockInstanceBuild).toHaveBeenCalledTimes(1);
+      expect(mockInstancePostInstall).toHaveBeenCalledTimes(1);
+      expect(mockInstanceClean).not.toHaveBeenCalled();
+      expect(mockInstanceSaveCache).toHaveBeenCalledTimes(1);
+      expect(mockedTc.cacheDir).toHaveBeenCalledTimes(1);
+      expect(mockedTc.cacheDir).toHaveBeenCalledWith(
         'build/path',
         'Python',
         '3.6.15',
         'x64'
       );
-      expect(mockInstanceRestoreCache).toBeCalledTimes(1);
+      expect(mockInstanceRestoreCache).toHaveBeenCalledTimes(1);
       expect(mockedCore.setFailed.mock.calls).toMatchSnapshot();
-      expect(mockInstanceInitPip).not.toBeCalled();
+      expect(mockInstanceInitPip).not.toHaveBeenCalled();
     });
 
     test('handles failure in initPip', async () => {
@@ -1106,20 +1108,20 @@ describe('main', () => {
 
       await main();
 
-      expect(mockInstanceBuild).toBeCalledTimes(1);
-      expect(mockInstancePostInstall).toBeCalledTimes(1);
-      expect(mockInstanceClean).not.toBeCalled();
-      expect(mockInstanceSaveCache).toBeCalledTimes(1);
-      expect(mockedTc.cacheDir).toBeCalledTimes(1);
-      expect(mockedTc.cacheDir).toBeCalledWith(
+      expect(mockInstanceBuild).toHaveBeenCalledTimes(1);
+      expect(mockInstancePostInstall).toHaveBeenCalledTimes(1);
+      expect(mockInstanceClean).not.toHaveBeenCalled();
+      expect(mockInstanceSaveCache).toHaveBeenCalledTimes(1);
+      expect(mockedTc.cacheDir).toHaveBeenCalledTimes(1);
+      expect(mockedTc.cacheDir).toHaveBeenCalledWith(
         'build/path',
         'Python',
         '3.6.15',
         'x64'
       );
-      expect(mockInstanceRestoreCache).toBeCalledTimes(1);
-      expect(mockInstanceInitPip).toBeCalledTimes(1);
-      expect(mockInstanceInitPip).toBeCalledWith('install/path');
+      expect(mockInstanceRestoreCache).toHaveBeenCalledTimes(1);
+      expect(mockInstanceInitPip).toHaveBeenCalledTimes(1);
+      expect(mockInstanceInitPip).toHaveBeenCalledWith('install/path');
       expect(mockedCore.setFailed.mock.calls).toMatchSnapshot();
     });
 
@@ -1159,22 +1161,22 @@ describe('main', () => {
       mockedBuilder.getBuilder.mockResolvedValueOnce(instance);
       mockedTc.cacheDir.mockResolvedValueOnce('install/path');
 
-      await expect(main()).rejects.toThrowError(new Error('Failure in clean'));
-      expect(mockInstanceBuild).toBeCalledTimes(1);
-      expect(mockInstancePostInstall).toBeCalledTimes(1);
-      expect(mockInstanceClean).toBeCalledTimes(1);
-      expect(mockInstanceSaveCache).toBeCalledTimes(1);
-      expect(mockedTc.cacheDir).toBeCalledTimes(1);
-      expect(mockedTc.cacheDir).toBeCalledWith(
+      await expect(main()).rejects.toThrow(new Error('Failure in clean'));
+      expect(mockInstanceBuild).toHaveBeenCalledTimes(1);
+      expect(mockInstancePostInstall).toHaveBeenCalledTimes(1);
+      expect(mockInstanceClean).toHaveBeenCalledTimes(1);
+      expect(mockInstanceSaveCache).toHaveBeenCalledTimes(1);
+      expect(mockedTc.cacheDir).toHaveBeenCalledTimes(1);
+      expect(mockedTc.cacheDir).toHaveBeenCalledWith(
         'build/path',
         'Python',
         '3.6.15',
         'x64'
       );
-      expect(mockInstanceRestoreCache).toBeCalledTimes(1);
-      expect(mockInstanceInitPip).toBeCalledTimes(1);
-      expect(mockInstanceInitPip).toBeCalledWith('install/path');
-      expect(mockedCore.setFailed).not.toBeCalled();
+      expect(mockInstanceRestoreCache).toHaveBeenCalledTimes(1);
+      expect(mockInstanceInitPip).toHaveBeenCalledTimes(1);
+      expect(mockInstanceInitPip).toHaveBeenCalledWith('install/path');
+      expect(mockedCore.setFailed).not.toHaveBeenCalled();
     });
   });
 });

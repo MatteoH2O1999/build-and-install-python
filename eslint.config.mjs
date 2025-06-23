@@ -2,13 +2,12 @@ import jest from 'eslint-plugin-jest';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import globals from 'globals';
 import tsParser from '@typescript-eslint/parser';
-import stylisticTypescript from '@stylistic/eslint-plugin-ts';
+import stylisticTypescript from '@stylistic/eslint-plugin';
 import github from 'eslint-plugin-github';
 
 export default [
   {
-    ignores: ['dist/', 'lib/', 'node_modules/', 'jest.config.js'],
-    files: ['**/*.ts']
+    ignores: ['dist/', 'lib/', 'node_modules/', 'jest.config.js', '*.mjs']
   },
   ...github.getFlatConfigs().typescript,
   {
@@ -64,7 +63,7 @@ export default [
         }
       ],
 
-      '@typescript-eslint-stylistic/func-call-spacing': ['error', 'never'],
+      '@typescript-eslint-stylistic/function-call-spacing': ['error', 'never'],
       '@typescript-eslint/no-array-constructor': 'error',
       '@typescript-eslint/no-empty-interface': 'error',
       '@typescript-eslint/no-explicit-any': 'error',

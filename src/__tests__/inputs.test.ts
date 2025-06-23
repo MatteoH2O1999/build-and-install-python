@@ -118,8 +118,8 @@ describe('Parsed inputs', () => {
 
       await inputs.parseInputs();
 
-      expect(mockedUtils.getVersionInputFromFile).toBeCalledTimes(1);
-      expect(mockedUtils.getVersionInputFromFile).toBeCalledWith(
+      expect(mockedUtils.getVersionInputFromFile).toHaveBeenCalledTimes(1);
+      expect(mockedUtils.getVersionInputFromFile).toHaveBeenCalledWith(
         '.python-version'
       );
     });
@@ -131,7 +131,7 @@ describe('Parsed inputs', () => {
 
       const parsedInputs = await inputs.parseInputs();
 
-      expect(mockedUtils.getVersionInputFromFile).not.toBeCalled();
+      expect(mockedUtils.getVersionInputFromFile).not.toHaveBeenCalled();
       expect(parsedInputs.version).toEqual(new inputs.PythonVersion('3.5.4'));
     });
 
@@ -142,7 +142,7 @@ describe('Parsed inputs', () => {
 
       const parsedInputs = await inputs.parseInputs();
 
-      expect(mockedUtils.getVersionInputFromFile).not.toBeCalled();
+      expect(mockedUtils.getVersionInputFromFile).not.toHaveBeenCalled();
       expect(parsedInputs.version).toEqual(new inputs.PythonVersion('3.5.4'));
     });
 
@@ -153,8 +153,8 @@ describe('Parsed inputs', () => {
 
       const parsedInputs = await inputs.parseInputs();
 
-      expect(mockedUtils.getVersionInputFromFile).toBeCalledTimes(1);
-      expect(mockedUtils.getVersionInputFromFile).toBeCalledWith('file');
+      expect(mockedUtils.getVersionInputFromFile).toHaveBeenCalledTimes(1);
+      expect(mockedUtils.getVersionInputFromFile).toHaveBeenCalledWith('file');
       expect(parsedInputs.version).toEqual(new inputs.PythonVersion('3.9.0'));
     });
 
@@ -168,9 +168,9 @@ describe('Parsed inputs', () => {
       const parsedInputs = await inputs.parseInputs();
 
       expect(mockedCore.warning.mock.calls).toMatchSnapshot();
-      expect(mockedCore.warning).toBeCalledTimes(1);
-      expect(mockedUtils.getVersionInputFromFile).toBeCalledTimes(1);
-      expect(mockedUtils.getVersionInputFromFile).toBeCalledWith('file');
+      expect(mockedCore.warning).toHaveBeenCalledTimes(1);
+      expect(mockedUtils.getVersionInputFromFile).toHaveBeenCalledTimes(1);
+      expect(mockedUtils.getVersionInputFromFile).toHaveBeenCalledWith('file');
       expect(parsedInputs.version).toEqual(new inputs.PythonVersion('x.x.x'));
     });
 
@@ -182,8 +182,8 @@ describe('Parsed inputs', () => {
       const parsedInputs = await inputs.parseInputs();
 
       expect(mockedCore.warning.mock.calls).toMatchSnapshot();
-      expect(mockedCore.warning).toBeCalledTimes(1);
-      expect(mockedUtils.getVersionInputFromFile).not.toBeCalled();
+      expect(mockedCore.warning).toHaveBeenCalledTimes(1);
+      expect(mockedUtils.getVersionInputFromFile).not.toHaveBeenCalled();
       expect(parsedInputs.version).toEqual(new inputs.PythonVersion('3.10.10'));
     });
   });

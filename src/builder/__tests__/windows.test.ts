@@ -62,7 +62,7 @@ describe.each(getTags())(
         /* nop */
       }
 
-      expect(mockedTc.downloadTool).toBeCalledWith(zipBall);
+      expect(mockedTc.downloadTool).toHaveBeenCalledWith(zipBall);
     });
 
     test.each(archs)(

@@ -482,10 +482,10 @@ export default class WindowsBuilder extends Builder {
       ];
       await exec.exec('msiexec', [...installerArguments]);
     } else {
+      const fileSplit = installerPath.split('.');
+      const extension = fileSplit[fileSplit.length - 1];
       throw new Error(
-        `Invalid installer extension. Expected .exe or .msi, got ${installerPath
-          .split('.')
-          .at(-1)}`
+        `Invalid installer extension. Expected .exe or .msi, got ${extension}`
       );
     }
 

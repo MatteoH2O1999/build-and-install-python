@@ -38,7 +38,7 @@
     },
     "devDependencies": {
         "@matteoh2o1999/github-actions-jest-reporter": "^3.0.0",
-        "@stylistic/eslint-plugin-ts": "^4.4.1",
+        "@stylistic/eslint-plugin": "^4.4.1",
         "@types/node": "^24.0.1",
         "@types/semver": "^7.7.0",
         "@typescript-eslint/parser": "^8.34.0",
