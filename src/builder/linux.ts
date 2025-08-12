@@ -1,5 +1,5 @@
 // Action to build any Python version on the latest labels and install it into the local tool cache.
-// Copyright (C) 2022 Matteo Dell'Acqua
+// Copyright (C) 2025 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -36,7 +36,7 @@ export default class LinuxBuilder extends Builder {
       path.join(this.path, 'tmp'),
       toolName,
       this.specificVersion,
-      this.arch
+      this.freethreaded ? this.arch + '-freethreaded' : this.arch
     );
     const toolFolder = path.dirname(toolPath);
     await io.rmRF(path.join(this.path, 'tmp'));
@@ -71,6 +71,14 @@ export default class LinuxBuilder extends Builder {
     }
     if (semver.gte(this.specificVersion, '3.7.0')) {
       flags.push('--enable-optimizations');
+    }
+    if (this.freethreaded) {
+      if (semver.gte(this.specificVersion, '3.13.0')) {
+        core.debug('Using freethreaded build of Python');
+        flags.push('--disable-gil');
+      } else {
+        throw new Error('Requested freethreaded Python with version < 3.13');
+      }
     }
     const configCommand = './configure '.concat(flags.join(' '));
 
