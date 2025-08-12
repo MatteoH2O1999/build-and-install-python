@@ -1,5 +1,5 @@
 // Action to build any Python version on the latest labels and install it into the local tool cache.
-// Copyright (C) 2022 Matteo Dell'Acqua
+// Copyright (C) 2025 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -27,6 +27,7 @@ const mockedInputs: MockedInputs = {
   architecture: 'x64',
   cacheBuild: 'false',
   checkLatest: 'false',
+  freethreaded: 'false',
   pythonVersion: '3.9.2',
   pythonVersionFile: 'file',
   token: 'token'
@@ -74,17 +75,39 @@ mockedCore.getMultilineInput.mockImplementation(
 describe('Python version string', () => {
   describe.each(pythonVersions)(
     '"$inputVersionString"',
-    ({inputVersionString, expectedVersion, expectedType}) => {
+    ({
+      inputVersionString,
+      expectedVersion,
+      expectedType,
+      expectedFreethreaded
+    }) => {
       const pythonVersion: inputs.PythonVersion = new inputs.PythonVersion(
-        inputVersionString
+        inputVersionString,
+        false
+      );
+      const freethreadedPythonVersion = new inputs.PythonVersion(
+        inputVersionString,
+        true
       );
 
       test(`produces version string "${expectedVersion}"`, () => {
         expect(pythonVersion.version).toBe(expectedVersion);
+        expect(freethreadedPythonVersion.version).toBe(expectedVersion);
       });
 
       test(`produces type "${expectedType}"`, () => {
         expect(pythonVersion.type).toBe(expectedType);
+        expect(freethreadedPythonVersion.type).toBe(expectedType);
+      });
+
+      test(`produces freethreaded "${expectedFreethreaded} when input "${InputNames.FREETHREADED}"="false"`, () => {
+        expect(pythonVersion.freethreaded).toBe(expectedFreethreaded);
+      });
+
+      test(`produces freethreaded "true" when input "${InputNames.FREETHREADED}"="true" and type is CPython`, () => {
+        if (expectedType === inputs.PythonType.CPython) {
+          expect(freethreadedPythonVersion.freethreaded).toBe(true);
+        }
       });
     }
   );
@@ -92,7 +115,7 @@ describe('Python version string', () => {
   describe('Random string', () => {
     test('throws an Error', () => {
       expect(() => {
-        new inputs.PythonVersion('Random string');
+        new inputs.PythonVersion('Random string', false);
       }).toThrowErrorMatchingSnapshot();
     });
   });
@@ -108,6 +131,7 @@ describe('Parsed inputs', () => {
     mockedInputs.token = 'token';
     mockedInputs.checkLatest = 'false';
     mockedInputs.allowPrereleases = 'false';
+    mockedInputs.freethreaded = 'false';
   });
 
   describe(`"${InputNames.PYTHON_VERSION}" and "${InputNames.PYTHON_VERSION_FILE}"`, () => {
@@ -131,8 +155,10 @@ describe('Parsed inputs', () => {
 
       const parsedInputs = await inputs.parseInputs();
 
-      expect(mockedUtils.getVersionInputFromFile).not.toHaveBeenCalled();
-      expect(parsedInputs.version).toEqual(new inputs.PythonVersion('3.5.4'));
+      expect(mockedUtils.getVersionInputFromFile).not.toBeCalled();
+      expect(parsedInputs.version).toEqual(
+        new inputs.PythonVersion('3.5.4', false)
+      );
     });
 
     test(`multiple specified "${InputNames.PYTHON_VERSION}" and empty "${InputNames.PYTHON_VERSION_FILE}" leads to using first "${InputNames.PYTHON_VERSION}"`, async () => {
@@ -142,8 +168,10 @@ describe('Parsed inputs', () => {
 
       const parsedInputs = await inputs.parseInputs();
 
-      expect(mockedUtils.getVersionInputFromFile).not.toHaveBeenCalled();
-      expect(parsedInputs.version).toEqual(new inputs.PythonVersion('3.5.4'));
+      expect(mockedUtils.getVersionInputFromFile).not.toBeCalled();
+      expect(parsedInputs.version).toEqual(
+        new inputs.PythonVersion('3.5.4', false)
+      );
     });
 
     test(`empty "${InputNames.PYTHON_VERSION}" and specified existing "${InputNames.PYTHON_VERSION_FILE}" leads to using "${InputNames.PYTHON_VERSION_FILE}"`, async () => {
@@ -153,9 +181,11 @@ describe('Parsed inputs', () => {
 
       const parsedInputs = await inputs.parseInputs();
 
-      expect(mockedUtils.getVersionInputFromFile).toHaveBeenCalledTimes(1);
-      expect(mockedUtils.getVersionInputFromFile).toHaveBeenCalledWith('file');
-      expect(parsedInputs.version).toEqual(new inputs.PythonVersion('3.9.0'));
+      expect(mockedUtils.getVersionInputFromFile).toBeCalledTimes(1);
+      expect(mockedUtils.getVersionInputFromFile).toBeCalledWith('file');
+      expect(parsedInputs.version).toEqual(
+        new inputs.PythonVersion('3.9.0', false)
+      );
     });
 
     test(`empty "${InputNames.PYTHON_VERSION}" and specified non-esisting "${InputNames.PYTHON_VERSION_FILE}" leads to a warning and a x.x.x version`, async () => {
@@ -168,10 +198,12 @@ describe('Parsed inputs', () => {
       const parsedInputs = await inputs.parseInputs();
 
       expect(mockedCore.warning.mock.calls).toMatchSnapshot();
-      expect(mockedCore.warning).toHaveBeenCalledTimes(1);
-      expect(mockedUtils.getVersionInputFromFile).toHaveBeenCalledTimes(1);
-      expect(mockedUtils.getVersionInputFromFile).toHaveBeenCalledWith('file');
-      expect(parsedInputs.version).toEqual(new inputs.PythonVersion('x.x.x'));
+      expect(mockedCore.warning).toBeCalledTimes(1);
+      expect(mockedUtils.getVersionInputFromFile).toBeCalledTimes(1);
+      expect(mockedUtils.getVersionInputFromFile).toBeCalledWith('file');
+      expect(parsedInputs.version).toEqual(
+        new inputs.PythonVersion('x.x.x', false)
+      );
     });
 
     test(`specified "${InputNames.PYTHON_VERSION}" and specified existing "${InputNames.PYTHON_VERSION_FILE}" leads to a warning and to using "${InputNames.PYTHON_VERSION}"`, async () => {
@@ -182,9 +214,11 @@ describe('Parsed inputs', () => {
       const parsedInputs = await inputs.parseInputs();
 
       expect(mockedCore.warning.mock.calls).toMatchSnapshot();
-      expect(mockedCore.warning).toHaveBeenCalledTimes(1);
-      expect(mockedUtils.getVersionInputFromFile).not.toHaveBeenCalled();
-      expect(parsedInputs.version).toEqual(new inputs.PythonVersion('3.10.10'));
+      expect(mockedCore.warning).toBeCalledTimes(1);
+      expect(mockedUtils.getVersionInputFromFile).not.toBeCalled();
+      expect(parsedInputs.version).toEqual(
+        new inputs.PythonVersion('3.10.10', false)
+      );
     });
   });
 
@@ -329,6 +363,47 @@ describe('Parsed inputs', () => {
     });
   });
 
+  describe(`"${InputNames.FREETHREADED}"`, () => {
+    test.each(['false', 'FALSE', 'False'])(
+      `using "${InputNames.FREETHREADED}" with value "%s" leads to "false"`,
+      async latest => {
+        mockedInputs.freethreaded = latest;
+
+        const parsedInputs = await inputs.parseInputs();
+
+        expect(parsedInputs.version.freethreaded).toBe(false);
+      }
+    );
+
+    test.each(['true', 'TRUE', 'True'])(
+      `using "${InputNames.FREETHREADED}" with value "%s" leads to "true"`,
+      async latest => {
+        mockedInputs.freethreaded = latest;
+
+        const parsedInputs = await inputs.parseInputs();
+
+        expect(parsedInputs.version.freethreaded).toBe(true);
+      }
+    );
+
+    test.each(['TRue', 'FalSe', '1', '0'])(
+      `using "${InputNames.FREETHREADED}" with value "%s" throws an Error`,
+      async latest => {
+        mockedInputs.freethreaded = latest;
+
+        await expect(
+          inputs.parseInputs()
+        ).rejects.toThrowErrorMatchingSnapshot();
+      }
+    );
+
+    test(`empty "${InputNames.FREETHREADED}" throws an Error`, async () => {
+      mockedInputs.freethreaded = '';
+
+      await expect(inputs.parseInputs()).rejects.toThrowErrorMatchingSnapshot();
+    });
+  });
+
   describe(`"${InputNames.ALLOW_BUILD}"`, () => {
     test(`empty "${InputNames.ALLOW_BUILD}" throws an Error`, async () => {
       mockedInputs.allowBuild = '';
@@ -401,7 +476,7 @@ describe('Parsed inputs', () => {
       'True',
       'false'
     ])(
-      `using ${InputNames.ALLOW_BUILD}" with value "%s" throws an Error`,
+      `using "${InputNames.ALLOW_BUILD}" with value "%s" throws an Error`,
       async behavior => {
         mockedInputs.allowBuild = behavior;
 
