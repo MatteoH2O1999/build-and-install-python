@@ -1,5 +1,5 @@
 // Action to build any Python version on the latest labels and install it into the local tool cache.
-// Copyright (C) 2022 Matteo Dell'Acqua
+// Copyright (C) 2025 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -22,78 +22,99 @@ export type PythonVersionTest = {
   inputVersionString: string;
   expectedVersion: string;
   expectedType: PythonType;
+  expectedFreethreaded: boolean;
 };
 
 const pythonVersions: PythonVersionTest[] = [
   {
+    expectedFreethreaded: false,
     expectedType: PythonType.CPython,
     expectedVersion: '>=2.7.0 <2.8.0-0',
     inputVersionString: '2.7'
   },
   {
+    expectedFreethreaded: false,
     expectedType: PythonType.CPython,
     expectedVersion: '>=3.0.0 <4.0.0-0',
     inputVersionString: '3'
   },
   {
+    expectedFreethreaded: false,
     expectedType: PythonType.CPython,
     expectedVersion: '>=3.9.0 <3.10.0-0',
     inputVersionString: '3.9'
   },
   {
+    expectedFreethreaded: false,
     expectedType: PythonType.CPython,
     expectedVersion: '>=3.8.0 <3.9.0-0',
     inputVersionString: '3.8.X'
   },
   {
+    expectedFreethreaded: false,
     expectedType: PythonType.CPython,
     expectedVersion: '3.2.5',
     inputVersionString: '3.2.5'
   },
   {
+    expectedFreethreaded: false,
     expectedType: PythonType.PyPy,
     expectedVersion: 'pypy3.9',
     inputVersionString: 'pypy3.9'
   },
   {
+    expectedFreethreaded: false,
     expectedType: PythonType.CPython,
     expectedVersion: '>=3.3.0 <3.4.0-0',
     inputVersionString: 'v3.3'
   },
   {
+    expectedFreethreaded: false,
     expectedType: PythonType.CPython,
     expectedVersion: '3.9.0-a2',
     inputVersionString: '3.9.0a2'
   },
   {
+    expectedFreethreaded: false,
     expectedType: PythonType.CPython,
     expectedVersion: '>=3.9.0-0 <3.10.0-0',
     inputVersionString: '3.9-dev'
   },
   {
+    expectedFreethreaded: false,
     expectedType: PythonType.CPython,
     expectedVersion: '*',
     inputVersionString: ''
   },
   {
+    expectedFreethreaded: false,
     expectedType: PythonType.PyPy,
     expectedVersion: 'pypy-3.9',
     inputVersionString: 'pypy-3.9'
   },
   {
+    expectedFreethreaded: false,
     expectedType: PythonType.GraalPy,
     expectedVersion: 'graalpy-22.3',
     inputVersionString: 'graalpy-22.3'
   },
   {
+    expectedFreethreaded: false,
     expectedType: PythonType.GraalPy,
     expectedVersion: 'graalpy22.3',
     inputVersionString: 'graalpy22.3'
   },
   {
+    expectedFreethreaded: false,
     expectedType: PythonType.GraalPy,
     expectedVersion: 'graalpy-22.3',
     inputVersionString: 'Graalpy-22.3'
+  },
+  {
+    expectedFreethreaded: true,
+    expectedType: PythonType.CPython,
+    expectedVersion: '>=3.13.0 <3.14.0-0',
+    inputVersionString: 'v3.13t'
   }
 ];
 
@@ -108,6 +129,7 @@ export type MockedInputs = {
   token: string;
   checkLatest: string;
   allowPrereleases: string;
+  freethreaded: string;
 };
 
 export function mockInput(
@@ -132,6 +154,8 @@ export function mockInput(
     return inputs.checkLatest;
   } else if (input === InputNames.PRERELEASES) {
     return inputs.allowPrereleases;
+  } else if (input === InputNames.FREETHREADED) {
+    return inputs.freethreaded;
   } else {
     return '';
   }
