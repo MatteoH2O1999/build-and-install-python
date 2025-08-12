@@ -236,7 +236,7 @@ export default async function main(): Promise<void> {
       buildPath,
       toolName,
       builder.specificVersion,
-      builder.arch
+      builder.freethreaded ? builder.arch + '-freethreaded' : builder.arch
     );
     core.info(
       `CPython ${builder.specificVersion} for arch ${builder.arch} successfully installed.`
