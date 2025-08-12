@@ -1,5 +1,5 @@
 // Action to build any Python version on the latest labels and install it into the local tool cache.
-// Copyright (C) 2022 Matteo Dell'Acqua
+// Copyright (C) 2025 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -28,15 +28,17 @@ import path from 'path';
 export default abstract class Builder {
   readonly specificVersion: string;
   readonly arch: string;
+  readonly freethreaded: boolean;
   private readonly cacheKey: string;
   protected readonly tagZipUri: string;
   protected readonly path: string;
   protected restored = false;
 
-  constructor(specificVersion: PythonTag, arch: string) {
+  constructor(specificVersion: PythonTag, arch: string, freethreaded: boolean) {
     this.specificVersion = specificVersion.version;
     this.tagZipUri = specificVersion.zipBall;
     this.arch = arch;
+    this.freethreaded = freethreaded;
     this.cacheKey = `CPython${this.specificVersion}${
       this.arch
     }${this.CacheKeyOs()}`;

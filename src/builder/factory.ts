@@ -1,5 +1,5 @@
 // Action to build any Python version on the latest labels and install it into the local tool cache.
-// Copyright (C) 2022 Matteo Dell'Acqua
+// Copyright (C) 2025 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -51,11 +51,11 @@ export default async function getBuilder(
 
   switch (process.platform) {
     case 'win32':
-      return new WindowsBuilder(specificVersion, arch);
+      return new WindowsBuilder(specificVersion, arch, version.freethreaded);
     case 'linux':
-      return new LinuxBuilder(specificVersion, arch);
+      return new LinuxBuilder(specificVersion, arch, version.freethreaded);
     case 'darwin':
-      return new MacOSBuilder(specificVersion, arch);
+      return new MacOSBuilder(specificVersion, arch, version.freethreaded);
   }
   core.info(
     `Building CPython on ${process.platform} is not yet supported. Feel free to open an issue at https://github.com/MatteoH2O1999/setup-python`

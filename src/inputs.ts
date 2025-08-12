@@ -1,5 +1,5 @@
 // Action to build any Python version on the latest labels and install it into the local tool cache.
-// Copyright (C) 2022 Matteo Dell'Acqua
+// Copyright (C) 2025 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -15,10 +15,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import * as core from '@actions/core';
+import {
+  desugarVersion,
+  pythonVersionToSemantic
+} from 'setup-python/src/find-python';
 import {InputNames} from './constants';
 import {getVersionInputFromFile} from 'setup-python/src/utils';
 import os from 'os';
-import {pythonVersionToSemantic} from 'setup-python/src/find-python';
 import semverValidRange from 'semver/ranges/valid';
 
 export enum PythonType {
@@ -27,29 +30,29 @@ export enum PythonType {
   GraalPy = 'graalpy'
 }
 
-function parseDevSyntax(version: string): string {
-  const devRegex = /^(\d+)\.(\d+)-dev$/;
-  return version.replace(devRegex, '~$1.$2.0-0');
-}
-
 export class PythonVersion {
   readonly type: PythonType;
   readonly version: string;
+  readonly freethreaded: boolean;
 
-  constructor(pythonVersion: string) {
+  constructor(pythonVersion: string, freethreaded: boolean) {
     core.debug(`Parsing version string "${pythonVersion}"...`);
     pythonVersion = pythonVersion.toLowerCase().trim();
     core.debug(`Full semver range string: "${pythonVersion}".`);
     if (pythonVersion.includes('pypy')) {
       this.type = PythonType.PyPy;
       this.version = pythonVersion;
+      this.freethreaded = false;
     } else if (pythonVersion.includes('graalpy')) {
       this.type = PythonType.GraalPy;
       this.version = pythonVersion;
+      this.freethreaded = false;
     } else {
       this.type = PythonType.CPython;
       pythonVersion = pythonVersion.replace(/^v/g, '');
-      pythonVersion = parseDevSyntax(pythonVersion);
+      const desugaredResult = desugarVersion(pythonVersion);
+      pythonVersion = desugaredResult.version;
+      this.freethreaded = desugaredResult.freethreaded || freethreaded;
       pythonVersion = pythonVersionToSemantic(pythonVersion, false);
       const range = semverValidRange(pythonVersion);
       if (!range) {
@@ -175,6 +178,21 @@ async function getArchitecture(): Promise<string> {
   return archString;
 }
 
+async function getFreethreaded(): Promise<boolean> {
+  core.debug('Parsing freethreaded input');
+  try {
+    return core.getBooleanInput(InputNames.FREETHREADED);
+  } catch {
+    throw new Error(
+      `Expected boolean value for input "${
+        InputNames.FREETHREADED
+      }". Supported values are "true", "false", "True", "False", "TRUE", "FALSE". Got "${core.getInput(
+        InputNames.FREETHREADED
+      )}".`
+    );
+  }
+}
+
 async function extractPythonVersion(): Promise<string> {
   let pythonVersions: string[] = core.getMultilineInput(
     InputNames.PYTHON_VERSION
@@ -233,6 +251,9 @@ export async function parseInputs(): Promise<ActionInputs> {
     cache: await getCache(),
     checkLatest: await getCheckLatest(),
     token: core.getInput(InputNames.TOKEN),
-    version: new PythonVersion(await extractPythonVersion())
+    version: new PythonVersion(
+      await extractPythonVersion(),
+      await getFreethreaded()
+    )
   };
 }

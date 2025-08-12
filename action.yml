@@ -28,11 +28,16 @@ inputs:
   allow-prereleases:
     description: "When 'true', a version range passed to 'python-version' input will match prerelease versions if no GA versions are found. Only 'x.y' version range is supported for CPython."
     default: false
+  freethreaded:
+    description: "When 'true', use the freethreaded version of Python."
+    default: false
 outputs:
   python-version:
     description: The parsed (and eventually built) python version
   architecture:
     description: The target architecture (x86, x64) of the Python interpreter.
+  freethreaded:
+    description: Whether the parsed version is freethreaded
 runs:
   using: node20
   main: dist/index.js
