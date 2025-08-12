@@ -1,5 +1,5 @@
 // Action to build any Python version on the latest labels and install it into the local tool cache.
-// Copyright (C) 2022 Matteo Dell'Acqua
+// Copyright (C) 2025 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -464,16 +464,27 @@ export default class WindowsBuilder extends Builder {
   private async install(installerPath: string): Promise<string> {
     if (installerPath.endsWith('.exe')) {
       const execArguments: string[] = [
+        '/quiet',
         `TargetDir=${path.join(this.path, this.buildSuffix())}`,
         'Include_pip=0',
         'CompileAll=1',
         'Include_launcher=0',
-        'InstallLauncherAllUsers=0',
-        '/quiet'
+        'InstallLauncherAllUsers=0'
       ];
+      if (this.freethreaded) {
+        if (semver.gte(this.specificVersion, '3.13.0')) {
+          core.debug('Using freethreaded installation');
+          execArguments.push('Include_freethreaded=1');
+        } else {
+          throw new Error('Requested freethreaded Python with version < 3.13');
+        }
+      }
       core.info(`Installer arguments: ${execArguments}`);
       await exec.exec(installerPath, [...execArguments]);
     } else if (installerPath.endsWith('.msi')) {
+      if (this.freethreaded) {
+        throw new Error('Requested freethreaded Python with version < 3.13');
+      }
       const installerArguments: string[] = [
         '/i',
         installerPath,
