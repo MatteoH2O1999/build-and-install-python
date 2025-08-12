@@ -1,5 +1,5 @@
 // Action to build any Python version on the latest labels and install it into the local tool cache.
-// Copyright (C) 2022 Matteo Dell'Acqua
+// Copyright (C) 2025 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -30,12 +30,14 @@ export enum InputNames {
   ALLOW_BUILD = 'allow-build',
   TOKEN = 'token',
   CHECK_LATEST = 'check-latest',
-  PRERELEASES = 'allow-prereleases'
+  PRERELEASES = 'allow-prereleases',
+  FREETHREADED = 'freethreaded'
 }
 
 export enum OutputNames {
   PYTHON_VERSION = 'python-version',
-  ARCHITECTURE = 'architecture'
+  ARCHITECTURE = 'architecture',
+  FREETHREADED = InputNames.FREETHREADED
 }
 
 export enum ManifestUrl {

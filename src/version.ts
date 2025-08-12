@@ -1,5 +1,5 @@
 // Action to build any Python version on the latest labels and install it into the local tool cache.
-// Copyright (C) 2022 Matteo Dell'Acqua
+// Copyright (C) 2025 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -38,6 +38,7 @@ export async function isCpython(version: PythonVersion): Promise<boolean> {
 
 export type SetupPythonResult = {
   version: string;
+  freethreaded: boolean;
   success: boolean;
 };
 
@@ -46,22 +47,26 @@ export async function getSetupPythonResult(
 ): Promise<SetupPythonResult> {
   let resultVersionString: string;
   let success: boolean;
+  let freethreaded: boolean;
   if (await isPyPy(inputs.version)) {
     core.debug('Version is PyPy.');
     success = true;
+    freethreaded = false;
     resultVersionString = inputs.version.version;
   } else if (await isGraalPy(inputs.version)) {
     core.debug('Version is GraalPy.');
     success = true;
+    freethreaded = false;
     resultVersionString = inputs.version.version;
   } else {
     core.debug('Version is CPython.');
+    const arch = inputs.version.freethreaded
+      ? inputs.architecture + '-freethreaded'
+      : inputs.architecture;
+    freethreaded = inputs.version.freethreaded;
+    core.debug(`Manifest architecture: ${arch}`);
     core.debug('Checking local tool cache...');
-    const localPath = tc.find(
-      'Python',
-      inputs.version.version,
-      inputs.architecture
-    );
+    const localPath = tc.find('Python', inputs.version.version, arch);
     if (localPath !== '' && !inputs.checkLatest) {
       const localVersion = path.basename(path.dirname(localPath));
       resultVersionString = localVersion;
@@ -76,13 +81,13 @@ export async function getSetupPythonResult(
         ManifestUrl.BRANCH
       );
       core.debug(
-        `Checking manifest for version "${inputs.version.version}" and arch "${inputs.architecture}"...`
+        `Checking manifest for version "${inputs.version.version}" and arch "${arch}"...`
       );
       const matchVersion = await tc.findFromManifest(
         inputs.version.version,
         false,
         manifest,
-        inputs.architecture
+        arch
       );
       if (matchVersion === undefined) {
         const minVersion = semver.minVersion(inputs.version.version);
@@ -106,7 +111,7 @@ export async function getSetupPythonResult(
             preReleaseVersion,
             false,
             manifest,
-            inputs.architecture
+            arch
           );
           if (matchPreRelease === undefined) {
             success = false;
@@ -132,6 +137,7 @@ export async function getSetupPythonResult(
     }
   }
   return {
+    freethreaded,
     success,
     version: resultVersionString
   };

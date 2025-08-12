@@ -54,8 +54,8 @@ export default class WindowsBuilder extends Builder {
   private readonly sdk: string;
   private readonly vsDependencies: string[];
 
-  constructor(specificVersion: PythonTag, arch: string) {
-    super(specificVersion, arch);
+  constructor(specificVersion: PythonTag, arch: string, freethreaded: boolean) {
+    super(specificVersion, arch, freethreaded);
 
     let toolsetVer = 'v140';
     const sdkVer = '10.0.17763.0';

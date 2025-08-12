@@ -1,5 +1,5 @@
 // Action to build any Python version on the latest labels and install it into the local tool cache.
-// Copyright (C) 2022 Matteo Dell'Acqua
+// Copyright (C) 2025 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -107,6 +107,7 @@ export default async function main(): Promise<void> {
       `CPython version ${inputs.version.version} is supported by actions/setup-python with specific version ${setupPythonResult.version}.`
     );
     core.setOutput(OutputNames.PYTHON_VERSION, setupPythonResult.version);
+    core.setOutput(OutputNames.FREETHREADED, setupPythonResult.freethreaded);
     return;
   } else {
     if (!setupPythonResult.success) {
