@@ -97,6 +97,7 @@ export default async function main(): Promise<void> {
     return;
   }
 
+  core.setOutput(OutputNames.FREETHREADED, setupPythonResult.freethreaded);
   if (
     setupPythonResult.success &&
     inputs.buildBehavior !== BuildBehavior.Force
@@ -107,7 +108,6 @@ export default async function main(): Promise<void> {
       `CPython version ${inputs.version.version} is supported by actions/setup-python with specific version ${setupPythonResult.version}.`
     );
     core.setOutput(OutputNames.PYTHON_VERSION, setupPythonResult.version);
-    core.setOutput(OutputNames.FREETHREADED, setupPythonResult.freethreaded);
     return;
   } else {
     if (!setupPythonResult.success) {
