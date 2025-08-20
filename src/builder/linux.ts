@@ -74,7 +74,7 @@ export default class LinuxBuilder extends Builder {
     }
     if (this.freethreaded) {
       if (semver.gte(this.specificVersion, '3.13.0')) {
-        core.debug('Using freethreaded build of Python');
+        core.info('Using freethreaded build of Python');
         flags.push('--disable-gil');
       } else {
         throw new Error('Requested freethreaded Python with version < 3.13');

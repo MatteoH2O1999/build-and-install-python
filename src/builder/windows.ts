@@ -413,8 +413,9 @@ export default class WindowsBuilder extends Builder {
       if (!(await utils.exists(freethreadedPath))) {
         throw new Error('Could not find installed freethreded executable');
       }
-      core.info('Removing GIL-enabled binary');
+      core.info('Removing GIL-enabled binary...');
       await io.rmRF(currentExecutable);
+      core.info('Creating python symlink to freehthreaded binary...');
       core.info(
         `Creating symlink from ${freethreadedPath} to ${currentExecutable}`
       );
@@ -494,7 +495,7 @@ export default class WindowsBuilder extends Builder {
       ];
       if (this.freethreaded) {
         if (semver.gte(this.specificVersion, '3.13.0')) {
-          core.debug('Using freethreaded installation');
+          core.info('Using freethreaded installation');
           execArguments.push('Include_freethreaded=1');
         } else {
           throw new Error('Requested freethreaded Python with version < 3.13');
