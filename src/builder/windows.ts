@@ -399,10 +399,31 @@ export default class WindowsBuilder extends Builder {
   override async postInstall(installedPath: string): Promise<void> {
     core.startGroup('Performing post-install operations');
 
+    const currentExecutable = path.join(installedPath, 'python.exe');
+
+    // Flatten freethreaded build
+
+    if (this.freethreaded) {
+      const splitVersion = this.specificVersion.split('.');
+      const majorDotMinorString = `${splitVersion[0]}.${splitVersion[1]}`;
+      const freethreadedPath = path.join(
+        installedPath,
+        `python${majorDotMinorString}t.exe`
+      );
+      if (!(await utils.exists(freethreadedPath))) {
+        throw new Error('Could not find installed freethreded executable');
+      }
+      core.info('Removing GIL-enabled binary');
+      await io.rmRF(currentExecutable);
+      core.info(
+        `Creating symlink from ${freethreadedPath} to ${currentExecutable}`
+      );
+      await utils.symlink(freethreadedPath, currentExecutable);
+    }
+
     // Create python3 symlink
 
     if (semver.gte(this.specificVersion, '3.0.0')) {
-      const currentExecutable = path.join(installedPath, 'python.exe');
       if (!(await utils.exists(currentExecutable))) {
         throw new Error('Could not find installed python executable');
       }
