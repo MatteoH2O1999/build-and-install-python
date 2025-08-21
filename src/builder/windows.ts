@@ -171,12 +171,14 @@ export default class WindowsBuilder extends Builder {
 
         core.startGroup('Fetching external dependencies');
         if (await utils.exists(externalsPcBuild)) {
-          await exec.exec(externalsPcBuild, []);
+          await exec.exec(externalsPcBuild, [], {
+            windowsVerbatimArguments: true
+          });
         } else {
           throw new Error('Could not fetch external PCbuild dependencies');
         }
         if (await utils.exists(externalsMsi)) {
-          await exec.exec(externalsMsi, []);
+          await exec.exec(externalsMsi, [], {windowsVerbatimArguments: true});
           if (semver.lt(this.specificVersion, '3.7.0')) {
             core.info(
               'Detected version < 3.7. Copying correct vcredist140.dll to main folder...'
