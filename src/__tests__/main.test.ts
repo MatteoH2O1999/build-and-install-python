@@ -1,5 +1,5 @@
 // Action to build any Python version on the latest labels and install it into the local tool cache.
-// Copyright (C) 2022 Matteo Dell'Acqua
+// Copyright (C) 2025 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -91,9 +91,14 @@ describe('main', () => {
         cache: false,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.10.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.10.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockResolvedValue({
+        freethreaded: false,
         success: true,
         version: '3.10.0'
       });
@@ -125,9 +130,14 @@ describe('main', () => {
         cache: false,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.10.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.10.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        freethreaded: false,
         success: true,
         version: '3.10.0'
       });
@@ -145,7 +155,11 @@ describe('main', () => {
         cache: false,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.10.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.10.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockRejectedValueOnce(
         new Error('fail actions/setup-python')
@@ -170,7 +184,11 @@ describe('main', () => {
         cache: false,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.PyPy, version: 'pyp3.6'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.PyPy,
+          version: 'pyp3.6'
+        }
       });
       mockedVersion.getSetupPythonResult.mockRejectedValueOnce(
         new Error('fail actions/setup-python')
@@ -195,7 +213,11 @@ describe('main', () => {
         cache: false,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.GraalPy, version: 'pyp3.6'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.GraalPy,
+          version: 'pyp3.6'
+        }
       });
       mockedVersion.getSetupPythonResult.mockRejectedValueOnce(
         new Error('fail actions/setup-python')
@@ -221,9 +243,14 @@ describe('main', () => {
           cache: false,
           checkLatest: false,
           token: 'token',
-          version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+          version: {
+            freethreaded: false,
+            type: inputs.PythonType.CPython,
+            version: '3.6.x'
+          }
         });
         mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+          freethreaded: false,
           success: true,
           version: '3.6.2'
         });
@@ -241,9 +268,14 @@ describe('main', () => {
           constants.OutputNames.ARCHITECTURE,
           'x64'
         );
-        expect(mockedCore.setOutput).toHaveBeenCalledTimes(2);
+        expect(mockedCore.setOutput).toHaveBeenCalledWith(
+          constants.OutputNames.FREETHREADED,
+          false
+        );
+        expect(mockedCore.setOutput).toHaveBeenCalledTimes(3);
         expect(mockedVersion.isCpython).toHaveBeenCalledTimes(1);
         expect(mockedVersion.isCpython).toHaveBeenCalledWith({
+          freethreaded: false,
           type: inputs.PythonType.CPython,
           version: '3.6.x'
         });
@@ -259,9 +291,14 @@ describe('main', () => {
           cache: false,
           checkLatest: false,
           token: 'token',
-          version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+          version: {
+            freethreaded: false,
+            type: inputs.PythonType.CPython,
+            version: '3.6.x'
+          }
         });
         mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+          freethreaded: false,
           success: false,
           version: '3.6.2'
         });
@@ -275,9 +312,14 @@ describe('main', () => {
           constants.OutputNames.ARCHITECTURE,
           'x64'
         );
-        expect(mockedCore.setOutput).toHaveBeenCalledTimes(1);
+        expect(mockedCore.setOutput).toHaveBeenCalledWith(
+          constants.OutputNames.FREETHREADED,
+          false
+        );
+        expect(mockedCore.setOutput).toHaveBeenCalledTimes(2);
         expect(mockedVersion.isCpython).toHaveBeenCalledTimes(1);
         expect(mockedVersion.isCpython).toHaveBeenCalledWith({
+          freethreaded: false,
           type: inputs.PythonType.CPython,
           version: '3.6.x'
         });
@@ -294,9 +336,14 @@ describe('main', () => {
           cache: false,
           checkLatest: false,
           token: 'token',
-          version: {type: inputs.PythonType.PyPy, version: 'pypy3.6'}
+          version: {
+            freethreaded: false,
+            type: inputs.PythonType.PyPy,
+            version: 'pypy3.6'
+          }
         });
         mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+          freethreaded: false,
           success: true,
           version: 'pypy3.6'
         });
@@ -317,6 +364,7 @@ describe('main', () => {
         expect(mockedCore.setOutput).toHaveBeenCalledTimes(2);
         expect(mockedVersion.isPyPy).toHaveBeenCalledTimes(1);
         expect(mockedVersion.isPyPy).toHaveBeenCalledWith({
+          freethreaded: false,
           type: inputs.PythonType.PyPy,
           version: 'pypy3.6'
         });
@@ -332,9 +380,14 @@ describe('main', () => {
           cache: false,
           checkLatest: false,
           token: 'token',
-          version: {type: inputs.PythonType.PyPy, version: 'pypy3.6'}
+          version: {
+            freethreaded: false,
+            type: inputs.PythonType.PyPy,
+            version: 'pypy3.6'
+          }
         });
         mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+          freethreaded: false,
           success: false,
           version: 'pypy3.6'
         });
@@ -355,6 +408,7 @@ describe('main', () => {
         expect(mockedCore.setOutput).toHaveBeenCalledTimes(2);
         expect(mockedVersion.isPyPy).toHaveBeenCalledTimes(1);
         expect(mockedVersion.isPyPy).toHaveBeenCalledWith({
+          freethreaded: false,
           type: inputs.PythonType.PyPy,
           version: 'pypy3.6'
         });
@@ -371,9 +425,14 @@ describe('main', () => {
           cache: false,
           checkLatest: false,
           token: 'token',
-          version: {type: inputs.PythonType.GraalPy, version: 'graalpy-22.3'}
+          version: {
+            freethreaded: false,
+            type: inputs.PythonType.GraalPy,
+            version: 'graalpy-22.3'
+          }
         });
         mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+          freethreaded: false,
           success: true,
           version: 'graalpy-22.3'
         });
@@ -394,6 +453,7 @@ describe('main', () => {
         expect(mockedCore.setOutput).toHaveBeenCalledTimes(2);
         expect(mockedVersion.isGraalPy).toHaveBeenCalledTimes(1);
         expect(mockedVersion.isGraalPy).toHaveBeenCalledWith({
+          freethreaded: false,
           type: inputs.PythonType.GraalPy,
           version: 'graalpy-22.3'
         });
@@ -409,9 +469,14 @@ describe('main', () => {
           cache: false,
           checkLatest: false,
           token: 'token',
-          version: {type: inputs.PythonType.GraalPy, version: 'graalpy-22.3'}
+          version: {
+            freethreaded: false,
+            type: inputs.PythonType.GraalPy,
+            version: 'graalpy-22.3'
+          }
         });
         mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+          freethreaded: false,
           success: false,
           version: 'graalpy-22.3'
         });
@@ -432,6 +497,7 @@ describe('main', () => {
         expect(mockedCore.setOutput).toHaveBeenCalledTimes(2);
         expect(mockedVersion.isGraalPy).toHaveBeenCalledTimes(1);
         expect(mockedVersion.isGraalPy).toHaveBeenCalledWith({
+          freethreaded: false,
           type: inputs.PythonType.GraalPy,
           version: 'graalpy-22.3'
         });
@@ -449,9 +515,14 @@ describe('main', () => {
         cache: false,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.6.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        freethreaded: false,
         success: false,
         version: '3.6.15'
       });
@@ -474,9 +545,14 @@ describe('main', () => {
         cache: false,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.6.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        freethreaded: false,
         success: false,
         version: '3.6.15'
       });
@@ -484,13 +560,17 @@ describe('main', () => {
       mockedVersion.isGraalPy.mockResolvedValue(false);
       mockedVersion.isCpython.mockResolvedValue(true);
       mockedBuilder.getBuilder.mockResolvedValueOnce(
-        new MockBuilder({version: '3.6.15', zipBall: 'zipballUri'}, 'x64')
+        new MockBuilder(
+          {version: '3.6.15', zipBall: 'zipballUri'},
+          'x64',
+          false
+        )
       );
 
       await main();
 
       expect(mockedCore.warning.mock.calls).toMatchSnapshot();
-      expect(mockedCore.setOutput).toHaveBeenCalledTimes(2);
+      expect(mockedCore.setOutput).toHaveBeenCalledTimes(3);
       expect(mockedCore.setOutput).toHaveBeenCalledWith(
         constants.OutputNames.ARCHITECTURE,
         'x64'
@@ -499,9 +579,14 @@ describe('main', () => {
         constants.OutputNames.PYTHON_VERSION,
         '3.6.15'
       );
+      expect(mockedCore.setOutput).toHaveBeenCalledWith(
+        constants.OutputNames.FREETHREADED,
+        false
+      );
       expect(mockedBuilder.getBuilder).toHaveBeenCalledTimes(1);
       expect(mockedBuilder.getBuilder).toHaveBeenCalledWith(
         {
+          freethreaded: false,
           type: inputs.PythonType.CPython,
           version: '3.6.x'
         },
@@ -518,9 +603,14 @@ describe('main', () => {
         cache: false,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.6.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        freethreaded: false,
         success: false,
         version: '3.6.15'
       });
@@ -528,7 +618,11 @@ describe('main', () => {
       mockedVersion.isGraalPy.mockResolvedValue(false);
       mockedVersion.isCpython.mockResolvedValue(true);
       mockedBuilder.getBuilder.mockResolvedValueOnce(
-        new MockBuilder({version: '3.6.15', zipBall: 'zipballUri'}, 'x64')
+        new MockBuilder(
+          {version: '3.6.15', zipBall: 'zipballUri'},
+          'x64',
+          false
+        )
       );
 
       await main();
@@ -537,7 +631,7 @@ describe('main', () => {
       expect(mockedCore.debug.mock.calls).toMatchSnapshot();
       expect(mockedCore.warning).not.toHaveBeenCalled();
       expect(mockedCore.setFailed).not.toHaveBeenCalled();
-      expect(mockedCore.setOutput).toHaveBeenCalledTimes(2);
+      expect(mockedCore.setOutput).toHaveBeenCalledTimes(3);
       expect(mockedCore.setOutput).toHaveBeenCalledWith(
         constants.OutputNames.ARCHITECTURE,
         'x64'
@@ -546,9 +640,14 @@ describe('main', () => {
         constants.OutputNames.PYTHON_VERSION,
         '3.6.15'
       );
+      expect(mockedCore.setOutput).toHaveBeenCalledWith(
+        constants.OutputNames.FREETHREADED,
+        false
+      );
       expect(mockedBuilder.getBuilder).toHaveBeenCalledTimes(1);
       expect(mockedBuilder.getBuilder).toHaveBeenCalledWith(
         {
+          freethreaded: false,
           type: inputs.PythonType.CPython,
           version: '3.6.x'
         },
@@ -564,9 +663,14 @@ describe('main', () => {
         cache: false,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.6.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        freethreaded: false,
         success: false,
         version: '3.6.15'
       });
@@ -574,7 +678,11 @@ describe('main', () => {
       mockedVersion.isGraalPy.mockResolvedValue(false);
       mockedVersion.isCpython.mockResolvedValue(true);
       mockedBuilder.getBuilder.mockResolvedValueOnce(
-        new MockBuilder({version: '3.6.15', zipBall: 'zipballUri'}, 'x64')
+        new MockBuilder(
+          {version: '3.6.15', zipBall: 'zipballUri'},
+          'x64',
+          false
+        )
       );
 
       await main();
@@ -583,7 +691,7 @@ describe('main', () => {
       expect(mockedCore.debug.mock.calls).toMatchSnapshot();
       expect(mockedCore.warning).not.toHaveBeenCalled();
       expect(mockedCore.setFailed).not.toHaveBeenCalled();
-      expect(mockedCore.setOutput).toHaveBeenCalledTimes(2);
+      expect(mockedCore.setOutput).toHaveBeenCalledTimes(3);
       expect(mockedCore.setOutput).toHaveBeenCalledWith(
         constants.OutputNames.ARCHITECTURE,
         'x64'
@@ -592,9 +700,14 @@ describe('main', () => {
         constants.OutputNames.PYTHON_VERSION,
         '3.6.15'
       );
+      expect(mockedCore.setOutput).toHaveBeenCalledWith(
+        constants.OutputNames.FREETHREADED,
+        false
+      );
       expect(mockedBuilder.getBuilder).toHaveBeenCalledTimes(1);
       expect(mockedBuilder.getBuilder).toHaveBeenCalledWith(
         {
+          freethreaded: false,
           type: inputs.PythonType.CPython,
           version: '3.6.x'
         },
@@ -612,9 +725,14 @@ describe('main', () => {
         cache: false,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.6.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        freethreaded: false,
         success: false,
         version: '3.6.15'
       });
@@ -622,7 +740,11 @@ describe('main', () => {
       mockedVersion.isGraalPy.mockResolvedValue(false);
       mockedVersion.isCpython.mockResolvedValue(true);
       mockedBuilder.getBuilder.mockResolvedValueOnce(
-        new MockBuilder({version: '3.6.15', zipBall: 'zipballUri'}, 'x64')
+        new MockBuilder(
+          {version: '3.6.15', zipBall: 'zipballUri'},
+          'x64',
+          false
+        )
       );
 
       await main();
@@ -630,6 +752,7 @@ describe('main', () => {
       expect(mockedBuilder.getBuilder).toHaveBeenCalledTimes(1);
       expect(mockedBuilder.getBuilder).toHaveBeenCalledWith(
         {
+          freethreaded: false,
           type: inputs.PythonType.CPython,
           version: '3.6.x'
         },
@@ -645,9 +768,14 @@ describe('main', () => {
         cache: false,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.6.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        freethreaded: false,
         success: true,
         version: '3.6.15'
       });
@@ -655,7 +783,11 @@ describe('main', () => {
       mockedVersion.isGraalPy.mockResolvedValue(false);
       mockedVersion.isCpython.mockResolvedValue(true);
       mockedBuilder.getBuilder.mockResolvedValueOnce(
-        new MockBuilder({version: '3.6.15', zipBall: 'zipballUri'}, 'x64')
+        new MockBuilder(
+          {version: '3.6.15', zipBall: 'zipballUri'},
+          'x64',
+          false
+        )
       );
 
       await main();
@@ -663,6 +795,7 @@ describe('main', () => {
       expect(mockedBuilder.getBuilder).toHaveBeenCalledTimes(1);
       expect(mockedBuilder.getBuilder).toHaveBeenCalledWith(
         {
+          freethreaded: false,
           type: inputs.PythonType.CPython,
           version: '3.6.x'
         },
@@ -678,9 +811,14 @@ describe('main', () => {
         cache: false,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.6.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        freethreaded: false,
         success: false,
         version: '3.6.15'
       });
@@ -692,10 +830,14 @@ describe('main', () => {
       await main();
 
       expect(mockedCore.setFailed.mock.calls).toMatchSnapshot();
-      expect(mockedCore.setOutput).toHaveBeenCalledTimes(1);
+      expect(mockedCore.setOutput).toHaveBeenCalledTimes(2);
       expect(mockedCore.setOutput).toHaveBeenCalledWith(
         constants.OutputNames.ARCHITECTURE,
         'x64'
+      );
+      expect(mockedCore.setOutput).toHaveBeenCalledWith(
+        constants.OutputNames.FREETHREADED,
+        false
       );
     });
 
@@ -707,9 +849,14 @@ describe('main', () => {
         cache: false,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.6.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        freethreaded: false,
         success: false,
         version: '3.6.15'
       });
@@ -733,9 +880,14 @@ describe('main', () => {
         cache: false,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.6.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        freethreaded: false,
         success: false,
         version: '3.6.15'
       });
@@ -744,7 +896,8 @@ describe('main', () => {
       mockedVersion.isCpython.mockResolvedValue(true);
       const instance = new MockBuilder(
         {version: '3.6.15', zipBall: 'zipballUri'},
-        'x64'
+        'x64',
+        false
       );
       const mockInstanceBuild = jest.spyOn(instance, 'build');
       const mockInstancePostInstall = jest.spyOn(instance, 'postInstall');
@@ -782,9 +935,14 @@ describe('main', () => {
         cache: true,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.6.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        freethreaded: false,
         success: false,
         version: '3.6.15'
       });
@@ -793,7 +951,8 @@ describe('main', () => {
       mockedVersion.isCpython.mockResolvedValue(true);
       const instance = new MockBuilder(
         {version: '3.6.15', zipBall: 'zipballUri'},
-        'x64'
+        'x64',
+        false
       );
       const mockInstanceBuild = jest.spyOn(instance, 'build');
       const mockInstancePostInstall = jest.spyOn(instance, 'postInstall');
@@ -831,9 +990,14 @@ describe('main', () => {
         cache: true,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.6.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        freethreaded: false,
         success: false,
         version: '3.6.15'
       });
@@ -842,7 +1006,8 @@ describe('main', () => {
       mockedVersion.isCpython.mockResolvedValue(true);
       const instance = new MockBuilder(
         {version: '3.6.15', zipBall: 'zipballUri'},
-        'x64'
+        'x64',
+        false
       );
       instance.restoreCache = async () => {
         return null;
@@ -883,9 +1048,14 @@ describe('main', () => {
         cache: true,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.6.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        freethreaded: false,
         success: false,
         version: '3.6.15'
       });
@@ -894,7 +1064,8 @@ describe('main', () => {
       mockedVersion.isCpython.mockResolvedValue(true);
       const instance = new MockBuilder(
         {version: '3.6.15', zipBall: 'zipballUri'},
-        'x64'
+        'x64',
+        false
       );
       instance.restoreCache = async () => {
         throw new Error('Failure in restoreCache');
@@ -928,9 +1099,14 @@ describe('main', () => {
         cache: true,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.6.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        freethreaded: false,
         success: false,
         version: '3.6.15'
       });
@@ -939,7 +1115,8 @@ describe('main', () => {
       mockedVersion.isCpython.mockResolvedValue(true);
       const instance = new MockBuilder(
         {version: '3.6.15', zipBall: 'zipballUri'},
-        'x64'
+        'x64',
+        false
       );
       instance.build = async () => {
         throw new Error('Failure in build');
@@ -976,9 +1153,14 @@ describe('main', () => {
         cache: true,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.6.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        freethreaded: false,
         success: false,
         version: '3.6.15'
       });
@@ -987,7 +1169,8 @@ describe('main', () => {
       mockedVersion.isCpython.mockResolvedValue(true);
       const instance = new MockBuilder(
         {version: '3.6.15', zipBall: 'zipballUri'},
-        'x64'
+        'x64',
+        false
       );
       instance.saveCache = async () => {
         throw new Error('Failure in saveCache');
@@ -1024,9 +1207,14 @@ describe('main', () => {
         cache: true,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.6.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        freethreaded: false,
         success: false,
         version: '3.6.15'
       });
@@ -1035,7 +1223,8 @@ describe('main', () => {
       mockedVersion.isCpython.mockResolvedValue(true);
       const instance = new MockBuilder(
         {version: '3.6.15', zipBall: 'zipballUri'},
-        'x64'
+        'x64',
+        false
       );
       instance.postInstall = async () => {
         throw new Error('Failure in postInstall');
@@ -1078,9 +1267,14 @@ describe('main', () => {
         cache: true,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.6.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        freethreaded: false,
         success: false,
         version: '3.6.15'
       });
@@ -1089,7 +1283,8 @@ describe('main', () => {
       mockedVersion.isCpython.mockResolvedValue(true);
       const instance = new MockBuilder(
         {version: '3.6.15', zipBall: 'zipballUri'},
-        'x64'
+        'x64',
+        false
       );
       instance.initPip = async () => {
         throw new Error('Failure in initPip');
@@ -1133,9 +1328,14 @@ describe('main', () => {
         cache: true,
         checkLatest: false,
         token: 'token',
-        version: {type: inputs.PythonType.CPython, version: '3.6.x'}
+        version: {
+          freethreaded: false,
+          type: inputs.PythonType.CPython,
+          version: '3.6.x'
+        }
       });
       mockedVersion.getSetupPythonResult.mockResolvedValueOnce({
+        freethreaded: false,
         success: false,
         version: '3.6.15'
       });
@@ -1144,7 +1344,8 @@ describe('main', () => {
       mockedVersion.isCpython.mockResolvedValue(true);
       const instance = new MockBuilder(
         {version: '3.6.15', zipBall: 'zipballUri'},
-        'x64'
+        'x64',
+        false
       );
       instance.clean = async () => {
         throw new Error('Failure in clean');
