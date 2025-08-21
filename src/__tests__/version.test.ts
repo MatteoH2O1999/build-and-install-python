@@ -1,5 +1,5 @@
 // Action to build any Python version on the latest labels and install it into the local tool cache.
-// Copyright (C) 2022 Matteo Dell'Acqua
+// Copyright (C) 2025 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -106,6 +106,7 @@ describe(`getSetupPythonResult with manifest url ${manifestUrl}`, () => {
   test('returns found version if present in local tool cache', async () => {
     mockedTC.find.mockReturnValue('/python/version/3.9.8/x64');
     const expected: SetupPythonResult = {
+      freethreaded: false,
       success: true,
       version: '3.9.8'
     };
@@ -117,7 +118,7 @@ describe(`getSetupPythonResult with manifest url ${manifestUrl}`, () => {
       cache: false,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('3.9')
+      version: new PythonVersion('3.9', false)
     });
 
     expect(result).toEqual(expected);
@@ -128,6 +129,7 @@ describe(`getSetupPythonResult with manifest url ${manifestUrl}`, () => {
   test('returns latest version in range if an older version is present in local tool cache and check-latest is true', async () => {
     mockedTC.find.mockReturnValue('/python/version/3.9.0/x64');
     const expected: SetupPythonResult = {
+      freethreaded: false,
       success: true,
       version: process.platform === 'win32' ? '3.9.13' : '3.9.16'
     };
@@ -139,7 +141,7 @@ describe(`getSetupPythonResult with manifest url ${manifestUrl}`, () => {
       cache: false,
       checkLatest: true,
       token: 'token',
-      version: new PythonVersion('3.9')
+      version: new PythonVersion('3.9', false)
     });
 
     expect(result).toEqual(expected);

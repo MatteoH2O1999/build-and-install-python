@@ -1,5 +1,5 @@
 // Action to build any Python version on the latest labels and install it into the local tool cache.
-// Copyright (C) 2022 Matteo Dell'Acqua
+// Copyright (C) 2025 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -29,55 +29,55 @@ const IsTypeTest: TypeTest[] = [
     expectedCPython: false,
     expectedGraalPy: false,
     expectedPyPy: true,
-    pythonVersion: new PythonVersion('pypy3.9')
+    pythonVersion: new PythonVersion('pypy3.9', false)
   },
   {
     expectedCPython: false,
     expectedGraalPy: false,
     expectedPyPy: true,
-    pythonVersion: new PythonVersion('pypy3')
+    pythonVersion: new PythonVersion('pypy3', false)
   },
   {
     expectedCPython: true,
     expectedGraalPy: false,
     expectedPyPy: false,
-    pythonVersion: new PythonVersion('3.9')
+    pythonVersion: new PythonVersion('3.9', false)
   },
   {
     expectedCPython: true,
     expectedGraalPy: false,
     expectedPyPy: false,
-    pythonVersion: new PythonVersion('')
+    pythonVersion: new PythonVersion('', false)
   },
   {
     expectedCPython: true,
     expectedGraalPy: false,
     expectedPyPy: false,
-    pythonVersion: new PythonVersion('2')
+    pythonVersion: new PythonVersion('2', false)
   },
   {
     expectedCPython: false,
     expectedGraalPy: false,
     expectedPyPy: true,
-    pythonVersion: new PythonVersion('pypy-3.5')
+    pythonVersion: new PythonVersion('pypy-3.5', false)
   },
   {
     expectedCPython: false,
     expectedGraalPy: false,
     expectedPyPy: true,
-    pythonVersion: new PythonVersion('pypyx')
+    pythonVersion: new PythonVersion('pypyx', false)
   },
   {
     expectedCPython: false,
     expectedGraalPy: true,
     expectedPyPy: false,
-    pythonVersion: new PythonVersion('graalpy-22.3')
+    pythonVersion: new PythonVersion('graalpy-22.3', false)
   },
   {
     expectedCPython: false,
     expectedGraalPy: true,
     expectedPyPy: false,
-    pythonVersion: new PythonVersion('graalpy22.3')
+    pythonVersion: new PythonVersion('graalpy22.3', false)
   }
 ];
 
@@ -96,14 +96,17 @@ const SetupPythonTests: SetupPythonResultTest[] = [
   {
     expectedResult: {
       darwin: {
+        freethreaded: false,
         success: true,
         version: '2.7.18'
       },
       linux: {
+        freethreaded: false,
         success: true,
         version: '2.7.18'
       },
       win32: {
+        freethreaded: false,
         success: true,
         version: '2.7.18'
       }
@@ -115,20 +118,23 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       cache: true,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('2.7')
+      version: new PythonVersion('2.7', false)
     }
   },
   {
     expectedResult: {
       darwin: {
+        freethreaded: false,
         success: true,
         version: '3.11.1'
       },
       linux: {
+        freethreaded: false,
         success: true,
         version: '3.11.1'
       },
       win32: {
+        freethreaded: false,
         success: true,
         version: '3.11.1'
       }
@@ -140,20 +146,23 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       cache: true,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('>=2.7.0 <3.0.0-0 || >=3.8.0 <3.12.0-0')
+      version: new PythonVersion('>=2.7.0 <3.0.0-0 || >=3.8.0 <3.12.0-0', false)
     }
   },
   {
     expectedResult: {
       darwin: {
+        freethreaded: false,
         success: true,
         version: '2.7.18'
       },
       linux: {
+        freethreaded: false,
         success: true,
         version: '2.7.18'
       },
       win32: {
+        freethreaded: false,
         success: true,
         version: '2.7.18'
       }
@@ -165,20 +174,23 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       cache: true,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('2.7.18')
+      version: new PythonVersion('2.7.18', false)
     }
   },
   {
     expectedResult: {
       darwin: {
+        freethreaded: false,
         success: true,
         version: '3.6.15'
       },
       linux: {
+        freethreaded: false,
         success: false,
         version: ''
       },
       win32: {
+        freethreaded: false,
         success: true,
         version: '3.6.8'
       }
@@ -190,20 +202,23 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       cache: true,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('3.6')
+      version: new PythonVersion('3.6', false)
     }
   },
   {
     expectedResult: {
       darwin: {
+        freethreaded: false,
         success: true,
         version: '3.6.7'
       },
       linux: {
+        freethreaded: false,
         success: false,
         version: ''
       },
       win32: {
+        freethreaded: false,
         success: true,
         version: '3.6.7'
       }
@@ -215,20 +230,23 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       cache: true,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('3.6.7')
+      version: new PythonVersion('3.6.7', false)
     }
   },
   {
     expectedResult: {
       darwin: {
+        freethreaded: false,
         success: true,
         version: 'pypy3.9'
       },
       linux: {
+        freethreaded: false,
         success: true,
         version: 'pypy3.9'
       },
       win32: {
+        freethreaded: false,
         success: true,
         version: 'pypy3.9'
       }
@@ -240,20 +258,23 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       cache: true,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('pypy3.9')
+      version: new PythonVersion('pypy3.9', false)
     }
   },
   {
     expectedResult: {
       darwin: {
+        freethreaded: false,
         success: true,
         version: 'graalpy-22.3'
       },
       linux: {
+        freethreaded: false,
         success: true,
         version: 'graalpy-22.3'
       },
       win32: {
+        freethreaded: false,
         success: true,
         version: 'graalpy-22.3'
       }
@@ -265,20 +286,23 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       cache: true,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('graalpy-22.3')
+      version: new PythonVersion('graalpy-22.3', false)
     }
   },
   {
     expectedResult: {
       darwin: {
+        freethreaded: false,
         success: true,
         version: 'graalpy22.3'
       },
       linux: {
+        freethreaded: false,
         success: true,
         version: 'graalpy22.3'
       },
       win32: {
+        freethreaded: false,
         success: true,
         version: 'graalpy22.3'
       }
@@ -290,20 +314,23 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       cache: true,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('GraalPy22.3')
+      version: new PythonVersion('GraalPy22.3', false)
     }
   },
   {
     expectedResult: {
       darwin: {
+        freethreaded: false,
         success: true,
         version: 'pypy3'
       },
       linux: {
+        freethreaded: false,
         success: true,
         version: 'pypy3'
       },
       win32: {
+        freethreaded: false,
         success: true,
         version: 'pypy3'
       }
@@ -315,20 +342,23 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       cache: true,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('pypy3')
+      version: new PythonVersion('pypy3', false)
     }
   },
   {
     expectedResult: {
       darwin: {
+        freethreaded: false,
         success: true,
         version: 'pypyx'
       },
       linux: {
+        freethreaded: false,
         success: true,
         version: 'pypyx'
       },
       win32: {
+        freethreaded: false,
         success: true,
         version: 'pypyx'
       }
@@ -340,20 +370,23 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       cache: true,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('pypyx')
+      version: new PythonVersion('pypyx', false)
     }
   },
   {
     expectedResult: {
       darwin: {
+        freethreaded: false,
         success: true,
         version: 'pypy2'
       },
       linux: {
+        freethreaded: false,
         success: true,
         version: 'pypy2'
       },
       win32: {
+        freethreaded: false,
         success: true,
         version: 'pypy2'
       }
@@ -365,20 +398,23 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       cache: true,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('pypy2')
+      version: new PythonVersion('pypy2', false)
     }
   },
   {
     expectedResult: {
       darwin: {
+        freethreaded: false,
         success: true,
         version: 'pypy1'
       },
       linux: {
+        freethreaded: false,
         success: true,
         version: 'pypy1'
       },
       win32: {
+        freethreaded: false,
         success: true,
         version: 'pypy1'
       }
@@ -390,20 +426,23 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       cache: true,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('pypy1')
+      version: new PythonVersion('pypy1', false)
     }
   },
   {
     expectedResult: {
       darwin: {
+        freethreaded: false,
         success: true,
         version: 'pypy>=2.0.0 <3.0.0 || >=5.0.0 <6.0.0'
       },
       linux: {
+        freethreaded: false,
         success: true,
         version: 'pypy>=2.0.0 <3.0.0 || >=5.0.0 <6.0.0'
       },
       win32: {
+        freethreaded: false,
         success: true,
         version: 'pypy>=2.0.0 <3.0.0 || >=5.0.0 <6.0.0'
       }
@@ -415,20 +454,23 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       cache: true,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('pypy>=2.0.0 <3.0.0 || >=5.0.0 <6.0.0')
+      version: new PythonVersion('pypy>=2.0.0 <3.0.0 || >=5.0.0 <6.0.0', false)
     }
   },
   {
     expectedResult: {
       darwin: {
+        freethreaded: false,
         success: true,
         version: '3.11.1'
       },
       linux: {
+        freethreaded: false,
         success: true,
         version: '3.11.1'
       },
       win32: {
+        freethreaded: false,
         success: true,
         version: '3.11.1'
       }
@@ -440,20 +482,23 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       cache: true,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('3')
+      version: new PythonVersion('3', false)
     }
   },
   {
     expectedResult: {
       darwin: {
+        freethreaded: false,
         success: true,
         version: '3.12.0-alpha.3'
       },
       linux: {
+        freethreaded: false,
         success: true,
         version: '3.12.0-alpha.3'
       },
       win32: {
+        freethreaded: false,
         success: true,
         version: '3.12.0-alpha.3'
       }
@@ -465,20 +510,23 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       cache: true,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('3.12')
+      version: new PythonVersion('3.12', false)
     }
   },
   {
     expectedResult: {
       darwin: {
+        freethreaded: false,
         success: false,
         version: ''
       },
       linux: {
+        freethreaded: false,
         success: false,
         version: ''
       },
       win32: {
+        freethreaded: false,
         success: false,
         version: ''
       }
@@ -490,20 +538,23 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       cache: true,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('3.12.0')
+      version: new PythonVersion('3.12.0', false)
     }
   },
   {
     expectedResult: {
       darwin: {
+        freethreaded: false,
         success: false,
         version: ''
       },
       linux: {
+        freethreaded: false,
         success: false,
         version: ''
       },
       win32: {
+        freethreaded: false,
         success: false,
         version: ''
       }
@@ -515,20 +566,26 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       cache: true,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('>=2.12.0 <2.13.0-0 || >=2.14.0 <2.15.0-0')
+      version: new PythonVersion(
+        '>=2.12.0 <2.13.0-0 || >=2.14.0 <2.15.0-0',
+        false
+      )
     }
   },
   {
     expectedResult: {
       darwin: {
+        freethreaded: false,
         success: false,
         version: ''
       },
       linux: {
+        freethreaded: false,
         success: false,
         version: ''
       },
       win32: {
+        freethreaded: false,
         success: false,
         version: ''
       }
@@ -540,20 +597,23 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       cache: true,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('3.12')
+      version: new PythonVersion('3.12', false)
     }
   },
   {
     expectedResult: {
       darwin: {
+        freethreaded: false,
         success: false,
         version: ''
       },
       linux: {
+        freethreaded: false,
         success: false,
         version: ''
       },
       win32: {
+        freethreaded: false,
         success: false,
         version: ''
       }
@@ -565,7 +625,7 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       cache: true,
       checkLatest: false,
       token: 'token',
-      version: new PythonVersion('3.13')
+      version: new PythonVersion('3.13', false)
     }
   }
 ];
