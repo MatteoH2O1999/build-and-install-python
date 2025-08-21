@@ -1,5 +1,5 @@
-// Action to build any Python version on the latest labels and install it into the local tool cache.WindowsBuilder
-// Copyright (C) 2022 Matteo Dell'Acqua
+// Action to build any Python version on the latest labels and install it into the local tool cache.
+// Copyright (C) 2025 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -37,7 +37,8 @@ describe('WindowsBuilder.getInstaller method', () => {
   test('calls tc.downloadTool and returns the path if exe is present', async () => {
     const builder = new WindowsBuilder(
       {version: '3.4.1', zipBall: 'zipBall'},
-      'x64'
+      'x64',
+      false
     );
     // @ts-expect-error readonly override
     builder['path'] = 'path';
@@ -56,7 +57,8 @@ describe('WindowsBuilder.getInstaller method', () => {
   test('calls tc.downloadTool twice and returns the path if msi is present', async () => {
     const builder = new WindowsBuilder(
       {version: '3.4.1', zipBall: 'zipBall'},
-      'x64'
+      'x64',
+      false
     );
     // @ts-expect-error readonly override
     builder['path'] = 'path';
@@ -80,7 +82,8 @@ describe('WindowsBuilder.getInstaller method', () => {
   test('calls tc.downloadTool twice and returns an empty string if neither exe or msi are present', async () => {
     const builder = new WindowsBuilder(
       {version: '3.4.1', zipBall: 'zipBall'},
-      'x64'
+      'x64',
+      false
     );
     // @ts-expect-error readonly override
     builder['path'] = 'path';
