@@ -627,6 +627,62 @@ const SetupPythonTests: SetupPythonResultTest[] = [
       token: 'token',
       version: new PythonVersion('3.13', false)
     }
+  },
+  {
+    expectedResult: {
+      darwin: {
+        freethreaded: true,
+        success: false,
+        version: ''
+      },
+      linux: {
+        freethreaded: true,
+        success: false,
+        version: ''
+      },
+      win32: {
+        freethreaded: true,
+        success: false,
+        version: ''
+      }
+    },
+    inputs: {
+      allowPrereleases: true,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
+      buildBehavior: BuildBehavior.Info,
+      cache: true,
+      checkLatest: false,
+      token: 'token',
+      version: new PythonVersion('3.13t', false)
+    }
+  },
+  {
+    expectedResult: {
+      darwin: {
+        freethreaded: true,
+        success: false,
+        version: ''
+      },
+      linux: {
+        freethreaded: true,
+        success: false,
+        version: ''
+      },
+      win32: {
+        freethreaded: true,
+        success: false,
+        version: ''
+      }
+    },
+    inputs: {
+      allowPrereleases: true,
+      architecture: process.platform === 'darwin' ? 'x64' : process.arch,
+      buildBehavior: BuildBehavior.Info,
+      cache: true,
+      checkLatest: false,
+      token: 'token',
+      version: new PythonVersion('3.13', true)
+    }
   }
 ];
 
