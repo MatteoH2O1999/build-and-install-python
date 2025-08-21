@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Parsed inputs "allow-build" empty "allow-build" throws an Error 1`] = `"Unrecognized input value for "allow-build". Expected one of "allow", "info", "warn", "error, force". Got ""."`;
 

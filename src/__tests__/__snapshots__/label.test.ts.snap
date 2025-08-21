@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`emitWarnings emit warning if label is not tested with osName: "Macos" and osVersion: "13.4.2" 1`] = `
 [

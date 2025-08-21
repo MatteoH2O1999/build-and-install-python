@@ -1,5 +1,5 @@
 // Action to build any Python version on the latest labels and install it into the local tool cache.
-// Copyright (C) 2022 Matteo Dell'Acqua
+// Copyright (C) 2025 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -18,6 +18,7 @@ import * as tc from '@actions/tool-cache';
 import {archs, getTags, mockToolkit} from './builders.fixtures';
 import {beforeEach, describe, expect, jest, test} from '@jest/globals';
 import LinuxBuilder from '../linux';
+import semver from 'semver';
 
 jest.mock('@actions/core');
 jest.mock('@actions/cache');
@@ -42,7 +43,7 @@ describe.each(getTags())(
     });
 
     test.each(archs)('can be instantiated for arch %s', arch => {
-      const builder = new LinuxBuilder({version, zipBall}, arch);
+      const builder = new LinuxBuilder({version, zipBall}, arch, false);
 
       expect(builder).toBeInstanceOf(LinuxBuilder);
       expect(builder.specificVersion).toEqual(version);
@@ -50,7 +51,7 @@ describe.each(getTags())(
     });
 
     test('downloads the sources from the zipball url', async () => {
-      const builder = new LinuxBuilder({version, zipBall}, 'x64');
+      const builder = new LinuxBuilder({version, zipBall}, 'x64', false);
 
       try {
         await builder.build();
@@ -64,7 +65,7 @@ describe.each(getTags())(
     test.each(archs)(
       'has a stable interaction with @actions/toolkit during build for arch %s',
       async arch => {
-        const builder = new LinuxBuilder({version, zipBall}, arch);
+        const builder = new LinuxBuilder({version, zipBall}, arch, false);
 
         try {
           await builder.build();
@@ -83,7 +84,7 @@ describe.each(getTags())(
     test.each(archs)(
       'has a stable interaction with @actions/toolkit during postInstall for arch %s',
       async arch => {
-        const builder = new LinuxBuilder({version, zipBall}, arch);
+        const builder = new LinuxBuilder({version, zipBall}, arch, false);
 
         try {
           await builder.postInstall('installPath');
@@ -102,12 +103,63 @@ describe.each(getTags())(
     test.each(archs)(
       'identifies the correct additional paths to cache for arch %s',
       async arch => {
-        const builder = new LinuxBuilder({version, zipBall}, arch);
+        const builder = new LinuxBuilder({version, zipBall}, arch, false);
 
         const paths = await builder['additionalCachePaths']();
 
         expect(paths).toMatchSnapshot();
       }
     );
+
+    if (semver.gte(version, '3.13.0')) {
+      test.each(archs)(
+        'has a stable interaction with @actions/toolkit during freethreaded build for arch %s',
+        async arch => {
+          const builder = new LinuxBuilder({version, zipBall}, arch, true);
+
+          try {
+            await builder.build();
+          } catch (error) {
+            let message = error as string;
+            if (error instanceof Error) {
+              message = error.message;
+            }
+            interactions.push(`Throw "${message}"`);
+          }
+
+          expect(interactions).toMatchSnapshot();
+        }
+      );
+
+      test.each(archs)(
+        'has a stable interaction with @actions/toolkit during freethreaded postInstall for arch %s',
+        async arch => {
+          const builder = new LinuxBuilder({version, zipBall}, arch, true);
+
+          try {
+            await builder.postInstall('installPath');
+          } catch (error) {
+            let message = error as string;
+            if (error instanceof Error) {
+              message = error.message;
+            }
+            interactions.push(`Throw "${message}"`);
+          }
+
+          expect(interactions).toMatchSnapshot();
+        }
+      );
+
+      test.each(archs)(
+        'identifies the correct additional paths to cache for arch %s for a freethreaded build',
+        async arch => {
+          const builder = new LinuxBuilder({version, zipBall}, arch, true);
+
+          const paths = await builder['additionalCachePaths']();
+
+          expect(paths).toMatchSnapshot();
+        }
+      );
+    }
   }
 );

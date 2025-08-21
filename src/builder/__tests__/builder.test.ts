@@ -1,5 +1,5 @@
 // Action to build any Python version on the latest labels and install it into the local tool cache.
-// Copyright (C) 2022 Matteo Dell'Acqua
+// Copyright (C) 2025 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -103,7 +103,7 @@ describe('class Builder', () => {
   test('can be instantiated', () => {
     const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
 
-    const builder = new MockBuilder(tag, 'x64');
+    const builder = new MockBuilder(tag, 'x64', false);
 
     expect(builder).toBeTruthy();
     expect(builder).toBeInstanceOf(Builder);
@@ -113,7 +113,7 @@ describe('class Builder', () => {
     test('saves specific version and source code zip ball download link', () => {
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
 
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
 
       expect(builder['specificVersion']).toEqual('version');
       expect(builder['tagZipUri']).toEqual('zipballUrl');
@@ -122,7 +122,7 @@ describe('class Builder', () => {
     test('cache key is built as "CPython{specific version}{architecture}{cacheKeyOs}"', () => {
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
 
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
 
       expect(builder['cacheKey']).toEqual('CPythonversionx64key');
     });
@@ -134,7 +134,7 @@ describe('class Builder', () => {
       };
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
 
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
 
       expect(builder['path']).toEqual(path.join('tmp', 'CPythonversionx64key'));
 
@@ -145,7 +145,7 @@ describe('class Builder', () => {
   describe('clean method', () => {
     test('throws an error if path is not defined', async () => {
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       //@ts-expect-error force path to be overwritten as it is readonly
       builder['path'] = null;
 
@@ -154,7 +154,7 @@ describe('class Builder', () => {
 
     test('throws an error if path does not exist', async () => {
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       //@ts-expect-error force path to be overwritten as it is readonly
       builder['path'] = 'nonExistingPath';
 
@@ -163,7 +163,7 @@ describe('class Builder', () => {
 
     test('calls @actions/io.rmRf with the path if the path exists', async () => {
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       const tmpDir = fs.mkdtempSync(`${os.tmpdir()}${path.sep}`);
       //@ts-expect-error force path to be overwritten as it is readonly
       builder['path'] = tmpDir;
@@ -180,7 +180,7 @@ describe('class Builder', () => {
   describe('restoreCache method', () => {
     test('returns null without doing anything if cache feature is not available', async () => {
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       //@ts-expect-error force path to be overwritten as it is readonly
       builder['path'] = 'srcPath';
       mockedCache.isFeatureAvailable.mockReturnValueOnce(false);
@@ -194,7 +194,7 @@ describe('class Builder', () => {
 
     test('returns null after trying to restore cache if a cache-miss occurs', async () => {
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       //@ts-expect-error force path to be overwritten as it is readonly
       builder['path'] = 'srcPath';
       mockedCache.isFeatureAvailable.mockReturnValueOnce(true);
@@ -213,7 +213,7 @@ describe('class Builder', () => {
 
     test('returns the restored built path is a cache-hit occurs', async () => {
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       //@ts-expect-error force path to be overwritten as it is readonly
       builder['path'] = 'srcPath';
       mockedCache.isFeatureAvailable.mockReturnValueOnce(true);
@@ -234,7 +234,7 @@ describe('class Builder', () => {
   describe('saveCache method', () => {
     test('returns null without doing anything if cache feature is not available', async () => {
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       //@ts-expect-error force path to be overwritten as it is readonly
       builder['path'] = 'srcPath';
       mockedCache.isFeatureAvailable.mockReturnValueOnce(false);
@@ -246,7 +246,7 @@ describe('class Builder', () => {
 
     test('throws an error after trying to save cache if an error occurs during @actions/cache.saveCache', async () => {
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       //@ts-expect-error force path to be overwritten as it is readonly
       builder['path'] = 'srcPath';
       mockedCache.isFeatureAvailable.mockReturnValueOnce(true);
@@ -266,7 +266,7 @@ describe('class Builder', () => {
 
     test('returns successfully if cache is saved successful', async () => {
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       //@ts-expect-error force path to be overwritten as it is readonly
       builder['path'] = 'srcPath';
       mockedCache.isFeatureAvailable.mockReturnValueOnce(true);
@@ -295,7 +295,7 @@ describe('class Builder', () => {
 
     test('downloads sources from zipBallUrl', async () => {
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       mockedTc.downloadTool.mockResolvedValueOnce('downloadPath');
       mockedTc.extractZip.mockResolvedValueOnce(tempDir);
 
@@ -310,7 +310,7 @@ describe('class Builder', () => {
 
     test('extracts downloaded sources', async () => {
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       mockedTc.downloadTool.mockResolvedValueOnce('downloadPath');
       mockedTc.extractZip.mockResolvedValueOnce(tempDir);
 
@@ -325,7 +325,7 @@ describe('class Builder', () => {
 
     test('removes downloaded zipBall', async () => {
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       mockedTc.downloadTool.mockResolvedValueOnce('downloadPath');
       mockedTc.extractZip.mockResolvedValueOnce(tempDir);
 
@@ -340,7 +340,7 @@ describe('class Builder', () => {
 
     test('throws an error if the extracted folder has more than 1 subfolders', async () => {
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       mockedTc.downloadTool.mockResolvedValueOnce('downloadPath');
       mockedTc.extractZip.mockResolvedValueOnce(tempDir);
       fs.mkdirSync(path.join(tempDir, 'otherFolder'));
@@ -352,7 +352,7 @@ describe('class Builder', () => {
 
     test('throws an error if the extracted folder does not have a subfolder starting with "python-cpython"', async () => {
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       mockedTc.downloadTool.mockResolvedValueOnce('downloadPath');
       mockedTc.extractZip.mockResolvedValueOnce(tempDir);
       fs.mkdirSync(path.join(tempDir, 'otherFolder'));
@@ -365,7 +365,7 @@ describe('class Builder', () => {
 
     test('copies the extracted sources to the work directory', async () => {
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       mockedTc.downloadTool.mockResolvedValueOnce('downloadPath');
       mockedTc.extractZip.mockResolvedValueOnce(tempDir);
 
@@ -380,7 +380,7 @@ describe('class Builder', () => {
 
     test('removes extracted folder', async () => {
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       mockedTc.downloadTool.mockResolvedValueOnce('downloadPath');
       mockedTc.extractZip.mockResolvedValueOnce(tempDir);
 
@@ -391,7 +391,7 @@ describe('class Builder', () => {
 
     test('returns successfully if folder structure is correct', async () => {
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       mockedTc.downloadTool.mockResolvedValueOnce('downloadPath');
       mockedTc.extractZip.mockResolvedValueOnce(tempDir);
 
@@ -418,7 +418,7 @@ describe('class Builder', () => {
 
     test('Checks if path/python exists', async () => {
       const tag: PythonTag = {version: '3.5.2', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
 
       await builder.initPip(tempDir);
 
@@ -428,14 +428,14 @@ describe('class Builder', () => {
 
     test('Fails if python executable does not exist', async () => {
       const tag: PythonTag = {version: '3.5.2', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
 
       await expect(builder.initPip('installedDir')).rejects.toThrow();
     });
 
     test('Calls ensurepip and returns if success', async () => {
       const tag: PythonTag = {version: '3.5.2', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       mockedExec.exec.mockResolvedValueOnce(0);
 
       await builder.initPip(tempDir);
@@ -451,7 +451,7 @@ describe('class Builder', () => {
 
     test('Calls get_pip.py if ensurepip fails', async () => {
       const tag: PythonTag = {version: '3.5.2', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       mockedExec.exec.mockRejectedValueOnce(new Error('ensurepip failed'));
       mockedExec.exec.mockResolvedValueOnce(0);
       mockedTc.downloadTool.mockResolvedValueOnce('get_pip.py');
@@ -471,7 +471,7 @@ describe('class Builder', () => {
 
     test('Fails if get_pip.py fails and Python version >= 3.2', async () => {
       const tag: PythonTag = {version: '3.5.2', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       mockedExec.exec.mockRejectedValueOnce(new Error('ensurepip failed'));
       mockedExec.exec.mockRejectedValueOnce(new Error('get_pip.py failed'));
       mockedTc.downloadTool.mockResolvedValueOnce('get_pip.py');
@@ -484,7 +484,7 @@ describe('class Builder', () => {
 
     test('Does nothing if get_pip.py fails and Python version < 3.2', async () => {
       const tag: PythonTag = {version: '3.1.2', zipBall: 'zipballUrl'};
-      const builder = new MockBuilder(tag, 'x64');
+      const builder = new MockBuilder(tag, 'x64', false);
       mockedExec.exec.mockRejectedValueOnce(new Error('ensurepip failed'));
       mockedExec.exec.mockRejectedValueOnce(new Error('get_pip.py failed'));
       mockedTc.downloadTool.mockResolvedValueOnce('get_pip.py');

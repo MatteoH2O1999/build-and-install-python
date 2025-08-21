@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`class Builder clean method throws an error if path does not exist 1`] = `"Cannot clear nonExistingPath as it does not exist."`;
 
