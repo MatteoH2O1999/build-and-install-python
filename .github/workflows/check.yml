@@ -65,7 +65,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-15, windows-2022, ubuntu-24.04]
+        os: [macos-15, windows-2025, ubuntu-24.04]
     steps:
       - name: Download built action
         uses: actions/download-artifact@v5
@@ -105,7 +105,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-15, windows-2022, ubuntu-24.04]
+        os: [macos-15, windows-2025, ubuntu-24.04]
     steps:
       - name: Download built action
         uses: actions/download-artifact@v5
