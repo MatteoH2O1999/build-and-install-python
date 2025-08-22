@@ -1,6 +1,11 @@
 [
   {
     "installer": false,
+    "version": "v3.14.0rc2",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.14.0rc2"
+  },
+  {
+    "installer": false,
     "version": "v3.14.0rc1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.14.0rc1"
   },
@@ -58,6 +63,16 @@
     "installer": false,
     "version": "v3.14.0a1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.14.0a1"
+  },
+  {
+    "installer": true,
+    "version": "v3.13.7",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.7"
+  },
+  {
+    "installer": true,
+    "version": "v3.13.6",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.6"
   },
   {
     "installer": true,
