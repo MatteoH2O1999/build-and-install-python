@@ -489,7 +489,6 @@ export default class WindowsBuilder extends Builder {
       const execArguments: string[] = [
         '/quiet',
         `TargetDir=${path.join(this.path, this.buildSuffix())}`,
-        'Include_pip=0',
         'CompileAll=1',
         'Include_launcher=0',
         'InstallLauncherAllUsers=0'

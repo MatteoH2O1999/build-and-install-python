@@ -40,7 +40,7 @@ export default abstract class Builder {
     this.arch = arch;
     this.freethreaded = freethreaded;
     this.cacheKey = `CPython${this.specificVersion}${
-      this.arch
+      this.freethreaded ? this.arch + '-freethreaded' : this.arch
     }${this.CacheKeyOs()}`;
     this.tmpdir = utils.realpathSync(utils.mktmpdir());
     this.path = path.join(this.tmpdir, this.cacheKey);
@@ -172,9 +172,13 @@ export default abstract class Builder {
     try {
       core.info('Trying to use ensurepip...');
       await exec.exec(`${pythonExecutable} -m ensurepip`, [], {silent: true});
-      await exec.exec(`${pythonExecutable} -m pip install --upgrade pip`, [], {
-        silent: true
-      });
+      await exec.exec(
+        `${pythonExecutable} -m pip install --upgrade --force-reinstall pip`,
+        [],
+        {
+          silent: true
+        }
+      );
     } catch {
       core.info('Ensurepip failed. Trying using get_pip.py...');
       const splitVersion = this.specificVersion.split('.');

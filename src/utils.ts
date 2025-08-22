@@ -81,6 +81,11 @@ export function realpathSync(
   return fs.realpathSync(path, options);
 }
 
+let step = 0;
+
 export function mktmpdir(forceClean?: boolean): string {
-  return tmp.dirSync({unsafeCleanup: forceClean ?? true}).name;
+  return tmp.dirSync({
+    name: `_work${step++}`,
+    unsafeCleanup: forceClean ?? true
+  }).name;
 }
