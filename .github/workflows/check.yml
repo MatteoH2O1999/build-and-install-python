@@ -85,6 +85,7 @@ jobs:
         with:
           python-version: ${{ steps.build.outputs.python-version }}
           architecture: ${{ steps.build.outputs.architecture }}
+          freethreaded: ${{ steps.build.outputs.freethreaded }}
       - name: Setup pip
         run: ./.github/scripts/setup_pip.ps1
         shell: pwsh
@@ -125,6 +126,7 @@ jobs:
         with:
           python-version: ${{ steps.build.outputs.python-version }}
           architecture: ${{ steps.build.outputs.architecture }}
+          freethreaded: ${{ steps.build.outputs.freethreaded }}
       - name: Setup pip
         run: ./.github/scripts/setup_pip.ps1
         shell: pwsh
