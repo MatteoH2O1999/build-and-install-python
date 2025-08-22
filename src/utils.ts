@@ -1,5 +1,5 @@
 // Action to build any Python version on the latest labels and install it into the local tool cache.
-// Copyright (C) 2022 Matteo Dell'Acqua
+// Copyright (C) 2025 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -18,6 +18,7 @@
 
 import {Abortable} from 'node:events';
 import fs from 'fs';
+import tmp from 'tmp';
 
 export async function readdir(
   path: fs.PathLike,
@@ -78,4 +79,8 @@ export function realpathSync(
   options?: fs.EncodingOption
 ): string {
   return fs.realpathSync(path, options);
+}
+
+export function mktmpdir(forceClean?: boolean): string {
+  return tmp.dirSync({unsafeCleanup: forceClean ?? true}).name;
 }

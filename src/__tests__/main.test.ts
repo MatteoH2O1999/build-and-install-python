@@ -24,7 +24,6 @@ import * as version from '../version';
 import {describe, expect, jest, test} from '@jest/globals';
 import {OS} from '../builder/patches';
 import main from '../main';
-import os from 'os';
 
 jest.mock('@actions/core');
 jest.mock('@actions/tool-cache');
@@ -33,7 +32,6 @@ jest.mock('@actions/io');
 jest.mock('../inputs');
 jest.mock('../version');
 jest.mock('../builder/factory');
-jest.mock('os');
 jest.mock('../utils');
 jest.mock('../label');
 
@@ -42,10 +40,9 @@ const mockedTc = jest.mocked(tc);
 const mockedInputs = jest.mocked(inputs);
 const mockedVersion = jest.mocked(version);
 const mockedBuilder = jest.mocked(builder);
-const mockedOs = jest.mocked(os);
 const mockedUtils = jest.mocked(utils);
 
-mockedOs.tmpdir.mockReturnValue('');
+mockedUtils.mktmpdir.mockReturnValue('');
 mockedUtils.realpath.mockImplementation(async p => {
   return p.toString();
 });

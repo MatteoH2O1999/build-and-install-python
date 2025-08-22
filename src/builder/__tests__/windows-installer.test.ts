@@ -25,6 +25,7 @@ jest.mock('@actions/cache');
 jest.mock('@actions/tool-cache');
 jest.mock('@actions/io');
 jest.mock('@actions/exec');
+jest.mock('../../utils');
 
 const mockedTc = jest.mocked(tc);
 const mockedPath = jest.mocked(path);

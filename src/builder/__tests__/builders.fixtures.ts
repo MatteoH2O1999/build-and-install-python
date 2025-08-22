@@ -1,5 +1,5 @@
 // Action to build any Python version on the latest labels and install it into the local tool cache.
-// Copyright (C) 2022 Matteo Dell'Acqua
+// Copyright (C) 2025 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -188,6 +188,7 @@ export async function mockToolkit(
   mockedUtils.realpathSync.mockImplementation(p => {
     return p.toString();
   });
+  mockedUtils.mktmpdir.mockReturnValue('tmpDir');
 
   // Mock @actions/exec implementation
 

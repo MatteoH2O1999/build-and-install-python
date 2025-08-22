@@ -22,7 +22,6 @@ import * as tc from '@actions/tool-cache';
 import * as utils from '../utils';
 import {OS, patches} from './patches';
 import {PythonTag} from './factory';
-import os from 'os';
 import path from 'path';
 
 export default abstract class Builder {
@@ -31,6 +30,7 @@ export default abstract class Builder {
   readonly freethreaded: boolean;
   private readonly cacheKey: string;
   protected readonly tagZipUri: string;
+  protected readonly tmpdir: string;
   protected readonly path: string;
   protected restored = false;
 
@@ -42,8 +42,8 @@ export default abstract class Builder {
     this.cacheKey = `CPython${this.specificVersion}${
       this.arch
     }${this.CacheKeyOs()}`;
-    const tmpdir = utils.realpathSync(os.tmpdir());
-    this.path = path.join(tmpdir, this.cacheKey);
+    this.tmpdir = utils.realpathSync(utils.mktmpdir());
+    this.path = path.join(this.tmpdir, this.cacheKey);
     core.debug(`Builder cache key: ${this.cacheKey}`);
     core.debug(`Builder path: ${this.path}`);
   }
