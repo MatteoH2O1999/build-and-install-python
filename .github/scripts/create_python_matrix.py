@@ -3,7 +3,7 @@ import json
 import os
 import tempfile
 
-json_dict = {"os": ["ubuntu-24.04", "windows-2022", "macos-15"], "python-version": []}
+json_dict = {"os": ["ubuntu-24.04", "windows-2025", "macos-15"], "python-version": []}
 
 with tempfile.TemporaryDirectory() as temp_dir:
     python_repo = git.Repo.clone_from('https://github.com/python/cpython.git', temp_dir)
