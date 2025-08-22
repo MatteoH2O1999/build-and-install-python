@@ -28,7 +28,6 @@ import Builder from './builder';
 import {OS} from './patches';
 import {PythonTag} from './factory';
 import findPs from 'find-process';
-import os from 'os';
 import path from 'path';
 import semver from 'semver';
 
@@ -351,7 +350,7 @@ export default class WindowsBuilder extends Builder {
     core.startGroup('Installing dependencies');
     const installer = await tc.downloadTool(
       vsInstallerUrl,
-      path.join(os.tmpdir(), 'vs_installer.exe')
+      path.join(this.tmpdir, 'vs_installer.exe')
     );
     core.info('vs_installer downloaded');
     for (const dependency of this.vsDependencies) {
@@ -384,7 +383,7 @@ export default class WindowsBuilder extends Builder {
 
     const installer = await tc.downloadTool(
       vsInstallerUrl,
-      path.join(os.tmpdir(), 'vs_installer.exe')
+      path.join(this.tmpdir, 'vs_installer.exe')
     );
     core.info('vs_installer downloaded');
     for (const dependency of this.vsDependencies) {

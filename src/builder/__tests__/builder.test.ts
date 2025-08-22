@@ -47,6 +47,7 @@ jest.mock('../../utils', () => {
   return {
     ...actualUtils,
     exists: jest.fn(),
+    mktmpdir: jest.fn(),
     realpath: jest.fn(),
     realpathSync: jest.fn()
   };
@@ -68,6 +69,7 @@ mockedUtils.exists.mockImplementation(async p => {
   const actualUtils: typeof utils = jest.requireActual('../../utils');
   return await actualUtils.exists(p);
 });
+mockedUtils.mktmpdir.mockReturnValue('tmp');
 
 class MockBuilder extends Builder {
   built = false;
@@ -127,18 +129,13 @@ describe('class Builder', () => {
       expect(builder['cacheKey']).toEqual('CPythonversionx64key');
     });
 
-    test('path is build as "os.tempdir/cacheKey"', () => {
-      const oldTmpdir = os.tmpdir;
-      os.tmpdir = () => {
-        return 'tmp';
-      };
+    test('path is build as "utils.mktmpdir/cacheKey"', () => {
+      mockedUtils.mktmpdir.mockReturnValueOnce('tmp');
       const tag: PythonTag = {version: 'version', zipBall: 'zipballUrl'};
 
       const builder = new MockBuilder(tag, 'x64', false);
 
       expect(builder['path']).toEqual(path.join('tmp', 'CPythonversionx64key'));
-
-      os.tmpdir = oldTmpdir;
     });
   });
 
@@ -368,12 +365,13 @@ describe('class Builder', () => {
       const builder = new MockBuilder(tag, 'x64', false);
       mockedTc.downloadTool.mockResolvedValueOnce('downloadPath');
       mockedTc.extractZip.mockResolvedValueOnce(tempDir);
+      mockedUtils.mktmpdir.mockReturnValueOnce('tmp');
 
       await builder['prepareSources']();
 
       expect(mockedIo.cp).toHaveBeenCalledWith(
         path.join(tempDir, 'python-cpython'),
-        path.join(os.tmpdir(), 'CPythonversionx64key'),
+        path.join('tmp', 'CPythonversionx64key'),
         {copySourceDirectory: false, recursive: true}
       );
     });

@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import * as utils from '../../utils';
 import {describe, expect, jest, test} from '@jest/globals';
 import {failingTests, nullTests, tests} from './factory.fixtures';
 import LinuxBuilder from '../linux';
@@ -23,6 +24,7 @@ import WindowsBuilder from '../windows';
 import getBuilder from '../factory';
 
 jest.mock('@actions/core');
+jest.mock('../../utils');
 jest.mock('../tags.json', () => {
   const actual: unknown[] = jest.requireActual('../tags.json');
   actual.reverse();
@@ -31,6 +33,13 @@ jest.mock('../tags.json', () => {
     default: actual
   };
 });
+
+const mockedUtils = jest.mocked(utils);
+
+mockedUtils.realpathSync.mockImplementation(p => {
+  return p.toString();
+});
+mockedUtils.mktmpdir.mockReturnValue('tmpDir');
 
 function detectExpectedClass():
   | typeof LinuxBuilder

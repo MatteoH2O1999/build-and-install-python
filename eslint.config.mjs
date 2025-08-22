@@ -91,7 +91,7 @@ export default [
       '@typescript-eslint/return-await': ['error', 'always'],
       'sort-imports': 'error',
       'sort-keys': 'error',
-      'no-restricted-imports': ['error', 'fs'],
+      'no-restricted-imports': ['error', 'fs', 'tmp'],
       'no-return-await': 'off'
     }
   }

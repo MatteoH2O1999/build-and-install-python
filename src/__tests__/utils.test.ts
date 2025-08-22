@@ -1,5 +1,5 @@
 // Action to build any Python version on the latest labels and install it into the local tool cache.
-// Copyright (C) 2022 Matteo Dell'Acqua
+// Copyright (C) 2025 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -19,6 +19,7 @@
 import * as utils from '../utils';
 import {describe, expect, jest, test} from '@jest/globals';
 import fs from 'fs';
+import tmp from 'tmp';
 
 jest.mock('fs', () => ({
   existsSync: jest.fn(),
@@ -31,8 +32,10 @@ jest.mock('fs', () => ({
   },
   realpathSync: jest.fn()
 }));
+jest.mock('tmp', () => ({dirSync: jest.fn()}));
 
 const mockedFs = jest.mocked(fs);
+const mockedTmp = jest.mocked(tmp);
 
 describe('Utils', () => {
   describe('readdir', () => {
@@ -160,6 +163,43 @@ describe('Utils', () => {
       const content = utils.realpathSync('path');
 
       expect(content).toEqual('realpath');
+    });
+  });
+
+  describe('mktmpdir', () => {
+    test('calls tmp.dirSync with the default boolean parameter in input', () => {
+      mockedTmp.dirSync.mockReturnValueOnce({
+        name: 'tmpDir',
+        removeCallback: () => {}
+      });
+
+      utils.mktmpdir();
+
+      expect(mockedTmp.dirSync).toHaveBeenCalledTimes(1);
+      expect(mockedTmp.dirSync).toHaveBeenCalledWith({unsafeCleanup: true});
+    });
+
+    test('calls tmp.dirSync with the specified boolean parameter in input', () => {
+      mockedTmp.dirSync.mockReturnValueOnce({
+        name: 'tmpDir',
+        removeCallback: () => {}
+      });
+
+      utils.mktmpdir(false);
+
+      expect(mockedTmp.dirSync).toHaveBeenCalledTimes(1);
+      expect(mockedTmp.dirSync).toHaveBeenCalledWith({unsafeCleanup: false});
+    });
+
+    test('returns the name of the directory created by tmp.dirSync', () => {
+      mockedTmp.dirSync.mockReturnValueOnce({
+        name: 'tmpDir',
+        removeCallback: () => {}
+      });
+
+      const content = utils.mktmpdir();
+
+      expect(content).toEqual('tmpDir');
     });
   });
 });
