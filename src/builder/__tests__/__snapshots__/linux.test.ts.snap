@@ -21824,63 +21824,63 @@ exports[`LinuxBuilder for version 3.13.0 has a stable interaction with @actions/
 
 exports[`LinuxBuilder for version 3.13.0 has a stable interaction with @actions/toolkit during freethreaded build for arch arm64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.0arm64nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.0arm64nix/tmp as tool Python version 3.13.0 for architecture arm64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.0arm64nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.0arm64-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.0arm64-freethreadednix/tmp as tool Python version 3.13.0 for architecture arm64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.0arm64-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.0",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.0 to defaultDownloadPath/v3.13.0",
   "Extract defaultDownloadPath/v3.13.0 to defaultExtractedPath/extractedv3.13.0",
   "Recursively remove path defaultDownloadPath/v3.13.0",
-  "Copy folder defaultExtractedPath/extractedv3.13.0/python-cpython to tmpDir/CPython3.13.0arm64nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.0/python-cpython to tmpDir/CPython3.13.0arm64-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.0",
   "Execute command "./configure --prefix=toolcache/Python/3.13.0/arm64-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.0/arm64-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.0/arm64-freethreaded to tmpDir/CPython3.13.0arm64nix/installDir",
+  "Copy folder toolcache/Python/3.13.0/arm64-freethreaded to tmpDir/CPython3.13.0arm64-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.0",
 ]
 `;
 
 exports[`LinuxBuilder for version 3.13.0 has a stable interaction with @actions/toolkit during freethreaded build for arch x64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.0x64nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.0x64nix/tmp as tool Python version 3.13.0 for architecture x64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.0x64nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.0x64-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.0x64-freethreadednix/tmp as tool Python version 3.13.0 for architecture x64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.0x64-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.0",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.0 to defaultDownloadPath/v3.13.0",
   "Extract defaultDownloadPath/v3.13.0 to defaultExtractedPath/extractedv3.13.0",
   "Recursively remove path defaultDownloadPath/v3.13.0",
-  "Copy folder defaultExtractedPath/extractedv3.13.0/python-cpython to tmpDir/CPython3.13.0x64nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.0/python-cpython to tmpDir/CPython3.13.0x64-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.0",
   "Execute command "./configure --prefix=toolcache/Python/3.13.0/x64-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.0/x64-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.0/x64-freethreaded to tmpDir/CPython3.13.0x64nix/installDir",
+  "Copy folder toolcache/Python/3.13.0/x64-freethreaded to tmpDir/CPython3.13.0x64-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.0",
 ]
 `;
 
 exports[`LinuxBuilder for version 3.13.0 has a stable interaction with @actions/toolkit during freethreaded build for arch x86 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.0x86nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.0x86nix/tmp as tool Python version 3.13.0 for architecture x86-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.0x86nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.0x86-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.0x86-freethreadednix/tmp as tool Python version 3.13.0 for architecture x86-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.0x86-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.0",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.0 to defaultDownloadPath/v3.13.0",
   "Extract defaultDownloadPath/v3.13.0 to defaultExtractedPath/extractedv3.13.0",
   "Recursively remove path defaultDownloadPath/v3.13.0",
-  "Copy folder defaultExtractedPath/extractedv3.13.0/python-cpython to tmpDir/CPython3.13.0x86nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.0/python-cpython to tmpDir/CPython3.13.0x86-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.0",
   "Execute command "./configure --prefix=toolcache/Python/3.13.0/x86-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.0/x86-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.0/x86-freethreaded to tmpDir/CPython3.13.0x86nix/installDir",
+  "Copy folder toolcache/Python/3.13.0/x86-freethreaded to tmpDir/CPython3.13.0x86-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.0",
 ]
 `;
@@ -22040,63 +22040,63 @@ exports[`LinuxBuilder for version 3.13.1 has a stable interaction with @actions/
 
 exports[`LinuxBuilder for version 3.13.1 has a stable interaction with @actions/toolkit during freethreaded build for arch arm64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.1arm64nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.1arm64nix/tmp as tool Python version 3.13.1 for architecture arm64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.1arm64nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.1arm64-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.1arm64-freethreadednix/tmp as tool Python version 3.13.1 for architecture arm64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.1arm64-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.1",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.1 to defaultDownloadPath/v3.13.1",
   "Extract defaultDownloadPath/v3.13.1 to defaultExtractedPath/extractedv3.13.1",
   "Recursively remove path defaultDownloadPath/v3.13.1",
-  "Copy folder defaultExtractedPath/extractedv3.13.1/python-cpython to tmpDir/CPython3.13.1arm64nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.1/python-cpython to tmpDir/CPython3.13.1arm64-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.1",
   "Execute command "./configure --prefix=toolcache/Python/3.13.1/arm64-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.1/arm64-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.1/arm64-freethreaded to tmpDir/CPython3.13.1arm64nix/installDir",
+  "Copy folder toolcache/Python/3.13.1/arm64-freethreaded to tmpDir/CPython3.13.1arm64-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.1",
 ]
 `;
 
 exports[`LinuxBuilder for version 3.13.1 has a stable interaction with @actions/toolkit during freethreaded build for arch x64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.1x64nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.1x64nix/tmp as tool Python version 3.13.1 for architecture x64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.1x64nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.1x64-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.1x64-freethreadednix/tmp as tool Python version 3.13.1 for architecture x64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.1x64-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.1",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.1 to defaultDownloadPath/v3.13.1",
   "Extract defaultDownloadPath/v3.13.1 to defaultExtractedPath/extractedv3.13.1",
   "Recursively remove path defaultDownloadPath/v3.13.1",
-  "Copy folder defaultExtractedPath/extractedv3.13.1/python-cpython to tmpDir/CPython3.13.1x64nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.1/python-cpython to tmpDir/CPython3.13.1x64-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.1",
   "Execute command "./configure --prefix=toolcache/Python/3.13.1/x64-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.1/x64-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.1/x64-freethreaded to tmpDir/CPython3.13.1x64nix/installDir",
+  "Copy folder toolcache/Python/3.13.1/x64-freethreaded to tmpDir/CPython3.13.1x64-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.1",
 ]
 `;
 
 exports[`LinuxBuilder for version 3.13.1 has a stable interaction with @actions/toolkit during freethreaded build for arch x86 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.1x86nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.1x86nix/tmp as tool Python version 3.13.1 for architecture x86-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.1x86nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.1x86-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.1x86-freethreadednix/tmp as tool Python version 3.13.1 for architecture x86-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.1x86-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.1",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.1 to defaultDownloadPath/v3.13.1",
   "Extract defaultDownloadPath/v3.13.1 to defaultExtractedPath/extractedv3.13.1",
   "Recursively remove path defaultDownloadPath/v3.13.1",
-  "Copy folder defaultExtractedPath/extractedv3.13.1/python-cpython to tmpDir/CPython3.13.1x86nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.1/python-cpython to tmpDir/CPython3.13.1x86-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.1",
   "Execute command "./configure --prefix=toolcache/Python/3.13.1/x86-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.1/x86-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.1/x86-freethreaded to tmpDir/CPython3.13.1x86nix/installDir",
+  "Copy folder toolcache/Python/3.13.1/x86-freethreaded to tmpDir/CPython3.13.1x86-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.1",
 ]
 `;
@@ -22256,63 +22256,63 @@ exports[`LinuxBuilder for version 3.13.2 has a stable interaction with @actions/
 
 exports[`LinuxBuilder for version 3.13.2 has a stable interaction with @actions/toolkit during freethreaded build for arch arm64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.2arm64nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.2arm64nix/tmp as tool Python version 3.13.2 for architecture arm64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.2arm64nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.2arm64-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.2arm64-freethreadednix/tmp as tool Python version 3.13.2 for architecture arm64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.2arm64-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.2",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.2 to defaultDownloadPath/v3.13.2",
   "Extract defaultDownloadPath/v3.13.2 to defaultExtractedPath/extractedv3.13.2",
   "Recursively remove path defaultDownloadPath/v3.13.2",
-  "Copy folder defaultExtractedPath/extractedv3.13.2/python-cpython to tmpDir/CPython3.13.2arm64nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.2/python-cpython to tmpDir/CPython3.13.2arm64-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.2",
   "Execute command "./configure --prefix=toolcache/Python/3.13.2/arm64-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.2/arm64-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.2/arm64-freethreaded to tmpDir/CPython3.13.2arm64nix/installDir",
+  "Copy folder toolcache/Python/3.13.2/arm64-freethreaded to tmpDir/CPython3.13.2arm64-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.2",
 ]
 `;
 
 exports[`LinuxBuilder for version 3.13.2 has a stable interaction with @actions/toolkit during freethreaded build for arch x64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.2x64nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.2x64nix/tmp as tool Python version 3.13.2 for architecture x64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.2x64nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.2x64-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.2x64-freethreadednix/tmp as tool Python version 3.13.2 for architecture x64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.2x64-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.2",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.2 to defaultDownloadPath/v3.13.2",
   "Extract defaultDownloadPath/v3.13.2 to defaultExtractedPath/extractedv3.13.2",
   "Recursively remove path defaultDownloadPath/v3.13.2",
-  "Copy folder defaultExtractedPath/extractedv3.13.2/python-cpython to tmpDir/CPython3.13.2x64nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.2/python-cpython to tmpDir/CPython3.13.2x64-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.2",
   "Execute command "./configure --prefix=toolcache/Python/3.13.2/x64-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.2/x64-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.2/x64-freethreaded to tmpDir/CPython3.13.2x64nix/installDir",
+  "Copy folder toolcache/Python/3.13.2/x64-freethreaded to tmpDir/CPython3.13.2x64-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.2",
 ]
 `;
 
 exports[`LinuxBuilder for version 3.13.2 has a stable interaction with @actions/toolkit during freethreaded build for arch x86 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.2x86nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.2x86nix/tmp as tool Python version 3.13.2 for architecture x86-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.2x86nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.2x86-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.2x86-freethreadednix/tmp as tool Python version 3.13.2 for architecture x86-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.2x86-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.2",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.2 to defaultDownloadPath/v3.13.2",
   "Extract defaultDownloadPath/v3.13.2 to defaultExtractedPath/extractedv3.13.2",
   "Recursively remove path defaultDownloadPath/v3.13.2",
-  "Copy folder defaultExtractedPath/extractedv3.13.2/python-cpython to tmpDir/CPython3.13.2x86nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.2/python-cpython to tmpDir/CPython3.13.2x86-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.2",
   "Execute command "./configure --prefix=toolcache/Python/3.13.2/x86-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.2/x86-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.2/x86-freethreaded to tmpDir/CPython3.13.2x86nix/installDir",
+  "Copy folder toolcache/Python/3.13.2/x86-freethreaded to tmpDir/CPython3.13.2x86-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.2",
 ]
 `;
@@ -22472,63 +22472,63 @@ exports[`LinuxBuilder for version 3.13.3 has a stable interaction with @actions/
 
 exports[`LinuxBuilder for version 3.13.3 has a stable interaction with @actions/toolkit during freethreaded build for arch arm64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.3arm64nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.3arm64nix/tmp as tool Python version 3.13.3 for architecture arm64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.3arm64nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.3arm64-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.3arm64-freethreadednix/tmp as tool Python version 3.13.3 for architecture arm64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.3arm64-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.3",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.3 to defaultDownloadPath/v3.13.3",
   "Extract defaultDownloadPath/v3.13.3 to defaultExtractedPath/extractedv3.13.3",
   "Recursively remove path defaultDownloadPath/v3.13.3",
-  "Copy folder defaultExtractedPath/extractedv3.13.3/python-cpython to tmpDir/CPython3.13.3arm64nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.3/python-cpython to tmpDir/CPython3.13.3arm64-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.3",
   "Execute command "./configure --prefix=toolcache/Python/3.13.3/arm64-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.3/arm64-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.3/arm64-freethreaded to tmpDir/CPython3.13.3arm64nix/installDir",
+  "Copy folder toolcache/Python/3.13.3/arm64-freethreaded to tmpDir/CPython3.13.3arm64-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.3",
 ]
 `;
 
 exports[`LinuxBuilder for version 3.13.3 has a stable interaction with @actions/toolkit during freethreaded build for arch x64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.3x64nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.3x64nix/tmp as tool Python version 3.13.3 for architecture x64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.3x64nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.3x64-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.3x64-freethreadednix/tmp as tool Python version 3.13.3 for architecture x64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.3x64-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.3",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.3 to defaultDownloadPath/v3.13.3",
   "Extract defaultDownloadPath/v3.13.3 to defaultExtractedPath/extractedv3.13.3",
   "Recursively remove path defaultDownloadPath/v3.13.3",
-  "Copy folder defaultExtractedPath/extractedv3.13.3/python-cpython to tmpDir/CPython3.13.3x64nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.3/python-cpython to tmpDir/CPython3.13.3x64-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.3",
   "Execute command "./configure --prefix=toolcache/Python/3.13.3/x64-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.3/x64-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.3/x64-freethreaded to tmpDir/CPython3.13.3x64nix/installDir",
+  "Copy folder toolcache/Python/3.13.3/x64-freethreaded to tmpDir/CPython3.13.3x64-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.3",
 ]
 `;
 
 exports[`LinuxBuilder for version 3.13.3 has a stable interaction with @actions/toolkit during freethreaded build for arch x86 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.3x86nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.3x86nix/tmp as tool Python version 3.13.3 for architecture x86-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.3x86nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.3x86-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.3x86-freethreadednix/tmp as tool Python version 3.13.3 for architecture x86-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.3x86-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.3",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.3 to defaultDownloadPath/v3.13.3",
   "Extract defaultDownloadPath/v3.13.3 to defaultExtractedPath/extractedv3.13.3",
   "Recursively remove path defaultDownloadPath/v3.13.3",
-  "Copy folder defaultExtractedPath/extractedv3.13.3/python-cpython to tmpDir/CPython3.13.3x86nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.3/python-cpython to tmpDir/CPython3.13.3x86-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.3",
   "Execute command "./configure --prefix=toolcache/Python/3.13.3/x86-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.3/x86-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.3/x86-freethreaded to tmpDir/CPython3.13.3x86nix/installDir",
+  "Copy folder toolcache/Python/3.13.3/x86-freethreaded to tmpDir/CPython3.13.3x86-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.3",
 ]
 `;
@@ -22688,63 +22688,63 @@ exports[`LinuxBuilder for version 3.13.4 has a stable interaction with @actions/
 
 exports[`LinuxBuilder for version 3.13.4 has a stable interaction with @actions/toolkit during freethreaded build for arch arm64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.4arm64nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.4arm64nix/tmp as tool Python version 3.13.4 for architecture arm64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.4arm64nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.4arm64-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.4arm64-freethreadednix/tmp as tool Python version 3.13.4 for architecture arm64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.4arm64-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.4",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.4 to defaultDownloadPath/v3.13.4",
   "Extract defaultDownloadPath/v3.13.4 to defaultExtractedPath/extractedv3.13.4",
   "Recursively remove path defaultDownloadPath/v3.13.4",
-  "Copy folder defaultExtractedPath/extractedv3.13.4/python-cpython to tmpDir/CPython3.13.4arm64nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.4/python-cpython to tmpDir/CPython3.13.4arm64-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.4",
   "Execute command "./configure --prefix=toolcache/Python/3.13.4/arm64-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.4/arm64-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.4/arm64-freethreaded to tmpDir/CPython3.13.4arm64nix/installDir",
+  "Copy folder toolcache/Python/3.13.4/arm64-freethreaded to tmpDir/CPython3.13.4arm64-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.4",
 ]
 `;
 
 exports[`LinuxBuilder for version 3.13.4 has a stable interaction with @actions/toolkit during freethreaded build for arch x64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.4x64nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.4x64nix/tmp as tool Python version 3.13.4 for architecture x64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.4x64nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.4x64-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.4x64-freethreadednix/tmp as tool Python version 3.13.4 for architecture x64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.4x64-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.4",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.4 to defaultDownloadPath/v3.13.4",
   "Extract defaultDownloadPath/v3.13.4 to defaultExtractedPath/extractedv3.13.4",
   "Recursively remove path defaultDownloadPath/v3.13.4",
-  "Copy folder defaultExtractedPath/extractedv3.13.4/python-cpython to tmpDir/CPython3.13.4x64nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.4/python-cpython to tmpDir/CPython3.13.4x64-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.4",
   "Execute command "./configure --prefix=toolcache/Python/3.13.4/x64-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.4/x64-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.4/x64-freethreaded to tmpDir/CPython3.13.4x64nix/installDir",
+  "Copy folder toolcache/Python/3.13.4/x64-freethreaded to tmpDir/CPython3.13.4x64-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.4",
 ]
 `;
 
 exports[`LinuxBuilder for version 3.13.4 has a stable interaction with @actions/toolkit during freethreaded build for arch x86 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.4x86nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.4x86nix/tmp as tool Python version 3.13.4 for architecture x86-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.4x86nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.4x86-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.4x86-freethreadednix/tmp as tool Python version 3.13.4 for architecture x86-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.4x86-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.4",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.4 to defaultDownloadPath/v3.13.4",
   "Extract defaultDownloadPath/v3.13.4 to defaultExtractedPath/extractedv3.13.4",
   "Recursively remove path defaultDownloadPath/v3.13.4",
-  "Copy folder defaultExtractedPath/extractedv3.13.4/python-cpython to tmpDir/CPython3.13.4x86nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.4/python-cpython to tmpDir/CPython3.13.4x86-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.4",
   "Execute command "./configure --prefix=toolcache/Python/3.13.4/x86-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.4/x86-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.4/x86-freethreaded to tmpDir/CPython3.13.4x86nix/installDir",
+  "Copy folder toolcache/Python/3.13.4/x86-freethreaded to tmpDir/CPython3.13.4x86-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.4",
 ]
 `;
@@ -22904,63 +22904,63 @@ exports[`LinuxBuilder for version 3.13.5 has a stable interaction with @actions/
 
 exports[`LinuxBuilder for version 3.13.5 has a stable interaction with @actions/toolkit during freethreaded build for arch arm64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.5arm64nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.5arm64nix/tmp as tool Python version 3.13.5 for architecture arm64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.5arm64nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.5arm64-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.5arm64-freethreadednix/tmp as tool Python version 3.13.5 for architecture arm64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.5arm64-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.5",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.5 to defaultDownloadPath/v3.13.5",
   "Extract defaultDownloadPath/v3.13.5 to defaultExtractedPath/extractedv3.13.5",
   "Recursively remove path defaultDownloadPath/v3.13.5",
-  "Copy folder defaultExtractedPath/extractedv3.13.5/python-cpython to tmpDir/CPython3.13.5arm64nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.5/python-cpython to tmpDir/CPython3.13.5arm64-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.5",
   "Execute command "./configure --prefix=toolcache/Python/3.13.5/arm64-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.5/arm64-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.5/arm64-freethreaded to tmpDir/CPython3.13.5arm64nix/installDir",
+  "Copy folder toolcache/Python/3.13.5/arm64-freethreaded to tmpDir/CPython3.13.5arm64-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.5",
 ]
 `;
 
 exports[`LinuxBuilder for version 3.13.5 has a stable interaction with @actions/toolkit during freethreaded build for arch x64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.5x64nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.5x64nix/tmp as tool Python version 3.13.5 for architecture x64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.5x64nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.5x64-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.5x64-freethreadednix/tmp as tool Python version 3.13.5 for architecture x64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.5x64-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.5",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.5 to defaultDownloadPath/v3.13.5",
   "Extract defaultDownloadPath/v3.13.5 to defaultExtractedPath/extractedv3.13.5",
   "Recursively remove path defaultDownloadPath/v3.13.5",
-  "Copy folder defaultExtractedPath/extractedv3.13.5/python-cpython to tmpDir/CPython3.13.5x64nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.5/python-cpython to tmpDir/CPython3.13.5x64-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.5",
   "Execute command "./configure --prefix=toolcache/Python/3.13.5/x64-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.5/x64-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.5/x64-freethreaded to tmpDir/CPython3.13.5x64nix/installDir",
+  "Copy folder toolcache/Python/3.13.5/x64-freethreaded to tmpDir/CPython3.13.5x64-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.5",
 ]
 `;
 
 exports[`LinuxBuilder for version 3.13.5 has a stable interaction with @actions/toolkit during freethreaded build for arch x86 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.5x86nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.5x86nix/tmp as tool Python version 3.13.5 for architecture x86-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.5x86nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.5x86-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.5x86-freethreadednix/tmp as tool Python version 3.13.5 for architecture x86-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.5x86-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.5",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.5 to defaultDownloadPath/v3.13.5",
   "Extract defaultDownloadPath/v3.13.5 to defaultExtractedPath/extractedv3.13.5",
   "Recursively remove path defaultDownloadPath/v3.13.5",
-  "Copy folder defaultExtractedPath/extractedv3.13.5/python-cpython to tmpDir/CPython3.13.5x86nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.5/python-cpython to tmpDir/CPython3.13.5x86-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.5",
   "Execute command "./configure --prefix=toolcache/Python/3.13.5/x86-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.5/x86-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.5/x86-freethreaded to tmpDir/CPython3.13.5x86nix/installDir",
+  "Copy folder toolcache/Python/3.13.5/x86-freethreaded to tmpDir/CPython3.13.5x86-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.5",
 ]
 `;
@@ -23120,63 +23120,63 @@ exports[`LinuxBuilder for version 3.13.6 has a stable interaction with @actions/
 
 exports[`LinuxBuilder for version 3.13.6 has a stable interaction with @actions/toolkit during freethreaded build for arch arm64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.6arm64nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.6arm64nix/tmp as tool Python version 3.13.6 for architecture arm64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.6arm64nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.6arm64-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.6arm64-freethreadednix/tmp as tool Python version 3.13.6 for architecture arm64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.6arm64-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.6",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.6 to defaultDownloadPath/v3.13.6",
   "Extract defaultDownloadPath/v3.13.6 to defaultExtractedPath/extractedv3.13.6",
   "Recursively remove path defaultDownloadPath/v3.13.6",
-  "Copy folder defaultExtractedPath/extractedv3.13.6/python-cpython to tmpDir/CPython3.13.6arm64nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.6/python-cpython to tmpDir/CPython3.13.6arm64-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.6",
   "Execute command "./configure --prefix=toolcache/Python/3.13.6/arm64-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.6/arm64-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.6/arm64-freethreaded to tmpDir/CPython3.13.6arm64nix/installDir",
+  "Copy folder toolcache/Python/3.13.6/arm64-freethreaded to tmpDir/CPython3.13.6arm64-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.6",
 ]
 `;
 
 exports[`LinuxBuilder for version 3.13.6 has a stable interaction with @actions/toolkit during freethreaded build for arch x64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.6x64nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.6x64nix/tmp as tool Python version 3.13.6 for architecture x64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.6x64nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.6x64-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.6x64-freethreadednix/tmp as tool Python version 3.13.6 for architecture x64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.6x64-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.6",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.6 to defaultDownloadPath/v3.13.6",
   "Extract defaultDownloadPath/v3.13.6 to defaultExtractedPath/extractedv3.13.6",
   "Recursively remove path defaultDownloadPath/v3.13.6",
-  "Copy folder defaultExtractedPath/extractedv3.13.6/python-cpython to tmpDir/CPython3.13.6x64nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.6/python-cpython to tmpDir/CPython3.13.6x64-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.6",
   "Execute command "./configure --prefix=toolcache/Python/3.13.6/x64-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.6/x64-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.6/x64-freethreaded to tmpDir/CPython3.13.6x64nix/installDir",
+  "Copy folder toolcache/Python/3.13.6/x64-freethreaded to tmpDir/CPython3.13.6x64-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.6",
 ]
 `;
 
 exports[`LinuxBuilder for version 3.13.6 has a stable interaction with @actions/toolkit during freethreaded build for arch x86 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.6x86nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.6x86nix/tmp as tool Python version 3.13.6 for architecture x86-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.6x86nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.6x86-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.6x86-freethreadednix/tmp as tool Python version 3.13.6 for architecture x86-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.6x86-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.6",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.6 to defaultDownloadPath/v3.13.6",
   "Extract defaultDownloadPath/v3.13.6 to defaultExtractedPath/extractedv3.13.6",
   "Recursively remove path defaultDownloadPath/v3.13.6",
-  "Copy folder defaultExtractedPath/extractedv3.13.6/python-cpython to tmpDir/CPython3.13.6x86nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.6/python-cpython to tmpDir/CPython3.13.6x86-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.6",
   "Execute command "./configure --prefix=toolcache/Python/3.13.6/x86-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.6/x86-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.6/x86-freethreaded to tmpDir/CPython3.13.6x86nix/installDir",
+  "Copy folder toolcache/Python/3.13.6/x86-freethreaded to tmpDir/CPython3.13.6x86-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.6",
 ]
 `;
@@ -23336,63 +23336,63 @@ exports[`LinuxBuilder for version 3.13.7 has a stable interaction with @actions/
 
 exports[`LinuxBuilder for version 3.13.7 has a stable interaction with @actions/toolkit during freethreaded build for arch arm64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.7arm64nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.7arm64nix/tmp as tool Python version 3.13.7 for architecture arm64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.7arm64nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.7arm64-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.7arm64-freethreadednix/tmp as tool Python version 3.13.7 for architecture arm64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.7arm64-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.7",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.7 to defaultDownloadPath/v3.13.7",
   "Extract defaultDownloadPath/v3.13.7 to defaultExtractedPath/extractedv3.13.7",
   "Recursively remove path defaultDownloadPath/v3.13.7",
-  "Copy folder defaultExtractedPath/extractedv3.13.7/python-cpython to tmpDir/CPython3.13.7arm64nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.7/python-cpython to tmpDir/CPython3.13.7arm64-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.7",
   "Execute command "./configure --prefix=toolcache/Python/3.13.7/arm64-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.7/arm64-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.7/arm64-freethreaded to tmpDir/CPython3.13.7arm64nix/installDir",
+  "Copy folder toolcache/Python/3.13.7/arm64-freethreaded to tmpDir/CPython3.13.7arm64-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.7",
 ]
 `;
 
 exports[`LinuxBuilder for version 3.13.7 has a stable interaction with @actions/toolkit during freethreaded build for arch x64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.7x64nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.7x64nix/tmp as tool Python version 3.13.7 for architecture x64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.7x64nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.7x64-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.7x64-freethreadednix/tmp as tool Python version 3.13.7 for architecture x64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.7x64-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.7",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.7 to defaultDownloadPath/v3.13.7",
   "Extract defaultDownloadPath/v3.13.7 to defaultExtractedPath/extractedv3.13.7",
   "Recursively remove path defaultDownloadPath/v3.13.7",
-  "Copy folder defaultExtractedPath/extractedv3.13.7/python-cpython to tmpDir/CPython3.13.7x64nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.7/python-cpython to tmpDir/CPython3.13.7x64-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.7",
   "Execute command "./configure --prefix=toolcache/Python/3.13.7/x64-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.7/x64-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.7/x64-freethreaded to tmpDir/CPython3.13.7x64nix/installDir",
+  "Copy folder toolcache/Python/3.13.7/x64-freethreaded to tmpDir/CPython3.13.7x64-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.7",
 ]
 `;
 
 exports[`LinuxBuilder for version 3.13.7 has a stable interaction with @actions/toolkit during freethreaded build for arch x86 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.7x86nix/tmp",
-  "Cache source directory tmpDir/CPython3.13.7x86nix/tmp as tool Python version 3.13.7 for architecture x86-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.7x86nix/tmp",
+  "Create directory with path tmpDir/CPython3.13.7x86-freethreadednix/tmp",
+  "Cache source directory tmpDir/CPython3.13.7x86-freethreadednix/tmp as tool Python version 3.13.7 for architecture x86-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.7x86-freethreadednix/tmp",
   "Recursively remove path toolcache/Python/3.13.7",
   "Execute command "sudo apt update "",
   "Execute command "sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libncursesw5-dev libreadline-dev libgdbm-dev libgdbm-compat-dev libssl-dev curl llvm libncurses5-dev xz-utils tk-dev liblzma-dev gdb lcov pkg-config libffi-dev libreadline6-dev lzma lzma-dev uuid-dev"",
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.7 to defaultDownloadPath/v3.13.7",
   "Extract defaultDownloadPath/v3.13.7 to defaultExtractedPath/extractedv3.13.7",
   "Recursively remove path defaultDownloadPath/v3.13.7",
-  "Copy folder defaultExtractedPath/extractedv3.13.7/python-cpython to tmpDir/CPython3.13.7x86nix",
+  "Copy folder defaultExtractedPath/extractedv3.13.7/python-cpython to tmpDir/CPython3.13.7x86-freethreadednix",
   "Recursively remove path defaultExtractedPath/extractedv3.13.7",
   "Execute command "./configure --prefix=toolcache/Python/3.13.7/x86-freethreaded  --enable-shared LDFLAGS="-Wl,--rpath=toolcache/Python/3.13.7/x86-freethreaded/lib" --enable-loadable-sqlite-extensions --enable-optimizations --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.7/x86-freethreaded to tmpDir/CPython3.13.7x86nix/installDir",
+  "Copy folder toolcache/Python/3.13.7/x86-freethreaded to tmpDir/CPython3.13.7x86-freethreadednix/installDir",
   "Recursively remove path toolcache/Python/3.13.7",
 ]
 `;

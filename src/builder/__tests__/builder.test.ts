@@ -443,7 +443,7 @@ describe('class Builder', () => {
         `${exePath} -m ensurepip`
       );
       expect(mockedExec.exec.mock.calls[1][0]).toEqual(
-        `${exePath} -m pip install --upgrade pip`
+        `${exePath} -m pip install --upgrade --force-reinstall pip`
       );
     });
 
