@@ -16,8 +16,7 @@
 
 /* eslint-disable no-restricted-imports */
 
-import * as utils from '../utils';
-import {describe, expect, jest, test} from '@jest/globals';
+import {beforeEach, describe, expect, jest, test} from '@jest/globals';
 import fs from 'fs';
 import tmp from 'tmp';
 
@@ -33,6 +32,13 @@ jest.mock('fs', () => ({
   realpathSync: jest.fn()
 }));
 jest.mock('tmp', () => ({dirSync: jest.fn()}));
+
+let utils: typeof import('../utils');
+beforeEach(async () => {
+  await jest.isolateModulesAsync(async () => {
+    utils = await import('../utils');
+  });
+});
 
 const mockedFs = jest.mocked(fs);
 const mockedTmp = jest.mocked(tmp);
@@ -176,7 +182,10 @@ describe('Utils', () => {
       utils.mktmpdir();
 
       expect(mockedTmp.dirSync).toHaveBeenCalledTimes(1);
-      expect(mockedTmp.dirSync).toHaveBeenCalledWith({unsafeCleanup: true});
+      expect(mockedTmp.dirSync).toHaveBeenCalledWith({
+        name: '_work0',
+        unsafeCleanup: true
+      });
     });
 
     test('calls tmp.dirSync with the specified boolean parameter in input', () => {
@@ -188,7 +197,10 @@ describe('Utils', () => {
       utils.mktmpdir(false);
 
       expect(mockedTmp.dirSync).toHaveBeenCalledTimes(1);
-      expect(mockedTmp.dirSync).toHaveBeenCalledWith({unsafeCleanup: false});
+      expect(mockedTmp.dirSync).toHaveBeenCalledWith({
+        name: '_work0',
+        unsafeCleanup: false
+      });
     });
 
     test('returns the name of the directory created by tmp.dirSync', () => {
@@ -200,6 +212,39 @@ describe('Utils', () => {
       const content = utils.mktmpdir();
 
       expect(content).toEqual('tmpDir');
+    });
+
+    test('returns progressive folders if called repeatedly', () => {
+      mockedTmp.dirSync.mockReturnValueOnce({
+        name: 'tmpDir',
+        removeCallback: () => {}
+      });
+      mockedTmp.dirSync.mockReturnValueOnce({
+        name: 'tmpDir',
+        removeCallback: () => {}
+      });
+      mockedTmp.dirSync.mockReturnValueOnce({
+        name: 'tmpDir',
+        removeCallback: () => {}
+      });
+
+      utils.mktmpdir();
+      utils.mktmpdir();
+      utils.mktmpdir();
+
+      expect(mockedTmp.dirSync).toHaveBeenCalledTimes(3);
+      expect(mockedTmp.dirSync).toHaveBeenCalledWith({
+        name: '_work0',
+        unsafeCleanup: true
+      });
+      expect(mockedTmp.dirSync).toHaveBeenCalledWith({
+        name: '_work1',
+        unsafeCleanup: true
+      });
+      expect(mockedTmp.dirSync).toHaveBeenCalledWith({
+        name: '_work2',
+        unsafeCleanup: true
+      });
     });
   });
 });

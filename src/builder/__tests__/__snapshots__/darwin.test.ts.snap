@@ -24524,9 +24524,9 @@ exports[`MacOSBuilder for version 3.13.0 has a stable interaction with @actions/
 
 exports[`MacOSBuilder for version 3.13.0 has a stable interaction with @actions/toolkit during freethreaded build for arch arm64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.0arm64darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.0arm64darwin/tmp as tool Python version 3.13.0 for architecture arm64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.0arm64darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.0arm64-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.0arm64-freethreadeddarwin/tmp as tool Python version 3.13.0 for architecture arm64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.0arm64-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.0",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -24537,22 +24537,22 @@ exports[`MacOSBuilder for version 3.13.0 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.0 to defaultDownloadPath/v3.13.0",
   "Extract defaultDownloadPath/v3.13.0 to defaultExtractedPath/extractedv3.13.0",
   "Recursively remove path defaultDownloadPath/v3.13.0",
-  "Copy folder defaultExtractedPath/extractedv3.13.0/python-cpython to tmpDir/CPython3.13.0arm64darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.0/python-cpython to tmpDir/CPython3.13.0arm64-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.0",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.0/arm64-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.0/arm64-freethreaded to tmpDir/CPython3.13.0arm64darwin/installDir",
+  "Copy folder toolcache/Python/3.13.0/arm64-freethreaded to tmpDir/CPython3.13.0arm64-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.0",
 ]
 `;
 
 exports[`MacOSBuilder for version 3.13.0 has a stable interaction with @actions/toolkit during freethreaded build for arch x64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.0x64darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.0x64darwin/tmp as tool Python version 3.13.0 for architecture x64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.0x64darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.0x64-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.0x64-freethreadeddarwin/tmp as tool Python version 3.13.0 for architecture x64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.0x64-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.0",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -24563,22 +24563,22 @@ exports[`MacOSBuilder for version 3.13.0 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.0 to defaultDownloadPath/v3.13.0",
   "Extract defaultDownloadPath/v3.13.0 to defaultExtractedPath/extractedv3.13.0",
   "Recursively remove path defaultDownloadPath/v3.13.0",
-  "Copy folder defaultExtractedPath/extractedv3.13.0/python-cpython to tmpDir/CPython3.13.0x64darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.0/python-cpython to tmpDir/CPython3.13.0x64-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.0",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.0/x64-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.0/x64-freethreaded to tmpDir/CPython3.13.0x64darwin/installDir",
+  "Copy folder toolcache/Python/3.13.0/x64-freethreaded to tmpDir/CPython3.13.0x64-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.0",
 ]
 `;
 
 exports[`MacOSBuilder for version 3.13.0 has a stable interaction with @actions/toolkit during freethreaded build for arch x86 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.0x86darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.0x86darwin/tmp as tool Python version 3.13.0 for architecture x86-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.0x86darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.0x86-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.0x86-freethreadeddarwin/tmp as tool Python version 3.13.0 for architecture x86-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.0x86-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.0",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -24589,13 +24589,13 @@ exports[`MacOSBuilder for version 3.13.0 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.0 to defaultDownloadPath/v3.13.0",
   "Extract defaultDownloadPath/v3.13.0 to defaultExtractedPath/extractedv3.13.0",
   "Recursively remove path defaultDownloadPath/v3.13.0",
-  "Copy folder defaultExtractedPath/extractedv3.13.0/python-cpython to tmpDir/CPython3.13.0x86darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.0/python-cpython to tmpDir/CPython3.13.0x86-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.0",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.0/x86-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.0/x86-freethreaded to tmpDir/CPython3.13.0x86darwin/installDir",
+  "Copy folder toolcache/Python/3.13.0/x86-freethreaded to tmpDir/CPython3.13.0x86-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.0",
 ]
 `;
@@ -24782,9 +24782,9 @@ exports[`MacOSBuilder for version 3.13.1 has a stable interaction with @actions/
 
 exports[`MacOSBuilder for version 3.13.1 has a stable interaction with @actions/toolkit during freethreaded build for arch arm64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.1arm64darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.1arm64darwin/tmp as tool Python version 3.13.1 for architecture arm64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.1arm64darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.1arm64-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.1arm64-freethreadeddarwin/tmp as tool Python version 3.13.1 for architecture arm64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.1arm64-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.1",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -24795,22 +24795,22 @@ exports[`MacOSBuilder for version 3.13.1 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.1 to defaultDownloadPath/v3.13.1",
   "Extract defaultDownloadPath/v3.13.1 to defaultExtractedPath/extractedv3.13.1",
   "Recursively remove path defaultDownloadPath/v3.13.1",
-  "Copy folder defaultExtractedPath/extractedv3.13.1/python-cpython to tmpDir/CPython3.13.1arm64darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.1/python-cpython to tmpDir/CPython3.13.1arm64-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.1",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.1/arm64-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.1/arm64-freethreaded to tmpDir/CPython3.13.1arm64darwin/installDir",
+  "Copy folder toolcache/Python/3.13.1/arm64-freethreaded to tmpDir/CPython3.13.1arm64-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.1",
 ]
 `;
 
 exports[`MacOSBuilder for version 3.13.1 has a stable interaction with @actions/toolkit during freethreaded build for arch x64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.1x64darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.1x64darwin/tmp as tool Python version 3.13.1 for architecture x64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.1x64darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.1x64-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.1x64-freethreadeddarwin/tmp as tool Python version 3.13.1 for architecture x64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.1x64-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.1",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -24821,22 +24821,22 @@ exports[`MacOSBuilder for version 3.13.1 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.1 to defaultDownloadPath/v3.13.1",
   "Extract defaultDownloadPath/v3.13.1 to defaultExtractedPath/extractedv3.13.1",
   "Recursively remove path defaultDownloadPath/v3.13.1",
-  "Copy folder defaultExtractedPath/extractedv3.13.1/python-cpython to tmpDir/CPython3.13.1x64darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.1/python-cpython to tmpDir/CPython3.13.1x64-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.1",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.1/x64-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.1/x64-freethreaded to tmpDir/CPython3.13.1x64darwin/installDir",
+  "Copy folder toolcache/Python/3.13.1/x64-freethreaded to tmpDir/CPython3.13.1x64-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.1",
 ]
 `;
 
 exports[`MacOSBuilder for version 3.13.1 has a stable interaction with @actions/toolkit during freethreaded build for arch x86 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.1x86darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.1x86darwin/tmp as tool Python version 3.13.1 for architecture x86-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.1x86darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.1x86-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.1x86-freethreadeddarwin/tmp as tool Python version 3.13.1 for architecture x86-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.1x86-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.1",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -24847,13 +24847,13 @@ exports[`MacOSBuilder for version 3.13.1 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.1 to defaultDownloadPath/v3.13.1",
   "Extract defaultDownloadPath/v3.13.1 to defaultExtractedPath/extractedv3.13.1",
   "Recursively remove path defaultDownloadPath/v3.13.1",
-  "Copy folder defaultExtractedPath/extractedv3.13.1/python-cpython to tmpDir/CPython3.13.1x86darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.1/python-cpython to tmpDir/CPython3.13.1x86-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.1",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.1/x86-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.1/x86-freethreaded to tmpDir/CPython3.13.1x86darwin/installDir",
+  "Copy folder toolcache/Python/3.13.1/x86-freethreaded to tmpDir/CPython3.13.1x86-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.1",
 ]
 `;
@@ -25040,9 +25040,9 @@ exports[`MacOSBuilder for version 3.13.2 has a stable interaction with @actions/
 
 exports[`MacOSBuilder for version 3.13.2 has a stable interaction with @actions/toolkit during freethreaded build for arch arm64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.2arm64darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.2arm64darwin/tmp as tool Python version 3.13.2 for architecture arm64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.2arm64darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.2arm64-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.2arm64-freethreadeddarwin/tmp as tool Python version 3.13.2 for architecture arm64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.2arm64-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.2",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -25053,22 +25053,22 @@ exports[`MacOSBuilder for version 3.13.2 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.2 to defaultDownloadPath/v3.13.2",
   "Extract defaultDownloadPath/v3.13.2 to defaultExtractedPath/extractedv3.13.2",
   "Recursively remove path defaultDownloadPath/v3.13.2",
-  "Copy folder defaultExtractedPath/extractedv3.13.2/python-cpython to tmpDir/CPython3.13.2arm64darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.2/python-cpython to tmpDir/CPython3.13.2arm64-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.2",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.2/arm64-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.2/arm64-freethreaded to tmpDir/CPython3.13.2arm64darwin/installDir",
+  "Copy folder toolcache/Python/3.13.2/arm64-freethreaded to tmpDir/CPython3.13.2arm64-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.2",
 ]
 `;
 
 exports[`MacOSBuilder for version 3.13.2 has a stable interaction with @actions/toolkit during freethreaded build for arch x64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.2x64darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.2x64darwin/tmp as tool Python version 3.13.2 for architecture x64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.2x64darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.2x64-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.2x64-freethreadeddarwin/tmp as tool Python version 3.13.2 for architecture x64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.2x64-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.2",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -25079,22 +25079,22 @@ exports[`MacOSBuilder for version 3.13.2 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.2 to defaultDownloadPath/v3.13.2",
   "Extract defaultDownloadPath/v3.13.2 to defaultExtractedPath/extractedv3.13.2",
   "Recursively remove path defaultDownloadPath/v3.13.2",
-  "Copy folder defaultExtractedPath/extractedv3.13.2/python-cpython to tmpDir/CPython3.13.2x64darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.2/python-cpython to tmpDir/CPython3.13.2x64-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.2",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.2/x64-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.2/x64-freethreaded to tmpDir/CPython3.13.2x64darwin/installDir",
+  "Copy folder toolcache/Python/3.13.2/x64-freethreaded to tmpDir/CPython3.13.2x64-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.2",
 ]
 `;
 
 exports[`MacOSBuilder for version 3.13.2 has a stable interaction with @actions/toolkit during freethreaded build for arch x86 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.2x86darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.2x86darwin/tmp as tool Python version 3.13.2 for architecture x86-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.2x86darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.2x86-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.2x86-freethreadeddarwin/tmp as tool Python version 3.13.2 for architecture x86-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.2x86-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.2",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -25105,13 +25105,13 @@ exports[`MacOSBuilder for version 3.13.2 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.2 to defaultDownloadPath/v3.13.2",
   "Extract defaultDownloadPath/v3.13.2 to defaultExtractedPath/extractedv3.13.2",
   "Recursively remove path defaultDownloadPath/v3.13.2",
-  "Copy folder defaultExtractedPath/extractedv3.13.2/python-cpython to tmpDir/CPython3.13.2x86darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.2/python-cpython to tmpDir/CPython3.13.2x86-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.2",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.2/x86-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.2/x86-freethreaded to tmpDir/CPython3.13.2x86darwin/installDir",
+  "Copy folder toolcache/Python/3.13.2/x86-freethreaded to tmpDir/CPython3.13.2x86-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.2",
 ]
 `;
@@ -25298,9 +25298,9 @@ exports[`MacOSBuilder for version 3.13.3 has a stable interaction with @actions/
 
 exports[`MacOSBuilder for version 3.13.3 has a stable interaction with @actions/toolkit during freethreaded build for arch arm64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.3arm64darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.3arm64darwin/tmp as tool Python version 3.13.3 for architecture arm64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.3arm64darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.3arm64-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.3arm64-freethreadeddarwin/tmp as tool Python version 3.13.3 for architecture arm64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.3arm64-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.3",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -25311,22 +25311,22 @@ exports[`MacOSBuilder for version 3.13.3 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.3 to defaultDownloadPath/v3.13.3",
   "Extract defaultDownloadPath/v3.13.3 to defaultExtractedPath/extractedv3.13.3",
   "Recursively remove path defaultDownloadPath/v3.13.3",
-  "Copy folder defaultExtractedPath/extractedv3.13.3/python-cpython to tmpDir/CPython3.13.3arm64darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.3/python-cpython to tmpDir/CPython3.13.3arm64-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.3",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.3/arm64-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.3/arm64-freethreaded to tmpDir/CPython3.13.3arm64darwin/installDir",
+  "Copy folder toolcache/Python/3.13.3/arm64-freethreaded to tmpDir/CPython3.13.3arm64-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.3",
 ]
 `;
 
 exports[`MacOSBuilder for version 3.13.3 has a stable interaction with @actions/toolkit during freethreaded build for arch x64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.3x64darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.3x64darwin/tmp as tool Python version 3.13.3 for architecture x64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.3x64darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.3x64-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.3x64-freethreadeddarwin/tmp as tool Python version 3.13.3 for architecture x64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.3x64-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.3",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -25337,22 +25337,22 @@ exports[`MacOSBuilder for version 3.13.3 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.3 to defaultDownloadPath/v3.13.3",
   "Extract defaultDownloadPath/v3.13.3 to defaultExtractedPath/extractedv3.13.3",
   "Recursively remove path defaultDownloadPath/v3.13.3",
-  "Copy folder defaultExtractedPath/extractedv3.13.3/python-cpython to tmpDir/CPython3.13.3x64darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.3/python-cpython to tmpDir/CPython3.13.3x64-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.3",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.3/x64-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.3/x64-freethreaded to tmpDir/CPython3.13.3x64darwin/installDir",
+  "Copy folder toolcache/Python/3.13.3/x64-freethreaded to tmpDir/CPython3.13.3x64-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.3",
 ]
 `;
 
 exports[`MacOSBuilder for version 3.13.3 has a stable interaction with @actions/toolkit during freethreaded build for arch x86 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.3x86darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.3x86darwin/tmp as tool Python version 3.13.3 for architecture x86-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.3x86darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.3x86-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.3x86-freethreadeddarwin/tmp as tool Python version 3.13.3 for architecture x86-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.3x86-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.3",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -25363,13 +25363,13 @@ exports[`MacOSBuilder for version 3.13.3 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.3 to defaultDownloadPath/v3.13.3",
   "Extract defaultDownloadPath/v3.13.3 to defaultExtractedPath/extractedv3.13.3",
   "Recursively remove path defaultDownloadPath/v3.13.3",
-  "Copy folder defaultExtractedPath/extractedv3.13.3/python-cpython to tmpDir/CPython3.13.3x86darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.3/python-cpython to tmpDir/CPython3.13.3x86-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.3",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.3/x86-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.3/x86-freethreaded to tmpDir/CPython3.13.3x86darwin/installDir",
+  "Copy folder toolcache/Python/3.13.3/x86-freethreaded to tmpDir/CPython3.13.3x86-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.3",
 ]
 `;
@@ -25556,9 +25556,9 @@ exports[`MacOSBuilder for version 3.13.4 has a stable interaction with @actions/
 
 exports[`MacOSBuilder for version 3.13.4 has a stable interaction with @actions/toolkit during freethreaded build for arch arm64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.4arm64darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.4arm64darwin/tmp as tool Python version 3.13.4 for architecture arm64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.4arm64darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.4arm64-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.4arm64-freethreadeddarwin/tmp as tool Python version 3.13.4 for architecture arm64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.4arm64-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.4",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -25569,22 +25569,22 @@ exports[`MacOSBuilder for version 3.13.4 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.4 to defaultDownloadPath/v3.13.4",
   "Extract defaultDownloadPath/v3.13.4 to defaultExtractedPath/extractedv3.13.4",
   "Recursively remove path defaultDownloadPath/v3.13.4",
-  "Copy folder defaultExtractedPath/extractedv3.13.4/python-cpython to tmpDir/CPython3.13.4arm64darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.4/python-cpython to tmpDir/CPython3.13.4arm64-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.4",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.4/arm64-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.4/arm64-freethreaded to tmpDir/CPython3.13.4arm64darwin/installDir",
+  "Copy folder toolcache/Python/3.13.4/arm64-freethreaded to tmpDir/CPython3.13.4arm64-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.4",
 ]
 `;
 
 exports[`MacOSBuilder for version 3.13.4 has a stable interaction with @actions/toolkit during freethreaded build for arch x64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.4x64darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.4x64darwin/tmp as tool Python version 3.13.4 for architecture x64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.4x64darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.4x64-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.4x64-freethreadeddarwin/tmp as tool Python version 3.13.4 for architecture x64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.4x64-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.4",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -25595,22 +25595,22 @@ exports[`MacOSBuilder for version 3.13.4 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.4 to defaultDownloadPath/v3.13.4",
   "Extract defaultDownloadPath/v3.13.4 to defaultExtractedPath/extractedv3.13.4",
   "Recursively remove path defaultDownloadPath/v3.13.4",
-  "Copy folder defaultExtractedPath/extractedv3.13.4/python-cpython to tmpDir/CPython3.13.4x64darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.4/python-cpython to tmpDir/CPython3.13.4x64-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.4",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.4/x64-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.4/x64-freethreaded to tmpDir/CPython3.13.4x64darwin/installDir",
+  "Copy folder toolcache/Python/3.13.4/x64-freethreaded to tmpDir/CPython3.13.4x64-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.4",
 ]
 `;
 
 exports[`MacOSBuilder for version 3.13.4 has a stable interaction with @actions/toolkit during freethreaded build for arch x86 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.4x86darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.4x86darwin/tmp as tool Python version 3.13.4 for architecture x86-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.4x86darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.4x86-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.4x86-freethreadeddarwin/tmp as tool Python version 3.13.4 for architecture x86-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.4x86-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.4",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -25621,13 +25621,13 @@ exports[`MacOSBuilder for version 3.13.4 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.4 to defaultDownloadPath/v3.13.4",
   "Extract defaultDownloadPath/v3.13.4 to defaultExtractedPath/extractedv3.13.4",
   "Recursively remove path defaultDownloadPath/v3.13.4",
-  "Copy folder defaultExtractedPath/extractedv3.13.4/python-cpython to tmpDir/CPython3.13.4x86darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.4/python-cpython to tmpDir/CPython3.13.4x86-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.4",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.4/x86-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.4/x86-freethreaded to tmpDir/CPython3.13.4x86darwin/installDir",
+  "Copy folder toolcache/Python/3.13.4/x86-freethreaded to tmpDir/CPython3.13.4x86-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.4",
 ]
 `;
@@ -25814,9 +25814,9 @@ exports[`MacOSBuilder for version 3.13.5 has a stable interaction with @actions/
 
 exports[`MacOSBuilder for version 3.13.5 has a stable interaction with @actions/toolkit during freethreaded build for arch arm64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.5arm64darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.5arm64darwin/tmp as tool Python version 3.13.5 for architecture arm64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.5arm64darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.5arm64-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.5arm64-freethreadeddarwin/tmp as tool Python version 3.13.5 for architecture arm64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.5arm64-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.5",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -25827,22 +25827,22 @@ exports[`MacOSBuilder for version 3.13.5 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.5 to defaultDownloadPath/v3.13.5",
   "Extract defaultDownloadPath/v3.13.5 to defaultExtractedPath/extractedv3.13.5",
   "Recursively remove path defaultDownloadPath/v3.13.5",
-  "Copy folder defaultExtractedPath/extractedv3.13.5/python-cpython to tmpDir/CPython3.13.5arm64darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.5/python-cpython to tmpDir/CPython3.13.5arm64-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.5",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.5/arm64-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.5/arm64-freethreaded to tmpDir/CPython3.13.5arm64darwin/installDir",
+  "Copy folder toolcache/Python/3.13.5/arm64-freethreaded to tmpDir/CPython3.13.5arm64-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.5",
 ]
 `;
 
 exports[`MacOSBuilder for version 3.13.5 has a stable interaction with @actions/toolkit during freethreaded build for arch x64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.5x64darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.5x64darwin/tmp as tool Python version 3.13.5 for architecture x64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.5x64darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.5x64-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.5x64-freethreadeddarwin/tmp as tool Python version 3.13.5 for architecture x64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.5x64-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.5",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -25853,22 +25853,22 @@ exports[`MacOSBuilder for version 3.13.5 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.5 to defaultDownloadPath/v3.13.5",
   "Extract defaultDownloadPath/v3.13.5 to defaultExtractedPath/extractedv3.13.5",
   "Recursively remove path defaultDownloadPath/v3.13.5",
-  "Copy folder defaultExtractedPath/extractedv3.13.5/python-cpython to tmpDir/CPython3.13.5x64darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.5/python-cpython to tmpDir/CPython3.13.5x64-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.5",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.5/x64-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.5/x64-freethreaded to tmpDir/CPython3.13.5x64darwin/installDir",
+  "Copy folder toolcache/Python/3.13.5/x64-freethreaded to tmpDir/CPython3.13.5x64-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.5",
 ]
 `;
 
 exports[`MacOSBuilder for version 3.13.5 has a stable interaction with @actions/toolkit during freethreaded build for arch x86 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.5x86darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.5x86darwin/tmp as tool Python version 3.13.5 for architecture x86-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.5x86darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.5x86-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.5x86-freethreadeddarwin/tmp as tool Python version 3.13.5 for architecture x86-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.5x86-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.5",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -25879,13 +25879,13 @@ exports[`MacOSBuilder for version 3.13.5 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.5 to defaultDownloadPath/v3.13.5",
   "Extract defaultDownloadPath/v3.13.5 to defaultExtractedPath/extractedv3.13.5",
   "Recursively remove path defaultDownloadPath/v3.13.5",
-  "Copy folder defaultExtractedPath/extractedv3.13.5/python-cpython to tmpDir/CPython3.13.5x86darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.5/python-cpython to tmpDir/CPython3.13.5x86-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.5",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.5/x86-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.5/x86-freethreaded to tmpDir/CPython3.13.5x86darwin/installDir",
+  "Copy folder toolcache/Python/3.13.5/x86-freethreaded to tmpDir/CPython3.13.5x86-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.5",
 ]
 `;
@@ -26072,9 +26072,9 @@ exports[`MacOSBuilder for version 3.13.6 has a stable interaction with @actions/
 
 exports[`MacOSBuilder for version 3.13.6 has a stable interaction with @actions/toolkit during freethreaded build for arch arm64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.6arm64darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.6arm64darwin/tmp as tool Python version 3.13.6 for architecture arm64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.6arm64darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.6arm64-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.6arm64-freethreadeddarwin/tmp as tool Python version 3.13.6 for architecture arm64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.6arm64-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.6",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -26085,22 +26085,22 @@ exports[`MacOSBuilder for version 3.13.6 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.6 to defaultDownloadPath/v3.13.6",
   "Extract defaultDownloadPath/v3.13.6 to defaultExtractedPath/extractedv3.13.6",
   "Recursively remove path defaultDownloadPath/v3.13.6",
-  "Copy folder defaultExtractedPath/extractedv3.13.6/python-cpython to tmpDir/CPython3.13.6arm64darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.6/python-cpython to tmpDir/CPython3.13.6arm64-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.6",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.6/arm64-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.6/arm64-freethreaded to tmpDir/CPython3.13.6arm64darwin/installDir",
+  "Copy folder toolcache/Python/3.13.6/arm64-freethreaded to tmpDir/CPython3.13.6arm64-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.6",
 ]
 `;
 
 exports[`MacOSBuilder for version 3.13.6 has a stable interaction with @actions/toolkit during freethreaded build for arch x64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.6x64darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.6x64darwin/tmp as tool Python version 3.13.6 for architecture x64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.6x64darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.6x64-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.6x64-freethreadeddarwin/tmp as tool Python version 3.13.6 for architecture x64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.6x64-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.6",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -26111,22 +26111,22 @@ exports[`MacOSBuilder for version 3.13.6 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.6 to defaultDownloadPath/v3.13.6",
   "Extract defaultDownloadPath/v3.13.6 to defaultExtractedPath/extractedv3.13.6",
   "Recursively remove path defaultDownloadPath/v3.13.6",
-  "Copy folder defaultExtractedPath/extractedv3.13.6/python-cpython to tmpDir/CPython3.13.6x64darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.6/python-cpython to tmpDir/CPython3.13.6x64-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.6",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.6/x64-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.6/x64-freethreaded to tmpDir/CPython3.13.6x64darwin/installDir",
+  "Copy folder toolcache/Python/3.13.6/x64-freethreaded to tmpDir/CPython3.13.6x64-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.6",
 ]
 `;
 
 exports[`MacOSBuilder for version 3.13.6 has a stable interaction with @actions/toolkit during freethreaded build for arch x86 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.6x86darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.6x86darwin/tmp as tool Python version 3.13.6 for architecture x86-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.6x86darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.6x86-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.6x86-freethreadeddarwin/tmp as tool Python version 3.13.6 for architecture x86-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.6x86-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.6",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -26137,13 +26137,13 @@ exports[`MacOSBuilder for version 3.13.6 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.6 to defaultDownloadPath/v3.13.6",
   "Extract defaultDownloadPath/v3.13.6 to defaultExtractedPath/extractedv3.13.6",
   "Recursively remove path defaultDownloadPath/v3.13.6",
-  "Copy folder defaultExtractedPath/extractedv3.13.6/python-cpython to tmpDir/CPython3.13.6x86darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.6/python-cpython to tmpDir/CPython3.13.6x86-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.6",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.6/x86-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.6/x86-freethreaded to tmpDir/CPython3.13.6x86darwin/installDir",
+  "Copy folder toolcache/Python/3.13.6/x86-freethreaded to tmpDir/CPython3.13.6x86-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.6",
 ]
 `;
@@ -26330,9 +26330,9 @@ exports[`MacOSBuilder for version 3.13.7 has a stable interaction with @actions/
 
 exports[`MacOSBuilder for version 3.13.7 has a stable interaction with @actions/toolkit during freethreaded build for arch arm64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.7arm64darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.7arm64darwin/tmp as tool Python version 3.13.7 for architecture arm64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.7arm64darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.7arm64-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.7arm64-freethreadeddarwin/tmp as tool Python version 3.13.7 for architecture arm64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.7arm64-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.7",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -26343,22 +26343,22 @@ exports[`MacOSBuilder for version 3.13.7 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.7 to defaultDownloadPath/v3.13.7",
   "Extract defaultDownloadPath/v3.13.7 to defaultExtractedPath/extractedv3.13.7",
   "Recursively remove path defaultDownloadPath/v3.13.7",
-  "Copy folder defaultExtractedPath/extractedv3.13.7/python-cpython to tmpDir/CPython3.13.7arm64darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.7/python-cpython to tmpDir/CPython3.13.7arm64-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.7",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.7/arm64-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.7/arm64-freethreaded to tmpDir/CPython3.13.7arm64darwin/installDir",
+  "Copy folder toolcache/Python/3.13.7/arm64-freethreaded to tmpDir/CPython3.13.7arm64-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.7",
 ]
 `;
 
 exports[`MacOSBuilder for version 3.13.7 has a stable interaction with @actions/toolkit during freethreaded build for arch x64 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.7x64darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.7x64darwin/tmp as tool Python version 3.13.7 for architecture x64-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.7x64darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.7x64-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.7x64-freethreadeddarwin/tmp as tool Python version 3.13.7 for architecture x64-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.7x64-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.7",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -26369,22 +26369,22 @@ exports[`MacOSBuilder for version 3.13.7 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.7 to defaultDownloadPath/v3.13.7",
   "Extract defaultDownloadPath/v3.13.7 to defaultExtractedPath/extractedv3.13.7",
   "Recursively remove path defaultDownloadPath/v3.13.7",
-  "Copy folder defaultExtractedPath/extractedv3.13.7/python-cpython to tmpDir/CPython3.13.7x64darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.7/python-cpython to tmpDir/CPython3.13.7x64-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.7",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.7/x64-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.7/x64-freethreaded to tmpDir/CPython3.13.7x64darwin/installDir",
+  "Copy folder toolcache/Python/3.13.7/x64-freethreaded to tmpDir/CPython3.13.7x64-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.7",
 ]
 `;
 
 exports[`MacOSBuilder for version 3.13.7 has a stable interaction with @actions/toolkit during freethreaded build for arch x86 1`] = `
 [
-  "Create directory with path tmpDir/CPython3.13.7x86darwin/tmp",
-  "Cache source directory tmpDir/CPython3.13.7x86darwin/tmp as tool Python version 3.13.7 for architecture x86-freethreaded",
-  "Recursively remove path tmpDir/CPython3.13.7x86darwin/tmp",
+  "Create directory with path tmpDir/CPython3.13.7x86-freethreadeddarwin/tmp",
+  "Cache source directory tmpDir/CPython3.13.7x86-freethreadeddarwin/tmp as tool Python version 3.13.7 for architecture x86-freethreaded",
+  "Recursively remove path tmpDir/CPython3.13.7x86-freethreadeddarwin/tmp",
   "Recursively remove path toolcache/Python/3.13.7",
   "Execute command "xcode-select --install "",
   "Execute command "brew install zlib sqlite3 readline "",
@@ -26395,13 +26395,13 @@ exports[`MacOSBuilder for version 3.13.7 has a stable interaction with @actions/
   "Download https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.7 to defaultDownloadPath/v3.13.7",
   "Extract defaultDownloadPath/v3.13.7 to defaultExtractedPath/extractedv3.13.7",
   "Recursively remove path defaultDownloadPath/v3.13.7",
-  "Copy folder defaultExtractedPath/extractedv3.13.7/python-cpython to tmpDir/CPython3.13.7x86darwin",
+  "Copy folder defaultExtractedPath/extractedv3.13.7/python-cpython to tmpDir/CPython3.13.7x86-freethreadeddarwin",
   "Recursively remove path defaultExtractedPath/extractedv3.13.7",
   "Execute command "brew --prefix sqlite3 "",
   "Execute command "./configure --prefix=toolcache/Python/3.13.7/x86-freethreaded  --enable-shared --enable-loadable-sqlite-extensions --enable-optimizations --with-lto --with-openssl=brew --prefix openssl --disable-gil "",
   "Execute command "make "",
   "Execute command "make install "",
-  "Copy folder toolcache/Python/3.13.7/x86-freethreaded to tmpDir/CPython3.13.7x86darwin/installDir",
+  "Copy folder toolcache/Python/3.13.7/x86-freethreaded to tmpDir/CPython3.13.7x86-freethreadeddarwin/installDir",
   "Recursively remove path toolcache/Python/3.13.7",
 ]
 `;
