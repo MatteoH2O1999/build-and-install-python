@@ -144,7 +144,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
           allow-build: force
       - name: Setup Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         id: setup
         with:
           python-version: ${{ steps.build.outputs.python-version }}
