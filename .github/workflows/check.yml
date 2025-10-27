@@ -68,7 +68,7 @@ jobs:
         os: [macos-15, windows-2025, ubuntu-24.04]
     steps:
       - name: Download built action
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: built-action
       - name: Test action with Python ${{ inputs.python-version }}
@@ -109,7 +109,7 @@ jobs:
         os: [macos-15, windows-2025, ubuntu-24.04]
     steps:
       - name: Download built action
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: built-action
       - name: Test action with Python ${{ inputs.python-version }}
