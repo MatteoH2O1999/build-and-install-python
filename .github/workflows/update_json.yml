@@ -38,7 +38,7 @@ jobs:
         env:
           FORCE_COLOR: 3
       - name: Create or update pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: Update CPython JSON data
           branch: create-pull-request/cpython-json
@@ -72,7 +72,7 @@ jobs:
       - name: Fix dependencies vulnerabilities
         run: npm audit fix || true
       - name: Create or update pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: Audit dependencies
           branch: create-pull-request/audit-dependencies
