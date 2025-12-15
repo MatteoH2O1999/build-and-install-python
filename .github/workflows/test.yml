@@ -134,7 +134,7 @@ jobs:
       matrix: ${{ fromJSON(needs.create_matrix.outputs.matrix-json) }}
     steps:
       - name: Download built action
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: built-action
       - name: Test action with Python ${{ matrix.python-version }}
