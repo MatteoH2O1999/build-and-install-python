@@ -43,7 +43,7 @@
         "@types/node": "^25.0.10",
         "@types/semver": "^7.7.1",
         "@types/tmp": "^0.2.6",
-        "@typescript-eslint/parser": "^8.53.1",
+        "@typescript-eslint/parser": "^8.54.0",
         "@vercel/ncc": "^0.38.4",
         "axios": "^1.13.3",
         "eslint": "^9.39.2",
