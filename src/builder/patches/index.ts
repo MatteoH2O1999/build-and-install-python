@@ -33,5 +33,5 @@ const patches: Patch[] = [
   new TCLTKProps_VC9()
 ];
 
-export {OS} from './patch';
+export type {OS} from './patch';
 export {patches};
