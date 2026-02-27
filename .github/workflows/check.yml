@@ -48,7 +48,7 @@ jobs:
       - name: Package with NCC
         run: npm run package
       - name: Upload built action
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: built-action
           path: |
