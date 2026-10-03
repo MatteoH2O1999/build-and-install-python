@@ -1,6 +1,11 @@
 [
   {
     "installer": false,
+    "version": "v3.15.0rc3",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.15.0rc3"
+  },
+  {
+    "installer": false,
     "version": "v3.15.0rc2",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.15.0rc2"
   },
@@ -68,6 +73,11 @@
     "installer": false,
     "version": "v3.15.0a1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.15.0a1"
+  },
+  {
+    "installer": true,
+    "version": "v3.14.8",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.14.8"
   },
   {
     "installer": true,
@@ -183,6 +193,11 @@
     "installer": false,
     "version": "v3.14.0a1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.14.0a1"
+  },
+  {
+    "installer": true,
+    "version": "v3.13.16",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.16"
   },
   {
     "installer": true,
@@ -331,6 +346,11 @@
   },
   {
     "installer": false,
+    "version": "v3.12.15",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.15"
+  },
+  {
+    "installer": false,
     "version": "v3.12.14",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.14"
   },
@@ -473,6 +493,11 @@
     "installer": false,
     "version": "v3.12.0a1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.0a1"
+  },
+  {
+    "installer": false,
+    "version": "v3.11.17",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.11.17"
   },
   {
     "installer": false,
@@ -628,6 +653,11 @@
     "installer": false,
     "version": "v3.11.0a1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.11.0a1"
+  },
+  {
+    "installer": false,
+    "version": "v3.10.22",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.10.22"
   },
   {
     "installer": false,
