@@ -1,6 +1,26 @@
 [
   {
     "installer": false,
+    "version": "v3.16.0a1",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.16.0a1"
+  },
+  {
+    "installer": true,
+    "version": "v3.15.2",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.15.2"
+  },
+  {
+    "installer": true,
+    "version": "v3.15.1",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.15.1"
+  },
+  {
+    "installer": true,
+    "version": "v3.15.0",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.15.0"
+  },
+  {
+    "installer": false,
     "version": "v3.15.0rc3",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.15.0rc3"
   },
@@ -73,6 +93,16 @@
     "installer": false,
     "version": "v3.15.0a1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.15.0a1"
+  },
+  {
+    "installer": true,
+    "version": "v3.14.10",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.14.10"
+  },
+  {
+    "installer": true,
+    "version": "v3.14.9",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.14.9"
   },
   {
     "installer": true,
@@ -193,6 +223,16 @@
     "installer": false,
     "version": "v3.14.0a1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.14.0a1"
+  },
+  {
+    "installer": false,
+    "version": "v3.13.18",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.18"
+  },
+  {
+    "installer": true,
+    "version": "v3.13.17",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.13.17"
   },
   {
     "installer": true,
@@ -346,6 +386,11 @@
   },
   {
     "installer": false,
+    "version": "v3.12.16",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.16"
+  },
+  {
+    "installer": false,
     "version": "v3.12.15",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.15"
   },
@@ -493,6 +538,11 @@
     "installer": false,
     "version": "v3.12.0a1",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.12.0a1"
+  },
+  {
+    "installer": false,
+    "version": "v3.11.18",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/v3.11.18"
   },
   {
     "installer": false,
@@ -3278,6 +3328,11 @@
     "installer": false,
     "version": "legacy-trunk",
     "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/legacy-trunk"
+  },
+  {
+    "installer": false,
+    "version": "3.10",
+    "zipBall": "https://api.github.com/repos/python/cpython/zipball/refs/tags/3.10"
   },
   {
     "installer": false,
