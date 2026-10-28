@@ -76,7 +76,6 @@ const ubuntuDependencies = [
   'libffi-dev',
   'libreadline6-dev',
   'lzma',
-  'lzma-dev',
   'uuid-dev'
 ];
 
