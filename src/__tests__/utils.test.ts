@@ -53,7 +53,6 @@ describe('Utils', () => {
     });
 
     test('returns what fs.promises.readdir returns', async () => {
-      // @ts-expect-error fs.Dirent overload
       mockedFs.promises.readdir.mockResolvedValueOnce(['dir1', 'dir2']);
 
       const dirs = await utils.readdir('path');
@@ -98,10 +97,7 @@ describe('Utils', () => {
       await utils.readFile('path');
 
       expect(mockedFs.promises.readFile).toHaveBeenCalledTimes(1);
-      expect(mockedFs.promises.readFile).toHaveBeenCalledWith(
-        'path',
-        undefined
-      );
+      expect(mockedFs.promises.readFile).toHaveBeenCalledWith('path', null);
     });
 
     test('returns what fs.promises.readFile returns if it is a string', async () => {

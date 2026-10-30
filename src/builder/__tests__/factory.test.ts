@@ -42,10 +42,7 @@ mockedUtils.realpathSync.mockImplementation(p => {
 mockedUtils.mktmpdir.mockReturnValue('tmpDir');
 
 function detectExpectedClass():
-  | typeof LinuxBuilder
-  | typeof MacOSBuilder
-  | typeof WindowsBuilder
-  | null {
+  typeof LinuxBuilder | typeof MacOSBuilder | typeof WindowsBuilder | null {
   if (process.platform === 'linux') {
     return LinuxBuilder;
   } else if (process.platform === 'darwin') {
