@@ -3,14 +3,13 @@ import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import globals from 'globals';
 import tsParser from '@typescript-eslint/parser';
 import stylisticTypescript from '@stylistic/eslint-plugin';
-import github from 'eslint-plugin-github';
 
 export default [
   {
     ignores: ['dist/', 'lib/', 'node_modules/', 'jest.config.js', '*.mjs']
   },
-  ...github.getFlatConfigs().typescript,
   {
+    files: ['**/*.js', '**/*.ts'],
     plugins: {
       jest,
       '@typescript-eslint': typescriptEslint,
@@ -92,7 +91,12 @@ export default [
       'sort-imports': 'error',
       'sort-keys': 'error',
       'no-restricted-imports': ['error', 'fs', 'tmp'],
-      'no-return-await': 'off'
+      'no-return-await': 'off',
+      'no-invalid-this': 'off',
+      '@typescript-eslint/no-invalid-this': ['error'],
+      '@typescript-eslint/interface-name-prefix': 'off',
+      '@typescript-eslint/no-use-before-define': 'off',
+      '@typescript-eslint/explicit-module-boundary-types': 'off'
     }
   }
 ];

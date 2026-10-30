@@ -16,7 +16,7 @@
 
 /* eslint-disable no-restricted-imports */
 
-import {Abortable} from 'node:events';
+import {ReadFileOptions} from 'node:fs';
 import fs from 'fs';
 import tmp from 'tmp';
 
@@ -44,14 +44,9 @@ export async function symlink(
 
 export async function readFile(
   path: fs.PathLike | fs.promises.FileHandle,
-  options?:
-    | ({
-        encoding: BufferEncoding;
-        flag?: fs.OpenMode | undefined;
-      } & Abortable)
-    | BufferEncoding
+  options?: ReadFileOptions | BufferEncoding
 ): Promise<string> {
-  const content = await fs.promises.readFile(path, options);
+  const content = await fs.promises.readFile(path, options ?? null);
   if (content instanceof Buffer) {
     return content.toString();
   } else if (typeof content == 'string') {
