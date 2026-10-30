@@ -184,11 +184,22 @@ export default class MacOSBuilder extends Builder {
           }
         }
       });
-    } else {
-      core.info('Detected version >=3.9. Default OpenSSL will be used...');
-      await exec.exec('brew install openssl');
+    } else if (semver.lt(this.specificVersion, '3.15.0')) {
+      core.info('Detected version <3.15. OpenSSL version 3 will be used...');
+      await exec.exec('brew install openssl@3');
       this.sslPath = '';
-      await exec.exec('brew --prefix openssl', [], {
+      await exec.exec('brew --prefix openssl@3', [], {
+        listeners: {
+          stdout: (buffer: Buffer) => {
+            this.sslPath = this.sslPath.concat(buffer.toString());
+          }
+        }
+      });
+    } else {
+      core.info('Detected version >=3.15. OpenSSL version 4 will be used...');
+      await exec.exec('brew install openssl@4');
+      this.sslPath = '';
+      await exec.exec('brew --prefix openssl@4', [], {
         listeners: {
           stdout: (buffer: Buffer) => {
             this.sslPath = this.sslPath.concat(buffer.toString());
@@ -234,9 +245,12 @@ export default class MacOSBuilder extends Builder {
         'Detected version <3.9. OpenSSL version 1.1 will be installed...'
       );
       await exec.exec('brew install openssl@1.1');
+    } else if (semver.lt(this.specificVersion, '3.15.0')) {
+      core.info('Detected version <3.15. OpenSSL version 3 will be used...');
+      await exec.exec('brew install openssl@3');
     } else {
-      core.info('Detected version >=3.9. Default OpenSSL will be installed...');
-      await exec.exec('brew install openssl');
+      core.info('Detected version >=3.15. OpenSSL version 4 will be used...');
+      await exec.exec('brew install openssl@4');
     }
 
     // Create symlinks
