@@ -1,5 +1,5 @@
 // Action to build any Python version on the latest labels and install it into the local tool cache.
-// Copyright (C) 2025 Matteo Dell'Acqua
+// Copyright (C) 2026 Matteo Dell'Acqua
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -173,8 +173,10 @@ export default class MacOSBuilder extends Builder {
     if (semver.lt(this.specificVersion, '3.5.0')) {
       core.info('Detected version <3.5. OpenSSL version 1.0.2 will be used...');
       this.sslPath = await this.installOldSsl(ssl102Url);
-    } else if (semver.lt(this.specificVersion, '3.9.0')) {
-      core.info('Detected version <3.9. OpenSSL version 1.1 will be used...');
+    } else if (semver.lt(this.specificVersion, '3.8.10')) {
+      core.info(
+        'Detected version <3.8.10. OpenSSL version 1.1 will be used...'
+      );
       await exec.exec('brew install openssl@1.1');
       this.sslPath = '';
       await exec.exec('brew --prefix openssl@1.1', [], {
@@ -240,9 +242,9 @@ export default class MacOSBuilder extends Builder {
 
     if (semver.lt(this.specificVersion, '3.5.0')) {
       await this.installOldSsl(ssl102Url);
-    } else if (semver.lt(this.specificVersion, '3.9.0')) {
+    } else if (semver.lt(this.specificVersion, '3.8.10')) {
       core.info(
-        'Detected version <3.9. OpenSSL version 1.1 will be installed...'
+        'Detected version <3.8.10. OpenSSL version 1.1 will be installed...'
       );
       await exec.exec('brew install openssl@1.1');
     } else if (semver.lt(this.specificVersion, '3.15.0')) {
